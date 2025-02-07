@@ -1,0 +1,65 @@
+query getArticles($categoryId: ID!) {
+  category(id: $categoryId) {
+    ...Category
+  }
+}
+
+query getHomeHighlightedArticles($categoryId: String!) {
+  homeHighlightedArticles(categoryId: $categoryId) {
+    ...Article
+  }
+}
+
+query getArticle($slug: String!) {
+  article(slug: $slug) {
+    ...Article
+  }
+}
+
+query getPaginatedArticles($categoryId: String!, $take: Int, $skip: Int) {
+  paginatedArticles(categoryId: $categoryId, take: $take, skip: $skip) {
+    data {
+      ...Article
+    }
+    pageInfo {
+      ...PageInfo
+    }
+  }
+}
+
+fragment Category on Category {
+  id
+  name
+  color
+  items {
+    ...Article
+  }
+}
+
+fragment Article on Article {
+  id
+  slug
+  title
+  subtitle
+  lead
+  content
+  position
+  highlighted
+  homeHighlighted
+  createdAt
+  updatedAt
+  publishedAt
+  image {
+    id
+    srcset
+    url
+  }
+}
+
+fragment PageInfo on PageInfo {
+  count
+  totalPages
+  currentPage
+  hasPreviousPage
+  hasNextPage
+}
