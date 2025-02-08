@@ -1,8 +1,15 @@
 import { getArticle, getArticles } from "@/actions/articles/articles";
 import { env } from "@/env";
+import { getArticleMetadata } from "@/lib/metadata";
 
 interface ArticlePageProps {
   params: Promise<{ articleSlug: string }>;
+}
+
+export const revalidate = 3600;
+
+export async function generateMetadata({ params }: ArticlePageProps) {
+  return getArticleMetadata((await params).articleSlug, "hirek");
 }
 
 export async function generateStaticParams() {

@@ -16,8 +16,8 @@ export async function generateMetadata() {
   return {
     // ...metadata,
     title: {
-      default: "Szakmasztár 2025",
-      template: "%s | Szakmasztár 2025",
+      default: "Szakma Sztár 2025",
+      template: "%s | Szakma Sztár 2025",
     },
   };
 }

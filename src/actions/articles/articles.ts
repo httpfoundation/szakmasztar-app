@@ -1,7 +1,7 @@
 "use server";
 
-import { unstable_cache } from "next/cache";
 import { notFound } from "next/navigation";
+import { getGlobalTag, getIdTag, gqlCache } from "@/lib/cache";
 import { graphqlClient } from "@/lib/client";
 import {
   ArticleFragment,
@@ -19,7 +19,7 @@ import {
   GetPaginatedArticlesQueryVariables,
 } from "./articles.generated";
 
-export const getArticles = unstable_cache(
+export const getArticles = gqlCache(
   async (variables: GetArticlesQueryVariables) => {
     const response = await graphqlClient.query<GetArticlesQuery, GetArticlesQueryVariables>({
       query: GetArticlesDocument,
@@ -30,13 +30,11 @@ export const getArticles = unstable_cache(
       (article) => article.__typename === "Article"
     ) as ArticleFragment[];
   },
-  ["*", "articles"],
-  { revalidate: 60 * 60, tags: ["*", "articles"] }
+  { tags: [getGlobalTag("articles")], revalidate: 60 * 60 }
 );
 
 export async function getArticle(variables: GetArticleQueryVariables): Promise<ArticleFragment> {
-  const cacheKey = `article-${variables.slug}`;
-  return await unstable_cache(
+  return await gqlCache(
     async () => {
       const response = await graphqlClient.query<GetArticleQuery, GetArticleQueryVariables>({
         query: GetArticleDocument,
@@ -49,8 +47,7 @@ export async function getArticle(variables: GetArticleQueryVariables): Promise<A
 
       return response.data.article;
     },
-    ["*", cacheKey],
-    { revalidate: 60 * 60, tags: ["*", cacheKey] }
+    { tags: [getIdTag(variables.slug, "articles")], revalidate: 60 * 60 }
   )();
 }
 
