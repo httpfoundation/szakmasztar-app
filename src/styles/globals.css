@@ -2,15 +2,25 @@
 *::before,
 *::after {
   scroll-behavior: smooth !important;
-  font-family: var(--font-roboto) !important;
+  font-family: var(--font-montserrat) !important;
 }
 
 body {
   margin: 0;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.font-market-condensed {
+  font-family: var(--font-market-condensed) !important;
 }
 
 img {
   max-width: 100%;
+  user-select: none;
+  object-fit: cover;
+  object-position: center;
+  display: block;
 }
 

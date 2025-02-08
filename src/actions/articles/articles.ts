@@ -3,6 +3,7 @@
 import { notFound } from "next/navigation";
 import { getGlobalTag, getIdTag, gqlCache } from "@/lib/cache";
 import { graphqlClient } from "@/lib/client";
+import { isNotFound } from "@/lib/utils";
 import {
   ArticleFragment,
   GetArticleDocument,
@@ -41,8 +42,8 @@ export async function getArticle(variables: GetArticleQueryVariables): Promise<A
         variables,
       });
 
-      if (response.errors?.[0].extensions?.status === 404) {
-        return notFound();
+      if (isNotFound(response)) {
+        notFound();
       }
 
       return response.data.article;

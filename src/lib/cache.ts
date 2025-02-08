@@ -8,11 +8,6 @@ export const CACHE_TAGS = {
   articles: "articles",
 } as const;
 
-export const CACHE_REVALIDATES = {
-  articles: 3600, // 1 hour
-  article: 3600, // 1 hour
-};
-
 export function getGlobalTag(tag: keyof typeof CACHE_TAGS) {
   return `global:${CACHE_TAGS[tag]}` as const;
 }
