@@ -3,6 +3,7 @@ import ShortCodeContext from "@/providers/ShortcodeContext";
 import "@/styles/globals.css";
 import { ReactNode } from "react";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
+import BaseLayout from "@/components/layouts/BaseLayout";
 import ThemeRegistry from "@/themes/ThemeRegistry";
 
 export async function generateMetadata() {
@@ -30,11 +31,12 @@ export default function RootLayout({
       <body suppressHydrationWarning>
         <AppRouterCacheProvider>
           <ThemeRegistry>
-            <ShortCodeContext>{children}</ShortCodeContext>
+            <ShortCodeContext>
+              <BaseLayout>{children}</BaseLayout>
+            </ShortCodeContext>
           </ThemeRegistry>
         </AppRouterCacheProvider>
       </body>
     </html>
   );
 }
-
