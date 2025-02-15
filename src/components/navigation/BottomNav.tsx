@@ -1,17 +1,26 @@
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { BottomNavigation, BottomNavigationAction, Paper } from "@mui/material";
 import { menuItems } from "./NavigationConfig";
 
-type BottomNavProps = {
-  value: number;
-  onChange: (event: React.SyntheticEvent, newValue: number) => void;
-};
+export default function BottomNav() {
+  const pathname = usePathname();
+  const bottomNavItems = menuItems.filter((item) => item.showInBottomNav);
+  const currentIndex = bottomNavItems.findIndex((item) => item.slug === pathname);
 
-export default function BottomNav({ value, onChange }: BottomNavProps) {
   return (
     <Paper sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }} elevation={3}>
-      <BottomNavigation value={value} onChange={onChange} showLabels>
-        {menuItems.map((item, index) => (
-          <BottomNavigationAction key={index} label={item.text} icon={item.icon} />
+      <BottomNavigation value={currentIndex} showLabels>
+        {bottomNavItems.map((item, index) => (
+          <BottomNavigationAction
+            key={index}
+            label={item.text}
+            icon={item.link}
+            component={Link}
+            href={item.slug}
+          />
         ))}
       </BottomNavigation>
     </Paper>

@@ -1,3 +1,6 @@
+"use client";
+
+import Link from "next/link";
 import { Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
 import { menuItems } from "./NavigationConfig";
 
@@ -23,7 +26,7 @@ export default function SideDrawer({ open, onClose }: SideDrawerProps) {
       <List>
         {menuItems.map((item, index) => (
           <ListItem key={index} disablePadding>
-            <ListItemButton>
+            <ListItemButton component={Link} href={item.slug} onClick={onClose}>
               <ListItemIcon>{item.icon}</ListItemIcon>
               <ListItemText primary={item.text} />
             </ListItemButton>
