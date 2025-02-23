@@ -1,5 +1,6 @@
 import { getCurrentCompetition } from "@/actions/competitions/competitions";
 import { getSkill, getSkills } from "@/actions/skills/skills";
+import PageTitle from "@/components/common/PageTitle";
 import FormattedContent from "@/components/FormattedContent";
 import { getArticleMetadata } from "@/lib/metadata";
 
@@ -29,7 +30,7 @@ const SkillPage = async ({ params }: SkillPageProps) => {
 
   return (
     <div>
-      <h1>{skill.name}</h1>
+      <PageTitle>{skill.name}</PageTitle>
       <FormattedContent>{skill.article.lead}</FormattedContent>
 
       {!!nationalCompetition && !!nationalCompetition.article && (
@@ -46,4 +47,3 @@ const SkillPage = async ({ params }: SkillPageProps) => {
 };
 
 export default SkillPage;
-

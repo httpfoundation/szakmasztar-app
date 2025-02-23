@@ -1,13 +1,14 @@
 import Image, { StaticImageData } from "next/image";
 import { Box, Typography } from "@mui/material";
+import LinkButton from "@/components/common/LinkButton";
 
-type HeroProps = {
+type HeroImageProps = {
   image: string | StaticImageData;
   alt: string;
   title?: string;
 };
 
-export default function Hero({ image, alt, title }: HeroProps) {
+export default function HeroImage({ image, alt, title }: HeroImageProps) {
   return (
     <Box
       sx={{
@@ -40,6 +41,7 @@ export default function Hero({ image, alt, title }: HeroProps) {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            flexDirection: "column",
           }}
         >
           <Typography
@@ -53,8 +55,30 @@ export default function Hero({ image, alt, title }: HeroProps) {
               textShadow: "2px 2px 4px rgba(0,0,0,0.5)",
             }}
           >
-            {title}
+            Szakma Sztár Feszivál
           </Typography>
+          <Typography
+            variant="body2"
+            sx={{
+              color: "white",
+              textAlign: "center",
+              fontSize: { xs: "1.5rem", sm: "2rem", md: "3rem" },
+              px: 2,
+              mt: 1,
+              textShadow: "2px 2px 4px rgba(0,0,0,0.5)",
+            }}
+          >
+            2025. április 25-26.
+          </Typography>
+          <LinkButton
+            href="/szakmasztar"
+            variant="contained"
+            color="primary"
+            direction="forward"
+            sx={{ px: 2, mt: 2 }}
+          >
+            Tudj meg többet a fesztiválról!
+          </LinkButton>
         </Box>
       )}
     </Box>
