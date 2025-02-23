@@ -17,7 +17,7 @@ export default function BottomNav() {
           <BottomNavigationAction
             key={index}
             label={item.text}
-            icon={item.link}
+            icon={item.icon}
             component={Link}
             href={item.slug}
           />
@@ -26,3 +26,4 @@ export default function BottomNav() {
     </Paper>
   );
 }
+

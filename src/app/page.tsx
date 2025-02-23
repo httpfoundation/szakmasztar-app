@@ -9,7 +9,7 @@ const IndexPage = async () => {
       <Box
         sx={{
           position: "relative",
-          width: "100vw",
+          width: "100%",
           height: { xs: "auto", md: "500px" },
           marginX: { xs: -3, md: 0 }, // Kompenzálja a BaseLayout padding-ját mobilon
           marginY: { xs: -4, md: 0 }, // Kompenzálja a BaseLayout padding-ját mobilon
