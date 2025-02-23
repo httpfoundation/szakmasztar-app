@@ -28,6 +28,10 @@ export function gqlCache<T extends (...args: any[]) => Promise<any>>(
   cb: Parameters<typeof unstable_cache<T>>[0],
   { tags, revalidate }: { tags: ValidTags[]; revalidate?: number }
 ) {
+  if (process.env.TURN_OFF_CACHE === "true") {
+    return cb;
+  }
+
   return cache(
     unstable_cache<T>(cb, [...tags, "*"], {
       tags: [...tags, "*"],
