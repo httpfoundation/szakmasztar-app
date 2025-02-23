@@ -10,7 +10,7 @@ import ThemeRegistry from "@/themes/ThemeRegistry";
 
 export async function generateMetadata() {
   const currentCompetition = await getCurrentCompetition();
-  const metadata = await getArticleMetadata(currentCompetition.article.slug, "");
+  const metadata = await getArticleMetadata(currentCompetition.article.slug);
 
   return {
     ...metadata,

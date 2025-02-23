@@ -3,6 +3,7 @@
 *::after {
   scroll-behavior: smooth !important;
   font-family: var(--font-montserrat) !important;
+  text-decoration: none;
 }
 
 body {

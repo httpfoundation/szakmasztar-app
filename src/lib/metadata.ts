@@ -5,7 +5,7 @@ import { getArticle } from "@/actions/articles/articles";
 import { env } from "@/env";
 import { stripHtmlTags } from "./utils";
 
-export async function getArticleMetadata(slug: string, path: string = ""): Promise<Metadata> {
+export async function getArticleMetadata(slug: string): Promise<Metadata> {
   const article = await getArticle({ slug });
   const lead = stripHtmlTags(article.lead);
 
@@ -17,7 +17,6 @@ export async function getArticleMetadata(slug: string, path: string = ""): Promi
       title: article.title,
       description: lead,
       type: "article",
-      url: `${env.SITE_BASE}${!path ? "" : `/${path}`}/${slug}`,
       images: article.image
         ? [
             {

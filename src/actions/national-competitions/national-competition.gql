@@ -1,26 +1,3 @@
-query getNationalCompetitions($take: Int, $skip: Int) {
-  nationalCompetitions(take: $take, skip: $skip) {
-    data {
-      ...NationalCompetition
-    }
-    pageInfo {
-      ...PageInfo
-    }
-  }
-}
-
-query getActiveNationalCompetitions {
-  activeNationalCompetitions {
-    ...NationalCompetition
-  }
-}
-
-query getActiveSkillsJuniorCompetitions {
-  activeSkillsJuniorCompetitions {
-    ...NationalCompetition
-  }
-}
-
 query getNationalCompetition($competitionSlug: String!, $skillSlug: String!) {
   nationalCompetition(competitionSlug: $competitionSlug, skillSlug: $skillSlug) {
     ...NationalCompetition
@@ -38,15 +15,15 @@ fragment FlatNationalCompetition on NationalCompetition {
   createdAt
   updatedAt
   ageLimit
+  article {
+    ...Article
+  }
 }
 
 fragment NationalCompetition on NationalCompetition {
   ...FlatNationalCompetition
   skill {
     ...Skill
-  }
-  article {
-    ...Article
   }
   competition {
     ...Competition

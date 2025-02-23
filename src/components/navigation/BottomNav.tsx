@@ -11,7 +11,7 @@ export default function BottomNav() {
   const currentIndex = bottomNavItems.findIndex((item) => item.slug === pathname);
 
   return (
-    <Paper sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }} elevation={3}>
+    <Paper sx={{ position: "fixed", bottom: 0, left: 0, right: 0, zIndex: 100000 }} elevation={3}>
       <BottomNavigation value={currentIndex} showLabels>
         {bottomNavItems.map((item, index) => (
           <BottomNavigationAction

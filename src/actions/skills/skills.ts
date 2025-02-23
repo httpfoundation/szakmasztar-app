@@ -2,6 +2,7 @@
 
 import { cache } from "react";
 import { notFound } from "next/navigation";
+import { getGlobalTag, getIdTag, gqlCache } from "@/lib/cache";
 import { graphqlClient } from "@/lib/client";
 import { isNotFound } from "@/lib/utils";
 import {
@@ -10,28 +11,38 @@ import {
   GetSkillQueryVariables,
   GetSkillsDocument,
   GetSkillsQuery,
-  GetSkillsQueryVariables,
   SkillFragment,
 } from "./skills.generated";
 
 export const getSkill = cache(async (variables: GetSkillQueryVariables): Promise<SkillFragment> => {
-  const response = await graphqlClient.query<GetSkillQuery, GetSkillQueryVariables>({
-    query: GetSkillDocument,
-    variables,
-  });
+  return await gqlCache(
+    async () => {
+      const response = await graphqlClient.query<GetSkillQuery, GetSkillQueryVariables>({
+        query: GetSkillDocument,
+        variables,
+      });
 
-  if (isNotFound(response)) {
-    return notFound();
-  }
+      if (isNotFound(response)) {
+        return notFound();
+      }
 
-  return response.data.skill;
+      return response.data.skill;
+    },
+    { tags: [getIdTag(variables.slug, "skills")], revalidate: 60 * 60 }
+  )();
 });
 
-export async function getSkills(): Promise<SkillFragment[]> {
-  const response = await graphqlClient.query<GetSkillsQuery, GetSkillsQueryVariables>({
-    query: GetSkillsDocument,
-  });
+export const getSkills = gqlCache(
+  async () => {
+    const response = await graphqlClient.query<GetSkillsQuery>({
+      query: GetSkillsDocument,
+    });
 
-  return response.data.skills;
-}
+    return response.data.skills;
+  },
+  {
+    tags: [getGlobalTag("skills")],
+    revalidate: 60 * 60,
+  }
+);
 
