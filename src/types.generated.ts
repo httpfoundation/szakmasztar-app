@@ -321,6 +321,7 @@ export type FormEntryFieldValue = {
 export type FormField = {
   __typename?: 'FormField';
   createdAt: Scalars['Timestamp']['output'];
+  displayCondition?: Maybe<FormFieldDisplayCondition>;
   formFieldGroupId?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
   name: Scalars['String']['output'];
@@ -331,10 +332,18 @@ export type FormField = {
   validations: FormFieldValidations;
 };
 
+export type FormFieldDisplayCondition = {
+  __typename?: 'FormFieldDisplayCondition';
+  comparisonType: Scalars['String']['output'];
+  comparisonValue: Scalars['String']['output'];
+  targetFieldId: Scalars['ID']['output'];
+};
+
 export type FormFieldGroup = {
   __typename?: 'FormFieldGroup';
   createdAt: Scalars['Timestamp']['output'];
   description?: Maybe<Scalars['String']['output']>;
+  displayCondition?: Maybe<FormFieldDisplayCondition>;
   id: Scalars['ID']['output'];
   name: Scalars['String']['output'];
   position: Scalars['Float']['output'];
@@ -393,6 +402,12 @@ export type Image = {
   competitionId: Scalars['String']['output'];
   file?: Maybe<File>;
   isSelected: Scalars['Boolean']['output'];
+};
+
+export type InputFormFieldDisplayCondition = {
+  comparisonType: Scalars['String']['input'];
+  comparisonValue: Scalars['String']['input'];
+  targetFieldId: Scalars['ID']['input'];
 };
 
 export type InputFormFieldOptions = {
@@ -531,6 +546,7 @@ export type Mutation = {
   deleteCompetition: Scalars['Boolean']['output'];
   deleteFile: Scalars['Boolean']['output'];
   deleteForm: Scalars['Boolean']['output'];
+  deleteFormEntry: Scalars['Boolean']['output'];
   deleteNationalCompetition: Scalars['Boolean']['output'];
   deleteUser: Scalars['Boolean']['output'];
   forgetPassword: Scalars['Boolean']['output'];
@@ -643,6 +659,11 @@ export type MutationDeleteFileArgs = {
 
 
 export type MutationDeleteFormArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationDeleteFormEntryArgs = {
   id: Scalars['ID']['input'];
 };
 
@@ -1354,6 +1375,7 @@ export type UpdateFileInput = {
 };
 
 export type UpdateFormField = {
+  displayCondition?: InputMaybe<InputFormFieldDisplayCondition>;
   formFieldGroupId?: InputMaybe<Scalars['String']['input']>;
   id: Scalars['ID']['input'];
   name: Scalars['String']['input'];
@@ -1365,6 +1387,7 @@ export type UpdateFormField = {
 
 export type UpdateFormFieldGroup = {
   description?: InputMaybe<Scalars['String']['input']>;
+  displayCondition?: InputMaybe<InputFormFieldDisplayCondition>;
   id: Scalars['ID']['input'];
   name: Scalars['String']['input'];
   position: Scalars['Float']['input'];

@@ -1,0 +1,26 @@
+query getCompetitions {
+  competitions {
+    ...Competition
+  }
+}
+
+query getCurrentCompetition {
+  currentCompetition {
+    ...Competition
+  }
+}
+
+fragment Competition on Competition {
+  id
+  slug
+  name
+  startingDate
+  endDate
+  isCurrent
+  isNext
+  isJunior
+  article {
+    ...Article
+  }
+}
+

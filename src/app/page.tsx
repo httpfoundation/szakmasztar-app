@@ -1,8 +1,14 @@
 import Image from "next/image";
 import { Box, Container, Typography } from "@mui/material";
+import { getCurrentCompetition } from "@/actions/competitions/competitions";
 import heroImage from "@/assets/images/szakmasztar-2025-1200x800.webp";
+import FormattedContent from "@/components/FormattedContent";
+
+export const revalidate = 3600;
 
 const IndexPage = async () => {
+  const currentCompetition = await getCurrentCompetition();
+
   return (
     <Box>
       {/* Hero section */}
@@ -11,15 +17,15 @@ const IndexPage = async () => {
           position: "relative",
           width: "100%",
           height: { xs: "auto", md: "500px" },
-          marginX: { xs: -3, md: 0 }, // Kompenzálja a BaseLayout padding-ját mobilon
-          marginY: { xs: -4, md: 0 }, // Kompenzálja a BaseLayout padding-ját mobilon
+          marginX: { xs: -3, md: 0 },
+          marginY: { xs: -4, md: 0 },
           overflow: "hidden",
           aspectRatio: { xs: "3/2", md: "auto" },
         }}
       >
         <Image
           src={heroImage}
-          alt="Szakma Sztár Fesztivál 2025"
+          alt={currentCompetition.name}
           fill
           priority
           sizes="100vw"
@@ -28,14 +34,11 @@ const IndexPage = async () => {
             objectPosition: "center",
           }}
         />
-        {/* Overlay szöveg */}
+        {/* Overlay text */}
         <Box
           sx={{
             position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
+            inset: 0,
             backgroundColor: "rgba(0, 0, 0, 0.2)",
             display: "flex",
             alignItems: "center",
@@ -53,19 +56,17 @@ const IndexPage = async () => {
               textShadow: "2px 2px 4px rgba(0,0,0,0.5)",
             }}
           >
-            Szakma Sztár Fesztivál 2025
+            {currentCompetition.name}
           </Typography>
         </Box>
       </Box>
 
-      {/* Tartalom */}
       <Container sx={{ py: 6 }}>
-        <Typography variant="body1" paragraph>
-          Üdvözöljük a Szakma Sztár Fesztivál 2025 hivatalos oldalán!
-        </Typography>
+        <FormattedContent>{currentCompetition.article.lead}</FormattedContent>
       </Container>
     </Box>
   );
 };
 
 export default IndexPage;
+

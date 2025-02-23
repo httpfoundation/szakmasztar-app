@@ -5,7 +5,7 @@ import AppHeader from "./AppHeader";
 import BottomNav from "./BottomNav";
 import SideDrawer from "./SideDrawer";
 
-export default function Navigation() {
+export default function Navigation({ title }: { title: string }) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleDrawerToggle = () => {
@@ -14,9 +14,10 @@ export default function Navigation() {
 
   return (
     <>
-      <AppHeader onMenuClick={handleDrawerToggle} />
+      <AppHeader onMenuClick={handleDrawerToggle} title={title} />
       <SideDrawer open={mobileOpen} onClose={handleDrawerToggle} />
       <BottomNav />
     </>
   );
 }
+

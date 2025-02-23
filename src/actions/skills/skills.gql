@@ -1,0 +1,35 @@
+query getSkills {
+  skills {
+    ...Skill
+  }
+}
+
+query getSkill($slug: String!) {
+  skill(slug: $slug) {
+    ...Skill
+  }
+}
+
+fragment Skill on Skill {
+  id
+  wsId
+  nameEnEs
+  nameEnWs
+  name
+  slug
+  image {
+    srcset
+  }
+  article {
+    ...Article
+  }
+  sponsors {
+    ...Sponsor
+  }
+  nationalCompetitions {
+    ...FlatNationalCompetition
+    competition {
+      ...Competition
+    }
+  }
+}

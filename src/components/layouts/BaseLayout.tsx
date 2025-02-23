@@ -1,10 +1,11 @@
+import { ReactNode } from "react";
 import { Box } from "@mui/material";
 import Navigation from "@/components/navigation/Navigation";
 
-export default function BaseLayout({ children }: { children: React.ReactNode }) {
+export default function BaseLayout({ children, title }: { children: ReactNode; title: string }) {
   return (
     <Box sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
-      <Navigation />
+      <Navigation title={title} />
       <Box
         component="main"
         sx={{
@@ -19,3 +20,4 @@ export default function BaseLayout({ children }: { children: React.ReactNode }) 
     </Box>
   );
 }
+

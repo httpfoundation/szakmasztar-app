@@ -3,9 +3,10 @@ import { AppBar, IconButton, Toolbar, Typography } from "@mui/material";
 
 type AppHeaderProps = {
   onMenuClick: () => void;
+  title: string;
 };
 
-export default function AppHeader({ onMenuClick }: AppHeaderProps) {
+export default function AppHeader({ onMenuClick, title }: AppHeaderProps) {
   return (
     <AppBar position="fixed">
       <Toolbar>
@@ -13,9 +14,10 @@ export default function AppHeader({ onMenuClick }: AppHeaderProps) {
           <MenuIcon />
         </IconButton>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          Szakma Sztár Fesztivál 2025
+          {title}
         </Typography>
       </Toolbar>
     </AppBar>
   );
 }
+

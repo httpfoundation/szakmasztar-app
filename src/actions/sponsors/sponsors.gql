@@ -1,0 +1,52 @@
+query getSponsor($articleSlug: String!) {
+  sponsor(articleSlug: $articleSlug) {
+    ...SponsorDetail
+  }
+}
+
+fragment Sponsor on Sponsor {
+  id
+  name
+  homepageUrl
+  image {
+    srcset
+  }
+  article {
+    ...Article
+  }
+}
+
+fragment SponsorDetail on Sponsor {
+  ...Sponsor
+  skills {
+    ...Skill
+  }
+  image {
+    srcset
+  }
+}
+
+query getSponsorsCardData {
+  currentCompetition {
+    sponsors {
+      ...SponsorBriefData
+    }
+  }
+  nextCompetition {
+    sponsors {
+      ...SponsorBriefData
+    }
+  }
+}
+
+fragment SponsorBriefData on Sponsor {
+  id
+  name
+  image {
+    srcset
+  }
+  article {
+    slug
+  }
+}
+
