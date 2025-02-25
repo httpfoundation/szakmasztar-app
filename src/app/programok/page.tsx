@@ -1,11 +1,17 @@
+import { Typography } from "@mui/material";
+import PageTitle from "@/components/common/PageTitle";
+import PageContainer from "@/components/layouts/PageContainer";
+
 export const revalidate = 3600;
 
 const SchedulePage = async () => {
   return (
-    <div>
-      <h1>Programok</h1>
-      <p>Programlista...</p>
-    </div>
+    <PageContainer>
+      <PageTitle>Programok</PageTitle>
+      <Typography variant="body1" color="primary.contrastText">
+        Programlista...
+      </Typography>
+    </PageContainer>
   );
 };
 

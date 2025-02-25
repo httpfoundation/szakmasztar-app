@@ -1,7 +1,6 @@
 import { Metadata } from "next";
-import Link from "next/link";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { Button, Stack, Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
+import LinkButton from "@/components/common/LinkButton";
 
 export const metadata: Metadata = {
   title: "404 Hiba",
@@ -24,14 +23,11 @@ const NotFoundPage = () => {
         Sajnáljuk, de a keresett oldal nem található.
       </Typography>
 
-      <Link href="/">
-        <Button sx={{ mt: 2 }} startIcon={<ArrowBackIcon />}>
-          Vissza a főoldalra
-        </Button>
-      </Link>
+      <LinkButton sx={{ mt: 2 }} direction="backward" href="/">
+        Vissza a főoldalra
+      </LinkButton>
     </Stack>
   );
 };
 
 export default NotFoundPage;
-

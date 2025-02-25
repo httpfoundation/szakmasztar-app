@@ -1,5 +1,7 @@
 import { Button, Stack, Typography } from "@mui/material";
 import { getSkills } from "@/actions/skills/skills";
+import PageTitle from "@/components/common/PageTitle";
+import PageContainer from "@/components/layouts/PageContainer";
 
 export const revalidate = 3600;
 
@@ -7,8 +9,8 @@ const SkillsPage = async () => {
   const skills = await getSkills();
 
   return (
-    <>
-      <h1>Szakmák</h1>
+    <PageContainer>
+      <PageTitle>Szakmák</PageTitle>
       <Stack
         sx={{
           gap: 2,
@@ -32,7 +34,7 @@ const SkillsPage = async () => {
           </Button>
         ))}
       </Stack>
-    </>
+    </PageContainer>
   );
 };
 

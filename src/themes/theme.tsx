@@ -101,12 +101,12 @@ export const theme = createTheme({
       fontSize: 16,
     },
     h1: {
-      fontSize: "3.5rem",
+      fontSize: "2.5rem",
       fontWeight: "bold",
     },
     h2: {
-      fontSize: "3rem",
-      lineHeight: 1.1,
+      fontSize: "1.5rem",
+      lineHeight: 1.3,
       fontWeight: "bold",
     },
     h3: {

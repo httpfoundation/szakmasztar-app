@@ -25,6 +25,7 @@ const FormattedContent: FC<FormattedContentProps> = ({
       variant={variant}
       fontWeight={fontWeight}
       color={color}
+      component="div"
       sx={{
         "&, & p": {
           textAlign: align,
@@ -56,7 +57,7 @@ const FormattedContent: FC<FormattedContentProps> = ({
           userSelect: "none",
         },
         "h1, h2, h3, h4, h5, h6": {
-          color: "text.primary",
+          color: { color },
           fontWeight: "500",
           mb: 0,
           mt: 2,
@@ -94,4 +95,3 @@ const FormattedContent: FC<FormattedContentProps> = ({
 };
 
 export default FormattedContent;
-

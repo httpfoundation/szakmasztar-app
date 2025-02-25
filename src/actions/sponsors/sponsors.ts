@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { getGlobalTag, getIdTag, gqlCache } from "@/lib/cache";
 import { graphqlClient } from "@/lib/client";
 import { isNotFound } from "@/lib/utils";
+import { Sponsor } from "@/types.generated";
 import {
   GetSponsorDocument,
   GetSponsorQuery,
@@ -21,7 +22,7 @@ export const getSponsors = gqlCache(
       variables: { take: 1000 },
     });
 
-    return response.data.sponsors.data;
+    return response.data.sponsors.data as Sponsor[];
   },
   { tags: [getGlobalTag("sponsors")], revalidate: 60 * 60 }
 );
@@ -45,4 +46,3 @@ export async function getSponsor(
     { tags: [getIdTag(variables.articleSlug, "sponsors")], revalidate: 60 * 60 }
   )();
 }
-

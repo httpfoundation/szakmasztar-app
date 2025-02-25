@@ -4,12 +4,16 @@ import Link from "next/link";
 import { Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
 import { menuItems } from "./NavigationConfig";
 
-type SideDrawerProps = {
+interface SideDrawerProps {
   open: boolean;
   onClose: () => void;
-};
+}
 
 export default function SideDrawer({ open, onClose }: SideDrawerProps) {
+  const handleItemClick = () => {
+    onClose();
+  };
+
   return (
     <Drawer
       variant="temporary"
@@ -26,7 +30,7 @@ export default function SideDrawer({ open, onClose }: SideDrawerProps) {
       <List>
         {menuItems.map((item, index) => (
           <ListItem key={index} disablePadding>
-            <ListItemButton component={Link} href={item.slug} onClick={onClose}>
+            <ListItemButton component={Link} href={item.slug} onClick={handleItemClick}>
               <ListItemIcon>{item.icon}</ListItemIcon>
               <ListItemText primary={item.text} />
             </ListItemButton>
