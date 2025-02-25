@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { Box } from "@mui/material";
+import { Stack } from "@mui/material";
 import Footer from "./Footer";
 import Header from "./Header";
 import Main from "./Main";
@@ -11,11 +11,11 @@ interface BaseLayoutProps {
 
 export default function BaseLayout({ children, title }: BaseLayoutProps) {
   return (
-    <Box
+    <Stack
+      direction="column"
       sx={{
-        display: "flex",
-        flexDirection: "column",
         minHeight: "100vh",
+        height: "100%",
         background: `linear-gradient(180deg, 
           rgba(53,15,56) 0%, 
           rgba(53,15,56) 60%,
@@ -26,6 +26,7 @@ export default function BaseLayout({ children, title }: BaseLayoutProps) {
       <Header title={title} />
       <Main>{children}</Main>
       <Footer />
-    </Box>
+    </Stack>
   );
 }
+

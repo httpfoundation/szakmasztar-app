@@ -12,7 +12,7 @@ const MapPage = async () => {
       <PageContainer>
         <PageTitle icon={<MapIcon />}>Térkép</PageTitle>
         <Stack direction="column" spacing={2}>
-          <ImageButton href="/terkep" icon={<MapIcon />} text="Hungexpo áttekintő tékép" />
+          <ImageButton href="/terkep/hungexpo" icon={<MapIcon />} text="Hungexpo áttekintő tékép" />
           <ImageButton
             href="/terkep"
             icon={<MapIcon />}
@@ -30,3 +30,4 @@ const MapPage = async () => {
 };
 
 export default MapPage;
+
