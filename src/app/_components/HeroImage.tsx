@@ -13,7 +13,7 @@ export default function HeroImage({ image, alt, title }: HeroImageProps) {
     <Box
       sx={{
         position: "relative",
-        width: "100vw",
+        width: "100%",
         left: "50%",
         transform: "translateX(-50%)",
         height: { xs: "auto", md: "500px" },
@@ -84,3 +84,4 @@ export default function HeroImage({ image, alt, title }: HeroImageProps) {
     </Box>
   );
 }
+
