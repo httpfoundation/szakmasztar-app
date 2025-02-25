@@ -1,18 +1,8 @@
-"use client";
-
-import { useEffect, useRef } from "react";
 import { Stack } from "@mui/material";
-import { TOOL_AUTO, UncontrolledReactSVGPanZoom } from "react-svg-pan-zoom";
+import SvgLink from "@/components/map/SvgLink";
+import SvgPanZoom from "@/components/map/SvgPanZoom";
 
 const HungexpoMapPage = () => {
-  const ref = useRef<UncontrolledReactSVGPanZoom>(null);
-
-  useEffect(() => {
-    if (ref.current) {
-      ref.current.setPointOnViewerCenter(4000 / 2, 2824 / 2, 0.5);
-    }
-  }, []);
-
   return (
     <Stack
       sx={{
@@ -30,17 +20,7 @@ const HungexpoMapPage = () => {
           justifyContent: "center",
         }}
       >
-        <UncontrolledReactSVGPanZoom
-          ref={ref}
-          width={1200}
-          height={800}
-          tool={TOOL_AUTO}
-          customMiniature={() => null}
-          customToolbar={() => null}
-          scaleFactorMin={0.2}
-          scaleFactorMax={2}
-          detectAutoPan={false}
-        >
+        <SvgPanZoom defaultPosition={{ x: 4000 / 2, y: 2824 / 2, zoom: 0.5 }}>
           <svg
             width="4000"
             height="2824"
@@ -48,19 +28,21 @@ const HungexpoMapPage = () => {
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
             xmlnsXlink="http://www.w3.org/1999/xlink"
+            style={{ pointerEvents: "none" }}
           >
             <g clipPath="url(#clip0_546_76)">
               <rect width="4000" height="2824" fill="white" />
               <rect width="4001" height="2825" fill="url(#pattern0_546_76)" fillOpacity="0.2" />
 
-              <a href="/terkep/a-pavilon">
+              <SvgLink href="/terkep/a-pavilon">
                 <path
                   fillRule="evenodd"
                   clipRule="evenodd"
                   d="M1550 1301H1494V1547H1550V1665H2145H2200V1422H2145V1301H1550Z"
                   fill="#FF0000"
+                  style={{ pointerEvents: "auto", zIndex: 1000, cursor: "pointer" }}
                 />
-              </a>
+              </SvgLink>
 
               <rect width="100" height="100" transform="translate(1797 1433)" fill="white" />
               <path
@@ -113,7 +95,7 @@ const HungexpoMapPage = () => {
               </clipPath>
             </defs>
           </svg>
-        </UncontrolledReactSVGPanZoom>
+        </SvgPanZoom>
       </Stack>
     </Stack>
   );
