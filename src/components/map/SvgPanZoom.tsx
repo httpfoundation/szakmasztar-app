@@ -33,7 +33,7 @@ const SvgPanZoom = ({ children, defaultPosition }: SvgPanZoomProps) => {
       tool={TOOL_AUTO}
       customMiniature={() => null}
       customToolbar={() => null}
-      scaleFactorMin={0.2}
+      scaleFactorMin={0.1}
       scaleFactorMax={2}
       detectAutoPan={false}
     >

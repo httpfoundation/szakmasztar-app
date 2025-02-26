@@ -14,7 +14,7 @@ const MapPage = async () => {
         <Stack direction="column" spacing={2}>
           <ImageButton href="/terkep/hungexpo" icon={<MapIcon />} text="Hungexpo áttekintő tékép" />
           <ImageButton
-            href="/terkep"
+            href="/terkep/a-pavilon"
             icon={<MapIcon />}
             text="Az A pavilon térképe (szakmai tanulmányi versenyek és WorldSkills Hungary versenyek)"
           />
