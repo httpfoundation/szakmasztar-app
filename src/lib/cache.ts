@@ -6,6 +6,7 @@ export type ValidTags = ReturnType<typeof getGlobalTag> | ReturnType<typeof getI
 
 export const CACHE_TAGS = {
   articles: "articles",
+  "category-articles": "category-articles",
   competitions: "competitions",
   skills: "skills",
   nationalCompetitions: "nationalCompetitions",

@@ -1,21 +1,15 @@
+import { getArticles } from "@/actions/articles/articles";
 import MapPageContainer from "@/components/map/MapPageContainer";
 import SvgLink from "@/components/map/SvgLink";
 import SvgPanZoom from "@/components/map/SvgPanZoom";
 
-const APavilonMapPage = () => {
-  const boxItems = [
-    {
-      text: "Víz-, gáz, és fűtésszerelő",
-      href: "/szakmak/wshu-viz-gaz-es-futesszerelo",
-      x: 297.5,
-      y: 62.5,
-      width: 300,
-      height: 200,
-      fill: "#77c7ca",
-      stroke: "#408588",
-      textColor: "#033E50",
-    },
-  ];
+const APavilonMapPage = async () => {
+  const mapItems = await getArticles({ categoryId: "map-a-pavilon" });
+  const boxItems = mapItems.map((item) => ({
+    text: item.title,
+    href: item.slug,
+    ...JSON.parse(item.content),
+  }));
 
   return (
     <MapPageContainer>
@@ -145,12 +139,13 @@ const APavilonMapPage = () => {
                       justifyContent: "center",
                       alignItems: "center",
                       textAlign: "center",
-                      fontSize: Math.min(box.width, box.height) / 6,
-                      fontFamily: "Arial, sans-serif",
+                      fontSize: 36,
+                      fontFamily: "var(--font-montserrat), Arial, sans-serif",
                       fontWeight: "600",
                       color: box.textColor,
                       wordWrap: "break-word",
                       overflow: "hidden",
+                      padding: "10px",
                     }}
                   >
                     {box.text}
