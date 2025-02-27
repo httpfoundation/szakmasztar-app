@@ -7,7 +7,6 @@ const APavilonMapPage = async () => {
   const mapItems = await getArticles({ categoryId: "map-a-pavilon" });
   const boxItems = mapItems.map((item) => ({
     text: item.title,
-    href: item.slug,
     ...JSON.parse(item.content),
   }));
 
@@ -139,13 +138,16 @@ const APavilonMapPage = async () => {
                       justifyContent: "center",
                       alignItems: "center",
                       textAlign: "center",
-                      fontSize: 36,
+                      fontSize: Math.min(box.width / 7, 36),
                       fontFamily: "var(--font-montserrat), Arial, sans-serif",
                       fontWeight: "600",
                       color: box.textColor,
                       wordWrap: "break-word",
                       overflow: "hidden",
                       padding: "10px",
+                      lineHeight: "1.2",
+                      // transform: box.rotate ? `rotate(${(box.rotate || 0) * -1}deg)` : undefined,
+                      transformOrigin: "center",
                     }}
                   >
                     {box.text}
