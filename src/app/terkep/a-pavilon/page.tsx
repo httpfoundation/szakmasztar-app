@@ -2,17 +2,26 @@ import { getArticles } from "@/actions/articles/articles";
 import MapPageContainer from "@/components/map/MapPageContainer";
 import SvgLink from "@/components/map/SvgLink";
 import SvgPanZoom from "@/components/map/SvgPanZoom";
+import { getMapDefaultPosition } from "@/lib/utils";
 
-const APavilonMapPage = async () => {
+interface APavilonMapPageProps {
+  searchParams: Promise<{ zoomTo?: string }>;
+}
+
+const APavilonMapPage = async ({ searchParams }: APavilonMapPageProps) => {
+  const params = await searchParams;
+
   const mapItems = await getArticles({ categoryId: "map-a-pavilon" });
   const boxItems = mapItems.map((item) => ({
     text: item.title,
     ...JSON.parse(item.content),
   }));
 
+  const defaultPosition = getMapDefaultPosition(params.zoomTo, boxItems, 3859, 2079);
+
   return (
     <MapPageContainer>
-      <SvgPanZoom defaultPosition={{ x: 3859 / 2, y: 2079 / 2, zoom: 0.35 }}>
+      <SvgPanZoom defaultPosition={defaultPosition}>
         <svg
           width="3859"
           height="2079"

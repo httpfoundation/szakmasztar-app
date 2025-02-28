@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactElement, useEffect, useRef } from "react";
+import { ReactElement, useEffect, useRef, useState } from "react";
 import { TOOL_AUTO, UncontrolledReactSVGPanZoom } from "react-svg-pan-zoom";
 
 interface SvgPanZoomProps {
@@ -13,7 +13,12 @@ interface SvgPanZoomProps {
 }
 
 const SvgPanZoom = ({ children, defaultPosition }: SvgPanZoomProps) => {
+  const [mounted, setMounted] = useState(false);
   const ref = useRef<UncontrolledReactSVGPanZoom>(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     if (ref.current) {
@@ -36,6 +41,7 @@ const SvgPanZoom = ({ children, defaultPosition }: SvgPanZoomProps) => {
       scaleFactorMin={0.1}
       scaleFactorMax={2}
       detectAutoPan={false}
+      style={{ opacity: mounted ? 1 : 0 }}
     >
       {children}
     </UncontrolledReactSVGPanZoom>
