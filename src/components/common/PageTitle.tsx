@@ -1,11 +1,12 @@
-import { Box, Typography } from "@mui/material";
+import { Box, SxProps, Typography } from "@mui/material";
 
 interface PageTitleProps {
   children: React.ReactNode;
   icon?: React.ReactNode;
+  sx?: SxProps;
 }
 
-export default function PageTitle({ children, icon }: PageTitleProps) {
+export default function PageTitle({ children, icon, sx }: PageTitleProps) {
   return (
     <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 3 }}>
       {icon && (
@@ -28,6 +29,7 @@ export default function PageTitle({ children, icon }: PageTitleProps) {
         sx={{
           fontSize: { xs: "2rem", sm: "2.5rem", md: "3rem" },
           fontWeight: 500,
+          ...sx,
         }}
       >
         {children}
@@ -35,3 +37,4 @@ export default function PageTitle({ children, icon }: PageTitleProps) {
     </Box>
   );
 }
+

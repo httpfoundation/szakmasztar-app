@@ -1,14 +1,27 @@
 import PageTitle from "@/components/common/PageTitle";
 import PageContainer from "@/components/layouts/PageContainer";
+import QrCodeScanner from "./QrCodeScanner";
 
 export const revalidate = 3600;
 
 const QrCodePage = async () => {
   return (
-    <PageContainer>
-      <PageTitle>QR kód beolvasása</PageTitle>
+    <PageContainer
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        width: "100%",
+        height: "100%",
+        flexGrow: 1,
+      }}
+    >
+      <PageTitle sx={{ textAlign: "center" }}>QR kód beolvasása</PageTitle>
+      <QrCodeScanner />
     </PageContainer>
   );
 };
 
 export default QrCodePage;
+
