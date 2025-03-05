@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Box } from "@mui/material";
-import { Sponsor } from "@/types.generated";
+import { SponsorFragment } from "@/actions/sponsors/sponsors.generated";
 
 interface SponsorCardProps {
-  sponsor: Sponsor;
+  sponsor: SponsorFragment;
 }
 
 export default function SponsorCard({ sponsor }: SponsorCardProps) {
@@ -51,3 +51,4 @@ export default function SponsorCard({ sponsor }: SponsorCardProps) {
 
   return content;
 }
+

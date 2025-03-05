@@ -1,7 +1,9 @@
+import { Grid } from "@mui/material";
 import { getCurrentCompetition } from "@/actions/competitions/competitions";
 import { getSkill, getSkills } from "@/actions/skills/skills";
 import PageTitle from "@/components/common/PageTitle";
 import FormattedContent from "@/components/FormattedContent";
+import SponsorCard from "@/components/sponsor/SponsorCard";
 import { getArticleMetadata } from "@/lib/metadata";
 
 interface SkillPageProps {
@@ -42,8 +44,22 @@ const SkillPage = async ({ params }: SkillPageProps) => {
           <FormattedContent>{nationalCompetition.article.content}</FormattedContent>
         </div>
       )}
+
+      {skill.sponsors.length > 0 && (
+        <div>
+          <h2>Szponzorok</h2>
+          <Grid container spacing={2}>
+            {skill.sponsors.map((sponsor) => (
+              <Grid item xs={6} sm={6} md={2} key={sponsor.id}>
+                <SponsorCard sponsor={sponsor} />
+              </Grid>
+            ))}
+          </Grid>
+        </div>
+      )}
     </div>
   );
 };
 
 export default SkillPage;
+
