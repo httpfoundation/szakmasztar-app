@@ -5,6 +5,7 @@ import { getArticleMetadata } from "@/lib/metadata";
 import ShortCodeContext from "@/providers/ShortcodeContext";
 import "@/styles/globals.css";
 import { ReactNode } from "react";
+import { Viewport } from "next";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import ThemeRegistry from "@/themes/ThemeRegistry";
 
@@ -20,6 +21,11 @@ export async function generateMetadata() {
     },
   };
 }
+
+export const viewport: Viewport = {
+  maximumScale: 1,
+  userScalable: false,
+};
 
 export default async function RootLayout({
   children,
