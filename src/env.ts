@@ -12,8 +12,10 @@ export const env = createEnv({
     ARTICLES_CATEGORY_ID: z.string().default("szakmasztar-app-articles"),
     SITE_ID: z.string().default("szakmasztar-app-site"),
     SITE_BASE: z.string().min(1).default("http://localhost:3010"),
+    API_KEY: z.string().min(1).default(""),
   },
   skipValidation: process.env.SKIP_ENV_VALIDATION === "true",
   client: {},
   experimental__runtimeEnv: {},
 });
+
