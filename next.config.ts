@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { NextConfig } from "next";
+import nextPwa from "@ducanh2912/next-pwa";
 
 const nextConfig: NextConfig = {
   images: {
@@ -20,4 +22,16 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+const withPwa = nextPwa({
+  cacheOnFrontEndNav: true,
+  aggressiveFrontEndNavCaching: true,
+  reloadOnOnline: true,
+  dest: "public",
+  fallbacks: {},
+  workboxOptions: {
+    disableDevLogs: true,
+  },
+});
+
+export default withPwa({ ...(nextConfig as any) });
+
