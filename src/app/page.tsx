@@ -6,6 +6,7 @@ import heroImage from "@/assets/images/szakmasztar-2025-1200x800.webp";
 import ImageButton from "@/components/common/ImageButton";
 import SectionContainer from "@/components/layouts/SectionContainer";
 import HeroSection from "./_components/HeroSection";
+import JumpCodeSection from "./_components/JumpCodeSection";
 import LocationInfo from "./_components/LocationInfo";
 import MapSection from "./_components/MapSection";
 import OpeningHours from "./_components/OpeningHours";
@@ -25,6 +26,7 @@ const IndexPage = async () => {
         title={currentCompetition.name}
         lead={currentCompetition.article.lead}
       />
+      <JumpCodeSection />
       <MapSection />
       <LocationInfo />
       <SkillSection />
