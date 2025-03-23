@@ -1,19 +1,19 @@
 [
   {
     "title": "Szakmai tanulmányi versenyek",
-    "slug": "szakmai-tanulmanyi-versenyek",
+    "slug": "osztv-szktv-versenyek",
     "description": "OSZTV és SZKTV döntők",
     "locations": [{ "title": "A pavilon", "slug": "terkep/a-pavilon-terkep" }]
   },
   {
     "title": "WorldSkills Hungary",
-    "slug": "worldskills-hungary",
+    "slug": "wshu-esemenyek",
     "description": "WorldSkills 2026 válogatók, nemzetközi tréningversenyek és szakma bemutatók",
     "locations": [{ "title": "A pavilon", "slug": "terkep/hungexpo-d-pavilon" }]
   },
   {
     "title": "NAK szakmabemutatók",
-    "slug": "nak-bemutatók",
+    "slug": "nak-bemutatok",
     "description": "A Nemzeti Agrárkamara szakmáinak bemutatói és interaktív programjai",
     "locations": [{ "title": "D pavilon", "slug": "terkep/d-pavilon-terkep" }]
   },

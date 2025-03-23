@@ -23,9 +23,9 @@ export async function generateStaticParams() {
 }
 
 const SkillPage = async ({ params }: SkillPageProps) => {
-  const skillSlug = (await params).eventSlug;
+  const eventSlug = (await params).eventSlug;
   const currentCompetition = await getCurrentCompetition();
-  const skill = await getSkill({ slug: skillSlug });
+  const skill = await getSkill({ slug: eventSlug });
   const nationalCompetition = skill.nationalCompetitions.filter(
     (x) => x.competitionId === currentCompetition.id
   )[0];

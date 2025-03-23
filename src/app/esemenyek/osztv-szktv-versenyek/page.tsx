@@ -7,10 +7,11 @@ export const revalidate = 3600;
 
 const SkillsPage = async () => {
   const skills = await getSkills();
+  console.log(JSON.stringify(skills[0], null, 2));
 
   return (
     <PageContainer>
-      <PageTitle>Szakmák</PageTitle>
+      <PageTitle>OSZTV és SZKTV versenyek</PageTitle>
       <Stack
         sx={{
           gap: 2,

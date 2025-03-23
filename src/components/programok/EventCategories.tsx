@@ -32,7 +32,7 @@ const EventCategories = () => {
                 ))}
                 <Button
                   component={Link}
-                  href={`/programok/${category.slug}`}
+                  href={`/esemenyek/${category.slug}`}
                   size="small"
                   startIcon={<InfoIcon />}
                   variant="outlined"
