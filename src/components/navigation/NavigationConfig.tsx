@@ -5,6 +5,7 @@ import {
   Info as InfoIcon,
   Map as MapIcon,
   Newspaper as NewsIcon,
+  Quiz as QuizIcon,
   Work as WorkIcon,
 } from "@mui/icons-material";
 
@@ -25,10 +26,10 @@ export const menuItems: MenuItem[] = [
     showInBottomNav: true,
   },
   {
-    text: "Szakmák",
-    icon: <WorkIcon />,
-    slug: "/szakmak",
-    link: <Link href="/szakmak">{<WorkIcon />}</Link>,
+    text: "Programnaptár",
+    icon: <EventIcon />,
+    slug: "/programok",
+    link: <Link href="/programok">{<EventIcon />}</Link>,
     showInBottomNav: true,
   },
   {
@@ -39,14 +40,21 @@ export const menuItems: MenuItem[] = [
     showInBottomNav: true,
   },
   {
-    text: "Programok",
-    icon: <EventIcon />,
-    slug: "/programok",
-    link: <Link href="/programok">{<EventIcon />}</Link>,
+    text: "Események",
+    icon: <WorkIcon />,
+    slug: "/esemenyek",
+    link: <Link href="/esemenyek">{<WorkIcon />}</Link>,
     showInBottomNav: true,
   },
   {
-    text: "Információ",
+    text: "Kvízek",
+    icon: <QuizIcon />,
+    slug: "/kvizek",
+    link: <Link href="/kvizek">{<QuizIcon />}</Link>,
+    showInBottomNav: false,
+  },
+  {
+    text: "Infók",
     icon: <InfoIcon />,
     slug: "/informaciok",
     link: <Link href="/informaciok">{<InfoIcon />}</Link>,

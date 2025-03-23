@@ -5,7 +5,11 @@ import SectionContainer from "@/components/layouts/SectionContainer";
 export default function SkillSection() {
   return (
     <SectionContainer>
-      <ImageButton href="/szakmak" icon={<WorkIcon />} text="Fedezd fel a szakmákat!" />
+      <ImageButton
+        href="/esemenyek/osztv-szktv-versenyek"
+        icon={<WorkIcon />}
+        text="Fedezd fel a szakmákat!"
+      />
     </SectionContainer>
   );
 }

@@ -7,13 +7,13 @@ import SponsorCard from "@/components/sponsor/SponsorCard";
 import { getArticleMetadata } from "@/lib/metadata";
 
 interface SkillPageProps {
-  params: Promise<{ skillSlug: string }>;
+  params: Promise<{ eventSlug: string }>;
 }
 
 export const revalidate = 3600;
 
 export async function generateMetadata({ params }: SkillPageProps) {
-  const skill = await getSkill({ slug: (await params).skillSlug });
+  const skill = await getSkill({ slug: (await params).eventSlug });
   return getArticleMetadata(skill.article.slug);
 }
 
@@ -23,7 +23,7 @@ export async function generateStaticParams() {
 }
 
 const SkillPage = async ({ params }: SkillPageProps) => {
-  const skillSlug = (await params).skillSlug;
+  const skillSlug = (await params).eventSlug;
   const currentCompetition = await getCurrentCompetition();
   const skill = await getSkill({ slug: skillSlug });
   const nationalCompetition = skill.nationalCompetitions.filter(
@@ -62,4 +62,3 @@ const SkillPage = async ({ params }: SkillPageProps) => {
 };
 
 export default SkillPage;
-

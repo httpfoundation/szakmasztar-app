@@ -28,7 +28,7 @@ const SkillsPage = async () => {
           <Button
             key={skill.id}
             sx={{ p: 2, height: "100%", textAlign: "center" }}
-            href={`/szakmak/${skill.slug}`}
+            href={`/esemenyek/osztv-szktv-versenyek/${skill.slug}`}
           >
             <Typography variant="body1">{skill.name}</Typography>
           </Button>
