@@ -1,9 +1,6 @@
-import { Grid } from "@mui/material";
 import { getCurrentCompetition } from "@/actions/competitions/competitions";
 import { getSkill, getSkills } from "@/actions/skills/skills";
-import PageTitle from "@/components/common/PageTitle";
-import FormattedContent from "@/components/FormattedContent";
-import SponsorCard from "@/components/sponsor/SponsorCard";
+import EventPage from "@/components/programok/EventPAge";
 import { getArticleMetadata } from "@/lib/metadata";
 
 interface SkillPageProps {
@@ -23,41 +20,27 @@ export async function generateStaticParams() {
 }
 
 const SkillPage = async ({ params }: SkillPageProps) => {
-  const eventSlug = (await params).eventSlug;
+  const skillSlug = (await params).eventSlug;
   const currentCompetition = await getCurrentCompetition();
-  const skill = await getSkill({ slug: eventSlug });
+  const skill = await getSkill({ slug: skillSlug });
   const nationalCompetition = skill.nationalCompetitions.filter(
     (x) => x.competitionId === currentCompetition.id
   )[0];
+  const { name: title, sponsors, article } = skill;
+  const { lead: skillLead } = article;
+  const content = nationalCompetition ? nationalCompetition.article?.content : null;
+  // const lead = nationalCompetition ? nationalCompetition.article?.lead : "";
+  const image = nationalCompetition ? nationalCompetition.article?.image : null;
 
   return (
-    <div>
-      <PageTitle>{skill.name}</PageTitle>
-      <FormattedContent>{skill.article.lead}</FormattedContent>
-
-      {!!nationalCompetition && !!nationalCompetition.article && (
-        <div>
-          <h2>Verseny információk</h2>
-          <FormattedContent fontSize={18} fontWeight={500}>
-            {nationalCompetition.article.lead}
-          </FormattedContent>
-          <FormattedContent>{nationalCompetition.article.content}</FormattedContent>
-        </div>
-      )}
-
-      {skill.sponsors.length > 0 && (
-        <div>
-          <h2>Szponzorok</h2>
-          <Grid container spacing={2}>
-            {skill.sponsors.map((sponsor) => (
-              <Grid item xs={6} sm={6} md={2} key={sponsor.id}>
-                <SponsorCard sponsor={sponsor} />
-              </Grid>
-            ))}
-          </Grid>
-        </div>
-      )}
-    </div>
+    <EventPage
+      title={title}
+      eventInfo={content || ""}
+      generalInfo={skillLead || ""}
+      image={image?.url || ""}
+      location={"A21"}
+      sponsors={sponsors}
+    />
   );
 };
 
