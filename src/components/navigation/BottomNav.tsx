@@ -11,19 +11,47 @@ export default function BottomNav() {
   const currentIndex = bottomNavItems.findIndex((item) => item.slug === pathname);
 
   return (
-    <Paper sx={{ position: "fixed", bottom: 0, left: 0, right: 0, zIndex: 100000 }} elevation={3}>
-      <BottomNavigation value={currentIndex} showLabels>
+    <Paper
+      elevation={3}
+      sx={{
+        position: "fixed",
+        bottom: 0,
+        left: 0,
+        right: 0,
+        zIndex: 100000,
+        p: 0,
+        m: 0,
+        borderRadius: 0,
+        background:
+          "linear-gradient(to bottom right, #FFDF12 -15%, #EA5A32, #71376A 95%, #000000 120%)",
+      }}
+    >
+      <BottomNavigation
+        value={currentIndex}
+        showLabels
+        sx={{ bgcolor: "transparent", height: "64px" }}
+      >
         {bottomNavItems.map((item, index) => (
           <BottomNavigationAction
             key={index}
             label={item.text}
             icon={item.icon}
             component={Link}
+            color="white"
             href={item.slug}
             sx={{
+              gap: 1,
+              "&.Mui-selected": {
+                color: "white",
+              },
+              "&.Mui-selected .MuiBottomNavigationAction-label": {
+                fontSize: "0.7rem",
+              },
+              color: "white",
               "& .MuiBottomNavigationAction-label": {
                 fontSize: "0.7rem",
                 lineHeight: 1,
+                color: "white",
               },
             }}
           />
@@ -32,3 +60,4 @@ export default function BottomNav() {
     </Paper>
   );
 }
+
