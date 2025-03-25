@@ -1,6 +1,5 @@
 import Link from "next/link";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { ChevronLeft, ChevronRight } from "@mui/icons-material";
 import { Button, ButtonProps } from "@mui/material";
 
 interface LinkButtonProps extends ButtonProps {
@@ -14,11 +13,12 @@ export default function LinkButton({ href, children, direction, ...props }: Link
       component={Link}
       href={href}
       sx={{ py: 1 }}
-      startIcon={direction === "backward" ? <ArrowBackIcon /> : null}
-      endIcon={direction === "forward" ? <ArrowForwardIcon /> : null}
+      startIcon={direction === "backward" ? <ChevronLeft /> : null}
+      endIcon={direction === "forward" ? <ChevronRight /> : null}
       {...props}
     >
       {children}
     </Button>
   );
 }
+

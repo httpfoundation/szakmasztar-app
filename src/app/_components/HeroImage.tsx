@@ -39,9 +39,11 @@ export default function HeroImage({ image, alt, title }: HeroImageProps) {
             inset: 0,
             backgroundColor: "rgba(0, 0, 0, 0.2)",
             display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
+            alignItems: "flex-start",
+            justifyContent: "flex-end",
             flexDirection: "column",
+            px: 1.5,
+            py: 2.5,
           }}
         >
           <Typography
@@ -49,33 +51,20 @@ export default function HeroImage({ image, alt, title }: HeroImageProps) {
             component="h1"
             sx={{
               color: "white",
-              textAlign: "center",
-              fontSize: { xs: "2rem", sm: "3rem", md: "4rem" },
-              px: 2,
-              textShadow: "2px 2px 4px rgba(0,0,0,0.5)",
+              textAlign: "left",
+              fontSize: { xs: "2.5rem", sm: "4rem", md: "6rem" },
+              textTransform: "uppercase",
             }}
           >
-            Szakma Sztár Feszivál
-          </Typography>
-          <Typography
-            variant="body2"
-            sx={{
-              color: "white",
-              textAlign: "center",
-              fontSize: { xs: "1.5rem", sm: "2rem", md: "3rem" },
-              px: 2,
-              mt: 1,
-              textShadow: "2px 2px 4px rgba(0,0,0,0.5)",
-            }}
-          >
-            2025. április 25-26.
+            Szakma Sztár <br />
+            <span style={{ fontWeight: 400 }}>Feszivál</span>
           </Typography>
           <LinkButton
             href="/szakmasztar"
             variant="contained"
             color="primary"
             direction="forward"
-            sx={{ px: 2, mt: 2 }}
+            sx={{ px: 3, py: 1, mt: 2, bgcolor: "primary.light", fontSize: 14, fontWeight: 600 }}
           >
             Tudj meg többet a fesztiválról!
           </LinkButton>

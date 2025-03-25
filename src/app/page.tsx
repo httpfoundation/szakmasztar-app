@@ -2,7 +2,7 @@ import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
 import { Box } from "@mui/material";
 import { getCurrentCompetition } from "@/actions/competitions/competitions";
 import { getSponsors } from "@/actions/sponsors/sponsors";
-import heroImage from "@/assets/images/szakmasztar-2025-1200x800.webp";
+import heroImage from "@/assets/images/hero.png";
 import ImageButton from "@/components/common/ImageButton";
 import SectionContainer from "@/components/layouts/SectionContainer";
 import HeroSection from "./_components/HeroSection";
@@ -40,3 +40,4 @@ const IndexPage = async () => {
 };
 
 export default IndexPage;
+
