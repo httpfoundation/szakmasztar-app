@@ -1,5 +1,6 @@
-import { StaticImageData } from "next/image";
-import { Typography } from "@mui/material";
+import Image, { StaticImageData } from "next/image";
+import { Stack, Typography } from "@mui/material";
+import logo from "@/assets/images/logo.svg";
 import SectionContainer from "@/components/layouts/SectionContainer";
 import HeroImage from "./HeroImage";
 
@@ -16,13 +17,34 @@ const HeroSection = ({ image, alt, title }: HeroSectionProps) => {
       <HeroImage image={image} alt={alt} title={title} />
 
       <SectionContainer>
-        {/* <FormattedContent color="white">{lead}</FormattedContent> */}
-        <Typography variant="h2" sx={{ mb: 2, color: "primary.contrastText", textAlign: "center" }}>
-          Üdvözlünk a fesztivál webalkalmazásában
-        </Typography>
+        <Stack
+          direction="row"
+          sx={{ width: "100%", justifyContent: "space-between", alignItems: "center" }}
+        >
+          <Image
+            src={logo}
+            alt="logo"
+            width={100}
+            height={100}
+            style={{ height: "70px", width: "auto" }}
+          />
+
+          <Typography
+            variant="h2"
+            sx={{
+              color: "primary.contrastText",
+              textAlign: "center",
+              fontSize: 18,
+              textTransform: "uppercase",
+            }}
+          >
+            Üdvözlünk a fesztivál webalkalmazásában!
+          </Typography>
+        </Stack>
       </SectionContainer>
     </>
   );
 };
 
 export default HeroSection;
+
