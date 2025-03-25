@@ -21,14 +21,20 @@ export default function Header({ title }: HeaderProps) {
       <AppBar
         position="fixed"
         component="header"
-        elevation={0}
+        elevation={1}
         sx={{
-          background: (theme) => theme.palette.primary.main,
+          top: 0,
+          background: (theme) =>
+            `linear-gradient(to right, ${theme.palette.primary.main}, ${theme.palette.primary.light})`,
         }}
       >
         <Toolbar>
           <HamburgerButton onClick={handleDrawerToggle} />
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{ flexGrow: 1, textTransform: "uppercase", lineHeight: 1 }}
+          >
             {title}
           </Typography>
         </Toolbar>

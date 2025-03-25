@@ -26,7 +26,7 @@ declare module "@mui/material/styles" {
 const szakmaSztarYellow = "rgba(255,223,18)";
 const szakmaSztarOrange = "rgba(234,90,50)";
 export const szakmaSztarRed = "rgba(207,82,62)";
-const szakmaSztarPurple = "rgba(113,55,106)";
+const szakmaSztarPurple = "#350F38";
 const szakmaSztarBlack = "rgba(0,0,0)";
 
 // const szakmaSztarGrey = "#cec6ce";
@@ -61,6 +61,7 @@ export const theme = createTheme({
     primary: {
       main: szakmaSztarPurple,
       contrastText: "#fff",
+      light: "#71376A",
     },
     secondary: {
       main: "#793840",
@@ -128,3 +129,4 @@ export const theme = createTheme({
     },
   },
 });
+

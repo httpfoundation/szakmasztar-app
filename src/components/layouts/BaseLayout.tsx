@@ -16,11 +16,7 @@ export default function BaseLayout({ children, title }: BaseLayoutProps) {
       sx={{
         minHeight: "100vh",
         height: "100%",
-        background: `linear-gradient(180deg, 
-          rgba(53,15,56) 0%, 
-          rgba(53,15,56) 60%,
-          rgba(113,55,106) 100%
-        )`,
+        bgcolor: "primary.main",
       }}
     >
       <Header title={title} />
