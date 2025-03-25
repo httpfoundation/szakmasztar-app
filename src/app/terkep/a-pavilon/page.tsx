@@ -133,7 +133,7 @@ const APavilonMapPage = async ({ searchParams }: APavilonMapPageProps) => {
                 <rect
                   width={box.width}
                   height={box.height}
-                  fill={box.fill}
+                  fill={colorReplacement(box.fill)}
                   stroke={box.stroke}
                   strokeWidth="1"
                 />
@@ -153,7 +153,7 @@ const APavilonMapPage = async ({ searchParams }: APavilonMapPageProps) => {
                       color: box.textColor,
                       wordWrap: "break-word",
                       overflow: "hidden",
-                      padding: "10px",
+                      padding: "20px",
                       lineHeight: "1.2",
                       // transform: box.rotate ? `rotate(${(box.rotate || 0) * -1}deg)` : undefined,
                       transformOrigin: "center",
@@ -171,5 +171,11 @@ const APavilonMapPage = async ({ searchParams }: APavilonMapPageProps) => {
   );
 };
 
-export default APavilonMapPage;
+const colorReplacement = (sourceColor: string) => {
+  const color = sourceColor.toUpperCase();
+  if (color === "#EA5A32") return "#abcded";
 
+  return sourceColor;
+};
+
+export default APavilonMapPage;

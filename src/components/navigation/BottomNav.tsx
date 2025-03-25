@@ -20,6 +20,12 @@ export default function BottomNav() {
             icon={item.icon}
             component={Link}
             href={item.slug}
+            sx={{
+              "& .MuiBottomNavigationAction-label": {
+                fontSize: "0.7rem",
+                lineHeight: 1,
+              },
+            }}
           />
         ))}
       </BottomNavigation>

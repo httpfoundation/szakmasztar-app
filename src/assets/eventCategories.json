@@ -1,0 +1,38 @@
+[
+  {
+    "title": "Szakmai tanulmányi versenyek",
+    "slug": "osztv-szktv-versenyek",
+    "description": "OSZTV és SZKTV döntők",
+    "locations": [{ "title": "A pavilon", "slug": "terkep/a-pavilon-terkep" }]
+  },
+  {
+    "title": "WorldSkills Hungary",
+    "slug": "wshu-esemenyek",
+    "description": "WorldSkills 2026 válogatók, nemzetközi tréningversenyek és szakma bemutatók",
+    "locations": [{ "title": "A pavilon", "slug": "terkep/hungexpo-d-pavilon" }]
+  },
+  {
+    "title": "NAK szakmabemutatók",
+    "slug": "nak-bemutatok",
+    "description": "A Nemzeti Agrárkamara szakmáinak bemutatói és interaktív programjai",
+    "locations": [{ "title": "D pavilon", "slug": "terkep/d-pavilon-terkep" }]
+  },
+  {
+    "title": "Támogatói bemutatkozások",
+    "slug": "tamogatoi-bemutatkozasok",
+    "description": "A Szakma Sztár 2025 támogatóinak bemutatkozásai és interaktív programjai",
+    "locations": [
+      { "title": "A pavilon", "slug": "terkep/a-pavilon-terkep" },
+      { "title": "D pavilon", "slug": "terkep/d-pavilon-terkep" }
+    ]
+  },
+  {
+    "title": "Egyéb események",
+    "slug": "egyeb-esemenyek",
+    "description": "További pályaválasztást segítő események és programok",
+    "locations": [
+      { "title": "A pavilon", "slug": "terkep/a-pavilon-terkep" },
+      { "title": "D pavilon", "slug": "terkep/d-pavilon-terkep" }
+    ]
+  }
+]

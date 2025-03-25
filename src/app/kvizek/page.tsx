@@ -1,16 +1,14 @@
 import PageTitle from "@/components/common/PageTitle";
 import PageContainer from "@/components/layouts/PageContainer";
-import EventCalendar from "@/components/programok/EventCalendar";
 
 export const revalidate = 3600;
 
-const SchedulePage = async () => {
+const QuizesPage = async () => {
   return (
     <PageContainer>
-      <PageTitle>Programnaptár</PageTitle>
-      <EventCalendar />
+      <PageTitle>Kvízek</PageTitle>
     </PageContainer>
   );
 };
 
-export default SchedulePage;
+export default QuizesPage;
