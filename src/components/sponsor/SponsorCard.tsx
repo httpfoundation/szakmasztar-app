@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Box } from "@mui/material";
+import { Stack } from "@mui/material";
 import { SponsorFragment } from "@/actions/sponsors/sponsors.generated";
 
 interface SponsorCardProps {
@@ -11,7 +11,7 @@ export default function SponsorCard({ sponsor }: SponsorCardProps) {
   const imageUrl = sponsor.image?.srcset?.split(", ")[0].split(" ")[0];
 
   const content = (
-    <Box
+    <Stack
       sx={{
         width: "100%",
         aspectRatio: "3/2",
@@ -24,21 +24,25 @@ export default function SponsorCard({ sponsor }: SponsorCardProps) {
         "&:hover": {
           transform: sponsor.homepageUrl ? "scale(1.02)" : "none",
         },
+        display: "flex",
+        justifyContent: "center",
       }}
     >
       {imageUrl && (
         <Image
           src={imageUrl}
           alt={sponsor.name}
-          fill
-          sizes="(max-width: 768px) 50vw, 33vw"
+          width={500}
+          height={500}
           style={{
             objectFit: "contain",
-            padding: "1rem",
+            width: "auto",
+            padding: ".5rem",
+            height: "100%",
           }}
         />
       )}
-    </Box>
+    </Stack>
   );
 
   if (sponsor.homepageUrl) {

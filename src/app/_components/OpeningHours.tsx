@@ -6,9 +6,15 @@ const OpeningHours = () => {
     <SectionContainer>
       <Typography
         variant="h2"
-        sx={{ mb: 2, color: "primary.contrastText", textAlign: "center", fontSize: 18 }}
+        sx={{
+          mb: 2,
+          color: "primary.contrastText",
+          textAlign: "center",
+          fontSize: 18,
+          textTransform: "uppercase",
+        }}
       >
-        A rendezvény nyitvatartási időpontjai
+        Nyitvatartási időpont
       </Typography>
       <Typography
         variant="body1"
@@ -21,7 +27,6 @@ const OpeningHours = () => {
           px: 2,
           py: 1,
           borderRadius: 1,
-          borderBottom: "2px solid #ffffff10",
         }}
       >
         2025. 04. 28. (hétfő): 11:00 - 16:00
@@ -37,7 +42,6 @@ const OpeningHours = () => {
           px: 2,
           py: 1,
           borderRadius: 1,
-          borderBottom: "2px solid #ffffff10",
         }}
       >
         2025. 04. 29. (kedd): 10:00 - 16:00

@@ -9,8 +9,17 @@ type SponsorSectionProps = {
 
 export default function SponsorSection({ sponsors }: SponsorSectionProps) {
   return (
-    <SectionContainer>
-      <Typography variant="h2" sx={{ mb: 2, color: "primary.contrastText" }}>
+    <SectionContainer sx={{ pt: 0, mt: -1, mb: 4 }}>
+      <Typography
+        variant="h2"
+        sx={{
+          mb: 2,
+          color: "primary.contrastText",
+          fontSize: 18,
+          textTransform: "uppercase",
+          textAlign: "center",
+        }}
+      >
         A rendezvény támogatói
       </Typography>
       <Grid container spacing={2}>
@@ -23,3 +32,4 @@ export default function SponsorSection({ sponsors }: SponsorSectionProps) {
     </SectionContainer>
   );
 }
+
