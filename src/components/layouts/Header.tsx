@@ -21,7 +21,7 @@ export default function Header({ title }: HeaderProps) {
       <AppBar
         position="fixed"
         component="header"
-        elevation={1}
+        elevation={0}
         sx={{
           top: 0,
           background: (theme) =>
@@ -43,3 +43,4 @@ export default function Header({ title }: HeaderProps) {
     </>
   );
 }
+

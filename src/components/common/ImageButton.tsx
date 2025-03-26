@@ -15,23 +15,20 @@ export default function ImageButton({ href, text, icon }: ImageButtonProps) {
       sx={{
         display: "flex",
         width: "100%",
-        borderRadius: 4,
-        p: 2,
-        backgroundColor: "rgba(255, 255, 255, 0.1)",
+        borderRadius: 3,
+        px: 1,
+        py: 1.5,
+        backgroundColor: "primary.light",
         backdropFilter: "blur(10px)",
         textDecoration: "none",
-        "&:hover": {
-          backgroundColor: "rgba(255, 255, 255, 0.2)",
-        },
       }}
     >
       <IconButton
         sx={{
-          p: 1,
-          mr: 2,
+          mr: 1,
           color: "white",
           "& > svg": {
-            fontSize: "2.5rem",
+            fontSize: "2.25rem",
           },
         }}
       >
@@ -44,6 +41,8 @@ export default function ImageButton({ href, text, icon }: ImageButtonProps) {
           color: "white",
           alignSelf: "center",
           flexGrow: 1,
+          fontSize: 14,
+          fontWeight: 600,
         }}
       >
         {text}
@@ -51,3 +50,4 @@ export default function ImageButton({ href, text, icon }: ImageButtonProps) {
     </Box>
   );
 }
+

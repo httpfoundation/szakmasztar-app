@@ -23,7 +23,7 @@ declare module "@mui/material/styles" {
   }
 }
 
-const szakmaSztarYellow = "rgba(255,223,18)";
+const szakmaSztarYellow = "#F4B02A";
 const szakmaSztarOrange = "rgba(234,90,50)";
 export const szakmaSztarRed = "rgba(207,82,62)";
 const szakmaSztarPurple = "#350F38";
@@ -92,6 +92,9 @@ export const theme = createTheme({
       szakmaSztarPurple,
       szakmaSztarBlack,
     ],
+    text: {
+      primary: szakmaSztarPurple,
+    },
   },
   typography: {
     body1: {

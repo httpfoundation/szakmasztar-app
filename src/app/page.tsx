@@ -1,16 +1,11 @@
-import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
 import { Box } from "@mui/material";
 import { getCurrentCompetition } from "@/actions/competitions/competitions";
 import { getSponsors } from "@/actions/sponsors/sponsors";
 import heroImage from "@/assets/images/hero.png";
-import ImageButton from "@/components/common/ImageButton";
-import SectionContainer from "@/components/layouts/SectionContainer";
 import HeroSection from "./_components/HeroSection";
+import ImageButtonSection from "./_components/ImageButtonSection";
 import JumpCodeSection from "./_components/JumpCodeSection";
-import LocationInfo from "./_components/LocationInfo";
-import MapSection from "./_components/MapSection";
 import OpeningHours from "./_components/OpeningHours";
-import SkillSection from "./_components/SkillSection";
 import SponsorSection from "./_components/SponsorSection";
 
 export const revalidate = 3600;
@@ -27,12 +22,9 @@ const IndexPage = async () => {
         lead={currentCompetition.article.lead}
       />
       <JumpCodeSection />
-      <MapSection />
-      <LocationInfo />
-      <SkillSection />
-      <SectionContainer>
-        <ImageButton href="/kerdoivek" icon={<QuestionMarkIcon />} text="Kérdőívek" />
-      </SectionContainer>
+
+      <ImageButtonSection />
+
       <OpeningHours />
       <SponsorSection sponsors={sponsors} />
     </Box>

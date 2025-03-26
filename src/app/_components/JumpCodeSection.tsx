@@ -10,16 +10,15 @@ const JumpCodeSection = () => {
   const [jumpcode, setJumpcode] = useState("");
 
   return (
-    <SectionContainer>
-      <Typography sx={{ color: "white", fontSize: 14, mb: 1 }}>
-        Ezzel a jumpcode-dal egy kattintással az általad választott szakma vagy szponzor oldalára
-        ugorhatsz:
+    <SectionContainer padding={0}>
+      <Typography sx={{ color: "white", fontSize: 14, mb: 1, textAlign: "center" }}>
+        A jumpcode-dal egy kattintással az általad választott esemény oldalára ugorhatsz:
       </Typography>
       <Stack
         component="form"
         direction="row"
-        spacing={2}
-        sx={{ width: "100%" }}
+        spacing={0}
+        sx={{ width: "100%", bgcolor: "#D9D9D9", borderRadius: 999, mt: 2, mb: 2 }}
         onSubmit={(e) => {
           e.preventDefault();
           router.push(`/jumpcode/${jumpcode}`);
@@ -27,14 +26,36 @@ const JumpCodeSection = () => {
       >
         <TextField
           color="info"
-          sx={{ color: "white", width: "100%" }}
-          InputProps={{ sx: { color: "white" } }}
-          placeholder="Add meg a jumpcode-ot itt:"
+          sx={{
+            color: "white",
+            width: "100%",
+            "& fieldset": { border: "0 !important", outline: 0 },
+          }}
+          InputProps={{
+            autoComplete: "off",
+            sx: {
+              color: "primary.main",
+              opacity: 1,
+              background: "#D9D9D9",
+              "&::placeholder": { color: "red", opacity: 1 },
+              borderTopLeftRadius: 999,
+              borderBottomLeftRadius: 999,
+              fontSize: 14,
+              px: 0.9,
+              fontWeight: 400,
+            },
+          }}
+          placeholder="Add meg a jumpcode-ot"
           onChange={(e) => setJumpcode(e.target.value)}
           value={jumpcode}
           size="small"
         />
-        <Button sx={{ flexShrink: 0, px: 4 }}>Ugrás</Button>
+        <Button
+          sx={{ flexShrink: 0, px: 4, borderRadius: 999, color: "primary.main", fontSize: 14 }}
+          color="success"
+        >
+          Ugrás
+        </Button>
       </Stack>
     </SectionContainer>
   );
