@@ -1,7 +1,8 @@
-import { Box } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import { getCurrentCompetition } from "@/actions/competitions/competitions";
 import { getSponsors } from "@/actions/sponsors/sponsors";
 import heroImage from "@/assets/images/hero.png";
+import HeroImage from "./_components/HeroImage";
 import HeroSection from "./_components/HeroSection";
 import ImageButtonSection from "./_components/ImageButtonSection";
 import JumpCodeSection from "./_components/JumpCodeSection";
@@ -15,18 +16,16 @@ const IndexPage = async () => {
   const sponsors = await getSponsors();
   return (
     <Box>
-      <HeroSection
-        image={heroImage}
-        alt={currentCompetition.name}
-        title={currentCompetition.name}
-        lead={currentCompetition.article.lead}
-      />
-      <JumpCodeSection />
+      <HeroImage image={heroImage} alt={currentCompetition.name} title={currentCompetition.name} />
 
-      <ImageButtonSection />
+      <Stack sx={{ width: "100%", position: "relative" }}>
+        <HeroSection />
 
-      <OpeningHours />
-      <SponsorSection sponsors={sponsors} />
+        <JumpCodeSection />
+        <ImageButtonSection />
+        <OpeningHours />
+        <SponsorSection sponsors={sponsors} />
+      </Stack>
     </Box>
   );
 };

@@ -1,21 +1,12 @@
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import { Stack, Typography } from "@mui/material";
 import logo from "@/assets/images/logo.svg";
+import starform from "@/assets/images/starform.svg";
 import SectionContainer from "@/components/layouts/SectionContainer";
-import HeroImage from "./HeroImage";
 
-interface HeroSectionProps {
-  image: string | StaticImageData;
-  alt: string;
-  title: string;
-  lead: string;
-}
-
-const HeroSection = ({ image, alt, title }: HeroSectionProps) => {
+const HeroSection = () => {
   return (
     <>
-      <HeroImage image={image} alt={alt} title={title} />
-
       <SectionContainer>
         <Stack
           direction="row"
@@ -42,6 +33,20 @@ const HeroSection = ({ image, alt, title }: HeroSectionProps) => {
           </Typography>
         </Stack>
       </SectionContainer>
+
+      <Image
+        src={starform}
+        alt=""
+        role="presentation"
+        style={{
+          position: "absolute",
+          left: 0,
+          top: 0,
+          pointerEvents: "none",
+          width: "592px",
+          height: "auto",
+        }}
+      />
     </>
   );
 };
