@@ -98,27 +98,27 @@ export const theme = createTheme({
   },
   typography: {
     body1: {
-      fontSize: 18,
+      fontSize: 16,
       lineHeight: 1.5,
     },
     body2: {
-      fontSize: 16,
+      fontSize: 14,
     },
     h1: {
       fontSize: "2.5rem",
       fontWeight: "bold",
     },
     h2: {
-      fontSize: "1.5rem",
+      fontSize: "1.4rem",
       lineHeight: 1.3,
-      fontWeight: "bold",
+      fontWeight: "600",
     },
     h3: {
-      fontSize: 44,
+      fontSize: "1.2rem",
       fontWeight: "bold",
     },
     h4: {
-      fontSize: 34,
+      fontSize: "1.1rem",
       fontWeight: "bold",
     },
     h5: {

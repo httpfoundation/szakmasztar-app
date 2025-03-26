@@ -4,17 +4,47 @@ import SectionContainer from "@/components/layouts/SectionContainer";
 const OpeningHours = () => {
   return (
     <SectionContainer>
-      <Typography variant="h2" sx={{ mb: 2, color: "primary.contrastText" }}>
+      <Typography
+        variant="h2"
+        sx={{ mb: 2, color: "primary.contrastText", textAlign: "center", fontSize: 18 }}
+      >
         A rendezvény nyitvatartási időpontjai
       </Typography>
-      <Typography variant="body1" sx={{ mb: 2, color: "primary.contrastText" }}>
-        2025.04.28. (hétfő) 11:00 - 16:00
+      <Typography
+        variant="body1"
+        sx={{
+          mb: 2,
+          color: "success.main",
+          fontWeight: "600",
+          textAlign: "center",
+          bgcolor: "#71376A30",
+          px: 2,
+          py: 1,
+          borderRadius: 1,
+          borderBottom: "2px solid #ffffff10",
+        }}
+      >
+        2025. 04. 28. (hétfő): 11:00 - 16:00
       </Typography>
-      <Typography variant="body1" sx={{ mb: 2, color: "primary.contrastText" }}>
-        2025.04.29. (kedd) 10:00 - 16:00
+      <Typography
+        variant="body1"
+        sx={{
+          mb: 2,
+          color: "success.main",
+          fontWeight: "600",
+          textAlign: "center",
+          bgcolor: "#71376A30",
+          px: 2,
+          py: 1,
+          borderRadius: 1,
+          borderBottom: "2px solid #ffffff10",
+        }}
+      >
+        2025. 04. 29. (kedd): 10:00 - 16:00
       </Typography>
     </SectionContainer>
   );
 };
 
 export default OpeningHours;
+

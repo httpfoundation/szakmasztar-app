@@ -26,7 +26,7 @@ export const menuItems: MenuItem[] = [
     showInBottomNav: true,
   },
   {
-    text: "Programnaptár",
+    text: "Programok",
     icon: <EventIcon />,
     slug: "/programok",
     link: <Link href="/programok">{<EventIcon />}</Link>,
@@ -68,3 +68,4 @@ export const menuItems: MenuItem[] = [
     showInBottomNav: false, // Ez csak a hamburger menüben jelenik meg
   },
 ];
+

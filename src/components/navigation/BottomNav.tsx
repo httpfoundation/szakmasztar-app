@@ -29,7 +29,7 @@ export default function BottomNav() {
       <BottomNavigation
         value={currentIndex}
         showLabels
-        sx={{ bgcolor: "transparent", height: "64px" }}
+        sx={{ bgcolor: "transparent", height: "70px" }}
       >
         {bottomNavItems.map((item, index) => (
           <BottomNavigationAction
@@ -41,6 +41,7 @@ export default function BottomNav() {
             href={item.slug}
             sx={{
               gap: 1,
+              px: 0,
               "&.Mui-selected": {
                 color: "white",
               },
