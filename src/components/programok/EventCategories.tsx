@@ -6,17 +6,23 @@ import eventCategories from "@/assets/eventCategories.json";
 
 const EventCategories = () => {
   return (
-    <Box sx={{ mt: 4 }}>
-      <Grid container spacing={3}>
+    <Box sx={{ mt: 2, mb: 4, position: "relative" }}>
+      <Grid container spacing={2}>
         {eventCategories.map((category, index) => (
           <Grid item xs={12} md={6} key={index}>
-            <Paper sx={{ p: 3, height: "100%", bgcolor: "rgba(255, 255, 255, 0.8)" }}>
-              <Typography variant="h6" gutterBottom>
+            <Paper sx={{ p: 2.5, height: "100%", bgcolor: "primary.light" }}>
+              <Typography variant="h6" gutterBottom sx={{ color: "primary.contrastText" }}>
                 {category.title}
               </Typography>
-              <Typography variant="body2" color="text.secondary" paragraph>
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                paragraph
+                sx={{ color: "primary.contrastText" }}
+              >
                 {category.description}
               </Typography>
+
               <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap" }}>
                 {category.locations.map((location, locationIndex) => (
                   <Button
@@ -26,6 +32,7 @@ const EventCategories = () => {
                     size="small"
                     startIcon={<LocationOnIcon />}
                     variant="outlined"
+                    color="info"
                   >
                     {location.title}
                   </Button>
@@ -36,6 +43,7 @@ const EventCategories = () => {
                   size="small"
                   startIcon={<InfoIcon />}
                   variant="outlined"
+                  color="info"
                 >
                   Tudj meg többet!
                 </Button>

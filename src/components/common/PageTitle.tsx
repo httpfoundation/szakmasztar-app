@@ -8,7 +8,7 @@ interface PageTitleProps {
 
 export default function PageTitle({ children, icon, sx }: PageTitleProps) {
   return (
-    <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 3 }}>
+    <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
       {icon && (
         <Box
           sx={{
@@ -27,8 +27,9 @@ export default function PageTitle({ children, icon, sx }: PageTitleProps) {
         component="h1"
         color="primary.contrastText"
         sx={{
-          fontSize: { xs: "2rem", sm: "2.5rem", md: "3rem" },
-          fontWeight: 500,
+          fontSize: { xs: "1.8rem", sm: "2.5rem", md: "3rem" },
+          fontWeight: "bold",
+          textTransform: "uppercase",
           ...sx,
         }}
       >
