@@ -1,6 +1,6 @@
 import { getCurrentCompetition } from "@/actions/competitions/competitions";
 import { getSkill, getSkills } from "@/actions/skills/skills";
-import EventPage from "@/components/programok/EventPAge";
+import EventPage from "@/components/programok/EventPage";
 import { getArticleMetadata } from "@/lib/metadata";
 
 interface SkillPageProps {
