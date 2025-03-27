@@ -35,8 +35,8 @@ const SkillPage = async ({ params }: SkillPageProps) => {
   return (
     <EventPage
       title={title}
-      eventInfo={content || ""}
-      generalInfo={skillLead || ""}
+      generalInfo={content || ""}
+      eventInfo={skillLead || ""}
       image={image?.url || ""}
       location={"A21"}
       sponsors={sponsors}
@@ -45,3 +45,4 @@ const SkillPage = async ({ params }: SkillPageProps) => {
 };
 
 export default SkillPage;
+

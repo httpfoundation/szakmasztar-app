@@ -1,8 +1,8 @@
 import Image from "next/image";
 import { Stack, Typography } from "@mui/material";
 import logo from "@/assets/images/logo.svg";
-import starform from "@/assets/images/starform.svg";
 import SectionContainer from "@/components/layouts/SectionContainer";
+import Starform from "@/components/ui/Starform";
 
 const HeroSection = () => {
   return (
@@ -34,19 +34,7 @@ const HeroSection = () => {
         </Stack>
       </SectionContainer>
 
-      <Image
-        src={starform}
-        alt=""
-        role="presentation"
-        style={{
-          position: "absolute",
-          left: 0,
-          top: 0,
-          pointerEvents: "none",
-          width: "592px",
-          height: "auto",
-        }}
-      />
+      <Starform />
     </>
   );
 };

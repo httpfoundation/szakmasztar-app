@@ -1,8 +1,9 @@
-import { Box, Card, CardContent, Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import { SponsorFragment } from "@/actions/sponsors/sponsors.generated";
 import FormattedContent from "../FormattedContent";
 import PageContainer from "../layouts/PageContainer";
 import SponsorCard from "../sponsor/SponsorCard";
+import Starform from "../ui/Starform";
 import EventImage from "./EventImage";
 
 interface EventPageProps {
@@ -14,44 +15,37 @@ interface EventPageProps {
   sponsors: SponsorFragment[];
 }
 
-const EventPage = ({
-  title,
-  eventInfo,
-  generalInfo,
-  image,
-  location,
-  sponsors,
-}: EventPageProps) => {
+const EventPage = ({ title, eventInfo, generalInfo, image, sponsors }: EventPageProps) => {
   return (
     <>
       <EventImage title={title} image={image} />
 
-      <PageContainer>
-        <Card sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
-          <CardContent sx={{ p: 0, display: "flex", flexDirection: "column", flex: 1 }}>
-            <Stack spacing={2} sx={{ p: 2, flex: 1 }}>
-              <Typography variant="h6" color="primary">
-                {location}
-              </Typography>
+      <PageContainer sx={{ position: "relative" }}>
+        <Starform />
 
-              <FormattedContent>{eventInfo}</FormattedContent>
-              <FormattedContent>{generalInfo}</FormattedContent>
-              {sponsors.length > 0 && (
-                <Box sx={{ mt: "auto" }}>
-                  <Typography variant="subtitle2" gutterBottom>
-                    Szponzorok:
-                  </Typography>
-                  {sponsors.map((sponsor, index) => (
-                    <SponsorCard sponsor={sponsor} key={index} />
-                  ))}
-                </Box>
-              )}
-            </Stack>
-          </CardContent>
-        </Card>
+        <Stack spacing={2} sx={{ flex: 1, pb: 3 }}>
+          <FormattedContent sx={{ color: "white" }}>{eventInfo}</FormattedContent>
+
+          <Typography variant="h2" sx={{ color: "white", fontWeight: "bold" }}>
+            VERSENY <span style={{ fontWeight: "300" }}>INFORMÁCIÓK</span>
+          </Typography>
+          <FormattedContent sx={{ color: "white" }}>{generalInfo}</FormattedContent>
+
+          {sponsors.length > 0 && (
+            <Box sx={{ mt: "auto" }}>
+              <Typography variant="h2" sx={{ color: "white", fontWeight: "bold" }}>
+                SZPONZOROK
+              </Typography>
+              {sponsors.map((sponsor, index) => (
+                <SponsorCard sponsor={sponsor} key={index} />
+              ))}
+            </Box>
+          )}
+        </Stack>
       </PageContainer>
     </>
   );
 };
 
 export default EventPage;
+
