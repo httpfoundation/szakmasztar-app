@@ -3,7 +3,7 @@ import SectionContainer from "@/components/layouts/SectionContainer";
 
 const OpeningHours = () => {
   return (
-    <SectionContainer>
+    <SectionContainer sx={{ position: "relative" }}>
       <Typography
         variant="h2"
         sx={{

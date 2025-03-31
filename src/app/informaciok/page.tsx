@@ -1,6 +1,5 @@
 import { getSponsors } from "@/actions/sponsors/sponsors";
-import PageTitle from "@/components/common/PageTitle";
-import SectionContainer from "@/components/layouts/SectionContainer";
+import GradientTitle from "@/components/ui/GradientTitle";
 import OpeningHours from "../_components/OpeningHours";
 import SponsorSection from "../_components/SponsorSection";
 
@@ -11,9 +10,7 @@ const InfoPage = async () => {
 
   return (
     <>
-      <SectionContainer>
-        <PageTitle>Információk</PageTitle>
-      </SectionContainer>
+      <GradientTitle>Információk</GradientTitle>
       <OpeningHours />
       <SponsorSection sponsors={sponsors} />
     </>

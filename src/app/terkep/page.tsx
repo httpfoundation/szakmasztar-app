@@ -1,16 +1,17 @@
 import { Map as MapIcon } from "@mui/icons-material";
 import { Stack } from "@mui/material";
 import ImageButton from "@/components/common/ImageButton";
-import PageTitle from "@/components/common/PageTitle";
 import PageContainer from "@/components/layouts/PageContainer";
+import GradientTitle from "@/components/ui/GradientTitle";
 
 export const revalidate = 3600;
 
 const MapPage = async () => {
   return (
     <>
+      <GradientTitle>Térkép</GradientTitle>
+
       <PageContainer>
-        <PageTitle icon={<MapIcon />}>Térkép</PageTitle>
         <Stack direction="column" spacing={2}>
           <ImageButton href="/terkep/hungexpo" icon={<MapIcon />} text="Hungexpo áttekintő tékép" />
           <ImageButton
