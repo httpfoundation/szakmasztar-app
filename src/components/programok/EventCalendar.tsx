@@ -6,16 +6,23 @@ import eventSchedule from "@/assets/eventSchedule.json";
 
 const EventCalendar = () => {
   return (
-    <Box sx={{ mt: 4 }}>
+    <Box sx={{ position: "relative" }}>
       {eventSchedule.map((day, index) => (
-        <Paper key={index} sx={{ p: 3, mb: 3, bgcolor: "rgba(255, 255, 255, 0.8)" }}>
-          <Typography variant="h5" gutterBottom>
+        <Paper key={index} sx={{ p: 2, mb: 3, bgcolor: "#71376A55" }}>
+          <Typography variant="h2" sx={{ fontSize: 20, color: "success.main", mb: 2 }}>
             {day.title}
           </Typography>
-          <Grid container spacing={2}>
+          <Grid container spacing={1}>
             {day.events.map((event, eventIndex) => (
               <Grid item xs={12} md={6} key={eventIndex}>
-                <Paper sx={{ p: 2, height: "100%", bgcolor: "rgba(255, 255, 255, 0.8)" }}>
+                <Paper
+                  sx={{
+                    p: 2,
+                    height: "100%",
+                    bgcolor: "primary.light",
+                    color: "primary.contrastText",
+                  }}
+                >
                   <Typography variant="body2">
                     {new Date(event.startTime).toLocaleTimeString("hu-HU", {
                       hour: "2-digit",
@@ -31,26 +38,28 @@ const EventCalendar = () => {
                     {event.title}
                   </Typography>
                   <Box sx={{ display: "flex", gap: 1, mt: 1 }}>
-                    <Button
-                      component={Link}
-                      href={event.locationSlug}
-                      size="small"
-                      startIcon={<LocationOnIcon />}
-                      variant="outlined"
-                    >
-                      {event.location}
-                    </Button>
                     {event.eventSlugs && (
                       <Button
                         component={Link}
                         href={event.eventSlugs}
                         size="small"
                         startIcon={<InfoIcon />}
-                        variant="outlined"
+                        variant="contained"
+                        color="success"
                       >
                         Információ
                       </Button>
                     )}
+                    <Button
+                      component={Link}
+                      href={event.locationSlug}
+                      size="small"
+                      startIcon={<LocationOnIcon />}
+                      variant="outlined"
+                      color="info"
+                    >
+                      {event.location}
+                    </Button>
                   </Box>
                 </Paper>
               </Grid>
@@ -63,3 +72,4 @@ const EventCalendar = () => {
 };
 
 export default EventCalendar;
+

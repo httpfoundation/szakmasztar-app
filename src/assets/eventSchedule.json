@@ -8,7 +8,7 @@
         "startTime": "2025-04-28 09:00",
         "endTime": "2025-04-28 09:00",
         "location": "C pavilon",
-        "locationSlug": "maps/c-pavilon-terkep",
+        "locationSlug": "terkep/hungexpo",
         "eventSlugs": ""
       },
       {
@@ -17,7 +17,7 @@
         "startTime": "2025-04-28 10:00",
         "endTime": "2025-04-28 16:00",
         "location": "A pavilon",
-        "locationSlug": "maps/a-pavilon-terkep",
+        "locationSlug": "terkep/a-pavilon",
         "eventSlugs": "esemenyek/osztv-szktv-versenyek"
       },
       {
@@ -26,7 +26,7 @@
         "startTime": "2025-04-28 10:00",
         "endTime": "2025-04-28 16:00",
         "location": "D pavilon",
-        "locationSlug": "maps/d-pavilon-terkep",
+        "locationSlug": "terkep/d-pavilon",
         "eventSlugs": "esemenyek/nak-szakmak-bemutatoi"
       },
       {
@@ -35,7 +35,7 @@
         "startTime": "2025-04-28 10:00",
         "endTime": "2025-04-28 16:00",
         "location": "D pavilon",
-        "locationSlug": "maps/a-pavilon-terkep",
+        "locationSlug": "terkep/a-pavilon",
         "eventSlugs": "esemenyek/worldskills-hungary-esemenyek"
       }
     ]
@@ -49,7 +49,7 @@
         "startTime": "2025-04-28 10:00",
         "endTime": "2025-04-28 16:00",
         "location": "A pavilon",
-        "locationSlug": "maps/a-pavilon-terkep",
+        "locationSlug": "terkep/a-pavilon",
         "eventSlugs": "esemenyek/osztv-szktv-versenyek"
       },
       {
@@ -58,7 +58,7 @@
         "startTime": "2025-04-28 10:00",
         "endTime": "2025-04-28 16:00",
         "location": "D pavilon",
-        "locationSlug": "maps/d-pavilon-terkep",
+        "locationSlug": "terkep/d-pavilon",
         "eventSlugs": "esemenyek/nak-szakmak-bemutatoi"
       },
       {
@@ -67,9 +67,10 @@
         "startTime": "2025-04-28 10:00",
         "endTime": "2025-04-28 16:00",
         "location": "D pavilon",
-        "locationSlug": "maps/a-pavilon-terkep",
+        "locationSlug": "terkep/a-pavilon",
         "eventSlugs": "esemenyek/worldskills-hungary-esemenyek"
       }
     ]
   }
 ]
+

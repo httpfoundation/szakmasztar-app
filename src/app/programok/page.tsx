@@ -1,15 +1,19 @@
-import PageTitle from "@/components/common/PageTitle";
 import PageContainer from "@/components/layouts/PageContainer";
 import EventCalendar from "@/components/programok/EventCalendar";
+import GradientTitle from "@/components/ui/GradientTitle";
+import Starform from "@/components/ui/Starform";
 
 export const revalidate = 3600;
 
 const SchedulePage = async () => {
   return (
-    <PageContainer>
-      <PageTitle>Programnaptár</PageTitle>
-      <EventCalendar />
-    </PageContainer>
+    <>
+      <GradientTitle>Programnaptár</GradientTitle>
+      <PageContainer sx={{ position: "relative" }}>
+        <Starform />
+        <EventCalendar />
+      </PageContainer>
+    </>
   );
 };
 
