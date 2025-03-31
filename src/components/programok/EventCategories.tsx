@@ -10,7 +10,7 @@ const EventCategories = () => {
       <Grid container spacing={2}>
         {eventCategories.map((category, index) => (
           <Grid item xs={12} md={6} key={index}>
-            <Paper sx={{ p: 2.5, height: "100%", bgcolor: "primary.light" }}>
+            <Paper sx={{ p: 2.5, height: "100%", bgcolor: "#71376Add" }}>
               <Typography variant="h6" gutterBottom sx={{ color: "primary.contrastText" }}>
                 {category.title}
               </Typography>
@@ -24,6 +24,16 @@ const EventCategories = () => {
               </Typography>
 
               <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap" }}>
+                <Button
+                  component={Link}
+                  href={`/esemenyek/${category.slug}`}
+                  size="small"
+                  startIcon={<InfoIcon />}
+                  color="success"
+                >
+                  Tudj meg többet!
+                </Button>
+
                 {category.locations.map((location, locationIndex) => (
                   <Button
                     key={locationIndex}
@@ -33,20 +43,11 @@ const EventCategories = () => {
                     startIcon={<LocationOnIcon />}
                     variant="outlined"
                     color="info"
+                    sx={{ fontWeight: 600 }}
                   >
                     {location.title}
                   </Button>
                 ))}
-                <Button
-                  component={Link}
-                  href={`/esemenyek/${category.slug}`}
-                  size="small"
-                  startIcon={<InfoIcon />}
-                  variant="outlined"
-                  color="info"
-                >
-                  Tudj meg többet!
-                </Button>
               </Box>
             </Paper>
           </Grid>

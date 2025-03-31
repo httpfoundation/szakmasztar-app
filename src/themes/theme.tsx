@@ -74,7 +74,7 @@ export const theme = createTheme({
     },
     success: {
       main: szakmaSztarYellow,
-      contrastText: "#fff",
+      contrastText: szakmaSztarPurple,
       dark: "#E9A112",
     },
     warning: {
