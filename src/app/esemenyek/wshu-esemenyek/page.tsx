@@ -1,14 +1,13 @@
-import PageTitle from "@/components/common/PageTitle";
-import PageContainer from "@/components/layouts/PageContainer";
+import { getSkills } from "@/actions/skills/skills";
+import SkillsPage from "@/components/skills/SkillsPage";
 
 export const revalidate = 3600;
 
-const OtherEventsPage = async () => {
-  return (
-    <PageContainer>
-      <PageTitle>WorldSkills Hungary események</PageTitle>
-    </PageContainer>
-  );
+const WshuEventsPage = async () => {
+  const allSkills = await getSkills();
+  const skills = allSkills.filter((x) => x.category?.name === "WorldSkills Hungary");
+
+  return <SkillsPage skills={skills} title="WorldSkills Hungary események" />;
 };
 
-export default OtherEventsPage;
+export default WshuEventsPage;

@@ -15,7 +15,7 @@ const GradientTitle = ({ children }: GradientTitleProps) => {
         background: "linear-gradient(to right, #FFDF12 -20%, #EA5A32, #71376A 110%)",
       }}
     >
-      <PageContainer>
+      <PageContainer padding={1.5}>
         <PageTitle>{children}</PageTitle>
       </PageContainer>
     </Stack>

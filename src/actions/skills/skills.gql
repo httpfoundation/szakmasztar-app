@@ -32,4 +32,8 @@ fragment Skill on Skill {
       ...Competition
     }
   }
+  category {
+    id
+    name
+  }
 }

@@ -26,6 +26,7 @@ export type Article = {
   id: Scalars['ID']['output'];
   image?: Maybe<File>;
   lead: Scalars['String']['output'];
+  metadata: Scalars['String']['output'];
   position: Scalars['Float']['output'];
   publishedAt?: Maybe<Scalars['Timestamp']['output']>;
   slug: Scalars['String']['output'];
@@ -84,6 +85,7 @@ export type Competition = {
   isNext: Scalars['Boolean']['output'];
   members: Array<Member>;
   name: Scalars['String']['output'];
+  nationalCompetitionRegistrationCount?: Maybe<Scalars['Float']['output']>;
   slug: Scalars['String']['output'];
   sponsors: Array<Sponsor>;
   startingDate: Scalars['String']['output'];
@@ -98,10 +100,12 @@ export type CompetitionRegistration = {
   firstName: Scalars['String']['output'];
   id: Scalars['ID']['output'];
   lastName: Scalars['String']['output'];
+  nationalCompetition: NationalCompetition;
   occupation?: Maybe<Scalars['String']['output']>;
   occupationCity?: Maybe<Scalars['String']['output']>;
   phone: Scalars['String']['output'];
   region: Scalars['String']['output'];
+  skill: Skill;
   source: Scalars['String']['output'];
 };
 
@@ -156,6 +160,7 @@ export type CreateArticleInput = {
   content: Scalars['String']['input'];
   image?: InputMaybe<FileInput>;
   lead: Scalars['String']['input'];
+  metadata?: InputMaybe<Scalars['String']['input']>;
   publishedAt?: InputMaybe<Scalars['Timestamp']['input']>;
   slug?: InputMaybe<Scalars['String']['input']>;
   subtitle?: InputMaybe<Scalars['String']['input']>;
@@ -544,6 +549,7 @@ export type Mutation = {
   deleteCategory: Scalars['Boolean']['output'];
   deleteChatElement: Scalars['Boolean']['output'];
   deleteCompetition: Scalars['Boolean']['output'];
+  deleteCompetitionRegistration: Scalars['Boolean']['output'];
   deleteFile: Scalars['Boolean']['output'];
   deleteForm: Scalars['Boolean']['output'];
   deleteFormEntry: Scalars['Boolean']['output'];
@@ -564,6 +570,7 @@ export type Mutation = {
   updateCategory: Category;
   updateChatElement: Chat;
   updateCompetition: Competition;
+  updateCompetitionRegistration: Scalars['Boolean']['output'];
   updateCompetitor: Competitor;
   updateCompetitorImage: Scalars['Boolean']['output'];
   updateCompetitorResult: Scalars['Boolean']['output'];
@@ -650,6 +657,11 @@ export type MutationDeleteChatElementArgs = {
 
 export type MutationDeleteCompetitionArgs = {
   id: Scalars['ID']['input'];
+};
+
+
+export type MutationDeleteCompetitionRegistrationArgs = {
+  id: Scalars['Float']['input'];
 };
 
 
@@ -747,6 +759,12 @@ export type MutationUpdateChatElementArgs = {
 export type MutationUpdateCompetitionArgs = {
   competition: UpdateCompetitionInput;
   id: Scalars['String']['input'];
+};
+
+
+export type MutationUpdateCompetitionRegistrationArgs = {
+  id: Scalars['Float']['input'];
+  input: UpdateCompetitionRegistrationInput;
 };
 
 
@@ -1313,6 +1331,7 @@ export type UpdateArticleInput = {
   homeHighlighted?: InputMaybe<Scalars['Boolean']['input']>;
   image?: InputMaybe<FileInput>;
   lead?: InputMaybe<Scalars['String']['input']>;
+  metadata?: InputMaybe<Scalars['String']['input']>;
   position?: InputMaybe<Scalars['Float']['input']>;
   publishedAt?: InputMaybe<Scalars['Timestamp']['input']>;
   slug?: InputMaybe<Scalars['String']['input']>;
@@ -1342,6 +1361,15 @@ export type UpdateCompetitionInput = {
   name?: InputMaybe<Scalars['String']['input']>;
   slug?: InputMaybe<Scalars['String']['input']>;
   startingDate?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type UpdateCompetitionRegistrationInput = {
+  birthDate: Scalars['String']['input'];
+  email: Scalars['String']['input'];
+  firstName: Scalars['String']['input'];
+  lastName: Scalars['String']['input'];
+  nationalCompetitionId: Scalars['Float']['input'];
+  phone: Scalars['String']['input'];
 };
 
 export type UpdateCompetitorImageInput = {
