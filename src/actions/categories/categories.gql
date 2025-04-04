@@ -1,0 +1,65 @@
+query getCategoryTree($rootNodeId: ID!) {
+  category(id: $rootNodeId) {
+    ...Category
+    ...CategoryRecursive
+  }
+}
+
+fragment Category on Category {
+  id
+  name
+  color
+  slug
+  items {
+    ...Article
+  }
+}
+
+fragment CategoryRecursive on Category {
+  children {
+    ...Category
+    children {
+      ...Category
+      children {
+        ...Category
+        children {
+          ...Category
+          children {
+            ...Category
+            children {
+              ...Category
+              children {
+                ...Category
+                children {
+                  ...Category
+                  children {
+                    ...Category
+                    children {
+                      ...Category
+                      children {
+                        ...Category
+                        children {
+                          ...Category
+                          children {
+                            ...Category
+                            children {
+                              ...Category
+                              children {
+                                ...Category
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
