@@ -42,6 +42,7 @@ export default function BottomNav() {
             sx={{
               gap: 1,
               px: 0,
+              textAlign: "center !important",
               "&.Mui-selected": {
                 color: "white",
               },
@@ -51,6 +52,7 @@ export default function BottomNav() {
               color: "white",
               "& .MuiBottomNavigationAction-label": {
                 fontSize: "0.7rem",
+                textAlign: "center !important",
                 lineHeight: 1,
                 color: "white",
               },
