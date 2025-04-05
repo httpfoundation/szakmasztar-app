@@ -1,4 +1,6 @@
+import { getArticle } from "@/actions/articles/articles";
 import { getCategoryTree } from "@/actions/categories/categories";
+import FormattedContent from "@/components/FormattedContent";
 import PageContainer from "@/components/layouts/PageContainer";
 import SectorCards from "@/components/skills/SectorCards";
 import GradientTitle from "@/components/ui/GradientTitle";
@@ -14,6 +16,7 @@ export type Sector = {
 const EventsPage = async () => {
   const eventsBySectors = (await getCategoryTree({ rootNodeId: "szakmasztar-app-sector" }))
     .children;
+  const { title, lead } = await getArticle({ slug: "szakmai-programok-oldal" });
   const displayedSectors = eventsBySectors.filter((sector) => sector.items.length > 0);
   const sectors = displayedSectors.map((sector) => ({
     id: sector.id,
@@ -22,11 +25,16 @@ const EventsPage = async () => {
     slug: sector.slug,
   }));
 
+  console.log(lead);
+
   return (
     <>
-      <GradientTitle>Szakmai programok</GradientTitle>
+      <GradientTitle>{title}</GradientTitle>
       <PageContainer sx={{ position: "relative" }}>
-        Ágazatok
+        <FormattedContent sx={{ my: 2 }} variant="body1">
+          {lead}
+        </FormattedContent>
+
         <SectorCards sectors={sectors} />
       </PageContainer>
     </>
@@ -34,4 +42,3 @@ const EventsPage = async () => {
 };
 
 export default EventsPage;
-

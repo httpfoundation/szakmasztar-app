@@ -12,7 +12,7 @@ const FormattedContent: FC<FormattedContentProps> = ({
   align = "justify",
   variant = "body2",
   fontWeight = "400",
-  color = "text.secondary",
+  color = "primary.contrastText",
   sx,
 }) => {
   if (stripHtmlTags(children).trim().length < 1) {
@@ -27,7 +27,7 @@ const FormattedContent: FC<FormattedContentProps> = ({
       color={color}
       component="div"
       sx={{
-        "&, & p": {
+        "& p": {
           textAlign: align,
           m: 0,
         },

@@ -11,7 +11,7 @@ interface SectorCardsProps {
 
 const SectorCards = ({ sectors }: SectorCardsProps) => {
   return (
-    <SectionContainer sx={{ mt: -4, pb: 4 }}>
+    <SectionContainer sx={{ pb: 4 }}>
       <Stack
         sx={{
           gap: 2,
@@ -28,4 +28,3 @@ const SectorCards = ({ sectors }: SectorCardsProps) => {
 };
 
 export default SectorCards;
-

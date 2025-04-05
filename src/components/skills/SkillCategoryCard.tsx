@@ -4,45 +4,46 @@ import { FC } from "react";
 import Image from "next/image";
 import { Button, Stack, Typography } from "@mui/material";
 import { Sector } from "@/app/szakmai-programok/page";
+
 // import { SkillCategoryFragment } from "@/actions/skills/skills.generated";
-import banyaszatImage from "@/assets/images/skill-categories/banyaszat.svg";
-import elektronikaImage from "@/assets/images/skill-categories/elektronika.svg";
-import epitoiparImage from "@/assets/images/skill-categories/epitoipar.svg";
-import epuletgepeszetImage from "@/assets/images/skill-categories/epuletgepeszet.svg";
-import faiparImage from "@/assets/images/skill-categories/faipar.svg";
-import gepeszetImage from "@/assets/images/skill-categories/gepeszet.svg";
-import informatikaImage from "@/assets/images/skill-categories/informatika.svg";
-import jarmugyartasImage from "@/assets/images/skill-categories/jarmugyartas.svg";
-import kereskedelemImage from "@/assets/images/skill-categories/kereskedelem.svg";
-import kozlekedesImage from "@/assets/images/skill-categories/kozlekedes.svg";
-import kreativImage from "@/assets/images/skill-categories/kreativ.svg";
-import mindenImage from "@/assets/images/skill-categories/minden.svg";
-import szepeszetImage from "@/assets/images/skill-categories/szepeszet.svg";
-import turizmusImage from "@/assets/images/skill-categories/turizmus.svg";
-import vegyiparImage from "@/assets/images/skill-categories/vegyipar.svg";
+// import banyaszatImage from "@/assets/images/skill-categories/banyaszat.svg";
+// import elektronikaImage from "@/assets/images/skill-categories/elektronika.svg";
+// import epitoiparImage from "@/assets/images/skill-categories/epitoipar.svg";
+// import epuletgepeszetImage from "@/assets/images/skill-categories/epuletgepeszet.svg";
+// import faiparImage from "@/assets/images/skill-categories/faipar.svg";
+// import gepeszetImage from "@/assets/images/skill-categories/gepeszet.svg";
+// import informatikaImage from "@/assets/images/skill-categories/informatika.svg";
+// import jarmugyartasImage from "@/assets/images/skill-categories/jarmugyartas.svg";
+// import kereskedelemImage from "@/assets/images/skill-categories/kereskedelem.svg";
+// import kozlekedesImage from "@/assets/images/skill-categories/kozlekedes.svg";
+// import kreativImage from "@/assets/images/skill-categories/kreativ.svg";
+// import mindenImage from "@/assets/images/skill-categories/minden.svg";
+// import szepeszetImage from "@/assets/images/skill-categories/szepeszet.svg";
+// import turizmusImage from "@/assets/images/skill-categories/turizmus.svg";
+// import vegyiparImage from "@/assets/images/skill-categories/vegyipar.svg";
 
 interface SkillCategoryCardProps {
   active: boolean;
   sector: Sector;
 }
 
-const skillCategoryImages: Record<string, string> = {
-  "MINDEN ÁGAZAT": mindenImage,
-  "BÁNYÁSZAT ÉS KOHÁSZAT": banyaszatImage,
-  "ELEKTRONIKA ÉS ELEKTROTECHNIKA": elektronikaImage,
-  ÉPÍTŐIPAR: epitoiparImage,
-  ÉPÜLETGÉPÉSZET: epuletgepeszetImage,
-  "FA- ÉS BÚTORIPAR": faiparImage,
-  GÉPÉSZET: gepeszetImage,
-  "INFORMATIKA ÉS TÁVKÖZLÉS": informatikaImage,
-  KERESKEDELEM: kereskedelemImage,
-  "KÖZLEKEDÉS ÉS SZÁLLÍTMÁNYOZÁS": kozlekedesImage,
-  KREATÍV: kreativImage,
-  "SPECIALIZÁLT GÉP- ÉS JÁRMŰGYÁRTÁS": jarmugyartasImage,
-  SZÉPÉSZET: szepeszetImage,
-  "TURIZMUS-VENDÉGLÁTÁS": turizmusImage,
-  VEGYIPAR: vegyiparImage,
-};
+// const skillCategoryImages: Record<string, string> = {
+//   "MINDEN ÁGAZAT": mindenImage,
+//   "BÁNYÁSZAT ÉS KOHÁSZAT": banyaszatImage,
+//   "ELEKTRONIKA ÉS ELEKTROTECHNIKA": elektronikaImage,
+//   ÉPÍTŐIPAR: epitoiparImage,
+//   ÉPÜLETGÉPÉSZET: epuletgepeszetImage,
+//   "FA- ÉS BÚTORIPAR": faiparImage,
+//   GÉPÉSZET: gepeszetImage,
+//   "INFORMATIKA ÉS TÁVKÖZLÉS": informatikaImage,
+//   KERESKEDELEM: kereskedelemImage,
+//   "KÖZLEKEDÉS ÉS SZÁLLÍTMÁNYOZÁS": kozlekedesImage,
+//   KREATÍV: kreativImage,
+//   "SPECIALIZÁLT GÉP- ÉS JÁRMŰGYÁRTÁS": jarmugyartasImage,
+//   SZÉPÉSZET: szepeszetImage,
+//   "TURIZMUS-VENDÉGLÁTÁS": turizmusImage,
+//   VEGYIPAR: vegyiparImage,
+// };
 
 const SkillCategoryCard: FC<SkillCategoryCardProps> = ({ active, sector }) => {
   return (
@@ -106,4 +107,3 @@ const SkillCategoryCard: FC<SkillCategoryCardProps> = ({ active, sector }) => {
 };
 
 export default SkillCategoryCard;
-
