@@ -27,15 +27,6 @@ query getPaginatedArticles($categoryId: String!, $take: Int, $skip: Int) {
   }
 }
 
-fragment Category on Category {
-  id
-  name
-  color
-  items {
-    ...Article
-  }
-}
-
 fragment Article on Article {
   id
   slug
@@ -63,3 +54,4 @@ fragment PageInfo on PageInfo {
   hasPreviousPage
   hasNextPage
 }
+

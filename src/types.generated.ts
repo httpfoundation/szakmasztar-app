@@ -228,6 +228,11 @@ export type CreateNationalCompetitionInput = {
   skillId: Scalars['String']['input'];
 };
 
+export type CreateSkillCategoryInput = {
+  icon?: InputMaybe<FileInput>;
+  name: Scalars['String']['input'];
+};
+
 export type CreateSponsorInput = {
   article?: InputMaybe<CreateArticleInput>;
   competitions?: Array<SponsorCompetitionPivotInput>;
@@ -543,6 +548,7 @@ export type Mutation = {
   createForm: Form;
   createMember: Member;
   createNationalCompetition: NationalCompetition;
+  createSkillCategory: SkillCategory;
   createSponsor: Sponsor;
   createUser: User;
   deleteArticle: Scalars['Boolean']['output'];
@@ -558,6 +564,7 @@ export type Mutation = {
   forgetPassword: Scalars['Boolean']['output'];
   registerForCompetition: Scalars['Boolean']['output'];
   removeContact: Scalars['Boolean']['output'];
+  removeSkillCategory: Scalars['Boolean']['output'];
   removeSponsor: Scalars['Boolean']['output'];
   resetPassword: Scalars['Boolean']['output'];
   /** Sync WSHU data */
@@ -583,6 +590,7 @@ export type Mutation = {
   updateNationalCompetition: NationalCompetition;
   updateSiteSettings: SiteSettings;
   updateSkill: Skill;
+  updateSkillCategory: SkillCategory;
   updateSponsor: Sponsor;
   updateTranslation: I18n;
   updateUser: User;
@@ -626,6 +634,11 @@ export type MutationCreateMemberArgs = {
 
 export type MutationCreateNationalCompetitionArgs = {
   nationalCompetition: CreateNationalCompetitionInput;
+};
+
+
+export type MutationCreateSkillCategoryArgs = {
+  createSkillCategoryInput: CreateSkillCategoryInput;
 };
 
 
@@ -702,6 +715,11 @@ export type MutationRegisterForCompetitionArgs = {
 
 export type MutationRemoveContactArgs = {
   id: Scalars['ID']['input'];
+};
+
+
+export type MutationRemoveSkillCategoryArgs = {
+  id: Scalars['String']['input'];
 };
 
 
@@ -831,6 +849,11 @@ export type MutationUpdateSiteSettingsArgs = {
 export type MutationUpdateSkillArgs = {
   id: Scalars['String']['input'];
   skill: UpdateSkillInput;
+};
+
+
+export type MutationUpdateSkillCategoryArgs = {
+  updateSkillCategoryInput: UpdateSkillCategoryInput;
 };
 
 
@@ -1005,6 +1028,7 @@ export type Query = {
   siteSettings: SiteSettings;
   sites: Array<Site>;
   skill: Skill;
+  skillCategories: Array<SkillCategory>;
   skills: Array<Skill>;
   skillsJuniorCompetitions: PaginatedNationalCompetition;
   sponsor: Sponsor;
@@ -1252,6 +1276,7 @@ export type Skill = {
 
 export type SkillCategory = {
   __typename?: 'SkillCategory';
+  icon?: Maybe<File>;
   id: Scalars['ID']['output'];
   name: Scalars['String']['output'];
 };
@@ -1482,8 +1507,15 @@ export type UpdateSiteSettingsInput = {
   chatEnabled?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
+export type UpdateSkillCategoryInput = {
+  icon?: InputMaybe<FileInput>;
+  id: Scalars['String']['input'];
+  name?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type UpdateSkillInput = {
   article: CreateArticleInput;
+  categoryId?: InputMaybe<Scalars['String']['input']>;
   image: FileInput;
   name?: InputMaybe<Scalars['String']['input']>;
   wsId?: InputMaybe<Scalars['String']['input']>;
