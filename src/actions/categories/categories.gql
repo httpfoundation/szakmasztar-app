@@ -5,6 +5,12 @@ query getCategoryTree($rootNodeId: ID!) {
   }
 }
 
+query getCategory($id: ID!) {
+  category(id: $id) {
+    ...Category
+  }
+}
+
 fragment Category on Category {
   id
   name
@@ -66,3 +72,4 @@ fragment CategoryRecursive on Category {
     }
   }
 }
+

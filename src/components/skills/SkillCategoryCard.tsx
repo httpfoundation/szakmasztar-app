@@ -45,12 +45,12 @@ const skillCategoryImages: Record<string, string> = {
 };
 
 const SkillCategoryCard: FC<SkillCategoryCardProps> = ({ active, sector }) => {
-  console.log(sector.imageUrl);
   return (
     <Button
       color="info"
       style={{ borderRadius: 0 }}
       onClick={() => console.log(sector.id)}
+      href={`/szakmai-programok/${sector.id}`}
       sx={{
         p: 0,
         width: "100%",
@@ -106,3 +106,4 @@ const SkillCategoryCard: FC<SkillCategoryCardProps> = ({ active, sector }) => {
 };
 
 export default SkillCategoryCard;
+

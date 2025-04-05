@@ -8,6 +8,7 @@ export type Sector = {
   id: string;
   name: string;
   imageUrl: string;
+  slug: string;
 };
 
 const EventsPage = async () => {
@@ -18,6 +19,7 @@ const EventsPage = async () => {
     id: sector.id,
     name: sector.name,
     imageUrl: sector.image?.url || "",
+    slug: sector.slug,
   }));
 
   return (
@@ -32,3 +34,4 @@ const EventsPage = async () => {
 };
 
 export default EventsPage;
+

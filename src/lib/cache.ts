@@ -12,6 +12,7 @@ export const CACHE_TAGS = {
   skills: "skills",
   nationalCompetitions: "nationalCompetitions",
   sponsors: "sponsors",
+  categories: "categories",
 } as const;
 
 export function getGlobalTag(tag: keyof typeof CACHE_TAGS) {
