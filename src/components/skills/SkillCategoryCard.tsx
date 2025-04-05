@@ -1,8 +1,9 @@
 "use client";
 
 import { FC } from "react";
+import Image from "next/image";
 import { Button, Stack, Typography } from "@mui/material";
-import { SkillCategoryFragment } from "@/actions/skills/skills.generated";
+import { Sector } from "@/app/szakmai-programok/page";
 // import { SkillCategoryFragment } from "@/actions/skills/skills.generated";
 import banyaszatImage from "@/assets/images/skill-categories/banyaszat.svg";
 import elektronikaImage from "@/assets/images/skill-categories/elektronika.svg";
@@ -19,12 +20,10 @@ import mindenImage from "@/assets/images/skill-categories/minden.svg";
 import szepeszetImage from "@/assets/images/skill-categories/szepeszet.svg";
 import turizmusImage from "@/assets/images/skill-categories/turizmus.svg";
 import vegyiparImage from "@/assets/images/skill-categories/vegyipar.svg";
-import { CustomImage } from "../common/CustomImage";
 
 interface SkillCategoryCardProps {
   active: boolean;
-  skillCategory: SkillCategoryFragment;
-  onSelect(id: string): void;
+  sector: Sector;
 }
 
 const skillCategoryImages: Record<string, string> = {
@@ -45,12 +44,13 @@ const skillCategoryImages: Record<string, string> = {
   VEGYIPAR: vegyiparImage,
 };
 
-const SkillCategoryCard: FC<SkillCategoryCardProps> = ({ active, skillCategory, onSelect }) => {
+const SkillCategoryCard: FC<SkillCategoryCardProps> = ({ active, sector }) => {
+  console.log(sector.imageUrl);
   return (
     <Button
       color="info"
       style={{ borderRadius: 0 }}
-      onClick={() => onSelect(skillCategory.id)}
+      onClick={() => console.log(sector.id)}
       sx={{
         p: 0,
         width: "100%",
@@ -65,11 +65,14 @@ const SkillCategoryCard: FC<SkillCategoryCardProps> = ({ active, skillCategory, 
         },
       }}
     >
-      <CustomImage
-        src={skillCategoryImages[skillCategory.name.toUpperCase()]}
-        alt="Skill Category Image"
-        style={{ width: "73px", height: "73px" }}
-        draggable={false}
+      <Image
+        src={
+          sector.imageUrl ||
+          "http://localhost:9000/szakmavilag/5808c492-68c8-4b26-9e12-c2dd05435bf2-w1280.webp"
+        }
+        alt={sector.name}
+        width={73}
+        height={73}
       />
 
       <Stack
@@ -93,9 +96,9 @@ const SkillCategoryCard: FC<SkillCategoryCardProps> = ({ active, skillCategory, 
           align="right"
           color="white"
           fontWeight={500}
-          sx={{ fontSize: 14, textTransform: "uppercase" }}
+          sx={{ fontSize: 10, textTransform: "uppercase" }}
         >
-          {skillCategory.name.toUpperCase()}
+          {sector.name.toUpperCase()}
         </Typography>
       </Stack>
     </Button>

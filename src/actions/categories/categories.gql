@@ -10,6 +10,10 @@ fragment Category on Category {
   name
   color
   slug
+  image {
+    url
+    srcset
+  }
   items {
     ...Article
   }
@@ -62,4 +66,3 @@ fragment CategoryRecursive on Category {
     }
   }
 }
-

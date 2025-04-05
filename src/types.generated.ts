@@ -44,6 +44,7 @@ export type Category = {
   disableCreate?: Maybe<Scalars['Boolean']['output']>;
   disableDelete?: Maybe<Scalars['Boolean']['output']>;
   id: Scalars['ID']['output'];
+  image?: Maybe<File>;
   items: Array<CategoryItem>;
   maxDepth?: Maybe<Scalars['Int']['output']>;
   metadata: Scalars['String']['output'];
@@ -170,6 +171,7 @@ export type CreateArticleInput = {
 export type CreateCategoryInput = {
   articleId?: InputMaybe<Scalars['String']['input']>;
   color: Scalars['String']['input'];
+  image?: InputMaybe<FileInput>;
   name: Scalars['String']['input'];
   parentId: Scalars['String']['input'];
 };
@@ -524,6 +526,7 @@ export enum MenuItemContentType {
   Page = 'PAGE',
   Publication = 'PUBLICATION',
   Qna = 'QNA',
+  SzakmasztarEvent = 'SZAKMASZTAR_EVENT',
   SzakmasztarTask = 'SZAKMASZTAR_TASK',
   Translation = 'TRANSLATION',
   YtVideo = 'YT_VIDEO'
@@ -1367,6 +1370,7 @@ export type UpdateArticleInput = {
 export type UpdateCategoryInput = {
   articleId?: InputMaybe<Scalars['String']['input']>;
   color?: InputMaybe<Scalars['String']['input']>;
+  image?: InputMaybe<FileInput>;
   name?: InputMaybe<Scalars['String']['input']>;
   parentId?: InputMaybe<Scalars['String']['input']>;
   position?: InputMaybe<Scalars['Float']['input']>;
