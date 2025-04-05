@@ -45,4 +45,3 @@ const SkillPage = async ({ params }: SkillPageProps) => {
 };
 
 export default SkillPage;
-

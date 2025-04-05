@@ -26,10 +26,10 @@ export const menuItems: MenuItem[] = [
     showInBottomNav: true,
   },
   {
-    text: "Programok",
-    icon: <EventIcon />,
-    slug: "/programok",
-    link: <Link href="/programok">{<EventIcon />}</Link>,
+    text: "Szakmai programok",
+    icon: <WorkIcon />,
+    slug: "/szakmai-programok",
+    link: <Link href="/szakmai-programok">{<WorkIcon />}</Link>,
     showInBottomNav: true,
   },
   {
@@ -40,10 +40,10 @@ export const menuItems: MenuItem[] = [
     showInBottomNav: true,
   },
   {
-    text: "Események",
-    icon: <WorkIcon />,
-    slug: "/esemenyek",
-    link: <Link href="/esemenyek">{<WorkIcon />}</Link>,
+    text: "Ütemterv",
+    icon: <EventIcon />,
+    slug: "/utemterv",
+    link: <Link href="/utemterv">{<EventIcon />}</Link>,
     showInBottomNav: true,
   },
   {
@@ -68,4 +68,3 @@ export const menuItems: MenuItem[] = [
     showInBottomNav: false, // Ez csak a hamburger menüben jelenik meg
   },
 ];
-

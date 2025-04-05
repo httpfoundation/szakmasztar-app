@@ -1,3 +1,5 @@
+"use client";
+
 import { Button, Stack, Typography } from "@mui/material";
 import { SkillFragment } from "@/actions/skills/skills.generated";
 import PageTitle from "@/components/common/PageTitle";

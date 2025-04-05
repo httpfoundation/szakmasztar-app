@@ -33,7 +33,11 @@ fragment Skill on Skill {
     }
   }
   category {
-    id
-    name
+    ...SkillCategory
   }
+}
+
+fragment SkillCategory on SkillCategory {
+  id
+  name
 }
