@@ -45,17 +45,15 @@ const SectorPage = async ({ params }: SectorPageProps) => {
                     {event.title}
                   </Typography>
                   <Box sx={{ display: "flex", gap: 1, mt: 1 }}>
-                    {event.slug && (
-                      <Button
-                        href={event.slug}
-                        size="small"
-                        startIcon={<InfoIcon />}
-                        variant="contained"
-                        color="success"
-                      >
-                        Információ
-                      </Button>
-                    )}
+                    <Button
+                      href={`/szakmai-programok/${sectorId}/${event.slug}`}
+                      size="small"
+                      startIcon={<InfoIcon />}
+                      variant="contained"
+                      color="success"
+                    >
+                      Információ
+                    </Button>
                     <Button
                       href={"/terkep/hungexpo"}
                       size="small"
