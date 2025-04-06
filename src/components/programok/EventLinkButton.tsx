@@ -7,12 +7,7 @@ interface EventLinkButtonProps {
 
 const EventLinkButton = ({ slug }: EventLinkButtonProps) => {
   return (
-    <LinkButton
-      href={`/esemenyek/${slug}`}
-      size="small"
-      startIcon={<InfoIcon />}
-      direction="forward"
-    >
+    <LinkButton href={`/${slug}`} size="small" startIcon={<InfoIcon />} direction="forward">
       Programok
     </LinkButton>
   );

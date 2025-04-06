@@ -1,13 +1,19 @@
-import { getSkills } from "@/actions/skills/skills";
-import SkillsPage from "@/components/skills/SkillsPage";
+import { getEventsArticlesByCategory } from "@/actions/categories/categories";
+import PageContainer from "@/components/layouts/PageContainer";
+import EventCards from "@/components/programok/EventCards";
+import GradientTitle from "@/components/ui/GradientTitle";
 
 export const revalidate = 3600;
 
 const WshuEventsPage = async () => {
-  const allSkills = await getSkills();
-  const skills = allSkills.filter((x) => x.category?.name === "WorldSkills Hungary");
-
-  return <SkillsPage skills={skills} title="WorldSkills Hungary események" />;
+  const events = await getEventsArticlesByCategory("wshu");
+  const title = "WorldSkills Hungary programok";
+  return (
+    <PageContainer>
+      <GradientTitle>{title}</GradientTitle>
+      <EventCards events={events} sectorId="wshu" />
+    </PageContainer>
+  );
 };
 
 export default WshuEventsPage;
