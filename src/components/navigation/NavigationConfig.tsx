@@ -28,7 +28,7 @@ export const menuItems: MenuItem[] = [
   {
     text: "Szakmai programok",
     icon: <WorkIcon />,
-    slug: "/szakmai-programok",
+    slug: "/szakmai-programok/kategoriak",
     link: <Link href="/szakmai-programok">{<WorkIcon />}</Link>,
     showInBottomNav: true,
   },

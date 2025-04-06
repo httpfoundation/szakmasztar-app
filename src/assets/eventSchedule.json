@@ -12,7 +12,7 @@
         "eventSlugs": ""
       },
       {
-        "title": "OSZTV és SZTV versenyek",
+        "title": "OSZTV és SZKTV versenyek",
         "description": "Az MKIK-hoz tartozó versenyek",
         "startTime": "2025-04-28 10:00",
         "endTime": "2025-04-28 16:00",
@@ -44,7 +44,7 @@
     "title": "2025. április 29., kedd",
     "events": [
       {
-        "title": "OSZTV és SZTV versenyek",
+        "title": "OSZTV és SZKTV versenyek",
         "description": "Az MKIK-hoz tartozó versenyek",
         "startTime": "2025-04-28 10:00",
         "endTime": "2025-04-28 16:00",
@@ -73,4 +73,3 @@
     ]
   }
 ]
-

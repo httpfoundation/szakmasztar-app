@@ -1,58 +1,24 @@
-import Link from "next/link";
-import InfoIcon from "@mui/icons-material/Info";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-import { Box, Button, Grid, Paper, Typography } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import eventCategories from "@/assets/eventCategories.json";
+import EventCategoryCard from "./EventCategoryCard";
 
 const EventCategories = () => {
   return (
     <Box sx={{ mt: 2, mb: 4, position: "relative" }}>
-      <Grid container spacing={2}>
+      <Stack
+        sx={{
+          display: "grid",
+          gridTemplateColumns: {
+            xs: "repeat(2, 1fr)",
+            md: "repeat(4, 1fr)",
+          },
+          gap: 2,
+        }}
+      >
         {eventCategories.map((category, index) => (
-          <Grid item xs={12} md={6} key={index}>
-            <Paper sx={{ p: 2.5, height: "100%", bgcolor: "#71376Add" }}>
-              <Typography variant="h6" gutterBottom sx={{ color: "primary.contrastText" }}>
-                {category.title}
-              </Typography>
-              <Typography
-                variant="body2"
-                color="text.secondary"
-                paragraph
-                sx={{ color: "primary.contrastText" }}
-              >
-                {category.description}
-              </Typography>
-
-              <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap" }}>
-                <Button
-                  component={Link}
-                  href={`/esemenyek/${category.slug}`}
-                  size="small"
-                  startIcon={<InfoIcon />}
-                  color="success"
-                >
-                  Tudj meg többet!
-                </Button>
-
-                {category.locations.map((location, locationIndex) => (
-                  <Button
-                    key={locationIndex}
-                    component={Link}
-                    href={location.slug}
-                    size="small"
-                    startIcon={<LocationOnIcon />}
-                    variant="outlined"
-                    color="info"
-                    sx={{ fontWeight: 600 }}
-                  >
-                    {location.title}
-                  </Button>
-                ))}
-              </Box>
-            </Paper>
-          </Grid>
+          <EventCategoryCard key={index} category={category} />
         ))}
-      </Grid>
+      </Stack>
     </Box>
   );
 };

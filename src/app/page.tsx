@@ -20,7 +20,6 @@ const IndexPage = async () => {
 
       <Stack sx={{ width: "100%", position: "relative" }}>
         <HeroSection />
-
         <ImageButtonSection />
         <JumpCodeSection />
         <OpeningHours />

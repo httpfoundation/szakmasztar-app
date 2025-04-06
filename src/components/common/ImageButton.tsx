@@ -19,6 +19,7 @@ export default function ImageButton({ href, text, icon }: ImageButtonProps) {
         px: 1,
         py: 1.5,
         backgroundColor: "primary.light",
+        opacity: 0.8,
         backdropFilter: "blur(10px)",
         textDecoration: "none",
       }}
@@ -50,4 +51,3 @@ export default function ImageButton({ href, text, icon }: ImageButtonProps) {
     </Box>
   );
 }
-
