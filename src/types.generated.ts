@@ -523,6 +523,7 @@ export enum MenuItemContentType {
   Custom = 'CUSTOM',
   Document = 'DOCUMENT',
   Legislation = 'LEGISLATION',
+  Map = 'MAP',
   Page = 'PAGE',
   Publication = 'PUBLICATION',
   Qna = 'QNA',
