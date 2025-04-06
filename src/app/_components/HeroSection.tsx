@@ -29,7 +29,7 @@ const HeroSection = () => {
               textTransform: "uppercase",
             }}
           >
-            Üdvözlünk a fesztivál webalkalmazásában!
+            Fedezd fel a Szakma Sztár világát!
           </Typography>
         </Stack>
       </SectionContainer>
@@ -40,4 +40,3 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
-
