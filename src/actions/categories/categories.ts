@@ -2,6 +2,7 @@
 
 import { getIdTag, gqlCache } from "@/lib/cache";
 import { graphqlClient } from "@/lib/client";
+import { Article } from "@/types.generated";
 import {
   GetCategoryDocument,
   GetCategoryQuery,
@@ -28,6 +29,14 @@ export async function getCategoryTree(variables: GetCategoryTreeQueryVariables) 
   )();
 }
 
+export async function getEventsArticlesByCategory(categorySlugPrefix: string) {
+  console.log("getEventsArticles", categorySlugPrefix);
+  const eventsBySectors = (await getCategoryTree({ rootNodeId: "szakmasztar-app-sector" }))
+    .children;
+  const allEvents = eventsBySectors.flatMap((sector) => sector.items as Article[]);
+  return allEvents.filter((event) => event.slug.startsWith(categorySlugPrefix));
+}
+
 export async function getCategory(variables: GetCategoryQueryVariables) {
   return await gqlCache(
     async () => {
@@ -41,4 +50,3 @@ export async function getCategory(variables: GetCategoryQueryVariables) {
     { tags: [getIdTag(variables.id, "categories")], revalidate: 60 * 60 }
   )();
 }
-

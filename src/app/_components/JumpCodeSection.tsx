@@ -12,7 +12,7 @@ const JumpCodeSection = () => {
   return (
     <SectionContainer padding={0}>
       <Typography sx={{ color: "white", fontSize: 14, mb: 1, textAlign: "center" }}>
-        A jumpcode-dal egy kattintással az általad választott esemény oldalára ugorhatsz:
+        Ha nem tudod beolvasni a QR-kódot, írd be helyette a stand számkódját!
       </Typography>
       <Stack
         component="form"
@@ -45,7 +45,7 @@ const JumpCodeSection = () => {
               fontWeight: 400,
             },
           }}
-          placeholder="Add meg a jumpcode-ot"
+          placeholder="Add meg a stand számkódját"
           onChange={(e) => setJumpcode(e.target.value)}
           value={jumpcode}
           size="small"
@@ -62,4 +62,3 @@ const JumpCodeSection = () => {
 };
 
 export default JumpCodeSection;
-

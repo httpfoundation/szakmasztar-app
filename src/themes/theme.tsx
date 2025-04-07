@@ -16,10 +16,21 @@ declare module "@mui/material/styles" {
   interface Palette {
     gradient: string[];
     night: Palette["primary"];
+    wshu: Palette["primary"];
+    osztv: Palette["primary"];
+    nak: Palette["primary"];
+    other: Palette["primary"];
+    sponsor: Palette["primary"];
   }
   interface PaletteOptions {
     gradient?: string[];
     night?: PaletteOptions["primary"];
+    white?: PaletteOptions["primary"];
+    wshu?: PaletteOptions["primary"];
+    osztv?: PaletteOptions["primary"];
+    nak?: PaletteOptions["primary"];
+    other?: PaletteOptions["primary"];
+    sponsor?: PaletteOptions["primary"];
   }
 }
 
@@ -28,6 +39,12 @@ const szakmaSztarOrange = "rgba(234,90,50)";
 export const szakmaSztarRed = "rgba(207,82,62)";
 const szakmaSztarPurple = "#350F38";
 const szakmaSztarBlack = "rgba(0,0,0)";
+const wshuMain = "#691f6e";
+const osztvMain = "#86288d";
+const nakMain = "#170618";
+const otherMain = "#070207";
+const sponsorMain = "#000000";
+const lightContrast = "#f5f5f5";
 
 // const szakmaSztarGrey = "#cec6ce";
 export const szakmaSztarDarkGrey = "#120e12";
@@ -95,6 +112,26 @@ export const theme = createTheme({
     text: {
       primary: szakmaSztarPurple,
     },
+    wshu: {
+      main: wshuMain,
+      contrastText: lightContrast,
+    },
+    osztv: {
+      main: osztvMain,
+      contrastText: lightContrast,
+    },
+    nak: {
+      main: nakMain,
+      contrastText: lightContrast,
+    },
+    other: {
+      main: otherMain,
+      contrastText: szakmaSztarPurple,
+    },
+    sponsor: {
+      main: sponsorMain,
+      contrastText: lightContrast,
+    },
   },
   typography: {
     body1: {
@@ -132,4 +169,3 @@ export const theme = createTheme({
     },
   },
 });
-

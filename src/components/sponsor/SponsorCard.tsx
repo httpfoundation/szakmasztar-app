@@ -55,4 +55,3 @@ export default function SponsorCard({ sponsor }: SponsorCardProps) {
 
   return content;
 }
-

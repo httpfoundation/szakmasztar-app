@@ -20,9 +20,8 @@ const IndexPage = async () => {
 
       <Stack sx={{ width: "100%", position: "relative" }}>
         <HeroSection />
-
-        <JumpCodeSection />
         <ImageButtonSection />
+        <JumpCodeSection />
         <OpeningHours />
         <SponsorSection sponsors={sponsors} />
       </Stack>
@@ -31,4 +30,3 @@ const IndexPage = async () => {
 };
 
 export default IndexPage;
-

@@ -24,7 +24,7 @@ export default function SponsorSection({ sponsors }: SponsorSectionProps) {
       </Typography>
       <Grid container spacing={2}>
         {sponsors.map((sponsor) => (
-          <Grid item xs={6} sm={6} md={2} key={sponsor.id}>
+          <Grid item xs={3} sm={3} md={2} key={sponsor.id}>
             <SponsorCard sponsor={sponsor} />
           </Grid>
         ))}
@@ -32,4 +32,3 @@ export default function SponsorSection({ sponsors }: SponsorSectionProps) {
     </SectionContainer>
   );
 }
-

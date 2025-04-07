@@ -17,6 +17,8 @@ export default function BaseLayout({ children, title }: BaseLayoutProps) {
         minHeight: "100vh",
         height: "100%",
         bgcolor: "primary.main",
+        maxWidth: "800px",
+        margin: "auto",
       }}
     >
       <Header title={title} />
@@ -25,4 +27,3 @@ export default function BaseLayout({ children, title }: BaseLayoutProps) {
     </Stack>
   );
 }
-
