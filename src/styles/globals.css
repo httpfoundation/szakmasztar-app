@@ -19,6 +19,7 @@ body {
   display: flex;
   flex-direction: column;
   -webkit-tap-highlight-color: transparent;
+  background-color: #5d2959 !important;
 }
 
 .font-market-condensed {

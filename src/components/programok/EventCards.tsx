@@ -11,6 +11,46 @@ interface EventCardsProps {
 }
 
 const EventCards = ({ events, sectorId }: EventCardsProps) => {
+  const getEventType = (slug: string) => {
+    let eventType = "";
+    const slugParts = slug.split("-");
+    if (slugParts.length < 2) return "";
+    switch (slugParts[0]) {
+      case "wshu":
+        eventType = "WorldSkills Hungary";
+        break;
+      case "nak":
+        eventType = "NAK";
+        break;
+      case "ostvszktv":
+        eventType = "Szakmai tanulmányi verseny";
+        break;
+      case "other":
+        eventType = "";
+        break;
+      default:
+        eventType = "";
+        break;
+    }
+    return eventType;
+  };
+  const getEventForm = (slug: string) => {
+    let eventType = "";
+    const slugParts = slug.split("-");
+    if (slugParts.length < 2) return "";
+    switch (slugParts[1]) {
+      case "szakmabemutato":
+        eventType = "szakmabemutató";
+        break;
+      case "verseny":
+        eventType = "verseny";
+        break;
+      default:
+        eventType = "";
+        break;
+    }
+    return eventType;
+  };
   return (
     <Grid container spacing={2}>
       {events.map(
@@ -27,6 +67,9 @@ const EventCards = ({ events, sectorId }: EventCardsProps) => {
               >
                 <Typography variant="h6" gutterBottom sx={{ mt: 1, mb: 2 }}>
                   {event.title}
+                </Typography>
+                <Typography variant="body2" gutterBottom>
+                  {`${getEventType(event.slug)} ${getEventForm(event.slug)}`}
                 </Typography>
                 <Box sx={{ display: "flex", gap: 1, mt: 1 }}>
                   <Button
