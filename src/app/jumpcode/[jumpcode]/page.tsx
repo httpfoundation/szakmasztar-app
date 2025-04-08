@@ -1,5 +1,5 @@
-import { redirect } from "next/navigation";
-import { getArticle } from "@/actions/articles/articles";
+import { notFound, redirect } from "next/navigation";
+import { getMapItems } from "@/actions/articles/articles";
 
 interface JumpCodePageProps {
   params: Promise<{ jumpcode: string }>;
@@ -7,13 +7,14 @@ interface JumpCodePageProps {
 
 const JumpCodePage = async ({ params }: JumpCodePageProps) => {
   const jumpcode = (await params).jumpcode;
-  const article = await getArticle({ slug: `jumpcode-${jumpcode}` });
+  const boxItems = await getMapItems();
+  const foundJumpCode = boxItems.find((item) => item.stand.jumpCode === Number(jumpcode));
 
-  if (article.lead === "SZPONZOR" && article.content === "#") {
-    return <div>Ennek a szponzornak nincs weboldala.</div>;
+  if (!foundJumpCode) {
+    notFound();
   }
 
-  return redirect(article.content);
+  return redirect(foundJumpCode.href);
 };
 
 export default JumpCodePage;

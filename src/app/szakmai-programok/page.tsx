@@ -16,6 +16,7 @@ export type Sector = {
 const EventsPage = async () => {
   const eventsBySectors = (await getCategoryTree({ rootNodeId: "szakmasztar-app-sector" }))
     .children;
+
   const { title, lead } = await getArticle({ slug: "szakmai-programok-oldal" });
   const displayedSectors = eventsBySectors.filter((sector) => sector.items.length > 0);
   const sectors = displayedSectors.map((sector) => ({
@@ -24,8 +25,6 @@ const EventsPage = async () => {
     imageUrl: sector.image?.url || "",
     slug: sector.slug,
   }));
-
-  console.log(lead);
 
   return (
     <>

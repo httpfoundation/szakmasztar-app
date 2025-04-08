@@ -1,4 +1,4 @@
-import { getArticles } from "@/actions/articles/articles";
+import { getMapItems } from "@/actions/articles/articles";
 import MapPageContainer from "@/components/map/MapPageContainer";
 import SvgLink from "@/components/map/SvgLink";
 import SvgPanZoom from "@/components/map/SvgPanZoom";
@@ -10,12 +10,7 @@ interface APavilonMapPageProps {
 
 const APavilonMapPage = async ({ searchParams }: APavilonMapPageProps) => {
   const params = await searchParams;
-
-  const mapItems = await getArticles({ categoryId: "map-a-pavilon" });
-  const boxItems = mapItems.map((item) => ({
-    text: item.title,
-    ...JSON.parse(item.content),
-  }));
+  const boxItems = (await getMapItems()).filter((item) => item.mapId === "szsz2025-pavilon-a");
 
   const defaultPosition = getMapDefaultPosition(params.zoomTo, boxItems, 3859, 2079);
 
@@ -129,16 +124,16 @@ const APavilonMapPage = async ({ searchParams }: APavilonMapPageProps) => {
 
           {boxItems.map((box, index) => (
             <SvgLink key={index} href={box.href}>
-              <g transform={`translate(${box.x}, ${box.y})`}>
+              <g transform={`translate(${box.stand.x}, ${box.stand.y})`}>
                 <rect
-                  width={box.width}
-                  height={box.height}
-                  fill={colorReplacement(box.fill)}
-                  stroke={box.stroke}
+                  width={box.stand.width}
+                  height={box.stand.height}
+                  fill={"#EA5A32"} // TODO
+                  stroke={"#888888"} // TODO
                   strokeWidth="1"
                 />
 
-                <foreignObject x="0" y="0" width={box.width} height={box.height}>
+                <foreignObject x="0" y="0" width={box.stand.width} height={box.stand.height}>
                   <div
                     style={{
                       width: "100%",
@@ -147,10 +142,10 @@ const APavilonMapPage = async ({ searchParams }: APavilonMapPageProps) => {
                       justifyContent: "center",
                       alignItems: "center",
                       textAlign: "center",
-                      fontSize: Math.min(box.width / 7, 36),
+                      fontSize: Math.min(box.stand.width / 7, 36),
                       fontFamily: "var(--font-montserrat), Arial, sans-serif",
                       fontWeight: "600",
-                      color: box.textColor,
+                      color: "#fff", // TODO
                       wordWrap: "break-word",
                       overflow: "hidden",
                       padding: "20px",
@@ -171,11 +166,5 @@ const APavilonMapPage = async ({ searchParams }: APavilonMapPageProps) => {
   );
 };
 
-const colorReplacement = (sourceColor: string) => {
-  const color = sourceColor.toUpperCase();
-  if (color === "#EA5A32") return "#abcded";
-
-  return sourceColor;
-};
-
 export default APavilonMapPage;
+

@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { getIdTag, gqlCache } from "@/lib/cache";
 import { graphqlClient } from "@/lib/client";
 import { isNotFound } from "@/lib/utils";
+import { getCategoryTree } from "../categories/categories";
 import {
   ArticleFragment,
   GetArticleDocument,
@@ -80,3 +81,26 @@ export async function getPaginatedArticles(variables: GetPaginatedArticlesQueryV
   return response.data.paginatedArticles;
 }
 
+export type EventMapItem = {
+  text: string;
+  href: string;
+  mapId: string;
+  stand: {
+    jumpCode: number;
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+    fontSize?: number;
+  };
+};
+
+export async function getMapItems() {
+  const eventsBySectors = await getCategoryTree({ rootNodeId: "szakmasztar-app-sector" });
+  const mapItems = eventsBySectors.children.flatMap((sector) => sector.items) as ArticleFragment[];
+  return mapItems.map((item) => ({
+    ...JSON.parse(item.metadata).map,
+    href: item.slug,
+    text: item.title,
+  })) as EventMapItem[];
+}

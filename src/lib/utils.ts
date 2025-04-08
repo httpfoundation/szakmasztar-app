@@ -1,4 +1,5 @@
 import { ApolloQueryResult } from "@apollo/client";
+import { EventMapItem } from "@/actions/articles/articles";
 
 export function formatDate(date: Date) {
   const formatter = Intl.DateTimeFormat("hu-HU", {
@@ -19,7 +20,7 @@ export function isNotFound<T>(response: ApolloQueryResult<T>) {
 
 export function getMapDefaultPosition(
   zoomTo: string | undefined,
-  items: { x: number; y: number; width: number; height: number; href: string; text: string }[],
+  items: EventMapItem[],
   svgWidth: number,
   svgHeight: number
 ) {
@@ -31,8 +32,8 @@ export function getMapDefaultPosition(
 
     if (foundItem) {
       return {
-        x: foundItem.x + foundItem.width / 2,
-        y: foundItem.y + foundItem.width / 2,
+        x: foundItem.stand.x + foundItem.stand.width / 2,
+        y: foundItem.stand.y + foundItem.stand.width / 2,
         zoom: 1,
       };
     }

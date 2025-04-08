@@ -511,6 +511,7 @@ export type MenuItem = {
   icon: Scalars['String']['output'];
   id: Scalars['ID']['output'];
   name: Scalars['String']['output'];
+  order: Scalars['Int']['output'];
   site: Site;
   slug: Scalars['String']['output'];
 };
@@ -523,7 +524,6 @@ export enum MenuItemContentType {
   Custom = 'CUSTOM',
   Document = 'DOCUMENT',
   Legislation = 'LEGISLATION',
-  Map = 'MAP',
   Page = 'PAGE',
   Publication = 'PUBLICATION',
   Qna = 'QNA',
