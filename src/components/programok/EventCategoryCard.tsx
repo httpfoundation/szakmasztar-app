@@ -35,10 +35,10 @@ const EventCategoryCard = ({ category }: EventCategoryCardProps) => {
       <EventCategoryDescription description={category.description} />
 
       <Stack sx={{ flexDirection: "column", gap: 1, mt: "auto", alignItems: "flex-start" }}>
+        <EventLinkButton slug={category.slug} />
         {category.locations.map((location, locationIndex) => (
           <LocationLinkButton key={locationIndex} title={location.title} slug={location.slug} />
         ))}
-        <EventLinkButton slug={category.slug} />
       </Stack>
     </Stack>
   );

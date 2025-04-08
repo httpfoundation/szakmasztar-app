@@ -8,11 +8,14 @@ export const revalidate = 3600;
 const WshuEventsPage = async () => {
   const events = await getEventsArticlesByCategory("wshu");
   const title = "WorldSkills Hungary programok";
+
   return (
-    <PageContainer>
+    <>
       <GradientTitle>{title}</GradientTitle>
-      <EventCards events={events} sectorId="wshu" />
-    </PageContainer>
+      <PageContainer>
+        <EventCards events={events} sectorId="wshu" />
+      </PageContainer>
+    </>
   );
 };
 

@@ -1,15 +1,22 @@
-import { getSkills } from "@/actions/skills/skills";
-import SkillsPage from "@/components/skills/SkillsPage";
+import { getEventsArticlesByCategory } from "@/actions/categories/categories";
+import PageContainer from "@/components/layouts/PageContainer";
+import EventCards from "@/components/programok/EventCards";
+import GradientTitle from "@/components/ui/GradientTitle";
 
 export const revalidate = 3600;
 
 const OsztvSzktvSkills = async () => {
-  const allSkills = await getSkills();
-  const skills = allSkills.filter(
-    (x) => x.category?.name !== "WorldSkills Hungary" && x.category?.name !== "NAK"
-  );
+  const events = await getEventsArticlesByCategory("osztvszktv");
+  const title = "OSZTV és SZKTV versenyek";
 
-  return <SkillsPage skills={skills} title="OSZTV és SZKTV versenyek" />;
+  return (
+    <>
+      <GradientTitle>{title}</GradientTitle>
+      <PageContainer>
+        <EventCards events={events} sectorId="osztvszktv" />
+      </PageContainer>
+    </>
+  );
 };
 
 export default OsztvSzktvSkills;

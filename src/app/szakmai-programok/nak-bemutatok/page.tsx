@@ -1,13 +1,22 @@
-import { getSkills } from "@/actions/skills/skills";
-import SkillsPage from "@/components/skills/SkillsPage";
+import { getEventsArticlesByCategory } from "@/actions/categories/categories";
+import PageContainer from "@/components/layouts/PageContainer";
+import EventCards from "@/components/programok/EventCards";
+import GradientTitle from "@/components/ui/GradientTitle";
 
 export const revalidate = 3600;
 
 const NakEventsPage = async () => {
-  const allSkills = await getSkills();
-  const skills = allSkills.filter((x) => x.category?.name === "NAK");
+  const events = await getEventsArticlesByCategory("nak");
+  const title = "Nemzeti Agrárkamara szakmai események";
 
-  return <SkillsPage skills={skills} title="Nemzeti Agrárkamara szakmai események" />;
+  return (
+    <>
+      <GradientTitle>{title}</GradientTitle>
+      <PageContainer>
+        <EventCards events={events} sectorId="nak" />
+      </PageContainer>
+    </>
+  );
 };
 
 export default NakEventsPage;

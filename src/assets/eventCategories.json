@@ -1,7 +1,7 @@
 [
   {
     "title": "Szakmai tanulmányi versenyek",
-    "slug": "osztv-szktv-versenyek",
+    "slug": "szakmai-programok/osztv-szktv-versenyek",
     "description": "OSZTV és SZKTV döntők",
     "locations": [{ "title": "A pavilon", "slug": "terkep/a-pavilon" }],
     "color": "osztv.main"
@@ -41,3 +41,4 @@
     "color": "other.main"
   }
 ]
+

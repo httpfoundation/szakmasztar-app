@@ -30,7 +30,6 @@ export async function getCategoryTree(variables: GetCategoryTreeQueryVariables) 
 }
 
 export async function getEventsArticlesByCategory(categorySlugPrefix: string) {
-  console.log("getEventsArticles", categorySlugPrefix);
   const eventsBySectors = (await getCategoryTree({ rootNodeId: "szakmasztar-app-sector" }))
     .children;
   const allEvents = eventsBySectors.flatMap((sector) => sector.items as Article[]);
@@ -50,3 +49,4 @@ export async function getCategory(variables: GetCategoryQueryVariables) {
     { tags: [getIdTag(variables.id, "categories")], revalidate: 60 * 60 }
   )();
 }
+
