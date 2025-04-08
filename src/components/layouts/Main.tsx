@@ -13,6 +13,7 @@ const Main = ({ children }: MainProps) => {
         flexGrow: 1,
         mt: { xs: "56px", md: "64px" },
         mb: "56px",
+        width: "100%",
       }}
     >
       {children}
@@ -21,3 +22,4 @@ const Main = ({ children }: MainProps) => {
 };
 
 export default Main;
+

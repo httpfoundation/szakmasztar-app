@@ -14,6 +14,7 @@ export const revalidate = 3600;
 const IndexPage = async () => {
   const currentCompetition = await getCurrentCompetition();
   const sponsors = await getSponsors();
+
   return (
     <Box>
       <HeroImage image={heroImage} alt={currentCompetition.name} title={currentCompetition.name} />

@@ -39,8 +39,8 @@ export default function LinkButton({
           transform: "translateY(-2px)",
           boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
         },
-        py: 1,
-        px: 2,
+        py: 0.75,
+        px: 1.5,
         fontSize: size === "small" ? "0.7rem" : "1rem",
       }}
       startIcon={direction === "backward" ? <ChevronLeft /> : startIcon}
@@ -51,3 +51,4 @@ export default function LinkButton({
     </Button>
   );
 }
+

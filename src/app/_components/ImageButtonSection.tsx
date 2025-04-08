@@ -11,7 +11,7 @@ import SectionContainer from "@/components/layouts/SectionContainer";
 
 const ImageButtonSection = () => {
   return (
-    <SectionContainer>
+    <SectionContainer sx={{ pt: 0 }}>
       <FormattedContent sx={{ textAlign: "center", mb: 2 }}>
         A standokon kihelyezett QR-kód beolvasásával megtudhatod mi zajlik ott. Tájékozódhatsz az
         interaktív térképen és a programlistából is választhatsz!
@@ -35,3 +35,4 @@ const ImageButtonSection = () => {
 };
 
 export default ImageButtonSection;
+

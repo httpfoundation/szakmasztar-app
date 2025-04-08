@@ -56,7 +56,7 @@ export default function HeroImage({ image, alt, title }: HeroImageProps) {
               textTransform: "uppercase",
             }}
           >
-            Szakma Sztár 2025 <br />
+            Szakma Sztár <br />
             <span style={{ fontWeight: 400 }}>Feszivál</span>
           </Typography>
           <LinkButton
@@ -73,3 +73,4 @@ export default function HeroImage({ image, alt, title }: HeroImageProps) {
     </Box>
   );
 }
+

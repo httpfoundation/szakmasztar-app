@@ -9,7 +9,7 @@ type SponsorSectionProps = {
 
 export default function SponsorSection({ sponsors }: SponsorSectionProps) {
   return (
-    <SectionContainer sx={{ pt: 0, mt: -1, mb: 4 }}>
+    <SectionContainer sx={{ pt: 0, mt: 1, mb: 4 }}>
       <Typography
         variant="h2"
         sx={{
@@ -32,3 +32,4 @@ export default function SponsorSection({ sponsors }: SponsorSectionProps) {
     </SectionContainer>
   );
 }
+

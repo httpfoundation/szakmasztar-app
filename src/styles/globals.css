@@ -9,7 +9,8 @@
 :root,
 html,
 body {
-  /* overscroll-behavior: none; */
+  overscroll-behavior: none;
+  overflow-x: clip;
   scroll-behavior: smooth;
 }
 
@@ -33,3 +34,4 @@ img {
   object-position: center;
   display: block;
 }
+

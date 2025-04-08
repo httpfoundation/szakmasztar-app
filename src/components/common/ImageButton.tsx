@@ -19,7 +19,7 @@ export default function ImageButton({ href, text, icon }: ImageButtonProps) {
         px: 1,
         py: 1.5,
         backgroundColor: "primary.light",
-        opacity: 0.8,
+        opacity: 0.9,
         backdropFilter: "blur(10px)",
         textDecoration: "none",
       }}
@@ -27,7 +27,7 @@ export default function ImageButton({ href, text, icon }: ImageButtonProps) {
       <IconButton
         sx={{
           mr: 1,
-          color: "white",
+          color: "white !important",
           "& > svg": {
             fontSize: "2.25rem",
           },
@@ -51,3 +51,4 @@ export default function ImageButton({ href, text, icon }: ImageButtonProps) {
     </Box>
   );
 }
+

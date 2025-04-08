@@ -14,7 +14,7 @@ const OpeningHours = () => {
           textTransform: "uppercase",
         }}
       >
-        Nyitva tartás:
+        Nyitva tartás
       </Typography>
       <Typography
         variant="body1"
@@ -51,3 +51,4 @@ const OpeningHours = () => {
 };
 
 export default OpeningHours;
+

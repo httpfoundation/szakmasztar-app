@@ -19,6 +19,7 @@ export default function BaseLayout({ children, title }: BaseLayoutProps) {
         bgcolor: "primary.main",
         maxWidth: "800px",
         margin: "auto",
+        width: "100%",
       }}
     >
       <Header title={title} />
