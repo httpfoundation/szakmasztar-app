@@ -85,8 +85,8 @@ export type EventMapItem = {
   text: string;
   href: string;
   mapId: string;
+  jumpCode: number;
   stand: {
-    jumpCode: number;
     x: number;
     y: number;
     width: number;
@@ -98,9 +98,28 @@ export type EventMapItem = {
 export async function getMapItems() {
   const eventsBySectors = await getCategoryTree({ rootNodeId: "szakmasztar-app-sector" });
   const mapItems = eventsBySectors.children.flatMap((sector) => sector.items) as ArticleFragment[];
-  return mapItems.map((item) => ({
-    ...JSON.parse(item.metadata).map,
-    href: item.slug,
-    text: item.title,
-  })) as EventMapItem[];
+
+  const result: EventMapItem[] = [];
+
+  for (const item of mapItems.filter(
+    (x) => !!x.metadata && x.metadata !== "NULL" && x?.metadata !== "{}"
+  )) {
+    try {
+      const parsed = JSON.parse(item.metadata);
+      result.push({
+        stand: {
+          ...parsed.map,
+        },
+        href: item.slug,
+        text: item.title,
+        jumpCode: parsed.jumpCode,
+        mapId: parsed.mapId,
+      });
+    } catch (e) {
+      console.log(e);
+      console.log(item.metadata);
+    }
+  }
+
+  return result;
 }

@@ -10,7 +10,7 @@ interface APavilonMapPageProps {
 
 const APavilonMapPage = async ({ searchParams }: APavilonMapPageProps) => {
   const params = await searchParams;
-  const boxItems = (await getMapItems()).filter((item) => item.mapId === "szsz2025-pavilon-a");
+  const boxItems = await getMapItems(); // TODO filter
 
   const defaultPosition = getMapDefaultPosition(params.zoomTo, boxItems, 3859, 2079);
 
@@ -122,44 +122,46 @@ const APavilonMapPage = async ({ searchParams }: APavilonMapPageProps) => {
             />
           </g>
 
-          {boxItems.map((box, index) => (
-            <SvgLink key={index} href={box.href}>
-              <g transform={`translate(${box.stand.x}, ${box.stand.y})`}>
-                <rect
-                  width={box.stand.width}
-                  height={box.stand.height}
-                  fill={"#EA5A32"} // TODO
-                  stroke={"#888888"} // TODO
-                  strokeWidth="1"
-                />
+          {boxItems
+            .filter((x) => !!x.stand)
+            .map((box, index) => (
+              <SvgLink key={index} href={box.href}>
+                <g transform={`translate(${box.stand.x}, ${box.stand.y})`}>
+                  <rect
+                    width={box.stand.width}
+                    height={box.stand.height}
+                    fill={"#EA5A32"} // TODO
+                    stroke={"#888888"} // TODO
+                    strokeWidth="1"
+                  />
 
-                <foreignObject x="0" y="0" width={box.stand.width} height={box.stand.height}>
-                  <div
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      textAlign: "center",
-                      fontSize: Math.min(box.stand.width / 7, 36),
-                      fontFamily: "var(--font-montserrat), Arial, sans-serif",
-                      fontWeight: "600",
-                      color: "#fff", // TODO
-                      wordWrap: "break-word",
-                      overflow: "hidden",
-                      padding: "20px",
-                      lineHeight: "1.2",
-                      // transform: box.rotate ? `rotate(${(box.rotate || 0) * -1}deg)` : undefined,
-                      transformOrigin: "center",
-                    }}
-                  >
-                    {box.text}
-                  </div>
-                </foreignObject>
-              </g>
-            </SvgLink>
-          ))}
+                  <foreignObject x="0" y="0" width={box.stand.width} height={box.stand.height}>
+                    <div
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        textAlign: "center",
+                        fontSize: Math.min(box.stand.width / 7, 36),
+                        fontFamily: "var(--font-montserrat), Arial, sans-serif",
+                        fontWeight: "600",
+                        color: "#fff", // TODO
+                        wordWrap: "break-word",
+                        overflow: "hidden",
+                        padding: "20px",
+                        lineHeight: "1.2",
+                        // transform: box.rotate ? `rotate(${(box.rotate || 0) * -1}deg)` : undefined,
+                        transformOrigin: "center",
+                      }}
+                    >
+                      {box.text}
+                    </div>
+                  </foreignObject>
+                </g>
+              </SvgLink>
+            ))}
         </svg>
       </SvgPanZoom>
     </MapPageContainer>
