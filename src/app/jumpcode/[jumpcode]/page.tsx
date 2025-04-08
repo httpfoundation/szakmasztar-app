@@ -8,7 +8,7 @@ interface JumpCodePageProps {
 const JumpCodePage = async ({ params }: JumpCodePageProps) => {
   const jumpcode = (await params).jumpcode;
   const boxItems = await getMapItems();
-  const foundJumpCode = boxItems.find((item) => item.stand.jumpCode === Number(jumpcode));
+  const foundJumpCode = boxItems.find((item) => item.jumpCode === Number(jumpcode));
 
   if (!foundJumpCode) {
     notFound();
@@ -18,4 +18,3 @@ const JumpCodePage = async ({ params }: JumpCodePageProps) => {
 };
 
 export default JumpCodePage;
-
