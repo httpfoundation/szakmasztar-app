@@ -3,6 +3,7 @@ import MapPageContainer from "@/components/map/MapPageContainer";
 import SvgLink from "@/components/map/SvgLink";
 import SvgPanZoom from "@/components/map/SvgPanZoom";
 import { getMapDefaultPosition } from "@/lib/utils";
+import { nakMain, osztvMain, otherMain, szakmaSztarPurple, wshuMain } from "@/themes/theme";
 
 interface APavilonMapPageProps {
   searchParams: Promise<{ zoomTo?: string }>;
@@ -130,8 +131,16 @@ const APavilonMapPage = async ({ searchParams }: APavilonMapPageProps) => {
                   <rect
                     width={box.stand.width}
                     height={box.stand.height}
-                    fill={"#EA5A32"} // TODO
-                    stroke={"#888888"} // TODO
+                    fill={
+                      box.href.includes("wshu")
+                        ? wshuMain
+                        : box.href.includes("osztv")
+                          ? osztvMain
+                          : box.href.includes("nak")
+                            ? nakMain
+                            : otherMain
+                    }
+                    stroke={szakmaSztarPurple}
                     strokeWidth="1"
                   />
 
@@ -147,7 +156,7 @@ const APavilonMapPage = async ({ searchParams }: APavilonMapPageProps) => {
                         fontSize: Math.min(box.stand.width / 7, 36),
                         fontFamily: "var(--font-montserrat), Arial, sans-serif",
                         fontWeight: "600",
-                        color: "#fff", // TODO
+                        color: "#fff",
                         wordWrap: "break-word",
                         overflow: "hidden",
                         padding: "20px",

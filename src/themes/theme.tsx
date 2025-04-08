@@ -37,12 +37,12 @@ declare module "@mui/material/styles" {
 const szakmaSztarYellow = "#F4B02A";
 const szakmaSztarOrange = "rgba(234,90,50)";
 export const szakmaSztarRed = "rgba(207,82,62)";
-const szakmaSztarPurple = "#350F38";
+export const szakmaSztarPurple = "#350F38";
 const szakmaSztarBlack = "rgba(0,0,0)";
-const wshuMain = "#691f6e";
-const osztvMain = "#86288d";
-const nakMain = "#170618";
-const otherMain = "#070207";
+export const wshuMain = "#691f6e";
+export const osztvMain = "#86288d";
+export const nakMain = "#170618";
+export const otherMain = "#070207";
 const sponsorMain = "#000000";
 const lightContrast = "#f5f5f5";
 
@@ -169,3 +169,4 @@ export const theme = createTheme({
     },
   },
 });
+
