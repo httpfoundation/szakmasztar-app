@@ -11,7 +11,9 @@ const MapPageContainer = ({ children }: MapPageContainerProps) => {
       sx={{
         userSelect: "none",
         width: "100%",
+
         height: { xs: "calc(100vh - 56px - 56px)", md: "calc(100vh - 64px - 56px)" },
+        // border: "1px solid white",
       }}
     >
       <Stack
@@ -30,4 +32,3 @@ const MapPageContainer = ({ children }: MapPageContainerProps) => {
 };
 
 export default MapPageContainer;
-

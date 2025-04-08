@@ -117,7 +117,7 @@ export async function getMapItems() {
       });
     } catch (e) {
       console.log(e);
-      console.log(item.metadata);
+      // console.log(item.metadata);
     }
   }
 

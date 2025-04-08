@@ -39,5 +39,5 @@ export function getMapDefaultPosition(
     }
   }
 
-  return { x: svgWidth / 2, y: svgHeight / 2, zoom: 0.35 };
+  return { x: svgWidth / 2, y: svgHeight / 2, zoom: 0.1 };
 }

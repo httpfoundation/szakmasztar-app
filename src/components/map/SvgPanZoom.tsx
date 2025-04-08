@@ -29,7 +29,7 @@ const SvgPanZoom = ({ children, defaultPosition }: SvgPanZoomProps) => {
       );
     }
   }, [defaultPosition.x, defaultPosition.y, defaultPosition.zoom]);
-
+  console.log("zoom: ", defaultPosition.zoom);
   return (
     <UncontrolledReactSVGPanZoom
       ref={ref}
@@ -41,7 +41,9 @@ const SvgPanZoom = ({ children, defaultPosition }: SvgPanZoomProps) => {
       scaleFactorMin={0.1}
       scaleFactorMax={2}
       detectAutoPan={false}
+      background="#350f38"
       style={{ opacity: mounted ? 1 : 0 }}
+      scaleFactor={defaultPosition.zoom}
     >
       {children}
     </UncontrolledReactSVGPanZoom>
@@ -49,4 +51,3 @@ const SvgPanZoom = ({ children, defaultPosition }: SvgPanZoomProps) => {
 };
 
 export default SvgPanZoom;
-
