@@ -2,7 +2,7 @@ import PageTitle from "@/components/common/PageTitle";
 import PageContainer from "@/components/layouts/PageContainer";
 import QrCodeScanner from "./QrCodeScanner";
 
-export const revalidate = 3600;
+export const dynamic = "force-static";
 
 const QrCodePage = async () => {
   return (
@@ -24,4 +24,3 @@ const QrCodePage = async () => {
 };
 
 export default QrCodePage;
-

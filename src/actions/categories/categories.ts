@@ -4,6 +4,7 @@ import { getIdTag, gqlCache } from "@/lib/cache";
 import { graphqlClient } from "@/lib/client";
 import { Article } from "@/types.generated";
 import {
+  CategoryRecursiveFragment,
   GetCategoryDocument,
   GetCategoryQuery,
   GetCategoryQueryVariables,
@@ -23,17 +24,22 @@ export async function getCategoryTree(variables: GetCategoryTreeQueryVariables) 
         variables,
       });
 
-      return response.data.category;
+      return response.data.category as CategoryRecursiveFragment;
     },
     { tags: [getIdTag(variables.rootNodeId, "category-tree")], revalidate: 60 * 60 }
   )();
 }
 
 export async function getEventsArticlesByCategory(categorySlugPrefix: string) {
-  const eventsBySectors = (await getCategoryTree({ rootNodeId: "szakmasztar-app-sector" }))
-    .children;
-  const allEvents = eventsBySectors.flatMap((sector) => sector.items as Article[]);
-  return allEvents.filter((event) => event.slug.startsWith(categorySlugPrefix));
+  return await gqlCache(
+    async () => {
+      const eventsBySectors = (await getCategoryTree({ rootNodeId: "szakmasztar-app-sector" }))
+        .children;
+      const allEvents = eventsBySectors.flatMap((sector) => sector.items as Article[]);
+      return allEvents.filter((event) => event.slug.startsWith(categorySlugPrefix));
+    },
+    { tags: [getIdTag(categorySlugPrefix, "eventsBySector")], revalidate: 60 * 60 }
+  )();
 }
 
 export async function getCategory(variables: GetCategoryQueryVariables) {
@@ -49,4 +55,3 @@ export async function getCategory(variables: GetCategoryQueryVariables) {
     { tags: [getIdTag(variables.id, "categories")], revalidate: 60 * 60 }
   )();
 }
-

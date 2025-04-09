@@ -4,6 +4,8 @@ import ImageButton from "@/components/common/ImageButton";
 import PageTitle from "@/components/common/PageTitle";
 import PageContainer from "@/components/layouts/PageContainer";
 
+export const dynamic = "force-static";
+
 const KerdoivekPage = () => {
   return (
     <PageContainer>
@@ -30,4 +32,3 @@ const KerdoivekPage = () => {
 };
 
 export default KerdoivekPage;
-

@@ -2,6 +2,8 @@ import { Metadata } from "next";
 import { Stack, Typography } from "@mui/material";
 import LinkButton from "@/components/common/LinkButton";
 
+export const dynamic = "force-static";
+
 export const metadata: Metadata = {
   title: "404 Hiba",
 };

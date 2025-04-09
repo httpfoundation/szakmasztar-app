@@ -3,6 +3,8 @@ import PageContainer from "@/components/layouts/PageContainer";
 import QuestionTitle from "@/components/sections/QuestionTitle";
 import IpariErdeklodes from "./_components/IpariErdeklodes";
 
+export const dynamic = "force-static";
+
 export const metadata: Metadata = {
   title: "Iparagi érdeklődés kérdőív",
   description:

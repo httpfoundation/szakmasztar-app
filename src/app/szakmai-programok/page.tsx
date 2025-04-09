@@ -5,7 +5,8 @@ import PageContainer from "@/components/layouts/PageContainer";
 import SectorCards from "@/components/skills/SectorCards";
 import GradientTitle from "@/components/ui/GradientTitle";
 
-// export const revalidate = 3600;
+export const revalidate = 3600;
+
 export type Sector = {
   id: string;
   name: string;
@@ -18,6 +19,7 @@ const EventsPage = async () => {
     .children;
 
   const { title, lead } = await getArticle({ slug: "szakmai-programok-oldal" });
+
   const displayedSectors = eventsBySectors.filter((sector) => sector.items.length > 0);
   const sectors = displayedSectors.map((sector) => ({
     id: sector.id,

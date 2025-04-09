@@ -1,6 +1,12 @@
 import { notFound, redirect } from "next/navigation";
 import { getMapItems } from "@/actions/articles/articles";
 
+export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  return [];
+}
+
 interface JumpCodePageProps {
   params: Promise<{ jumpcode: string }>;
 }

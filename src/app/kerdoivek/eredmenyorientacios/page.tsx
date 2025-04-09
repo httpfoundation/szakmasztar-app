@@ -3,6 +3,8 @@ import PageContainer from "@/components/layouts/PageContainer";
 import QuestionTitle from "@/components/sections/QuestionTitle";
 import Eredmenyorientacios from "./_comopnents/Eredmenyorientacios";
 
+export const dynamic = "force-static";
+
 export const metadata: Metadata = {
   title: "Eredményorientációs kérdőív",
 };

@@ -38,11 +38,10 @@ export const getSkills = gqlCache(
       query: GetSkillsDocument,
     });
 
-    return response.data.skills;
+    return response.data.skills as SkillFragment[];
   },
   {
     tags: [getGlobalTag("skills")],
     revalidate: 60 * 60,
   }
 );
-

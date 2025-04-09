@@ -29,9 +29,9 @@ export async function getArticles(variables: GetArticlesQueryVariables) {
         variables,
       });
 
-      return response.data.category.items.filter(
+      return (response.data.category.items as ArticleFragment[]).filter(
         (article) => article.__typename === "Article"
-      ) as ArticleFragment[];
+      );
     },
     { tags: [getIdTag(variables.categoryId, "category-articles")], revalidate: 60 * 60 }
   )();

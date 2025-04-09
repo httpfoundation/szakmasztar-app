@@ -4,9 +4,9 @@ import EventCategories from "@/components/programok/EventCategories";
 import GradientTitle from "@/components/ui/GradientTitle";
 import Starform from "@/components/ui/Starform";
 
-export const revalidate = 3600;
+export const dynamic = "force-static";
 
-const EventsPage = async () => {
+const EventsPage = () => {
   return (
     <>
       <GradientTitle>Szakmai programok</GradientTitle>
@@ -24,4 +24,3 @@ const EventsPage = async () => {
 };
 
 export default EventsPage;
-

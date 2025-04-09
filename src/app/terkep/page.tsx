@@ -4,7 +4,7 @@ import ImageButton from "@/components/common/ImageButton";
 import PageContainer from "@/components/layouts/PageContainer";
 import GradientTitle from "@/components/ui/GradientTitle";
 
-export const revalidate = 3600;
+export const dynamic = "force-static";
 
 const MapPage = async () => {
   return (
@@ -31,4 +31,3 @@ const MapPage = async () => {
 };
 
 export default MapPage;
-

@@ -10,9 +10,6 @@ import { env } from "@/env";
 
 export const httpLink = new HttpLink({
   uri: env.GRAPHQL_BASE,
-  fetchOptions: {
-    cache: "no-store",
-  },
 });
 
 export const errorLink = new ApolloLink((operation, forward) => {
@@ -50,4 +47,3 @@ export const graphqlClient = new ApolloClient({
         ])
       : ApolloLink.from([siteLink, errorLink, httpLink]),
 });
-

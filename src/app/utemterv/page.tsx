@@ -3,7 +3,7 @@ import EventCalendar from "@/components/programok/EventCalendar";
 import GradientTitle from "@/components/ui/GradientTitle";
 import Starform from "@/components/ui/Starform";
 
-export const revalidate = 3600;
+export const dynamic = "force-static";
 
 const SchedulePage = async () => {
   return (

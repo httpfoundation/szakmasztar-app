@@ -3,6 +3,8 @@ import { getCurrentCompetition } from "@/actions/competitions/competitions";
 import FormattedContent from "@/components/FormattedContent";
 import SectionContainer from "@/components/layouts/SectionContainer";
 
+export const revalidate = 3600;
+
 const SzakmasztarPage = async () => {
   const currentCompetition = await getCurrentCompetition();
 
@@ -18,4 +20,3 @@ const SzakmasztarPage = async () => {
 };
 
 export default SzakmasztarPage;
-

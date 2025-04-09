@@ -2,6 +2,8 @@ import MapPageContainer from "@/components/map/MapPageContainer";
 import SvgLink from "@/components/map/SvgLink";
 import SvgPanZoom from "@/components/map/SvgPanZoom";
 
+export const dynamic = "force-static";
+
 const HungexpoMapPage = () => {
   return (
     <MapPageContainer>
@@ -86,4 +88,3 @@ const HungexpoMapPage = () => {
 };
 
 export default HungexpoMapPage;
-

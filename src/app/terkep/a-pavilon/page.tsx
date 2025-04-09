@@ -6,6 +6,8 @@ import GradientTitle from "@/components/ui/GradientTitle";
 import { getMapDefaultPosition } from "@/lib/utils";
 import { nakMain, osztvMain, otherMain, wshuMain } from "@/themes/theme";
 
+export const revalidate = 3600;
+
 interface APavilonMapPageProps {
   searchParams: Promise<{ zoomTo?: string }>;
 }

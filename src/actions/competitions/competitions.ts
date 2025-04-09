@@ -3,6 +3,7 @@
 import { getGlobalTag, getIdTag, gqlCache } from "@/lib/cache";
 import { graphqlClient } from "@/lib/client";
 import {
+  CompetitionFragment,
   GetCompetitionsDocument,
   GetCompetitionsQuery,
   GetCompetitionsQueryVariables,
@@ -18,7 +19,7 @@ export const getCompetitions = gqlCache(
         query: GetCompetitionsDocument,
       }
     );
-    return response.data.competitions.filter((c) => !c.isJunior);
+    return (response.data.competitions as CompetitionFragment[]).filter((c) => !c.isJunior);
   },
   { tags: [getGlobalTag("competitions")], revalidate: 60 * 60 }
 );

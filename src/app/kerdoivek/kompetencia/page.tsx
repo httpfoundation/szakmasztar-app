@@ -3,6 +3,8 @@ import PageContainer from "@/components/layouts/PageContainer";
 import QuestionTitle from "@/components/sections/QuestionTitle";
 import Kompetencia from "./_components/Kompetencia";
 
+export const dynamic = "force-static";
+
 export const metadata: Metadata = {
   title: "Kompetencia kérdőív",
 };

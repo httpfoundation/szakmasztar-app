@@ -13,6 +13,7 @@ export const CACHE_TAGS = {
   nationalCompetitions: "nationalCompetitions",
   sponsors: "sponsors",
   categories: "categories",
+  eventsBySector: "eventsBySector",
 } as const;
 
 export function getGlobalTag(tag: keyof typeof CACHE_TAGS) {
@@ -50,4 +51,3 @@ export function revalidateCache({ tag, id }: { tag: keyof typeof CACHE_TAGS; id?
     revalidateTag(getGlobalTag(tag));
   }
 }
-
