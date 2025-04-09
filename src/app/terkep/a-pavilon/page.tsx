@@ -17,7 +17,6 @@ const APavilonMapPage = async ({ searchParams }: APavilonMapPageProps) => {
   const boxItems = await getMapItems(); // TODO filter
 
   const defaultPosition = getMapDefaultPosition(params.zoomTo, boxItems, 3859, 2079);
-  console.log({ defaultPosition });
 
   return (
     <>

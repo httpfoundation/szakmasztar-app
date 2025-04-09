@@ -20,7 +20,7 @@ const MapPage = async () => {
             text="Az A pavilon térképe (szakmai tanulmányi versenyek és WorldSkills Hungary versenyek)"
           />
           <ImageButton
-            href="/terkep"
+            href="/terkep/d-pavilon"
             icon={<MapIcon />}
             text="A D pavilon térképe (az agrár terület szakmai tanulmányi versenyei)"
           />
