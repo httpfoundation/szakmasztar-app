@@ -1,19 +1,17 @@
 import { Box, Stack } from "@mui/material";
 import { getCurrentCompetition } from "@/actions/competitions/competitions";
-import { getSponsors } from "@/actions/sponsors/sponsors";
 import heroImage from "@/assets/images/hero.png";
 import HeroImage from "./_components/HeroImage";
 import HeroSection from "./_components/HeroSection";
 import ImageButtonSection from "./_components/ImageButtonSection";
 import JumpCodeSection from "./_components/JumpCodeSection";
 import OpeningHours from "./_components/OpeningHours";
-import SponsorSection from "./_components/SponsorSection";
+import OtherImageButtonsSection from "./_components/OtherImageButtonsSection";
 
 export const revalidate = 3600;
 
 const IndexPage = async () => {
   const currentCompetition = await getCurrentCompetition();
-  const sponsors = await getSponsors();
 
   return (
     <Box>
@@ -24,7 +22,7 @@ const IndexPage = async () => {
         <ImageButtonSection />
         <JumpCodeSection />
         <OpeningHours />
-        <SponsorSection sponsors={sponsors} />
+        <OtherImageButtonsSection />
       </Stack>
     </Box>
   );
