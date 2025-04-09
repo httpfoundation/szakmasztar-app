@@ -5,18 +5,18 @@ import GradientTitle from "@/components/ui/GradientTitle";
 
 export const revalidate = 3600;
 
-const OtherEventsPage = async () => {
-  const events = await getEventsArticlesByCategory("egyeb");
-  const title = "Egyéb események";
+const TamogatoiBemutatkozasokPage = async () => {
+  const events = await getEventsArticlesByCategory("tamogatoibemutatkozasok");
+  const title = "Támogatóink bemutatkozásai";
 
   return (
     <>
       <GradientTitle>{title}</GradientTitle>
       <PageContainer>
-        <EventCards events={events} sectorId="egyeb" />
+        <EventCards events={events} sectorId="tamogatoibemutatkozasok" />
       </PageContainer>
     </>
   );
 };
 
-export default OtherEventsPage;
+export default TamogatoiBemutatkozasokPage;

@@ -3,21 +3,21 @@
     "title": "Szakmai tanulmányi versenyek",
     "slug": "szakmai-programok/osztv-szktv-versenyek",
     "description": "OSZTV és SZKTV döntők",
-    "locations": [{ "title": "A pavilon", "slug": "terkep/a-pavilon" }],
+    "locations": [{ "title": "A pavilon", "slug": "/terkep/a-pavilon" }],
     "color": "osztv.main"
   },
   {
     "title": "WorldSkills Hungary",
     "slug": "szakmai-programok/wshu",
     "description": "WorldSkills 2026 válogatók, nemzetközi tréningversenyek és szakma bemutatók",
-    "locations": [{ "title": "A pavilon", "slug": "terkep/hungexpo-a-pavilon" }],
+    "locations": [{ "title": "A pavilon", "slug": "/terkep/a-pavilon" }],
     "color": "wshu.main"
   },
   {
     "title": "NAK szakmák bemutatói",
     "slug": "szakmai-programok/nak-bemutatok",
     "description": "A Nemzeti Agrárkamara szakmáinak bemutatói és interaktív programjai",
-    "locations": [{ "title": "D pavilon", "slug": "terkep/d-pavilon" }],
+    "locations": [{ "title": "D pavilon", "slug": "/terkep/d-pavilon" }],
     "color": "nak.main"
   },
   {
@@ -25,8 +25,8 @@
     "slug": "szakmai-programok/tamogatoi-bemutatkozasok",
     "description": "A Szakma Sztár 2025 támogatóinak bemutatkozásai és interaktív programjai",
     "locations": [
-      { "title": "A pavilon", "slug": "terkep/a-pavilon" },
-      { "title": "D pavilon", "slug": "terkep/d-pavilon" }
+      { "title": "A pavilon", "slug": "/terkep/a-pavilon" },
+      { "title": "D pavilon", "slug": "/terkep/d-pavilon" }
     ],
     "color": "sponsor.main"
   },
@@ -35,10 +35,9 @@
     "slug": "szakmai-programok/egyeb-esemenyek",
     "description": "További pályaválasztást segítő események és programok",
     "locations": [
-      { "title": "A pavilon", "slug": "terkep/a-pavilon" },
-      { "title": "D pavilon", "slug": "terkep/d-pavilon" }
+      { "title": "A pavilon", "slug": "/terkep/a-pavilon" },
+      { "title": "D pavilon", "slug": "/terkep/d-pavilon" }
     ],
     "color": "other.main"
   }
 ]
-

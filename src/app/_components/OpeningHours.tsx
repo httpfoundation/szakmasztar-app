@@ -10,7 +10,7 @@ const OpeningHours = () => {
           mb: 2,
           color: "primary.contrastText",
           textAlign: "center",
-          fontSize: 16,
+          fontSize: 18,
           textTransform: "uppercase",
         }}
       >
