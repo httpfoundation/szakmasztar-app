@@ -10,7 +10,7 @@ const InfoPage = async () => {
 
   return (
     <>
-      <GradientTitle>Információk</GradientTitle>
+      <GradientTitle sx={{ mb: 2 }}>Információk</GradientTitle>
       <OpeningHours />
       <SponsorSection sponsors={sponsors} />
     </>

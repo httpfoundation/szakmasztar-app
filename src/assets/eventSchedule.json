@@ -18,7 +18,7 @@
         "endTime": "2025-04-28 16:00",
         "location": "A pavilon",
         "locationSlug": "terkep/a-pavilon",
-        "eventSlugs": "esemenyek/osztv-szktv-versenyek"
+        "eventSlugs": "szakmai-programok/osztv-szktv-versenyek"
       },
       {
         "title": "Nemzeti Agrárkamara szakmák bemutatói",
@@ -27,7 +27,7 @@
         "endTime": "2025-04-28 16:00",
         "location": "D pavilon",
         "locationSlug": "terkep/d-pavilon",
-        "eventSlugs": "esemenyek/nak-szakmak-bemutatoi"
+        "eventSlugs": "szakmai-programok/nak-bemutatok"
       },
       {
         "title": "WorldSkills Hungary nemzeti válogatók és bemutatók",
@@ -36,7 +36,7 @@
         "endTime": "2025-04-28 16:00",
         "location": "D pavilon",
         "locationSlug": "terkep/a-pavilon",
-        "eventSlugs": "esemenyek/worldskills-hungary-esemenyek"
+        "eventSlugs": "szakmai-programok/wshu"
       }
     ]
   },
@@ -50,7 +50,7 @@
         "endTime": "2025-04-28 16:00",
         "location": "A pavilon",
         "locationSlug": "terkep/a-pavilon",
-        "eventSlugs": "esemenyek/osztv-szktv-versenyek"
+        "eventSlugs": "szakmai-programok/osztv-szktv-versenyek"
       },
       {
         "title": "Nemzeti Agrárkamara szakmák bemutatói",
@@ -59,7 +59,7 @@
         "endTime": "2025-04-28 16:00",
         "location": "D pavilon",
         "locationSlug": "terkep/d-pavilon",
-        "eventSlugs": "esemenyek/nak-szakmak-bemutatoi"
+        "eventSlugs": "szakmai-programok/nak-bemutatok"
       },
       {
         "title": "WorldSkills Hungary nemzeti válogatók és bemutatók",
@@ -68,7 +68,7 @@
         "endTime": "2025-04-28 16:00",
         "location": "D pavilon",
         "locationSlug": "terkep/a-pavilon",
-        "eventSlugs": "esemenyek/worldskills-hungary-esemenyek"
+        "eventSlugs": "szakmai-programok/wshu"
       }
     ]
   }

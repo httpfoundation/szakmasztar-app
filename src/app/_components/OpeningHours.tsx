@@ -32,7 +32,12 @@ const OpeningHours = () => {
         }}
       >
         2025. 04. 28. (hétfő)
-        <Typography sx={{ fontWeight: "700", color: "success.main" }}>11:00 - 16:00</Typography>
+        <Typography
+          component="span"
+          sx={{ fontWeight: "700", color: "success.main", display: "block" }}
+        >
+          11:00 - 16:00
+        </Typography>
       </Typography>
       <Typography
         variant="body1"
@@ -49,7 +54,12 @@ const OpeningHours = () => {
         }}
       >
         2025. 04. 29. (kedd)
-        <Typography sx={{ fontWeight: "700", color: "success.main" }}>10:00 - 16:00</Typography>
+        <Typography
+          component="span"
+          sx={{ fontWeight: "700", color: "success.main", display: "block" }}
+        >
+          10:00 - 16:00
+        </Typography>
       </Typography>
     </SectionContainer>
   );
