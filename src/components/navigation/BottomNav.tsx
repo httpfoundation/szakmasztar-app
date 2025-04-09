@@ -29,7 +29,7 @@ export default function BottomNav() {
       <BottomNavigation
         value={currentIndex}
         showLabels
-        sx={{ bgcolor: "transparent", height: "70px" }}
+        sx={{ bgcolor: "transparent", height: "74px" }}
       >
         {bottomNavItems.map((item, index) => (
           <BottomNavigationAction
@@ -45,6 +45,7 @@ export default function BottomNav() {
               textAlign: "center !important",
               "&.Mui-selected": {
                 color: "white",
+                bgcolor: "#ffffff15",
               },
               "&.Mui-selected .MuiBottomNavigationAction-label": {
                 fontSize: "0.7rem",
@@ -55,6 +56,8 @@ export default function BottomNav() {
                 textAlign: "center !important",
                 lineHeight: 1,
                 color: "white",
+                minHeight: "23px",
+                height: "23px",
               },
             }}
           />
@@ -63,4 +66,3 @@ export default function BottomNav() {
     </Paper>
   );
 }
-
