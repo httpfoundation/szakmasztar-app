@@ -33,7 +33,7 @@ const SvgLink = ({ href, children }: SvgLinkProps) => {
       href={href}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
-      style={{ cursor: "pointer", pointerEvents: "all" }}
+      style={{ cursor: "pointer", pointerEvents: "all", zIndex: 10, position: "relative" }}
     >
       {children}
     </a>
@@ -41,4 +41,3 @@ const SvgLink = ({ href, children }: SvgLinkProps) => {
 };
 
 export default SvgLink;
-
