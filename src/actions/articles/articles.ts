@@ -105,12 +105,21 @@ export async function getMapItems() {
     (x) => !!x.metadata && x.metadata !== "NULL" && x?.metadata !== "{}"
   )) {
     try {
+      let slug = "#";
+      if (item.slug.startsWith("wshu")) {
+        slug = `/szakmai-programok/wshu/${item.slug}`;
+      } else if (item.slug.startsWith("osztv")) {
+        slug = `/szakmai-programok/osztvszktv/${item.slug}`;
+      } else if (item.slug.startsWith("nak")) {
+        slug = `/szakmai-programok/nak/${item.slug}`;
+      }
+
       const parsed = JSON.parse(item.metadata);
       result.push({
         stand: {
           ...parsed.map,
         },
-        href: item.slug,
+        href: slug,
         text: item.title,
         jumpCode: parsed.jumpCode,
         mapId: parsed.mapId,
