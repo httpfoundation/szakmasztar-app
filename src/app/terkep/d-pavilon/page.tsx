@@ -1,4 +1,5 @@
 import { getMapItems } from "@/actions/articles/articles";
+import MapBoxes from "@/components/map/MapBoxes";
 import MapPageContainer from "@/components/map/MapPageContainer";
 import SvgPanZoom from "@/components/map/SvgPanZoom";
 import GradientTitle from "@/components/ui/GradientTitle";
@@ -12,7 +13,7 @@ interface DPavilonMapPageProps {
 
 const DPavilonMapPage = async ({ searchParams }: DPavilonMapPageProps) => {
   const params = await searchParams;
-  const boxItems = await getMapItems(); // TODO filter
+  const boxItems = (await getMapItems()).filter((x) => x.mapId === "d-pavilon-map");
 
   const defaultPosition = getMapDefaultPosition(params.zoomTo, boxItems, 3475, 3598);
 
@@ -252,6 +253,8 @@ const DPavilonMapPage = async ({ searchParams }: DPavilonMapPageProps) => {
             <rect x="1102" y="2788" width="8" height="243" fill="#353839" />
             <rect x="1110" y="2788" width="222" height="8" fill="#353839" />
             <rect x="1324" y="2796" width="8" height="235" fill="#353839" />
+
+            <MapBoxes boxItems={boxItems} />
           </svg>
         </SvgPanZoom>
       </MapPageContainer>
