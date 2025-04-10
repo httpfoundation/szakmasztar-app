@@ -29,7 +29,7 @@ const APavilonMapPage = async ({ searchParams }: APavilonMapPageProps) => {
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <g clip-path="url(#clip0_555_356)">
+            <g clipPath="url(#clip0_555_356)">
               <rect width="3859" height="2079" fill="white" />
               <rect x="1947.5" y="61.5" width="199" height="163" fill="#5B6063" />
               <rect x="1947.5" y="61.5" width="199" height="163" stroke="white" />

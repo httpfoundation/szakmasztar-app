@@ -124,8 +124,9 @@ export async function getMapItems() {
         jumpCode: parsed.jumpCode,
         mapId: parsed.mapId,
       });
-    } catch (e) {
-      console.log(e);
+    } catch {
+      console.log("Failed to parse metadata for item", item.title);
+      // console.log(e);
       // console.log(item.metadata);
     }
   }
