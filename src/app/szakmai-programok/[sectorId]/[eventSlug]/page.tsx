@@ -43,6 +43,7 @@ const SectorEventPage = async ({ params }: EventPageProps) => {
       image={event.image?.url || ""}
       location={"A21"}
       sponsors={[]}
+      metadata={event.metadata}
     />
   );
 };

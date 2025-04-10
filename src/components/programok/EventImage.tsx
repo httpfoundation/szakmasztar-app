@@ -68,7 +68,17 @@ const EventImage = ({ image, title }: EventImageProps) => {
         }}
       >
         <Image src={whiteLogo} alt="Logo" style={{ height: "80px", width: "auto" }} />
-        <Typography variant="h1" sx={{ textTransform: "uppercase", color: "white", fontSize: 34 }}>
+        <Typography
+          variant="h1"
+          lang="hu"
+          sx={{
+            textTransform: "uppercase",
+            color: "white",
+            fontSize: 34,
+            wordBreak: "break-word",
+            hyphens: "auto",
+          }}
+        >
           {title}
         </Typography>
       </Stack>
