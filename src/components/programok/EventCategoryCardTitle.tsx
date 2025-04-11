@@ -6,7 +6,11 @@ interface EventCategoryCardTitleProps {
 
 const EventCategoryCardTitle = ({ title }: EventCategoryCardTitleProps) => {
   return (
-    <Typography variant="h6" gutterBottom sx={{ color: "primary.contrastText", minHeight: 56 }}>
+    <Typography
+      variant="h6"
+      gutterBottom
+      sx={{ color: "primary.contrastText", minHeight: 56, fontSize: 16 }}
+    >
       {title}
     </Typography>
   );

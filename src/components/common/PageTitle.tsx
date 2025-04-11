@@ -15,7 +15,7 @@ export default function PageTitle({ children, icon, sx }: PageTitleProps) {
             display: "flex",
             color: "primary.contrastText",
             "& > svg": {
-              fontSize: { xs: "1.8rem", sm: "2.5rem", md: "3rem" },
+              fontSize: { xs: "1.7rem", sm: "2.5rem", md: "3rem" },
             },
           }}
         >
@@ -27,7 +27,7 @@ export default function PageTitle({ children, icon, sx }: PageTitleProps) {
         component="h1"
         color="primary.contrastText"
         sx={{
-          fontSize: { xs: "1.7rem", sm: "2.5rem", md: "3rem" },
+          fontSize: { xs: "1.6rem", sm: "2.5rem", md: "3rem" },
           fontWeight: "bold",
           textTransform: "uppercase",
           ...sx,
@@ -38,4 +38,3 @@ export default function PageTitle({ children, icon, sx }: PageTitleProps) {
     </Box>
   );
 }
-
