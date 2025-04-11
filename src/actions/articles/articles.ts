@@ -107,11 +107,11 @@ export async function getMapItems() {
     try {
       let slug = "#";
       if (item.slug.startsWith("wshu")) {
-        slug = `/szakmai-programok/wshu/${item.slug}`;
+        slug = `/szakmai-programok/${item.slug}`;
       } else if (item.slug.startsWith("osztv")) {
-        slug = `/szakmai-programok/osztvszktv/${item.slug}`;
+        slug = `/szakmai-programok/${item.slug}`;
       } else if (item.slug.startsWith("nak")) {
-        slug = `/szakmai-programok/nak/${item.slug}`;
+        slug = `/szakmai-programok/${item.slug}`;
       }
 
       const parsed = JSON.parse(item.metadata);

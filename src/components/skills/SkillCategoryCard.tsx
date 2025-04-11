@@ -51,7 +51,7 @@ const SkillCategoryCard: FC<SkillCategoryCardProps> = ({ active, sector }) => {
       color="info"
       style={{ borderRadius: 0 }}
       onClick={() => console.log(sector.id)}
-      href={`/szakmai-programok/${sector.id}`}
+      href={`/szakmai-programok/agazatok/${sector.id}`}
       sx={{
         p: 0,
         width: "100%",

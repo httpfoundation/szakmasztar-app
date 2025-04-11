@@ -8,7 +8,7 @@ interface EventCardsProps {
   sectorId: string;
 }
 
-const EventCards = ({ events, sectorId }: EventCardsProps) => {
+const EventCards = ({ events }: EventCardsProps) => {
   const getEventType = (slug: string) => {
     let eventType = "";
     const slugParts = slug.split("-");
@@ -87,7 +87,7 @@ const EventCards = ({ events, sectorId }: EventCardsProps) => {
                 </Typography>
                 <Box sx={{ display: "flex", gap: 1, mt: 1 }}>
                   <Button
-                    href={`/szakmai-programok/${sectorId}/${event.slug}`}
+                    href={`/szakmai-programok/${event.slug}`}
                     size="small"
                     startIcon={<InfoIcon />}
                     variant="contained"
