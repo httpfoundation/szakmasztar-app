@@ -6,7 +6,7 @@ import SectionContainer from "@/components/layouts/SectionContainer";
 
 const OtherImageButtonsSection = () => {
   return (
-    <SectionContainer sx={{ pt: 0, mb: 3 }}>
+    <SectionContainer sx={{ pt: 0 }}>
       <Divider sx={{ borderColor: "#ffffff30", mb: 2 }} />
 
       <Stack sx={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: 2, width: "100%" }}>

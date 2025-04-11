@@ -6,6 +6,7 @@ import HeroSection from "./_components/HeroSection";
 import ImageButtonSection from "./_components/ImageButtonSection";
 import JumpCodeSection from "./_components/JumpCodeSection";
 import OpeningHours from "./_components/OpeningHours";
+import OrganizerInfo from "./_components/OrganizerInfo";
 import OtherImageButtonsSection from "./_components/OtherImageButtonsSection";
 
 export const revalidate = 3600;
@@ -23,6 +24,7 @@ const IndexPage = async () => {
         <JumpCodeSection />
         <OpeningHours />
         <OtherImageButtonsSection />
+        <OrganizerInfo />
       </Stack>
     </Box>
   );
