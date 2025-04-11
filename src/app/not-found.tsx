@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { Stack, Typography } from "@mui/material";
 import LinkButton from "@/components/common/LinkButton";
+import Starform from "@/components/ui/Starform";
 
 export const dynamic = "force-static";
 
@@ -15,17 +16,23 @@ const NotFoundPage = () => {
         width: "min(900px, 100%)",
         m: "auto",
         px: 2,
-        py: 11,
         alignItems: "center",
+        justifyContent: "center",
+        position: "relative",
+        height: "100%",
+        flexGrow: 1,
       }}
       spacing={3}
     >
-      <Typography variant="h3">404 Hiba</Typography>
-      <Typography variant="body1" color="text.secondary">
+      <Starform />
+      <Typography variant="h1" sx={{ color: "success.main" }}>
+        Hiba!
+      </Typography>
+      <Typography variant="body1" color="primary.contrastText" textAlign="center">
         Sajnáljuk, de a keresett oldal nem található.
       </Typography>
 
-      <LinkButton sx={{ mt: 2 }} direction="backward" href="/">
+      <LinkButton sx={{ mt: 2 }} direction="backward" href="/" color="success" variant="contained">
         Vissza a főoldalra
       </LinkButton>
     </Stack>
