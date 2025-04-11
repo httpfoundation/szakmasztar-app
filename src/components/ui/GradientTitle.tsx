@@ -1,4 +1,8 @@
-import { Stack, SxProps } from "@mui/material";
+"use client";
+
+import { useRouter } from "next/navigation";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { Fab, Stack, SxProps } from "@mui/material";
 import PageTitle from "../common/PageTitle";
 import PageContainer from "../layouts/PageContainer";
 
@@ -8,6 +12,8 @@ interface GradientTitleProps {
 }
 
 const GradientTitle = ({ children, sx }: GradientTitleProps) => {
+  const router = useRouter();
+
   return (
     <Stack
       sx={{
@@ -17,7 +23,16 @@ const GradientTitle = ({ children, sx }: GradientTitleProps) => {
         ...sx,
       }}
     >
-      <PageContainer padding={1.5}>
+      <PageContainer
+        padding={1.5}
+        sx={{
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        <Fab color="primary" size="small" sx={{ ml: -1, mr: 2 }} onClick={() => router.back()}>
+          <ArrowBackIcon />
+        </Fab>
         <PageTitle>{children}</PageTitle>
       </PageContainer>
     </Stack>
