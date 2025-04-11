@@ -21,6 +21,7 @@ fragment Sponsor on Sponsor {
   homepageUrl
   image {
     srcset
+    url
   }
   article {
     ...Article
@@ -36,4 +37,3 @@ fragment SponsorDetail on Sponsor {
     srcset
   }
 }
-
