@@ -26,7 +26,7 @@ const SponsorCard: FC<SponsorCardProps> = ({ sponsor }) => {
       <Stack
         alignItems="center"
         sx={{
-          background: "linear-gradient(to top right,rgb(26, 8, 26),rgb(79, 27, 79))",
+          background: "linear-gradient(to top right,rgb(46, 16, 46),rgb(79, 27, 79))",
           px: 2,
           py: 2,
           position: "relative",
