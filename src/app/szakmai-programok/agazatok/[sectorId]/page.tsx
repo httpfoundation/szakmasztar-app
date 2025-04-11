@@ -1,12 +1,19 @@
 import { notFound } from "next/navigation";
 import { Paper, Typography } from "@mui/material";
 import { getArticles } from "@/actions/articles/articles";
-import { getCategory } from "@/actions/categories/categories";
+import { getCategory, getCategoryTree } from "@/actions/categories/categories";
 import PageContainer from "@/components/layouts/PageContainer";
 import EventCards from "@/components/programok/EventCards";
 import GradientTitle from "@/components/ui/GradientTitle";
 
 export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  const eventsBySectors = (await getCategoryTree({ rootNodeId: "szakmasztar-app-sector" }))
+    .children;
+
+  return eventsBySectors.map((sector) => ({ sectorId: sector.id }));
+}
 
 interface SectorPageProps {
   params: Promise<{

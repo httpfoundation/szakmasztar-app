@@ -1,4 +1,5 @@
 import { getArticle } from "@/actions/articles/articles";
+import { ArticleFragment } from "@/actions/articles/articles.generated";
 import { getCategoryTree } from "@/actions/categories/categories";
 import EventPage from "@/components/programok/EventPage";
 
@@ -6,29 +7,16 @@ export const revalidate = 3600;
 
 interface EventPageProps {
   params: Promise<{
-    sectorId: string;
     eventSlug: string;
   }>;
 }
 
 export async function generateStaticParams() {
-  const eventsBySectors = (await getCategoryTree({ rootNodeId: "szakmasztar-app-sector" }))
-    .children;
+  const events = (await getCategoryTree({ rootNodeId: "szakmasztar-app-sector" })).children.flatMap(
+    (sector) => sector.items
+  );
 
-  const params: Awaited<EventPageProps["params"]>[] = [];
-
-  for (const sector of eventsBySectors) {
-    for (const event of sector.items) {
-      if (event.__typename === "Article") {
-        params.push({
-          sectorId: sector.id,
-          eventSlug: event.slug,
-        });
-      }
-    }
-  }
-
-  return params;
+  return events.map((event) => ({ eventSlug: (event as ArticleFragment).slug }));
 }
 
 const SectorEventPage = async ({ params }: EventPageProps) => {
