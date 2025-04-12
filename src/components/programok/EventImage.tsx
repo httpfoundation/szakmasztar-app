@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Stack } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 // import eventColorstars from "@/assets/images/event-colorstars.png";
 // import eventHero from "@/assets/images/event-hero.png";
 import whiteLogo from "@/assets/images/logo.svg";
@@ -68,19 +68,19 @@ const EventImage = ({ image, title }: EventImageProps) => {
         }}
       >
         <Image src={whiteLogo} alt="Logo" style={{ height: "80px", width: "auto" }} />
-        {/* <Typography
+        <Typography
           variant="h1"
           lang="hu"
           sx={{
             textTransform: "uppercase",
             color: "white",
-            fontSize: 34,
+            fontSize: 16,
             wordBreak: "break-word",
             hyphens: "auto",
           }}
         >
-          {title}
-        </Typography> */}
+          {"szakmai tanulmányi verseny".toUpperCase()}
+        </Typography>
       </Stack>
     </Stack>
   );

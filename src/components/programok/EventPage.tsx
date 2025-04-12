@@ -62,9 +62,9 @@ const EventPage = ({
     <>
       <GradientTitle sx={{ mb: 0 }}>{title}</GradientTitle>
       <EventImage title={title} image={image} />
-      <FormattedContent variant="h2" sx={{ color: "white", textAlign: "center", mt: 1 }}>
+      {/* <FormattedContent variant="h3" sx={{ color: "white", textAlign: "center", mt: 1 }}>
         {"szakmai tanulmányi verseny".toUpperCase()}
-      </FormattedContent>
+      </FormattedContent> */}
 
       <PageContainer sx={{ position: "relative" }}>
         <Starform />
