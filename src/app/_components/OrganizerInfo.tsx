@@ -14,12 +14,11 @@ const OrganizerInfo = () => {
         sx={{
           display: "grid",
           width: "100%",
-          gridTemplateColumns: "repeat(3,1fr)",
-          justifyContent: "center",
-          alignItems: "center",
-          rowGap: 2,
-          columnGap: 1,
+          gridTemplateColumns: "repeat(3, 1fr)",
+          gridTemplateRows: "auto auto",
+          gap: 2,
           justifyItems: "center",
+          alignItems: "center",
         }}
       >
         <Typography
@@ -29,6 +28,8 @@ const OrganizerInfo = () => {
             textAlign: "center",
             fontSize: 12,
             textTransform: "uppercase",
+            gridColumn: "1 / 2",
+            gridRow: "1 / 2",
           }}
         >
           A versenyek főszervezője:
@@ -40,6 +41,8 @@ const OrganizerInfo = () => {
             textAlign: "center",
             fontSize: 12,
             textTransform: "uppercase",
+            gridColumn: "2 / 3",
+            gridRow: "1 / 2",
           }}
         >
           Együttműködő partner:
@@ -51,18 +54,51 @@ const OrganizerInfo = () => {
             textAlign: "center",
             fontSize: 12,
             textTransform: "uppercase",
+            gridColumn: "3 / 4",
+            gridRow: "1 / 2",
           }}
         >
           A rendezvény támogatója:
         </Typography>
-        <Image
-          src={MkikLogo}
-          alt="Magyar Kerskedelmi és Iparkamara"
-          height={80}
-          objectFit="cover"
-        />
-        <Image src={NakLogo} alt="Nemzeti Agrárgazdasági Kamara" height={90} objectFit="cover" />
-        <Image src={KimLogo} alt="Kereskedelmi és Iparkamara" height={90} objectFit="cover" />
+
+        <Box
+          sx={{
+            gridColumn: "1 / 2",
+            gridRow: "2 / 3",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Image
+            src={MkikLogo}
+            alt="Magyar Kerskedelmi és Iparkamara"
+            width={100}
+            objectFit="cover"
+          />
+        </Box>
+        <Box
+          sx={{
+            gridColumn: "2 / 3",
+            gridRow: "2 / 3",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Image src={NakLogo} alt="Nemzeti Agrárgazdasági Kamara" width={100} objectFit="cover" />
+        </Box>
+        <Box
+          sx={{
+            gridColumn: "3 / 4",
+            gridRow: "2 / 3",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Image src={KimLogo} alt="Kereskedelmi és Iparkamara" width={100} objectFit="cover" />
+        </Box>
       </Box>
     </SectionContainer>
   );
