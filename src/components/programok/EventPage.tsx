@@ -3,6 +3,7 @@ import { SponsorFragment } from "@/actions/sponsors/sponsors.generated";
 import FormattedContent from "../FormattedContent";
 import PageContainer from "../layouts/PageContainer";
 import SponsorCard from "../sponsor/SponsorCard";
+import GradientTitle from "../ui/GradientTitle";
 import Starform from "../ui/Starform";
 import EventImage from "./EventImage";
 
@@ -59,11 +60,17 @@ const EventPage = ({
 
   return (
     <>
+      <GradientTitle sx={{ mb: 0 }}>{title}</GradientTitle>
       <EventImage title={title} image={image} />
+      <FormattedContent variant="h2" sx={{ color: "white", textAlign: "center", mt: 1 }}>
+        {"szakmai tanulmányi verseny".toUpperCase()}
+      </FormattedContent>
 
       <PageContainer sx={{ position: "relative" }}>
         <Starform />
-
+        <Typography variant="h2" sx={{ color: "white", fontWeight: "bold" }}>
+          SZAKMA<span style={{ fontWeight: "300" }}>LEÍRÁS</span>
+        </Typography>
         <Stack spacing={2} sx={{ flex: 1, pb: 3 }}>
           <FormattedContent sx={{ color: "white" }}>{eventInfo}</FormattedContent>
 
