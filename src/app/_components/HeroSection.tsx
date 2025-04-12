@@ -1,6 +1,6 @@
-import Image from "next/image";
+// import Image from "next/image";
 import { Stack, Typography } from "@mui/material";
-import logo from "@/assets/images/logo.svg";
+// import logo from "@/assets/images/logo.svg";
 import SectionContainer from "@/components/layouts/SectionContainer";
 import Starform from "@/components/ui/Starform";
 
@@ -12,13 +12,13 @@ const HeroSection = () => {
           direction="row"
           sx={{ width: "100%", justifyContent: "space-between", alignItems: "center" }}
         >
-          <Image
+          {/* <Image
             src={logo}
             alt="logo"
             width={100}
             height={100}
             style={{ height: "70px", width: "auto" }}
-          />
+          /> */}
 
           <Typography
             variant="h2"
@@ -27,6 +27,8 @@ const HeroSection = () => {
               textAlign: "center",
               fontSize: 18,
               textTransform: "uppercase",
+              mx: "auto",
+              my: 1,
             }}
           >
             Fedezd fel a Szakma Sztár világát!
