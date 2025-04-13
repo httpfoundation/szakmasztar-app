@@ -110,7 +110,7 @@ export const theme = createTheme({
       szakmaSztarBlack,
     ],
     text: {
-      primary: szakmaSztarPurple,
+      primary: "#fff",
     },
     wshu: {
       main: wshuMain,
