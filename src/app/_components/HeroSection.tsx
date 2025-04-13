@@ -28,7 +28,6 @@ const HeroSection = () => {
               fontSize: 18,
               textTransform: "uppercase",
               mx: "auto",
-              my: 1,
             }}
           >
             Fedezd fel a Szakma Sztár világát!

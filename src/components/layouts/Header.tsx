@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { AppBar, Toolbar, Typography } from "@mui/material";
 import HamburgerButton from "../navigation/HamburgerButton";
 import SideDrawer from "../navigation/SideDrawer";
@@ -10,11 +11,16 @@ type HeaderProps = {
 };
 
 export default function Header({ title }: HeaderProps) {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
   const handleDrawerToggle = () => {
     setOpen(!open);
   };
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }, [pathname]);
 
   return (
     <>
@@ -43,4 +49,3 @@ export default function Header({ title }: HeaderProps) {
     </>
   );
 }
-

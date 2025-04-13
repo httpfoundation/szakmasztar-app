@@ -7,8 +7,8 @@ import SectionContainer from "@/components/layouts/SectionContainer";
 
 const OrganizerInfo = () => {
   return (
-    <SectionContainer sx={{ position: "relative", pt: 0, mb: 6 }}>
-      <Divider sx={{ borderColor: "#ffffff30", mb: 6 }} />
+    <SectionContainer sx={{ position: "relative", pt: 0, mb: 4 }}>
+      <Divider sx={{ borderColor: "#ffffff30", mb: 3 }} />
 
       <Box
         sx={{
