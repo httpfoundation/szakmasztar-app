@@ -1,13 +1,15 @@
+import { ReactNode } from "react";
 import Link from "next/link";
-import { Box, IconButton, Typography } from "@mui/material";
+import { Box, IconButton, SxProps, Typography } from "@mui/material";
 
 interface ImageButtonProps {
   href: string;
-  text: string;
+  text: ReactNode;
   icon: React.ReactNode;
+  sx?: SxProps;
 }
 
-export default function ImageButton({ href, text, icon }: ImageButtonProps) {
+export default function ImageButton({ href, text, icon, sx }: ImageButtonProps) {
   return (
     <Box
       component={Link}
@@ -22,6 +24,7 @@ export default function ImageButton({ href, text, icon }: ImageButtonProps) {
         opacity: 0.9,
         backdropFilter: "blur(10px)",
         textDecoration: "none",
+        ...sx,
       }}
     >
       <IconButton
@@ -51,4 +54,3 @@ export default function ImageButton({ href, text, icon }: ImageButtonProps) {
     </Box>
   );
 }
-
