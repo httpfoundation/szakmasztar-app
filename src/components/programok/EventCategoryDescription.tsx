@@ -6,7 +6,7 @@ interface EventCategoryDescriptionProps {
 
 const EventCategoryDescription = ({ description }: EventCategoryDescriptionProps) => {
   return (
-    <FormattedContent variant="body2" align="left" sx={{ pb: 2 }}>
+    <FormattedContent variant="body2" align="left" sx={{ pb: 2, fontSize: 13 }}>
       {description}
     </FormattedContent>
   );

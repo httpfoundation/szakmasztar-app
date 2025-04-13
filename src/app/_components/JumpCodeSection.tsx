@@ -18,7 +18,7 @@ const JumpCodeSection = () => {
         component="form"
         direction="row"
         spacing={0}
-        sx={{ width: "100%", bgcolor: "#D9D9D9", borderRadius: 999, mt: 2, mb: 2 }}
+        sx={{ width: "60%", bgcolor: "#D9D9D9", borderRadius: 999, mt: 2, mb: 2, mx: "auto" }}
         onSubmit={(e) => {
           e.preventDefault();
           router.push(`/jumpcode/${jumpcode}`);
@@ -45,7 +45,7 @@ const JumpCodeSection = () => {
               fontWeight: 400,
             },
           }}
-          placeholder="Add meg a stand számkódját"
+          placeholder="Számkód"
           onChange={(e) => setJumpcode(e.target.value)}
           value={jumpcode}
           size="small"

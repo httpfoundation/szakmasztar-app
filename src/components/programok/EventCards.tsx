@@ -9,40 +9,16 @@ interface EventCardsProps {
 }
 
 const EventCards = ({ events }: EventCardsProps) => {
-  const getEventType = (slug: string) => {
-    let eventType = "";
-    const slugParts = slug.split("-");
-    if (slugParts.length < 2) return "";
-    switch (slugParts[0]) {
-      case "wshu":
-        eventType = "WorldSkills Hungary";
-        break;
-      case "nak":
-        eventType = "NAK";
-        break;
-      case "osztvszktv":
-        eventType = "SZKTV/OSZTV";
-        break;
-      case "other":
-        eventType = "";
-        break;
-      default:
-        eventType = "";
-        break;
-    }
-    return eventType;
-  };
-
   const getEventForm = (slug: string) => {
     let eventType = "";
     const slugParts = slug.split("-");
     if (slugParts.length < 2) return "";
     switch (slugParts[1]) {
       case "szakmabemutato":
-        eventType = "szakmabemutató";
+        eventType = "Szakmabemutató";
         break;
       case "verseny":
-        eventType = "verseny";
+        eventType = "Verseny";
         break;
       default:
         eventType = "";
@@ -72,18 +48,20 @@ const EventCards = ({ events }: EventCardsProps) => {
           return (
             <Grid item xs={12} md={6} key={eventIndex}>
               <Paper
+                variant="outlined"
                 sx={{
                   p: 2,
                   height: "100%",
                   bgcolor: "primary.light",
                   color: "primary.contrastText",
+                  borderColor: "#fff1",
                 }}
               >
                 <Typography variant="h6" gutterBottom sx={{ mb: 1 }}>
                   {event.title}
                 </Typography>
                 <Typography variant="body2" gutterBottom sx={{ mb: 1 }}>
-                  {`${getEventType(event.slug)} ${getEventForm(event.slug)}`}
+                  {getEventForm(event.slug)}
                 </Typography>
                 <Box sx={{ display: "flex", gap: 1, mt: 1 }}>
                   <Button

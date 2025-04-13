@@ -32,7 +32,7 @@ const EventsPage = async () => {
     <>
       <GradientTitle>{title}</GradientTitle>
       <PageContainer sx={{ position: "relative" }}>
-        <FormattedContent sx={{ my: 2 }} variant="body1">
+        <FormattedContent sx={{ mb: 2 }} variant="body2">
           {lead}
         </FormattedContent>
 

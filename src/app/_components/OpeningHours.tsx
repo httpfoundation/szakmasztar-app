@@ -1,66 +1,23 @@
 import { Typography } from "@mui/material";
+import TwoLinesInfo from "@/components/common/TwoLinesInfo";
 import SectionContainer from "@/components/layouts/SectionContainer";
 
 const OpeningHours = () => {
   return (
-    <SectionContainer sx={{ position: "relative", pt: 1 }}>
+    <SectionContainer>
       <Typography
         variant="h2"
         sx={{
-          mb: 2,
           color: "primary.contrastText",
           textAlign: "center",
-          fontSize: 18,
-          textTransform: "uppercase",
+          fontSize: 20,
+          mb: 1,
         }}
       >
         Nyitvatartás
       </Typography>
-      <Typography
-        variant="body1"
-        sx={{
-          mb: 1,
-          color: "primary.contrastText",
-          fontWeight: "500",
-          textAlign: "center",
-          bgcolor: "#71376A40",
-          px: 2,
-          py: 1,
-          borderRadius: 1,
-          borderLeft: "6px solid #ffffff10",
-          borderRight: "6px solid transparent",
-        }}
-      >
-        2025. 04. 28. (hétfő)
-        <Typography
-          component="span"
-          sx={{ fontWeight: "700", color: "success.main", display: "block" }}
-        >
-          11:00 - 16:00
-        </Typography>
-      </Typography>
-      <Typography
-        variant="body1"
-        sx={{
-          color: "primary.contrastText",
-          fontWeight: "500",
-          textAlign: "center",
-          bgcolor: "#71376A40",
-          px: 2,
-          py: 1,
-          borderRadius: 1,
-          borderLeft: "6px solid #ffffff10",
-          borderRight: "6px solid transparent",
-        }}
-      >
-        2025. 04. 29. (kedd)
-        <Typography
-          component="span"
-          sx={{ fontWeight: "700", color: "success.main", display: "block" }}
-        >
-          10:00 - 16:00
-        </Typography>
-      </Typography>
+      <TwoLinesInfo primaryText="2025. április 28. (hétfő)" secondaryText="10:00 - 16:00" />
+      <TwoLinesInfo primaryText="2025. április 29. (kedd)" secondaryText="08:00 - 16:00" />
     </SectionContainer>
   );
 };

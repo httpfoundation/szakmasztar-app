@@ -25,7 +25,7 @@ const EventCategoryCard = ({ category }: EventCategoryCardProps) => {
         height: "100%",
         bgcolor: category.color,
         border: "1px solid",
-        borderRadius: 3,
+        borderRadius: 2,
         borderColor: "primary.light",
         display: "flex",
         flexDirection: "column",
@@ -45,4 +45,3 @@ const EventCategoryCard = ({ category }: EventCategoryCardProps) => {
 };
 
 export default EventCategoryCard;
-

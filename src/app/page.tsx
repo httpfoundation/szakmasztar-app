@@ -4,6 +4,7 @@ import heroImage from "@/assets/images/hero.png";
 import HeroImage from "./_components/HeroImage";
 import HeroSection from "./_components/HeroSection";
 import ImageButtonSection from "./_components/ImageButtonSection";
+import InstallButton from "./_components/InstallButton";
 import JumpCodeSection from "./_components/JumpCodeSection";
 import OpeningHours from "./_components/OpeningHours";
 import OrganizerInfo from "./_components/OrganizerInfo";
@@ -20,6 +21,7 @@ const IndexPage = async () => {
 
       <Stack sx={{ width: "100%", position: "relative" }}>
         <HeroSection />
+        <InstallButton />
         <ImageButtonSection />
         <JumpCodeSection />
         <OpeningHours />

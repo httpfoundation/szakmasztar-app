@@ -12,7 +12,7 @@ const EventsPage = () => {
       <GradientTitle>Szakmai programok</GradientTitle>
       <PageContainer sx={{ position: "relative" }}>
         <Starform />
-        <FormattedContent variant="body2" align="left">
+        <FormattedContent variant="body2">
           A rendezvény helyet ad a szakmai tanulmányi versenyek döntőinek, a WorldSkills Hungary
           versenyeinek, szakmabemutatóknak, a támogatói bemutatkozásoknak és más pályaválasztást
           segítő eseménynek egyaránt.

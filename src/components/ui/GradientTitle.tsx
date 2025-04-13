@@ -30,7 +30,12 @@ const GradientTitle = ({ children, sx }: GradientTitleProps) => {
           alignItems: "center",
         }}
       >
-        <Fab color="primary" size="small" sx={{ ml: -1, mr: 2 }} onClick={() => router.back()}>
+        <Fab
+          color="primary"
+          size="small"
+          sx={{ ml: -1, mr: 2, flexShrink: 0 }}
+          onClick={() => router.back()}
+        >
           <ArrowBackIcon />
         </Fab>
         <PageTitle>{children}</PageTitle>

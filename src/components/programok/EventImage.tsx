@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Stack, Typography } from "@mui/material";
-import eventColorstars from "@/assets/images/event-colorstars.png";
-import eventHero from "@/assets/images/event-hero.png";
+// import eventColorstars from "@/assets/images/event-colorstars.png";
+// import eventHero from "@/assets/images/event-hero.png";
 import whiteLogo from "@/assets/images/logo.svg";
 
 interface EventImageProps {
@@ -27,7 +27,7 @@ const EventImage = ({ image, title }: EventImageProps) => {
           zIndex: 100,
         }}
       />
-      <Image
+      {/* <Image
         src={eventColorstars}
         alt={""}
         role="presentation"
@@ -55,7 +55,7 @@ const EventImage = ({ image, title }: EventImageProps) => {
           position: "absolute",
           inset: 0,
         }}
-      />
+      /> */}
 
       <Stack
         spacing={1}
@@ -74,12 +74,12 @@ const EventImage = ({ image, title }: EventImageProps) => {
           sx={{
             textTransform: "uppercase",
             color: "white",
-            fontSize: 34,
+            fontSize: 16,
             wordBreak: "break-word",
             hyphens: "auto",
           }}
         >
-          {title}
+          {"szakmai tanulmányi verseny".toUpperCase()}
         </Typography>
       </Stack>
     </Stack>
