@@ -44,7 +44,7 @@ const IpariErdeklodes = () => {
             <Typography variant="h6" sx={{ mb: 1 }}>
               {IPARAGI_ANSWERS[letter as keyof typeof IPARAGI_ANSWERS].title}
             </Typography>
-            <Typography variant="body2" align="justify">
+            <Typography variant="body2">
               {IPARAGI_ANSWERS[letter as keyof typeof IPARAGI_ANSWERS].description}
             </Typography>
           </Stack>

@@ -30,7 +30,7 @@ const KompetenciaQuestions: FC<KompetenciaQuestionsProps> = ({ onSubmit }) => {
         Ha a kijelentés olyan helyzetet ír le, amiben még nem voltál próbáld elképzelni, hogy hogy
         menne Neked az adott tevékenység (esetleg gondolj már megtörtént hasonló cselekvésre)!
       </Typography>
-      <Typography variant="body2" sx={{ mt: -2 }}>
+      <Typography variant="body2" sx={{ mt: -2, fontWeight: 500 }}>
         1 - ez nehezebben menne nekem, mint hasonló korú társaimnak,
         <br />
         2 - ez ugyanúgy menne nekem, mint hasonló korú társaimnak,
@@ -47,7 +47,10 @@ const KompetenciaQuestions: FC<KompetenciaQuestionsProps> = ({ onSubmit }) => {
             </Typography>
             {kompetenciaCategory.questions.map((question) => (
               <FormControl key={question.id}>
-                <FormLabel sx={{ fontSize: 16, color: "text.primary", fontWeight: 600 }}>
+                <FormLabel
+                  sx={{ fontSize: 15, color: "text.primary", fontWeight: 600 }}
+                  color="info"
+                >
                   {question.question}
                 </FormLabel>
 
@@ -56,7 +59,7 @@ const KompetenciaQuestions: FC<KompetenciaQuestionsProps> = ({ onSubmit }) => {
                     <FormControlLabel
                       value={value}
                       key={value}
-                      control={<Radio />}
+                      control={<Radio color="info" sx={{ "& svg": { color: "#fff" } }} />}
                       label={value.toString()}
                       sx={{ "& .MuiTypography-root": { fontSize: 16 } }}
                       checked={answers.some(
@@ -87,7 +90,13 @@ const KompetenciaQuestions: FC<KompetenciaQuestionsProps> = ({ onSubmit }) => {
         ))}
       </Stack>
 
-      <Button type="submit" sx={{ width: "fit-content" }} size="large" disableElevation>
+      <Button
+        type="submit"
+        sx={{ width: "fit-content" }}
+        size="large"
+        color="success"
+        disableElevation
+      >
         Küldés
       </Button>
     </Stack>

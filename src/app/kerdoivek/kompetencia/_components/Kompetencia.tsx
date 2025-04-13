@@ -46,13 +46,16 @@ const Kompetencia = () => {
             #{category.rank}. {category.categoryName}
           </Typography>
           <Typography variant="body2">{category.description}</Typography>
-          <Typography variant="body1">Pontszám: {category.sum}</Typography>
+          <Typography variant="body1" sx={{ fontWeight: 600 }}>
+            Pontszám: {category.sum}
+          </Typography>
         </Stack>
       ))}
 
       <Button
         size="large"
         sx={{ width: "fit-content" }}
+        color="success"
         onClick={() => {
           setSubmitted(false);
           setAnswers([]);
