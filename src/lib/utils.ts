@@ -41,3 +41,61 @@ export function getMapDefaultPosition(
 
   return { x: svgWidth / 2, y: svgHeight / 2, zoom: 0.1 };
 }
+
+export function getEventTypeBySlug(slug: string) {
+  const eventOwner = slug.includes("wshu")
+    ? "Worldskills Hungary"
+    : slug.includes("osztvszktv")
+      ? "OSZTV/SZKTV"
+      : slug.includes("nak")
+        ? "Nemzeti Agrárkamara"
+        : "";
+  const eventType = slug.includes("verseny")
+    ? eventOwner === "Worldskills Hungary"
+      ? "nemzeti válogató döntő"
+      : "szakmai tanulmányi verseny döntő"
+    : slug.includes("szakmabemutato")
+      ? "szakmai bemutató"
+      : "egyéb program";
+
+  return { eventOwner, eventType };
+}
+
+type MetadataCompetitor = {
+  id: string;
+  name: string;
+  school?: string;
+  teacher?: string;
+};
+
+export function parseArticleMetadata(metadata: string) {
+  const competitors: MetadataCompetitor[] = [];
+
+  try {
+    const parsedMetadata = JSON.parse(metadata);
+
+    if (parsedMetadata && Array.isArray(parsedMetadata.competitors)) {
+      parsedMetadata.competitors.forEach((competitor: MetadataCompetitor) => {
+        competitors.push({
+          ...competitor,
+          school:
+            competitor.school === "?"
+              ? undefined
+              : competitor.school === "-"
+                ? undefined
+                : competitor.school,
+          teacher:
+            competitor.teacher === "?"
+              ? undefined
+              : competitor.teacher === "-"
+                ? undefined
+                : competitor.teacher,
+        });
+      });
+
+      return { competitors };
+    }
+  } catch {}
+
+  return { competitors: [] };
+}

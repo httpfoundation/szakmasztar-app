@@ -1,15 +1,25 @@
 import Image from "next/image";
 import { Stack, Typography } from "@mui/material";
-// import eventColorstars from "@/assets/images/event-colorstars.png";
-// import eventHero from "@/assets/images/event-hero.png";
-import whiteLogo from "@/assets/images/logo.svg";
+import eventColorstars from "@/assets/images/event-colorstars.png";
+import eventHero from "@/assets/images/event-hero.png";
+import szakmasztarLogo from "@/assets/images/logo.svg";
+import wshuLogo from "@/assets/images/wshu-logo.svg";
+import { getEventTypeBySlug } from "@/lib/utils";
 
 interface EventImageProps {
   image: string;
   title: string;
+  slug: string;
 }
 
-const EventImage = ({ image, title }: EventImageProps) => {
+const EventImage = ({ image, title, slug }: EventImageProps) => {
+  const { eventOwner, eventType } = getEventTypeBySlug(slug);
+  const imageSrc = slug.includes("wshu")
+    ? wshuLogo
+    : slug.includes("osztvszktv")
+      ? szakmasztarLogo
+      : null;
+
   return (
     <Stack sx={{ width: "100%", aspectRatio: "3 / 2", position: "relative" }}>
       <Image
@@ -23,11 +33,11 @@ const EventImage = ({ image, title }: EventImageProps) => {
           objectFit: "cover",
           objectPosition: "center",
           aspectRatio: "3 / 2",
-          maskImage: "linear-gradient(55deg, transparent 20%, black 80%)",
+          maskImage: "linear-gradient(50deg, transparent 20%, black 70%)",
           zIndex: 100,
         }}
       />
-      {/* <Image
+      <Image
         src={eventColorstars}
         alt={""}
         role="presentation"
@@ -55,32 +65,46 @@ const EventImage = ({ image, title }: EventImageProps) => {
           position: "absolute",
           inset: 0,
         }}
-      /> */}
+      />
 
       <Stack
-        spacing={1}
         sx={{
           position: "absolute",
-          bottom: "1rem",
+          bottom: ".5rem",
           left: "1rem",
           alignItems: "flex-start",
           zIndex: 300,
         }}
       >
-        <Image src={whiteLogo} alt="Logo" style={{ height: "80px", width: "auto" }} />
-        <Typography
-          variant="h1"
-          lang="hu"
-          sx={{
-            textTransform: "uppercase",
-            color: "white",
-            fontSize: 16,
-            wordBreak: "break-word",
-            hyphens: "auto",
-          }}
-        >
-          {"szakmai tanulmányi verseny".toUpperCase()}
-        </Typography>
+        {!!imageSrc && (
+          <Image src={imageSrc} alt="Logo" style={{ height: "80px", width: "auto" }} />
+        )}
+        {!!eventOwner && (
+          <Typography
+            variant="body2"
+            sx={{
+              color: "white",
+              fontSize: 16,
+              fontWeight: 600,
+              mt: 1,
+            }}
+          >
+            {eventOwner}
+          </Typography>
+        )}
+        {!!eventType && (
+          <Typography
+            variant="body2"
+            sx={{
+              textTransform: "uppercase",
+              color: "white",
+              fontSize: 18,
+              fontWeight: 700,
+            }}
+          >
+            {eventType}
+          </Typography>
+        )}
       </Stack>
     </Stack>
   );

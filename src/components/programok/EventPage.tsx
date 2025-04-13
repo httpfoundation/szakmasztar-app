@@ -1,27 +1,18 @@
-import { Box, Stack, Typography } from "@mui/material";
-import { SponsorFragment } from "@/actions/sponsors/sponsors.generated";
+import { Stack, Typography } from "@mui/material";
+import { getEventTypeBySlug, parseArticleMetadata } from "@/lib/utils";
 import FormattedContent from "../FormattedContent";
 import PageContainer from "../layouts/PageContainer";
-import SponsorCard from "../sponsor/SponsorCard";
 import GradientTitle from "../ui/GradientTitle";
 import Starform from "../ui/Starform";
 import EventImage from "./EventImage";
-
-type MetadataCompetitor = {
-  id: string;
-  name: string;
-  school?: string;
-  teacher?: string;
-};
 
 interface EventPageProps {
   title: string;
   eventInfo: string;
   generalInfo: string;
   image: string;
-  location: string;
-  sponsors: SponsorFragment[];
   metadata?: string;
+  slug: string;
 }
 
 const EventPage = ({
@@ -29,53 +20,37 @@ const EventPage = ({
   eventInfo,
   generalInfo,
   image,
-  sponsors,
   metadata = "{}",
+  slug,
 }: EventPageProps) => {
-  const competitors: MetadataCompetitor[] = [];
-
-  try {
-    const parsedMetadata = JSON.parse(metadata);
-
-    if (parsedMetadata && Array.isArray(parsedMetadata.competitors)) {
-      parsedMetadata.competitors.forEach((competitor: MetadataCompetitor) => {
-        competitors.push({
-          ...competitor,
-          school:
-            competitor.school === "?"
-              ? undefined
-              : competitor.school === "-"
-                ? undefined
-                : competitor.school,
-          teacher:
-            competitor.teacher === "?"
-              ? undefined
-              : competitor.teacher === "-"
-                ? undefined
-                : competitor.teacher,
-        });
-      });
-    }
-  } catch {}
+  const { eventType } = getEventTypeBySlug(slug);
+  const { competitors } = parseArticleMetadata(metadata);
 
   return (
     <>
       <GradientTitle sx={{ mb: 0 }}>{title}</GradientTitle>
-      <EventImage title={title} image={image} />
-      {/* <FormattedContent variant="h3" sx={{ color: "white", textAlign: "center", mt: 1 }}>
-        {"szakmai tanulmányi verseny".toUpperCase()}
-      </FormattedContent> */}
+      <EventImage title={title} image={image} slug={slug} />
 
       <PageContainer sx={{ position: "relative" }}>
         <Starform />
-        <Typography variant="h2" sx={{ color: "white", fontWeight: "bold" }}>
-          SZAKMA<span style={{ fontWeight: "300" }}>LEÍRÁS</span>
-        </Typography>
+
         <Stack spacing={2} sx={{ flex: 1, pb: 3 }}>
+          <Typography variant="h2" sx={{ color: "white", fontWeight: "bold" }}>
+            SZAKMA<span style={{ fontWeight: "300" }}>LEÍRÁS</span>
+          </Typography>
+
           <FormattedContent sx={{ color: "white" }}>{eventInfo}</FormattedContent>
 
-          <Typography variant="h2" sx={{ color: "white", fontWeight: "bold" }}>
-            VERSENY <span style={{ fontWeight: "300" }}>INFORMÁCIÓK</span>
+          <Typography
+            variant="h2"
+            sx={{ color: "white", fontWeight: "bold", textTransform: "uppercase" }}
+          >
+            {eventType.includes("döntő")
+              ? "verseny"
+              : eventType.includes("bemutató")
+                ? "bemutató"
+                : "egyéb program"}{" "}
+            <span style={{ fontWeight: "300" }}>INFORMÁCIÓK</span>
           </Typography>
           <FormattedContent sx={{ color: "white" }}>{generalInfo}</FormattedContent>
 
@@ -109,17 +84,6 @@ const EventPage = ({
                   ))}
               </Stack>
             </>
-          )}
-
-          {sponsors.length > 0 && (
-            <Box sx={{ mt: "auto" }}>
-              <Typography variant="h2" sx={{ color: "white", fontWeight: "bold" }}>
-                SZPONZOROK
-              </Typography>
-              {sponsors.map((sponsor, index) => (
-                <SponsorCard sponsor={sponsor} key={index} />
-              ))}
-            </Box>
           )}
         </Stack>
       </PageContainer>

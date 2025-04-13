@@ -29,9 +29,8 @@ const SectorEventPage = async ({ params }: EventPageProps) => {
       generalInfo={event.content || ""}
       eventInfo={event.lead || ""}
       image={event.image?.url || ""}
-      location={"A21"}
-      sponsors={[]}
       metadata={event.metadata}
+      slug={event.slug}
     />
   );
 };
