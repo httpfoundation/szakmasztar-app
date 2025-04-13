@@ -1,4 +1,4 @@
-import { Grid, Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import SectionContainer from "@/components/layouts/SectionContainer";
 import SponsorCard from "@/components/sponsor/SponsorCard";
 import { Sponsor } from "@/types.generated";
@@ -22,14 +22,11 @@ export default function SponsorSection({ sponsors }: SponsorSectionProps) {
       >
         A rendezvény támogatói
       </Typography>
-      <Grid container spacing={2}>
+      <Stack sx={{ display: "grid", gridTemplateColumns: { xs: "repeat(2,1fr)" }, gap: 1.5 }}>
         {sponsors.map((sponsor) => (
-          <Grid item xs={3} sm={3} md={2} key={sponsor.id}>
-            <SponsorCard sponsor={sponsor} />
-          </Grid>
+          <SponsorCard key={sponsor.id} sponsor={sponsor} />
         ))}
-      </Grid>
+      </Stack>
     </SectionContainer>
   );
 }
-
