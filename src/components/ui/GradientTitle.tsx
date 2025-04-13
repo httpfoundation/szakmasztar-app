@@ -19,7 +19,7 @@ const GradientTitle = ({ children, sx }: GradientTitleProps) => {
       sx={{
         width: "100%",
         color: "white",
-        background: "linear-gradient(to right, #FFDF12 -20%, #EA5A32, #71376A 110%)",
+        background: "linear-gradient(to left, #FFDF12 -30%, #EA5A32, #71376A 110%)",
         ...sx,
       }}
     >
@@ -31,9 +31,9 @@ const GradientTitle = ({ children, sx }: GradientTitleProps) => {
         }}
       >
         <Fab
-          color="primary"
+          color="info"
           size="small"
-          sx={{ ml: -1, mr: 2, flexShrink: 0 }}
+          sx={{ ml: -1, mr: 2, flexShrink: 0, color: "white", background: "#fff1", boxShadow: 0 }}
           onClick={() => router.back()}
         >
           <ArrowBackIcon />

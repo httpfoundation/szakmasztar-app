@@ -49,7 +49,7 @@ const Eredmenyorientacios = () => {
             ? "9-16 pont: közepesen fontos számodra a jó iskolai teljesítmény"
             : "17-24 pont: nagyon fontos számodra a jó iskolai teljesítmény"}
       </Typography>
-      <Typography variant="body2">
+      <Typography variant="body2" align="justify">
         Minél magasabb pontszámot kaptál, annál fontosabb számodra a jó, magas színvonalú iskolai
         teljesítmény, vagyis magas pontszám esetén kíváncsian és szívesen tanulsz, ami a
         hatékonyságod és a későbbi sikeres életpályád egyik fontos alapja. Az alacsonyabb pontszám
@@ -59,6 +59,7 @@ const Eredmenyorientacios = () => {
 
       <Button
         size="large"
+        color="success"
         sx={{ width: "fit-content" }}
         onClick={() => {
           setSubmitted(false);

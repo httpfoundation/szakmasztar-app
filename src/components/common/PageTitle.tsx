@@ -26,10 +26,14 @@ export default function PageTitle({ children, icon, sx }: PageTitleProps) {
         variant="h1"
         component="h1"
         color="primary.contrastText"
+        lang="hu"
         sx={{
           fontSize: { xs: "1.6rem", sm: "2.5rem", md: "3rem" },
           fontWeight: "bold",
           textTransform: "uppercase",
+          wordBreak: "break-word",
+          lineHeight: 1.2,
+          hyphens: "auto",
           ...sx,
         }}
       >

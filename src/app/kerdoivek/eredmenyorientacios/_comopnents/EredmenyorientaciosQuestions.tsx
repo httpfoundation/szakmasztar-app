@@ -7,7 +7,6 @@ import {
   Radio,
   RadioGroup,
   Stack,
-  Typography,
 } from "@mui/material";
 import { EREDMENYORIENTACIONS_QUESTIONS } from "@/lib/questions";
 import { EredmenyorientaciosAnswerType } from "./Eredmenyorientacios";
@@ -28,26 +27,24 @@ const EredmenyorientaciosQuestions: FC<EredmenyorientaciosQuestionsProps> = ({ o
   }
 
   return (
-    <Stack spacing={3} component="form" onSubmit={handleFormSubmit}>
-      <Typography variant="body2">
-        Lássuk, hogy benned mennyire erős a hajtóerő a jó eredmények elérésére! Jelöld be minden
-        egyes kérdésre azt a választ, amelyiket Magadra nézve igaznak tartasz!
-      </Typography>
-
+    <Stack spacing={3} component="form" onSubmit={handleFormSubmit} sx={{ mb: 3 }}>
       <Stack
         sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "repeat(2,1fr)" }, gap: 2 }}
       >
         {EREDMENYORIENTACIONS_QUESTIONS.map((question) => (
           <FormControl key={question.id}>
-            <FormLabel sx={{ fontSize: 16, color: "text.primary", fontWeight: 600 }}>
+            <FormLabel sx={{ fontSize: 12, color: "text.primary", fontWeight: 600 }} color="info">
               {question.question}
             </FormLabel>
-            <RadioGroup name={`question-${question.id}`}>
+            <RadioGroup
+              name={`question-${question.id}`}
+              sx={{ display: "flex", alignItems: "center", flexDirection: "row", gap: 3 }}
+            >
               <FormControlLabel
                 value={true}
-                control={<Radio />}
+                control={<Radio color="info" sx={{ "& svg": { color: "#fff" } }} />}
                 label="Igen"
-                sx={{ "& .MuiTypography-root": { fontSize: 16 } }}
+                sx={{ "& .MuiTypography-root": { fontSize: 15 } }}
                 checked={answers.find((ans) => ans.id === question.id)?.value === true}
                 onChange={() =>
                   setAnswers((prev) =>
@@ -57,9 +54,9 @@ const EredmenyorientaciosQuestions: FC<EredmenyorientaciosQuestionsProps> = ({ o
               />
               <FormControlLabel
                 value={false}
-                control={<Radio />}
+                control={<Radio color="info" sx={{ "& svg": { color: "#fff" } }} />}
                 label="Nem"
-                sx={{ "& .MuiTypography-root": { fontSize: 16 } }}
+                sx={{ "& .MuiTypography-root": { fontSize: 15 } }}
                 checked={answers.find((ans) => ans.id === question.id)?.value === false}
                 onChange={() =>
                   setAnswers((prev) =>
@@ -76,7 +73,7 @@ const EredmenyorientaciosQuestions: FC<EredmenyorientaciosQuestionsProps> = ({ o
         type="submit"
         sx={{ width: "fit-content" }}
         size="large"
-        color="error"
+        color="success"
         disableElevation
       >
         Küldés
