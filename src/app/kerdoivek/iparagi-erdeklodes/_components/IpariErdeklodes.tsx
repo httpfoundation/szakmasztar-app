@@ -41,10 +41,10 @@ const IpariErdeklodes = () => {
       ) : (
         sortedLetters.map((letter) => (
           <Stack key={letter}>
-            <Typography variant="h6">
+            <Typography variant="h6" sx={{ mb: 1 }}>
               {IPARAGI_ANSWERS[letter as keyof typeof IPARAGI_ANSWERS].title}
             </Typography>
-            <Typography variant="body2">
+            <Typography variant="body2" align="justify">
               {IPARAGI_ANSWERS[letter as keyof typeof IPARAGI_ANSWERS].description}
             </Typography>
           </Stack>
@@ -53,6 +53,7 @@ const IpariErdeklodes = () => {
 
       <Button
         size="large"
+        color="success"
         sx={{ width: "fit-content" }}
         onClick={() => {
           setSubmitted(false);

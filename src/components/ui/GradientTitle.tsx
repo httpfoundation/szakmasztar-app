@@ -33,7 +33,15 @@ const GradientTitle = ({ children, sx }: GradientTitleProps) => {
         <Fab
           color="info"
           size="small"
-          sx={{ ml: -1, mr: 2, flexShrink: 0, color: "white", background: "#fff1", boxShadow: 0 }}
+          sx={{
+            ml: -1,
+            mr: 2,
+            flexShrink: 0,
+            color: "white",
+            background: "#fff1",
+            boxShadow: 0,
+            "&:hover,&:active,&:focus": { background: "#fff2" },
+          }}
           onClick={() => router.back()}
         >
           <ArrowBackIcon />

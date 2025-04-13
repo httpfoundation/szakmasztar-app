@@ -29,6 +29,7 @@ const IpariErdeklodesQuestions: FC<IpariErdeklodesQuestionsProps> = ({ onSubmit 
           key={question.id}
           control={
             <Checkbox
+              sx={{ "& svg": { color: "white" } }}
               checked={selectedQuestions.some((q) => q.id === question.id)}
               onChange={(_, checked) =>
                 setSelectedQuestoins((prev) =>
@@ -38,11 +39,11 @@ const IpariErdeklodesQuestions: FC<IpariErdeklodesQuestionsProps> = ({ onSubmit 
             />
           }
           label={question.question}
-          sx={{ "& .MuiTypography-root": { fontSize: 16, userSelect: "none" } }}
+          sx={{ "& .MuiTypography-root": { fontSize: 14, userSelect: "none", fontWeight: 500 } }}
         />
       ))}
 
-      <Button type="submit" size="large" sx={{ mt: 1 }} disableElevation>
+      <Button type="submit" size="large" color="success" sx={{ mt: 1 }} disableElevation>
         Küldés
       </Button>
     </Stack>
