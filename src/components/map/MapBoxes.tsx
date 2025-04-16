@@ -25,7 +25,7 @@ const MapBoxes = ({ boxItems }: MapBoxesProps) => {
                     : otherMain
             }
             stroke={"white"}
-            strokeWidth="1"
+            strokeWidth="2"
           />
 
           <foreignObject x="0" y="0" width={box.stand.width} height={box.stand.height}>
@@ -39,7 +39,7 @@ const MapBoxes = ({ boxItems }: MapBoxesProps) => {
                 textAlign: "center",
                 fontSize: Math.min(box.stand.width / 7, 26),
                 fontFamily: "var(--font-montserrat), Arial, sans-serif",
-                fontWeight: "600",
+                fontWeight: "500",
                 color: "#fff",
                 wordWrap: "break-word",
                 overflow: "hidden",
