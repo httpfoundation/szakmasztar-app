@@ -4,7 +4,12 @@ import { getMapItems } from "@/actions/articles/articles";
 export const revalidate = 3600;
 
 export async function generateStaticParams() {
-  return [];
+  const boxItems = await getMapItems();
+  return boxItems
+    .filter((x) => !!x.jumpCode)
+    .map((item) => ({
+      jumpcode: item.jumpCode.toString(),
+    }));
 }
 
 interface JumpCodePageProps {
