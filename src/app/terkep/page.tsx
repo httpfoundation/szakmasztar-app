@@ -4,8 +4,10 @@ import { Stack, Typography } from "@mui/material";
 import aPavilonIcon from "@/assets/images/maps/a-pavilon-icon.svg";
 import dPavilonIcon from "@/assets/images/maps/d-pavilon-icon.svg";
 import hungexpoMapIcon from "@/assets/images/maps/hungexpo-icon.svg";
+import szakmasztarSymbol from "@/assets/images/szakmasztar-symbol.svg";
 import ImageButton from "@/components/common/ImageButton";
 import PageContainer from "@/components/layouts/PageContainer";
+import Starform from "@/components/ui/Starform";
 import YellowTitle from "@/components/ui/YellowTitle";
 
 export const dynamic = "force-static";
@@ -15,25 +17,43 @@ const MapPage = async () => {
     <>
       <YellowTitle>Térkép</YellowTitle>
 
-      <PageContainer>
+      <PageContainer sx={{ position: "relative", flexGrow: 1 }}>
+        <Starform
+          style={{ top: "unset", bottom: 0, transform: "scale(1.3)", transformOrigin: "right" }}
+        />
+        <Image
+          src={szakmasztarSymbol}
+          alt=""
+          role="presentation"
+          style={{
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            width: "300px",
+            height: "auto",
+            opacity: 0.2,
+            pointerEvents: "none",
+          }}
+        />
+
         <Stack direction="column" spacing={2}>
           <MapButton
             href="/terkep/hungexpo"
-            icon={<Image src={hungexpoMapIcon} alt="Hungexpo" width={42} height={42} />}
+            icon={<Image src={hungexpoMapIcon} alt="Hungexpo" width={46} height={46} />}
             title="HUNGEXPO"
             subtitle="Áttekintő tékép"
           />
 
           <MapButton
             href="/terkep/a-pavilon"
-            icon={<Image src={aPavilonIcon} alt="Hungexpo" width={42} height={42} />}
+            icon={<Image src={aPavilonIcon} alt="Hungexpo" width={46} height={46} />}
             title="A pavilon"
             subtitle="Szakmai Tanulmányi versenyek és WorldSkills Hungary versenyek"
           />
 
           <MapButton
             href="/terkep/d-pavilon"
-            icon={<Image src={dPavilonIcon} alt="Hungexpo" width={42} height={42} />}
+            icon={<Image src={dPavilonIcon} alt="Hungexpo" width={46} height={46} />}
             title="D pavilon térképe"
             subtitle="Az agrár terület szakmai tanulmányi versenyei"
           />

@@ -64,7 +64,14 @@ const EventCategoryCard = ({ category }: EventCategoryCardProps) => {
           height={100}
           alt=""
           role="presentation"
-          style={{ position: "absolute", right: 0, bottom: 0, zIndex: -1, opacity: 0.5 }}
+          style={{
+            position: "absolute",
+            right: 0,
+            bottom: 0,
+            zIndex: -1,
+            opacity: 0.5,
+            pointerEvents: "none",
+          }}
         />
       )}
     </Stack>

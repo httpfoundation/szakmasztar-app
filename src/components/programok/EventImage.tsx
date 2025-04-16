@@ -64,6 +64,7 @@ const EventImage = ({
           objectPosition: "left",
           position: "absolute",
           inset: 0,
+          pointerEvents: "none",
         }}
       />
 
