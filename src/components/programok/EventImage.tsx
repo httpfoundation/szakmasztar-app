@@ -1,25 +1,25 @@
 import Image from "next/image";
-import { Stack, Typography } from "@mui/material";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { Button, Stack } from "@mui/material";
 import eventColorstars from "@/assets/images/event-colorstars.png";
 import eventHero from "@/assets/images/event-hero.png";
-import szakmasztarLogo from "@/assets/images/logo.svg";
-import wshuLogo from "@/assets/images/wshu-logo.svg";
-import { getEventTypeBySlug } from "@/lib/utils";
 
 interface EventImageProps {
   image: string;
   title: string;
   slug: string;
+  leirasBtnText: string;
+  infoBtnText: string;
+  hasCompetitors: boolean;
 }
 
-const EventImage = ({ image, title, slug }: EventImageProps) => {
-  const { eventOwner, eventType } = getEventTypeBySlug(slug);
-  const imageSrc = slug.includes("wshu")
-    ? wshuLogo
-    : slug.includes("osztvszktv")
-      ? szakmasztarLogo
-      : null;
-
+const EventImage = ({
+  image,
+  title,
+  infoBtnText,
+  leirasBtnText,
+  hasCompetitors,
+}: EventImageProps) => {
   return (
     <Stack sx={{ width: "100%", aspectRatio: "3 / 2", position: "relative" }}>
       <Image
@@ -70,41 +70,24 @@ const EventImage = ({ image, title, slug }: EventImageProps) => {
       <Stack
         sx={{
           position: "absolute",
-          bottom: ".5rem",
-          left: "1rem",
+          bottom: ".75rem",
+          left: ".75rem",
           alignItems: "flex-start",
           zIndex: 300,
+          gap: 1.5,
         }}
       >
-        {!!imageSrc && (
-          <Image src={imageSrc} alt="Logo" style={{ height: "80px", width: "auto" }} />
+        {hasCompetitors && (
+          <Button href="#versenyzok" endIcon={<KeyboardArrowDownIcon sx={{ ml: -0.5 }} />}>
+            Versenyzők
+          </Button>
         )}
-        {!!eventOwner && (
-          <Typography
-            variant="body2"
-            sx={{
-              color: "white",
-              fontSize: 16,
-              fontWeight: 600,
-              mt: 1,
-            }}
-          >
-            {eventOwner}
-          </Typography>
-        )}
-        {!!eventType && (
-          <Typography
-            variant="body2"
-            sx={{
-              textTransform: "uppercase",
-              color: "white",
-              fontSize: 18,
-              fontWeight: 700,
-            }}
-          >
-            {eventType}
-          </Typography>
-        )}
+        <Button href="#leiras" endIcon={<KeyboardArrowDownIcon sx={{ ml: -0.5 }} />}>
+          {leirasBtnText}
+        </Button>
+        <Button href="#info" endIcon={<KeyboardArrowDownIcon sx={{ ml: -0.5 }} />}>
+          {infoBtnText}
+        </Button>
       </Stack>
     </Stack>
   );
