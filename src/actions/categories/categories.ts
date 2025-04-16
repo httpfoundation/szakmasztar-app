@@ -36,7 +36,7 @@ export async function getEventsArticlesByCategory(categorySlugPrefix: string) {
       const eventsBySectors = (await getCategoryTree({ rootNodeId: "szakmasztar-app-sector" }))
         .children;
       const allEvents = eventsBySectors.flatMap((sector) => sector.items as Article[]);
-      return allEvents.filter((event) => event.slug.startsWith(categorySlugPrefix));
+      return allEvents.filter((event) => event.slug.includes(categorySlugPrefix));
     },
     { tags: [getIdTag(categorySlugPrefix, "eventsBySector")], revalidate: 60 * 60 }
   )();

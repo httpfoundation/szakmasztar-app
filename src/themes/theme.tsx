@@ -41,9 +41,8 @@ export const szakmaSztarPurple = "#350F38";
 const szakmaSztarBlack = "rgba(0,0,0)";
 export const osztvMain = "#71376A";
 export const wshuMain = "#93415A";
-export const nakMain = "#E07126";
+export const nakMain = "#703346";
 export const sponsorMain = "#904E96";
-export const otherMain = "#703346";
 const lightContrast = "#f5f5f5";
 
 // const szakmaSztarGrey = "#cec6ce";
@@ -125,7 +124,7 @@ export const theme = createTheme({
       contrastText: lightContrast,
     },
     other: {
-      main: otherMain,
+      main: sponsorMain,
       contrastText: szakmaSztarPurple,
     },
     sponsor: {

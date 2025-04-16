@@ -24,24 +24,14 @@
     "symbolSrc": "/images/nak-symbol.svg"
   },
   {
-    "title": "Támogatóink",
-    "slug": "szakmai-programok/tamogatoi-bemutatkozasok",
-    "description": "Támogatóink bemutatkozásai és interaktív programjai",
-    "locations": [
-      { "title": "A pavilon", "slug": "/terkep/a-pavilon" },
-      { "title": "D pavilon", "slug": "/terkep/d-pavilon" }
-    ],
-    "color": "sponsor.main",
-    "symbolSrc": "/images/sponsor-symbol.svg"
-  },
-  {
-    "title": "Egyéb események",
+    "title": "Egyéb",
     "slug": "szakmai-programok/egyeb-esemenyek",
-    "description": "További pályaválasztást segítő események és programok",
+    "description": "Támogatóink bemutatkozásai, illetve más pályaválasztást segítő események és programok",
     "locations": [
       { "title": "A pavilon", "slug": "/terkep/a-pavilon" },
       { "title": "D pavilon", "slug": "/terkep/d-pavilon" }
     ],
-    "color": "other.main"
+    "color": "other.main",
+    "symbolSrc": "/images/sponsor-symbol.svg"
   }
 ]

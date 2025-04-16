@@ -18,11 +18,10 @@ const EventCategories = () => {
           position: "relative",
         }}
       >
-        {eventCategories.slice(0, -1).map((category, index) => (
+        {eventCategories.map((category, index) => (
           <EventCategoryCard key={index} category={category} />
         ))}
       </Stack>
-      <EventCategoryCard category={eventCategories.at(-1)!} />
     </>
   );
 };
