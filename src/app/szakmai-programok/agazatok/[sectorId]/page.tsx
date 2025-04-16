@@ -3,7 +3,6 @@ import { Paper, Typography } from "@mui/material";
 import { getArticles } from "@/actions/articles/articles";
 import { ArticleFragment } from "@/actions/articles/articles.generated";
 import { getCategory, getCategoryTree } from "@/actions/categories/categories";
-import PageContainer from "@/components/layouts/PageContainer";
 import EventCards from "@/components/programok/EventCards";
 import YellowTitle from "@/components/ui/YellowTitle";
 
@@ -56,8 +55,8 @@ const SectorPage = async ({ params }: SectorPageProps) => {
   return (
     <>
       <YellowTitle>{category.name}</YellowTitle>
-      <PageContainer>
-        {categories.map((category) => {
+      <>
+        {categories.map((category, idx) => {
           if (!events.some(category.filter)) {
             return null;
           }
@@ -68,20 +67,26 @@ const SectorPage = async ({ params }: SectorPageProps) => {
               sx={{
                 p: 2,
                 pb: 0,
-                mb: 2,
-                bgcolor: "#71376A55",
-                border: "1px solid",
-                borderColor: "primary.light",
+                mt: 3,
+                mb: idx === categories.length - 1 ? 5 : 0,
+                bgcolor: "#451F48",
+              }}
+              style={{
+                borderRadius: 0,
+                boxShadow: "none",
               }}
             >
-              <Typography variant="h2" sx={{ fontSize: 19, mb: 1, color: "primary.contrastText" }}>
+              <Typography
+                variant="h2"
+                sx={{ fontSize: 18, mb: 1.5, color: "primary.contrastText", fontWeight: 600 }}
+              >
                 {category.name}
               </Typography>
               <EventCards events={events.filter(category.filter)} sectorId={sectorId} />
             </Paper>
           );
         })}
-      </PageContainer>
+      </>
     </>
   );
 };

@@ -19,27 +19,31 @@ const SkillCategoryCard: FC<SkillCategoryCardProps> = ({ sector }) => {
         p: 0,
         width: "100%",
         height: "100%",
-        bgcolor: "#F5EDF5",
+        bgcolor: "primary.light",
         "&:hover,&:focus-visible": { bgcolor: "#F5EDF5ee" },
         pt: 2,
         flexDirection: "column",
         overflow: "hidden",
-        border: "1px solid",
-        borderColor: "primary.light",
         ".MuiTouchRipple-child": {
           bgcolor: "#fff",
         },
       }}
     >
-      <Image src={sector.imageUrl} alt={sector.name} width={73} height={73} />
+      <Image
+        src={sector.imageUrl}
+        alt={sector.name}
+        width={73}
+        height={73}
+        style={{ filter: "brightness(2000%)" }}
+      />
 
       <Stack
         sx={{
           mt: 1.5,
-          background: "linear-gradient(to top right,rgb(46, 16, 46),rgb(79, 27, 79))",
+          bgcolor: "#D9D9D9",
           px: 1.5,
-          py: 1,
-          clipPath: "polygon(0% 100%, 100% 100%, 100% 0%, 13% 0%)",
+          py: 0.75,
+          // clipPath: "polygon(0% 100%, 100% 100%, 100% 0%, 13% 0%)",
           mb: "-1px",
           mr: "-1px",
           pl: "13%",
@@ -51,10 +55,10 @@ const SkillCategoryCard: FC<SkillCategoryCardProps> = ({ sector }) => {
       >
         <Typography
           variant="body2"
-          align="right"
+          align="center"
           color="white"
           fontWeight={500}
-          sx={{ fontSize: 10, textTransform: "uppercase" }}
+          sx={{ fontSize: 11, textTransform: "uppercase", color: "primary.main", fontWeight: 600 }}
         >
           {sector.name.toUpperCase()}
         </Typography>
