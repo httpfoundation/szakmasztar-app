@@ -7,11 +7,13 @@ interface ImageButtonProps {
   text: ReactNode;
   icon: React.ReactNode;
   sx?: SxProps;
+  iconSx?: SxProps;
 }
 
-export default function ImageButton({ href, text, icon, sx }: ImageButtonProps) {
+export default function ImageButton({ href, text, icon, sx, iconSx }: ImageButtonProps) {
   return (
     <Box
+      role="button"
       component={Link}
       href={href}
       sx={{
@@ -21,7 +23,6 @@ export default function ImageButton({ href, text, icon, sx }: ImageButtonProps) 
         px: 1,
         py: 1.5,
         backgroundColor: "primary.light",
-        opacity: 0.9,
         backdropFilter: "blur(10px)",
         textDecoration: "none",
         ...sx,
@@ -34,19 +35,22 @@ export default function ImageButton({ href, text, icon, sx }: ImageButtonProps) 
           "& > svg": {
             fontSize: "2.25rem",
           },
+          ...iconSx,
         }}
       >
         {icon}
       </IconButton>
+
       <Typography
         variant="h6"
         component="span"
         sx={{
           color: "white",
           alignSelf: "center",
-          flexGrow: 1,
           fontSize: 14,
           fontWeight: 600,
+          width: "fit-content",
+          display: "inline",
         }}
       >
         {text}
