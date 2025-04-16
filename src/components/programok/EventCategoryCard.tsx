@@ -1,3 +1,4 @@
+import Image from "next/image";
 import InfoIcon from "@mui/icons-material/Info";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { Stack } from "@mui/material";
@@ -15,6 +16,7 @@ interface EventCategoryCardProps {
       title: string;
       slug: string;
     }>;
+    symbolSrc?: string;
   };
 }
 
@@ -28,6 +30,8 @@ const EventCategoryCard = ({ category }: EventCategoryCardProps) => {
         borderRadius: 2,
         display: "flex",
         flexDirection: "column",
+        position: "relative",
+        isolation: "isolate",
       }}
     >
       <EventCategoryCardTitle title={category.title} />
@@ -52,6 +56,17 @@ const EventCategoryCard = ({ category }: EventCategoryCardProps) => {
           </LinkChip>
         ))}
       </Stack>
+
+      {!!category.symbolSrc && (
+        <Image
+          src={category.symbolSrc}
+          width={100}
+          height={100}
+          alt=""
+          role="presentation"
+          style={{ position: "absolute", right: 0, bottom: 0, zIndex: -1, opacity: 0.5 }}
+        />
+      )}
     </Stack>
   );
 };
