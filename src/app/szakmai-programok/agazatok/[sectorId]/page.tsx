@@ -5,7 +5,7 @@ import { ArticleFragment } from "@/actions/articles/articles.generated";
 import { getCategory, getCategoryTree } from "@/actions/categories/categories";
 import PageContainer from "@/components/layouts/PageContainer";
 import EventCards from "@/components/programok/EventCards";
-import GradientTitle from "@/components/ui/GradientTitle";
+import YellowTitle from "@/components/ui/YellowTitle";
 
 export const revalidate = 3600;
 
@@ -55,7 +55,7 @@ const SectorPage = async ({ params }: SectorPageProps) => {
 
   return (
     <>
-      <GradientTitle>{category.name}</GradientTitle>
+      <YellowTitle>{category.name}</YellowTitle>
       <PageContainer>
         {categories.map((category) => {
           if (!events.some(category.filter)) {

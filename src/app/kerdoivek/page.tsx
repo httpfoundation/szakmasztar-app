@@ -5,15 +5,15 @@ import iparagiIcon from "@/assets/images/kerdoivek/icon-iparagi.svg";
 import kompetenciaIcon from "@/assets/images/kerdoivek/icon-kompetencia.svg";
 import ImageButton from "@/components/common/ImageButton";
 import SectionContainer from "@/components/layouts/SectionContainer";
-import GradientTitle from "@/components/ui/GradientTitle";
 import Starform from "@/components/ui/Starform";
+import YellowTitle from "@/components/ui/YellowTitle";
 
 export const dynamic = "force-static";
 
 const KerdoivekPage = () => {
   return (
     <>
-      <GradientTitle>Kérdőívek</GradientTitle>
+      <YellowTitle>Kérdőívek</YellowTitle>
 
       <SectionContainer sx={{ pb: 4, pt: 2, position: "relative" }}>
         <Starform />

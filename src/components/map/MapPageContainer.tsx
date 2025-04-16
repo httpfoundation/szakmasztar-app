@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { Stack } from "@mui/material";
-import GradientTitle from "../ui/GradientTitle";
+import YellowTitle from "../ui/YellowTitle";
 
 interface MapPageContainerProps {
   title: string;
@@ -17,7 +17,7 @@ const MapPageContainer = ({ title, children }: MapPageContainerProps) => {
         // border: "1px solid white",
       }}
     >
-      <GradientTitle>{title}</GradientTitle>
+      <YellowTitle>{title}</YellowTitle>
       <Stack
         sx={{
           width: "100%",

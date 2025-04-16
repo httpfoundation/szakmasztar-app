@@ -3,7 +3,7 @@ import { getCategoryTree } from "@/actions/categories/categories";
 import FormattedContent from "@/components/FormattedContent";
 import PageContainer from "@/components/layouts/PageContainer";
 import SectorCards from "@/components/skills/SectorCards";
-import GradientTitle from "@/components/ui/GradientTitle";
+import YellowTitle from "@/components/ui/YellowTitle";
 
 export const revalidate = 3600;
 
@@ -30,7 +30,7 @@ const EventsPage = async () => {
 
   return (
     <>
-      <GradientTitle>{title}</GradientTitle>
+      <YellowTitle>{title}</YellowTitle>
       <PageContainer sx={{ position: "relative" }}>
         <FormattedContent sx={{ mb: 2 }} variant="body2">
           {lead}

@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Divider, Typography } from "@mui/material";
 import SectionContainer from "../layouts/SectionContainer";
-import GradientTitle from "../ui/GradientTitle";
+import YellowTitle from "../ui/YellowTitle";
 
 interface QuestionTitleProps {
   title: string;
@@ -11,7 +11,7 @@ interface QuestionTitleProps {
 const QuestionTitle: FC<QuestionTitleProps> = ({ title, description }) => {
   return (
     <>
-      <GradientTitle>{`${title} kérdőív`}</GradientTitle>
+      <YellowTitle>{`${title} kérdőív`}</YellowTitle>
 
       <SectionContainer sx={{ bgcolor: "#00000020" }}>
         <Typography

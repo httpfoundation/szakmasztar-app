@@ -2,14 +2,14 @@ import { Map as MapIcon } from "@mui/icons-material";
 import { Stack } from "@mui/material";
 import ImageButton from "@/components/common/ImageButton";
 import PageContainer from "@/components/layouts/PageContainer";
-import GradientTitle from "@/components/ui/GradientTitle";
+import YellowTitle from "@/components/ui/YellowTitle";
 
 export const dynamic = "force-static";
 
 const MapPage = async () => {
   return (
     <>
-      <GradientTitle>Térkép</GradientTitle>
+      <YellowTitle>Térkép</YellowTitle>
 
       <PageContainer>
         <Stack direction="column" spacing={2}>
