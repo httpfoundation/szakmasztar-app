@@ -1,65 +1,85 @@
-import Link from "next/link";
+import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import InfoIcon from "@mui/icons-material/Info";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import { Box, Button, Grid, Paper, Typography } from "@mui/material";
+import { Box, Grid, Paper, Stack, Typography } from "@mui/material";
 import eventSchedule from "@/assets/eventSchedule.json";
+import LinkChip from "../ui/LinkChip";
 
 const EventCalendar = () => {
   return (
-    <Box sx={{ position: "relative" }}>
+    <Box sx={{ position: "relative", mb: 5 }}>
       {eventSchedule.map((day, index) => (
-        <Paper key={index} sx={{ p: 2, mb: 3, bgcolor: "#71376A55" }}>
-          <Typography variant="h2" sx={{ fontSize: 20, color: "success.main", mb: 2 }}>
-            {day.title}
-          </Typography>
-          <Grid container spacing={1}>
+        <Paper
+          key={index}
+          sx={{ p: 2, mt: 3, bgcolor: "#451F48" }}
+          style={{ borderRadius: 0, boxShadow: "none" }}
+        >
+          <Stack direction="row" alignItems="center" spacing={1} sx={{ mb: 2 }}>
+            <CalendarMonthIcon sx={{ mt: -0.35 }} />
+            <Typography variant="h2" sx={{ fontSize: 20, color: "#fff", fontWeight: 700 }}>
+              {day.title}
+            </Typography>
+          </Stack>
+
+          <Grid container spacing={2}>
             {day.events.map((event, eventIndex) => (
               <Grid item xs={12} md={6} key={eventIndex}>
                 <Paper
                   sx={{
-                    p: 2,
                     height: "100%",
                     bgcolor: "primary.light",
                     color: "primary.contrastText",
+                    overflow: "hidden",
+                  }}
+                  style={{
+                    boxShadow: "none",
                   }}
                 >
-                  <Typography variant="body2">
-                    {new Date(event.startTime).toLocaleTimeString("hu-HU", {
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    })}{" "}
-                    -
-                    {new Date(event.endTime).toLocaleTimeString("hu-HU", {
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    })}
-                  </Typography>
-                  <Typography variant="h6" gutterBottom sx={{ mt: 1, mb: 2 }}>
-                    {event.title}
-                  </Typography>
-                  <Box sx={{ display: "flex", gap: 1, mt: 1 }}>
-                    {event.eventSlugs && (
-                      <Button
-                        component={Link}
-                        href={event.eventSlugs}
-                        size="small"
-                        startIcon={<InfoIcon />}
-                        variant="contained"
-                        color="success"
+                  <Stack
+                    direction="row"
+                    sx={{
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      bgcolor: "#D9D9D9",
+                      color: "primary.main",
+                      px: 1.5,
+                      py: 1,
+                    }}
+                  >
+                    <Stack direction="row" alignItems="center" spacing={1}>
+                      <AccessTimeFilledIcon fontSize="small" />
+                      <Typography
+                        variant="body2"
+                        sx={{ fontWeight: 600, flexShrink: 0, whiteSpace: "nowrap" }}
                       >
+                        {new Date(event.startTime).toLocaleTimeString("hu-HU", {
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        })}{" "}
+                        -&nbsp;
+                        {new Date(event.endTime).toLocaleTimeString("hu-HU", {
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        })}
+                      </Typography>
+                    </Stack>
+
+                    <Typography variant="h6" align="right">
+                      {event.title}
+                    </Typography>
+                  </Stack>
+
+                  <Box sx={{ display: "flex", gap: 2, mt: 1.5, px: 1.5, pb: 1.5 }}>
+                    {event.eventSlugs && (
+                      <LinkChip href={event.eventSlugs} icon={<InfoIcon />}>
                         Információ
-                      </Button>
+                      </LinkChip>
                     )}
-                    <Button
-                      component={Link}
-                      href={event.locationSlug}
-                      size="small"
-                      startIcon={<LocationOnIcon />}
-                      variant="outlined"
-                      color="info"
-                    >
+
+                    <LinkChip href={event.locationSlug} icon={<LocationOnIcon />}>
                       {event.location}
-                    </Button>
+                    </LinkChip>
                   </Box>
                 </Paper>
               </Grid>
@@ -72,4 +92,3 @@ const EventCalendar = () => {
 };
 
 export default EventCalendar;
-
