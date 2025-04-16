@@ -4,9 +4,15 @@ interface PageTitleProps {
   children: React.ReactNode;
   icon?: React.ReactNode;
   sx?: SxProps;
+  color?: string;
 }
 
-export default function PageTitle({ children, icon, sx }: PageTitleProps) {
+export default function PageTitle({
+  children,
+  icon,
+  sx,
+  color = "primary.contrastText",
+}: PageTitleProps) {
   return (
     <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
       {icon && (
@@ -15,7 +21,7 @@ export default function PageTitle({ children, icon, sx }: PageTitleProps) {
             display: "flex",
             color: "primary.contrastText",
             "& > svg": {
-              fontSize: { xs: "1.7rem", sm: "2.5rem", md: "3rem" },
+              fontSize: { xs: "1.2rem", sm: "1.2rem", md: "1.4rem" },
             },
           }}
         >
@@ -25,10 +31,10 @@ export default function PageTitle({ children, icon, sx }: PageTitleProps) {
       <Typography
         variant="h1"
         component="h1"
-        color="primary.contrastText"
+        color={color}
         lang="hu"
         sx={{
-          fontSize: { xs: "1.6rem", sm: "2.5rem", md: "3rem" },
+          fontSize: { xs: "1.2rem", sm: "1.2rem", md: "1.4rem" },
           fontWeight: "bold",
           textTransform: "uppercase",
           wordBreak: "break-word",

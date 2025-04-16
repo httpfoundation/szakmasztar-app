@@ -24,14 +24,14 @@ export default function SideDrawer({ open, onClose }: SideDrawerProps) {
         keepMounted: true,
       }}
       sx={{
-        "& .MuiDrawer-paper": { width: 240 },
+        "& .MuiDrawer-paper": { width: 240, bgcolor: "primary.main" },
       }}
     >
       <List>
         {menuItems.map((item, index) => (
           <ListItem key={index} disablePadding>
             <ListItemButton component={Link} href={item.slug} onClick={handleItemClick}>
-              <ListItemIcon>{item.icon}</ListItemIcon>
+              <ListItemIcon sx={{ color: "white", mr: -2 }}>{item.icon}</ListItemIcon>
               <ListItemText primary={item.text} />
             </ListItemButton>
           </ListItem>

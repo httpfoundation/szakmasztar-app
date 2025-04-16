@@ -1,7 +1,7 @@
 import FormattedContent from "@/components/FormattedContent";
 import PageContainer from "@/components/layouts/PageContainer";
-import GradientTitle from "@/components/ui/GradientTitle";
 import Starform from "@/components/ui/Starform";
+import YellowTitle from "@/components/ui/YellowTitle";
 import QrCodeScanner from "./QrCodeScanner";
 
 export const dynamic = "force-static";
@@ -9,7 +9,7 @@ export const dynamic = "force-static";
 const QrCodePage = async () => {
   return (
     <>
-      <GradientTitle>QR-kód beolvasása</GradientTitle>
+      <YellowTitle>QR-kód beolvasása</YellowTitle>
       <PageContainer
         sx={{
           display: "flex",

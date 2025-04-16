@@ -9,7 +9,12 @@ const EventCategoryCardTitle = ({ title }: EventCategoryCardTitleProps) => {
     <Typography
       variant="h6"
       gutterBottom
-      sx={{ color: "primary.contrastText", minHeight: 56, fontSize: 16 }}
+      sx={{
+        color: "primary.contrastText",
+        fontSize: 16,
+        textTransform: "uppercase",
+        mb: 1.5,
+      }}
     >
       {title}
     </Typography>

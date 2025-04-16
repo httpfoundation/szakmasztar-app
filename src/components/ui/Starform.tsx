@@ -1,7 +1,8 @@
+import { CSSProperties } from "react";
 import Image from "next/image";
 import starform from "@/assets/images/starform.svg";
 
-const Starform = () => {
+const Starform = ({ style }: { style?: CSSProperties }) => {
   return (
     <Image
       src={starform}
@@ -14,6 +15,7 @@ const Starform = () => {
         pointerEvents: "none",
         width: "592px",
         height: "auto",
+        ...style,
       }}
     />
   );

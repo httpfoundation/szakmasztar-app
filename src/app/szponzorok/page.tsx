@@ -2,7 +2,7 @@ import { Stack } from "@mui/material";
 import { getSponsors } from "@/actions/sponsors/sponsors";
 import PageContainer from "@/components/layouts/PageContainer";
 import SponsorCard from "@/components/sponsor/SponsorCard";
-import GradientTitle from "@/components/ui/GradientTitle";
+import YellowTitle from "@/components/ui/YellowTitle";
 
 export const revalidate = 3600;
 
@@ -11,7 +11,7 @@ const SponsorsPage = async () => {
 
   return (
     <>
-      <GradientTitle>Szponzorok</GradientTitle>
+      <YellowTitle>Szponzorok</YellowTitle>
 
       <PageContainer sx={{ mb: 3 }}>
         <Stack sx={{ display: "grid", gridTemplateColumns: { xs: "repeat(2,1fr)" }, gap: 1.5 }}>

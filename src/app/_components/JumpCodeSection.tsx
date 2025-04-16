@@ -18,7 +18,7 @@ const JumpCodeSection = () => {
         component="form"
         direction="row"
         spacing={0}
-        sx={{ width: "60%", bgcolor: "#D9D9D9", borderRadius: 999, mt: 2, mb: 2, mx: "auto" }}
+        sx={{ width: "70%", bgcolor: "#D9D9D9", borderRadius: 999, mt: 2, mb: 2, mx: "auto" }}
         onSubmit={(e) => {
           e.preventDefault();
           router.push(`/jumpcode/${jumpcode}`);

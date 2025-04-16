@@ -1,5 +1,5 @@
 import { getSponsors } from "@/actions/sponsors/sponsors";
-import GradientTitle from "@/components/ui/GradientTitle";
+import YellowTitle from "@/components/ui/YellowTitle";
 import OpeningHours from "../_components/OpeningHours";
 import SponsorSection from "../_components/SponsorSection";
 
@@ -10,7 +10,7 @@ const InfoPage = async () => {
 
   return (
     <>
-      <GradientTitle sx={{ mb: 2 }}>Információk</GradientTitle>
+      <YellowTitle sx={{ mb: 2 }}>Információk</YellowTitle>
       <OpeningHours />
       <SponsorSection sponsors={sponsors} />
     </>

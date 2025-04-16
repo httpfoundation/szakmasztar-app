@@ -1,7 +1,8 @@
 import { getEventsArticlesByCategory } from "@/actions/categories/categories";
 import PageContainer from "@/components/layouts/PageContainer";
 import EventCards from "@/components/programok/EventCards";
-import GradientTitle from "@/components/ui/GradientTitle";
+import Starform from "@/components/ui/Starform";
+import YellowTitle from "@/components/ui/YellowTitle";
 
 export const revalidate = 3600;
 
@@ -11,8 +12,9 @@ const WshuEventsPage = async () => {
 
   return (
     <>
-      <GradientTitle>{title}</GradientTitle>
-      <PageContainer>
+      <YellowTitle>{title}</YellowTitle>
+      <PageContainer sx={{ position: "relative" }}>
+        <Starform />
         <EventCards events={events} sectorId="wshu" />
       </PageContainer>
     </>
