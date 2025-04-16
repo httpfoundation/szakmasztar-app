@@ -7,14 +7,21 @@ interface LinkChipProps extends ButtonProps {
 
 const LinkChip = ({ sx, icon, children, ...rest }: LinkChipProps) => {
   return (
-    <Button size="small" variant="contained" sx={{ p: 0, pr: 2, fontWeight: 600, ...sx }} {...rest}>
+    <Button
+      size="small"
+      variant="contained"
+      sx={{ p: 0, pr: 2, fontWeight: 600, fontSize: 13, ...sx }}
+      {...rest}
+    >
       <Stack
         sx={{
           bgcolor: "success.main",
           color: "primary.main",
           borderRadius: "999px",
-          p: 0.5,
+          p: 0.4,
           mr: 1,
+          fontSize: 13,
+          marginLeft: "-1px",
         }}
       >
         {icon}

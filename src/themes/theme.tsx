@@ -39,11 +39,11 @@ const szakmaSztarOrange = "rgba(234,90,50)";
 export const szakmaSztarRed = "rgba(207,82,62)";
 export const szakmaSztarPurple = "#350F38";
 const szakmaSztarBlack = "rgba(0,0,0)";
-export const osztvMain = "#86288d";
-export const wshuMain = "#691f6e";
-export const nakMain = "#350F38";
-export const otherMain = "#070207";
-const sponsorMain = "#000000";
+export const osztvMain = "#71376A";
+export const wshuMain = "#93415A";
+export const nakMain = "#E07126";
+export const sponsorMain = "#904E96";
+export const otherMain = "#703346";
 const lightContrast = "#f5f5f5";
 
 // const szakmaSztarGrey = "#cec6ce";

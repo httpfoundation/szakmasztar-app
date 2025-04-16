@@ -9,7 +9,7 @@
   {
     "title": "WorldSkills Hungary",
     "slug": "szakmai-programok/wshu",
-    "description": "WorldSkills 2026 válogatók, nemzetközi tréningversenyek és szakma bemutatók",
+    "description": "WorldSkills 2026 válogatók és szakma bemutatók",
     "locations": [{ "title": "A pavilon", "slug": "/terkep/a-pavilon" }],
     "color": "wshu.main"
   },
@@ -21,9 +21,9 @@
     "color": "nak.main"
   },
   {
-    "title": "Támogatói bemutatkozások",
+    "title": "Támogatóink",
     "slug": "szakmai-programok/tamogatoi-bemutatkozasok",
-    "description": "A Szakma Sztár 2025 támogatóinak bemutatkozásai és interaktív programjai",
+    "description": "Támogatóink bemutatkozásai és interaktív programjai",
     "locations": [
       { "title": "A pavilon", "slug": "/terkep/a-pavilon" },
       { "title": "D pavilon", "slug": "/terkep/d-pavilon" }
