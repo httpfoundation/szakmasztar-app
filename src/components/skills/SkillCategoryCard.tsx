@@ -20,7 +20,7 @@ const SkillCategoryCard: FC<SkillCategoryCardProps> = ({ sector }) => {
         width: "100%",
         height: "100%",
         bgcolor: "primary.light",
-        "&:hover,&:focus-visible": { bgcolor: "#F5EDF5ee" },
+        "&:hover,&:focus-visible": { bgcolor: "primary.light" },
         pt: 2,
         flexDirection: "column",
         overflow: "hidden",
