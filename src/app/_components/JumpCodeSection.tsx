@@ -53,6 +53,7 @@ const JumpCodeSection = () => {
         <Button
           sx={{ flexShrink: 0, px: 4, borderRadius: 999, color: "primary.main", fontSize: 14 }}
           color="success"
+          type="submit"
         >
           Ugrás
         </Button>

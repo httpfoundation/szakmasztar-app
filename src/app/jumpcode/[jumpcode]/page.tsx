@@ -6,7 +6,7 @@ export const revalidate = 3600;
 export async function generateStaticParams() {
   const boxItems = await getMapItems();
   return boxItems
-    .filter((x) => !!x.jumpCode)
+    .filter((x) => !!x.jumpCode && !!x.href && x.href === "#")
     .map((item) => ({
       jumpcode: item.jumpCode.toString(),
     }));
@@ -21,7 +21,7 @@ const JumpCodePage = async ({ params }: JumpCodePageProps) => {
   const boxItems = await getMapItems();
   const foundJumpCode = boxItems.find((item) => item.jumpCode === Number(jumpcode));
 
-  if (!foundJumpCode) {
+  if (!foundJumpCode || !foundJumpCode.href || foundJumpCode.href === "#") {
     redirect("/");
   }
 

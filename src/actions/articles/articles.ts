@@ -112,6 +112,8 @@ export async function getMapItems() {
         slug = `/szakmai-programok/${item.slug}`;
       } else if (item.slug.startsWith("nak")) {
         slug = `/szakmai-programok/${item.slug}`;
+      } else if (item.slug.startsWith("egyeb")) {
+        slug = `/szakmai-programok/${item.slug}`;
       }
 
       const parsed = JSON.parse(item.metadata);
