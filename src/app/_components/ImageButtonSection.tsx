@@ -11,11 +11,12 @@ import SectionContainer from "@/components/layouts/SectionContainer";
 
 const ImageButtonSection = () => {
   return (
-    <SectionContainer sx={{ pt: 0 }}>
-      <FormattedContent sx={{ textAlign: "center", mb: 3 }}>
+    <SectionContainer sx={{ pt: 2 }}>
+      <FormattedContent sx={{ textAlign: "center", mb: 2 }}>
         A standokon kihelyezett QR-kód beolvasásával megtudhatod mi zajlik ott. Tájékozódhatsz az
         interaktív térképen és a programlistából is választhatsz!
       </FormattedContent>
+
       <Stack sx={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: 2, width: "100%" }}>
         <ImageButton href="/terkep" icon={<MapIcon />} text="Tájékozódj a térképen!" />
         <ImageButton href="/qrkod" icon={<QrCodeIcon />} text="Olvasd be a QR-kódot!" />

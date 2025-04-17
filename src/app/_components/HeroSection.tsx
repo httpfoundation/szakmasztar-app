@@ -1,25 +1,15 @@
-// import Image from "next/image";
-import { Stack, Typography } from "@mui/material";
-// import logo from "@/assets/images/logo.svg";
-import SectionContainer from "@/components/layouts/SectionContainer";
+// import { Stack, Typography } from "@mui/material";
+// import SectionContainer from "@/components/layouts/SectionContainer";
 import Starform from "@/components/ui/Starform";
 
 const HeroSection = () => {
   return (
     <>
-      <SectionContainer>
+      {/* <SectionContainer>
         <Stack
           direction="row"
           sx={{ width: "100%", justifyContent: "space-between", alignItems: "center" }}
         >
-          {/* <Image
-            src={logo}
-            alt="logo"
-            width={100}
-            height={100}
-            style={{ height: "70px", width: "auto" }}
-          /> */}
-
           <Typography
             variant="h2"
             sx={{
@@ -33,7 +23,7 @@ const HeroSection = () => {
             Fedezd fel a Szakma Sztár világát!
           </Typography>
         </Stack>
-      </SectionContainer>
+      </SectionContainer> */}
 
       <Starform />
     </>
