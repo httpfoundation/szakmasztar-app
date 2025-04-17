@@ -37,7 +37,11 @@ const MapBoxes = ({ boxItems }: MapBoxesProps) => {
                 justifyContent: "center",
                 alignItems: "center",
                 textAlign: "center",
-                fontSize: Math.min(box.stand.width / 7, 26),
+                fontSize: Math.min(
+                  (box.stand.width - 20) / (box.text.length * 0.25),
+                  (box.stand.height - 20) / 5,
+                  36
+                ),
                 fontFamily: "var(--font-montserrat), Arial, sans-serif",
                 fontWeight: "500",
                 color: "#fff",
