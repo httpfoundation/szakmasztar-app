@@ -86,7 +86,7 @@ const EventPage = ({
       <PageContainer sx={{ position: "relative" }}>
         <Starform />
 
-        <Stack spacing={2} sx={{ flex: 1, pb: 3, position: "relative" }}>
+        <Stack spacing={1} sx={{ flex: 1, pb: 3, position: "relative" }}>
           {competitors.length > 0 && (
             <>
               <Typography
@@ -128,7 +128,7 @@ const EventPage = ({
               <Typography
                 id="leiras"
                 variant="h2"
-                sx={{ color: "white", fontWeight: "bold", scrollMarginTop: "64px" }}
+                sx={{ color: "white", fontWeight: "bold", scrollMarginTop: "64px", mt: 2 }}
               >
                 {slug.includes("egyeb") ? "PROGRAM " : "SZAKMA"}
                 <span style={{ fontWeight: "300" }}>LEÍRÁS</span>
@@ -149,6 +149,7 @@ const EventPage = ({
                   fontWeight: "bold",
                   textTransform: "uppercase",
                   scrollMarginTop: "64px",
+                  mt: 2,
                 }}
               >
                 {eventTypeText} <span style={{ fontWeight: "300" }}>INFORMÁCIÓK</span>

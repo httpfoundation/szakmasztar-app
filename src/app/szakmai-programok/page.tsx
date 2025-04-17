@@ -20,13 +20,15 @@ const EventsPage = async () => {
 
   const { title, lead } = await getArticle({ slug: "szakmai-programok-oldal" });
 
-  const displayedSectors = eventsBySectors.filter((sector) => sector.items.length > 0);
-  const sectors = displayedSectors.map((sector) => ({
-    id: sector.id,
-    name: sector.name,
-    imageUrl: sector.image?.url || "",
-    slug: sector.slug,
-  }));
+  const sectors = eventsBySectors
+    .filter((sector) => sector.items.length > 0 && sector.name.trim().toLowerCase() !== "egyéb")
+    .map((sector) => ({
+      id: sector.id,
+      name: sector.name.trim(),
+      imageUrl: sector.image?.url || "",
+      slug: sector.slug,
+    }))
+    .sort((a, b) => a.name.localeCompare(b.name, "hu-HU"));
 
   return (
     <>
