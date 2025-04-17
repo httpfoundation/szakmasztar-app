@@ -22,8 +22,7 @@ export default function BottomNav() {
         p: 0,
         m: 0,
         borderRadius: 0,
-        background:
-          "linear-gradient(to bottom right, #FFDF12 -17%, #EA5A32, #71376A 95%, #000000 115%)",
+        background: "linear-gradient(to right, #FFDF12 -20%, #EA5A32, #B14A4D,  #71376A 105%)",
       }}
     >
       <BottomNavigation
@@ -58,6 +57,7 @@ export default function BottomNav() {
                 color: "white",
                 minHeight: "30px",
                 height: "30px",
+                fontWeight: 600,
               },
             }}
           />
