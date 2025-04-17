@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Button, Stack, TextField, Typography } from "@mui/material";
+import { Button, Stack, Typography } from "@mui/material";
 import SectionContainer from "@/components/layouts/SectionContainer";
+import CustomTextField from "@/components/ui/CustomTextField";
 
 const JumpCodeSection = () => {
   const router = useRouter();
@@ -24,35 +25,15 @@ const JumpCodeSection = () => {
           router.push(`/jumpcode/${jumpcode}`);
         }}
       >
-        <TextField
-          color="info"
-          sx={{
-            color: "white",
-            width: "100%",
-            "& fieldset": { border: "0 !important", outline: 0 },
-          }}
-          InputProps={{
-            autoComplete: "off",
-            sx: {
-              color: "primary.main",
-              opacity: 1,
-              background: "#D9D9D9",
-              "&::placeholder": { color: "red", opacity: 1 },
-              borderTopLeftRadius: 999,
-              borderBottomLeftRadius: 999,
-              fontSize: 14,
-              px: 0.9,
-              fontWeight: 400,
-            },
-          }}
-          placeholder="Számkód"
-          onChange={(e) => setJumpcode(e.target.value)}
+        <CustomTextField
           value={jumpcode}
-          size="small"
+          onChange={(e) => setJumpcode(e.target.value)}
+          placeholder="Számkód"
         />
         <Button
           sx={{ flexShrink: 0, px: 4, borderRadius: 999, color: "primary.main", fontSize: 14 }}
           color="success"
+          type="submit"
         >
           Ugrás
         </Button>

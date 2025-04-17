@@ -22,14 +22,13 @@ export default function BottomNav() {
         p: 0,
         m: 0,
         borderRadius: 0,
-        background:
-          "linear-gradient(to bottom right, #FFDF12 -15%, #EA5A32, #71376A 95%, #000000 120%)",
+        background: "linear-gradient(to right, #FFDF12 -20%, #EA5A32, #B14A4D,  #71376A 105%)",
       }}
     >
       <BottomNavigation
         value={currentIndex}
         showLabels
-        sx={{ bgcolor: "transparent", height: "74px" }}
+        sx={{ bgcolor: "transparent", height: "80px" }}
       >
         {bottomNavItems.map((item, index) => (
           <BottomNavigationAction
@@ -56,8 +55,9 @@ export default function BottomNav() {
                 textAlign: "center !important",
                 lineHeight: 1,
                 color: "white",
-                minHeight: "23px",
-                height: "23px",
+                minHeight: "30px",
+                height: "30px",
+                fontWeight: 600,
               },
             }}
           />

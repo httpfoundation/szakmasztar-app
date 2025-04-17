@@ -39,9 +39,11 @@ const EventPage = ({
         title={title}
         image={image}
         slug={slug}
-        leirasBtnText="Szakmaleírás"
+        leirasBtnText={slug.includes("egyeb") ? "Leírás" : "Szakmaleírás"}
         infoBtnText={`${eventTypeText} információk`}
         hasCompetitors={competitors.length > 0}
+        hasDescription={!!eventInfo}
+        hasInfo={!!generalInfo}
       />
       <Stack sx={{ width: "100%", position: "relative", bgcolor: "success.main" }}>
         <PageContainer
@@ -50,6 +52,7 @@ const EventPage = ({
             gap: 1,
             display: "flex",
             alignItems: "center",
+            ml: -1,
           }}
           padding={0.75}
         >
@@ -71,7 +74,7 @@ const EventPage = ({
                 whiteSpace: "nowrap",
                 color: "success.contrastText",
                 fontWeight: 300,
-                fontSize: 13,
+                fontSize: 12,
               }}
             >
               {eventType.toUpperCase()}
@@ -83,7 +86,7 @@ const EventPage = ({
       <PageContainer sx={{ position: "relative" }}>
         <Starform />
 
-        <Stack spacing={2} sx={{ flex: 1, pb: 3, position: "relative" }}>
+        <Stack spacing={1} sx={{ flex: 1, pb: 3, position: "relative" }}>
           {competitors.length > 0 && (
             <>
               <Typography
@@ -107,7 +110,7 @@ const EventPage = ({
                         gap: 1,
                       }}
                     >
-                      <Typography variant="h3">{competitor.name}</Typography>
+                      <Typography variant="h4">{competitor.name}</Typography>
                       {competitor.school && (
                         <Typography variant="body2">Iskola: {competitor.school}</Typography>
                       )}
@@ -120,31 +123,42 @@ const EventPage = ({
             </>
           )}
 
-          <Typography
-            id="leiras"
-            variant="h2"
-            sx={{ color: "white", fontWeight: "bold", scrollMarginTop: "64px" }}
-          >
-            SZAKMA<span style={{ fontWeight: "300" }}>LEÍRÁS</span>
-          </Typography>
+          {!!eventInfo && (
+            <>
+              <Typography
+                id="leiras"
+                variant="h2"
+                sx={{ color: "white", fontWeight: "bold", scrollMarginTop: "64px", mt: 2 }}
+              >
+                {slug.includes("egyeb") ? "PROGRAM " : "SZAKMA"}
+                <span style={{ fontWeight: "300" }}>LEÍRÁS</span>
+              </Typography>
+              <FormattedContent sx={{ color: "white", fontWeight: 500 }}>
+                {eventInfo}
+              </FormattedContent>
+            </>
+          )}
 
-          <FormattedContent sx={{ color: "white", fontWeight: 500 }}>{eventInfo}</FormattedContent>
-
-          <Typography
-            id="info"
-            variant="h2"
-            sx={{
-              color: "white",
-              fontWeight: "bold",
-              textTransform: "uppercase",
-              scrollMarginTop: "64px",
-            }}
-          >
-            {eventTypeText} <span style={{ fontWeight: "300" }}>INFORMÁCIÓK</span>
-          </Typography>
-          <FormattedContent sx={{ color: "white", fontWeight: 500 }}>
-            {generalInfo}
-          </FormattedContent>
+          {!!generalInfo && (
+            <>
+              <Typography
+                id="info"
+                variant="h2"
+                sx={{
+                  color: "white",
+                  fontWeight: "bold",
+                  textTransform: "uppercase",
+                  scrollMarginTop: "64px",
+                  mt: 2,
+                }}
+              >
+                {eventTypeText} <span style={{ fontWeight: "300" }}>INFORMÁCIÓK</span>
+              </Typography>
+              <FormattedContent sx={{ color: "white", fontWeight: 500 }}>
+                {generalInfo}
+              </FormattedContent>
+            </>
+          )}
         </Stack>
       </PageContainer>
     </>

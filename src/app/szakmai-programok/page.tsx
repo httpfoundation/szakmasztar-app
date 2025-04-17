@@ -1,5 +1,8 @@
+import TravelExploreIcon from "@mui/icons-material/TravelExplore";
+import { Divider } from "@mui/material";
 import { getArticle } from "@/actions/articles/articles";
 import { getCategoryTree } from "@/actions/categories/categories";
+import ImageButton from "@/components/common/ImageButton";
 import FormattedContent from "@/components/FormattedContent";
 import PageContainer from "@/components/layouts/PageContainer";
 import SectorCards from "@/components/skills/SectorCards";
@@ -20,13 +23,15 @@ const EventsPage = async () => {
 
   const { title, lead } = await getArticle({ slug: "szakmai-programok-oldal" });
 
-  const displayedSectors = eventsBySectors.filter((sector) => sector.items.length > 0);
-  const sectors = displayedSectors.map((sector) => ({
-    id: sector.id,
-    name: sector.name,
-    imageUrl: sector.image?.url || "",
-    slug: sector.slug,
-  }));
+  const sectors = eventsBySectors
+    .filter((sector) => sector.items.length > 0 && sector.name.trim().toLowerCase() !== "egyéb")
+    .map((sector) => ({
+      id: sector.id,
+      name: sector.name.trim(),
+      imageUrl: sector.image?.url || "",
+      slug: sector.slug,
+    }))
+    .sort((a, b) => a.name.localeCompare(b.name, "hu-HU"));
 
   return (
     <>
@@ -35,6 +40,15 @@ const EventsPage = async () => {
         <FormattedContent sx={{ mb: 2 }} variant="body2">
           {lead}
         </FormattedContent>
+
+        <ImageButton
+          icon={<TravelExploreIcon />}
+          text="Összes szakma és keresés"
+          href="/szakmai-programok/osszes"
+          sx={{ py: 0.5 }}
+        />
+
+        <Divider sx={{ borderColor: "#ffffff30", my: 2 }} />
 
         <SectorCards sectors={sectors} />
       </PageContainer>

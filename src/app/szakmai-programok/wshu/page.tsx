@@ -15,7 +15,7 @@ const WshuEventsPage = async () => {
       <YellowTitle>{title}</YellowTitle>
       <PageContainer sx={{ position: "relative" }}>
         <Starform />
-        <EventCards events={events} sectorId="wshu" />
+        <EventCards events={events} />
       </PageContainer>
     </>
   );

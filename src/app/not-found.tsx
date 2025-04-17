@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { Stack, Typography } from "@mui/material";
 import LinkButton from "@/components/common/LinkButton";
 import Starform from "@/components/ui/Starform";
+import SzakmaSztarSymbol from "@/components/ui/SzakmaSztarSymbol";
 
 export const dynamic = "force-static";
 
@@ -25,6 +26,7 @@ const NotFoundPage = () => {
       spacing={3}
     >
       <Starform />
+      <SzakmaSztarSymbol />
       <Typography variant="h1" sx={{ color: "success.main" }}>
         Hiba!
       </Typography>

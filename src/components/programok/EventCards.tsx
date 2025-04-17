@@ -7,7 +7,6 @@ import LinkChip from "../ui/LinkChip";
 
 interface EventCardsProps {
   events: ArticleFragment[];
-  sectorId: string;
 }
 
 const EventCards = ({ events }: EventCardsProps) => {
@@ -48,9 +47,11 @@ const EventCards = ({ events }: EventCardsProps) => {
                   {event.title}
                 </Typography>
                 <Box sx={{ display: "flex", gap: 2, mt: 1.5 }}>
-                  <LinkChip href={`/szakmai-programok/${event.slug}`} icon={<InfoIcon />}>
-                    Információ
-                  </LinkChip>
+                  {!!event.content && !!event.lead && (
+                    <LinkChip href={`/szakmai-programok/${event.slug}`} icon={<InfoIcon />}>
+                      Információ
+                    </LinkChip>
+                  )}
 
                   {!!mapId && (
                     <LinkChip

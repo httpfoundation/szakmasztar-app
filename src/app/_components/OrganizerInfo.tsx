@@ -32,7 +32,7 @@ const OrganizerInfo = () => {
             gridRow: "1 / 2",
           }}
         >
-          A versenyek főszervezője:
+          A versenyek főszervezője
         </Typography>
         <Typography
           variant="h2"
@@ -45,7 +45,7 @@ const OrganizerInfo = () => {
             gridRow: "1 / 2",
           }}
         >
-          Együttműködő partner:
+          Együttműködő partner
         </Typography>
         <Typography
           variant="h2"
@@ -58,7 +58,7 @@ const OrganizerInfo = () => {
             gridRow: "1 / 2",
           }}
         >
-          A rendezvény támogatója:
+          A rendezvény támogatója
         </Typography>
 
         <Box

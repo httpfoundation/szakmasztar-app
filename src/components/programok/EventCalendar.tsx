@@ -12,7 +12,7 @@ const EventCalendar = () => {
       {eventSchedule.map((day, index) => (
         <Paper
           key={index}
-          sx={{ p: 2, mt: 3, bgcolor: "#451F48" }}
+          sx={{ p: 2, mt: 3, mb: 2, bgcolor: "#451F48" }}
           style={{ borderRadius: 0, boxShadow: "none" }}
         >
           <Stack direction="row" alignItems="center" spacing={1} sx={{ mb: 2 }}>
@@ -65,7 +65,7 @@ const EventCalendar = () => {
                       </Typography>
                     </Stack>
 
-                    <Typography variant="h6" align="right">
+                    <Typography variant="h6" align="right" fontWeight={600}>
                       {event.title}
                     </Typography>
                   </Stack>

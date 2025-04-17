@@ -33,11 +33,8 @@ export default function LinkButton({
         backdropFilter: "blur(4px)",
         border: "1px solid rgba(255, 255, 255, 0.3)",
         transition: "all 0.3s ease",
-        // fontSize: "0.7rem !important",
-        "&:hover": {
-          bgcolor: "rgba(255, 255, 255, 0.3)",
-          transform: "translateY(-2px)",
-          boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+        "&:focus,&:active,&:hover": {
+          bgcolor: "primary.light",
         },
         py: 0.75,
         px: 1.5,
@@ -51,4 +48,3 @@ export default function LinkButton({
     </Button>
   );
 }
-
