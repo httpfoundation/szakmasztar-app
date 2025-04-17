@@ -15,7 +15,7 @@ const OsztvSzktvSkills = async () => {
       <YellowTitle>{title}</YellowTitle>
       <PageContainer sx={{ position: "relative" }}>
         <Starform />
-        <EventCards events={events} sectorId="osztvszktv" />
+        <EventCards events={events} />
       </PageContainer>
     </>
   );

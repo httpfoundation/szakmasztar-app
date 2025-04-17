@@ -15,7 +15,7 @@ const NakEventsPage = async () => {
       <YellowTitle>{title}</YellowTitle>
       <PageContainer sx={{ position: "relative" }}>
         <Starform />
-        <EventCards events={events} sectorId="nak" />
+        <EventCards events={events} />
       </PageContainer>
     </>
   );

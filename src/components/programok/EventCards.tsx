@@ -7,7 +7,6 @@ import LinkChip from "../ui/LinkChip";
 
 interface EventCardsProps {
   events: ArticleFragment[];
-  sectorId: string;
 }
 
 const EventCards = ({ events }: EventCardsProps) => {

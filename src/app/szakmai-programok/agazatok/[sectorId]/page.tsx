@@ -82,7 +82,7 @@ const SectorPage = async ({ params }: SectorPageProps) => {
               >
                 {category.name}
               </Typography>
-              <EventCards events={events.filter(category.filter)} sectorId={sectorId} />
+              <EventCards events={events.filter(category.filter)} />
             </Paper>
           );
         })}

@@ -1,5 +1,8 @@
+import TravelExploreIcon from "@mui/icons-material/TravelExplore";
+import { Divider } from "@mui/material";
 import { getArticle } from "@/actions/articles/articles";
 import { getCategoryTree } from "@/actions/categories/categories";
+import ImageButton from "@/components/common/ImageButton";
 import FormattedContent from "@/components/FormattedContent";
 import PageContainer from "@/components/layouts/PageContainer";
 import SectorCards from "@/components/skills/SectorCards";
@@ -37,6 +40,15 @@ const EventsPage = async () => {
         <FormattedContent sx={{ mb: 2 }} variant="body2">
           {lead}
         </FormattedContent>
+
+        <ImageButton
+          icon={<TravelExploreIcon />}
+          text="Összes szakma és keresés"
+          href="/szakmai-programok/osszes"
+          sx={{ py: 0.5 }}
+        />
+
+        <Divider sx={{ borderColor: "#ffffff30", my: 2 }} />
 
         <SectorCards sectors={sectors} />
       </PageContainer>
