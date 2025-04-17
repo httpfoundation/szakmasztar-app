@@ -13,8 +13,8 @@ export default function BaseLayout({ children, title }: BaseLayoutProps) {
   return (
     <Stack
       direction="column"
+      className="min-h-screen"
       sx={{
-        minHeight: "100vh",
         height: "100%",
         bgcolor: "primary.main",
         maxWidth: "800px",

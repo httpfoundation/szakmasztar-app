@@ -21,7 +21,7 @@ const QrCodeScanner = () => {
   return (
     <>
       {!!error && (
-        <Typography sx={{ textAlign: "center", mb: 3 }}>
+        <Typography sx={{ textAlign: "center", mb: 3, fontWeight: "bold" }}>
           A QR kód beolvasásához engedélyezni kell a kamerát!
         </Typography>
       )}
@@ -52,4 +52,3 @@ const QrCodeScanner = () => {
 };
 
 export default QrCodeScanner;
-
