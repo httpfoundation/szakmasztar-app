@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { Paper, Typography } from "@mui/material";
+import { Paper, Stack, Typography } from "@mui/material";
 import { getArticles } from "@/actions/articles/articles";
 import { ArticleFragment } from "@/actions/articles/articles.generated";
 import { getCategory, getCategoryTree } from "@/actions/categories/categories";
@@ -55,8 +55,8 @@ const SectorPage = async ({ params }: SectorPageProps) => {
   return (
     <>
       <YellowTitle>{category.name}</YellowTitle>
-      <>
-        {categories.map((category, idx) => {
+      <Stack sx={{ width: "100%", mt: 3, mb: 6 }} spacing={3}>
+        {categories.map((category) => {
           if (!events.some(category.filter)) {
             return null;
           }
@@ -67,8 +67,6 @@ const SectorPage = async ({ params }: SectorPageProps) => {
               sx={{
                 p: 2,
                 pb: 0,
-                mt: 3,
-                mb: idx === categories.length - 1 ? 5 : 0,
                 bgcolor: "#451F48",
               }}
               style={{
@@ -86,7 +84,7 @@ const SectorPage = async ({ params }: SectorPageProps) => {
             </Paper>
           );
         })}
-      </>
+      </Stack>
     </>
   );
 };

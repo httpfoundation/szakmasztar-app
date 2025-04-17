@@ -1,5 +1,6 @@
 import Link from "next/link";
 import {
+  Category as CategoryIcon,
   Event as EventIcon,
   Home as HomeIcon,
   Info as InfoIcon,
@@ -7,6 +8,7 @@ import {
   Quiz as QuizIcon,
   Work as WorkIcon,
 } from "@mui/icons-material";
+import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 
 type MenuItem = {
   text: string;
@@ -25,9 +27,9 @@ export const menuItems: MenuItem[] = [
     showInBottomNav: true,
   },
   {
-    text: "Szakmai programok",
+    text: "Szakmák",
     icon: <WorkIcon />,
-    slug: "/szakmai-programok/kategoriak",
+    slug: "/szakmai-programok",
     link: <Link href="/szakmai-programok">{<WorkIcon />}</Link>,
     showInBottomNav: true,
   },
@@ -36,6 +38,13 @@ export const menuItems: MenuItem[] = [
     icon: <MapIcon />,
     slug: "/terkep",
     link: <Link href="/terkep">{<MapIcon />}</Link>,
+    showInBottomNav: true,
+  },
+  {
+    text: "Programok",
+    icon: <CategoryIcon />,
+    slug: "/szakmai-programok/kategoriak",
+    link: <Link href="/szakmai-programok/kategoriak">{<WorkIcon />}</Link>,
     showInBottomNav: true,
   },
   {
@@ -53,11 +62,18 @@ export const menuItems: MenuItem[] = [
     showInBottomNav: false,
   },
   {
+    text: "Szakmai támogatók",
+    icon: <AccountBalanceIcon />,
+    slug: "/szponzorok",
+    link: <Link href="/szponzorok">{<QuizIcon />}</Link>,
+    showInBottomNav: false,
+  },
+  {
     text: "Infók",
     icon: <InfoIcon />,
     slug: "/informaciok",
     link: <Link href="/informaciok">{<InfoIcon />}</Link>,
-    showInBottomNav: true,
+    showInBottomNav: false,
   },
   // {
   //   text: "Hírek",

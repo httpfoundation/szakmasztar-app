@@ -11,7 +11,7 @@ const OtherImageButtonsSection = () => {
 
       <Stack sx={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: 2, width: "100%" }}>
         <ImageButton href="/kerdoivek" icon={<QuizIcon />} text="Melyik szakma illik hozzád?" />
-        <ImageButton href="/szponzorok" icon={<AccountBalanceIcon />} text="Szponzorok" />
+        <ImageButton href="/szponzorok" icon={<AccountBalanceIcon />} text="Szakmai támogatók" />
       </Stack>
     </SectionContainer>
   );

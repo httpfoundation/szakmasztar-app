@@ -2,20 +2,19 @@ import {
   Category as CategoryIcon,
   Map as MapIcon,
   QrCode as QrCodeIcon,
-  School as SchoolIcon,
+  Work as WorkIcon,
 } from "@mui/icons-material";
-import { Stack } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import ImageButton from "@/components/common/ImageButton";
-import FormattedContent from "@/components/FormattedContent";
 import SectionContainer from "@/components/layouts/SectionContainer";
 
 const ImageButtonSection = () => {
   return (
     <SectionContainer sx={{ pt: 2 }}>
-      <FormattedContent sx={{ textAlign: "center", mb: 2 }}>
+      <Typography variant="body2" sx={{ textAlign: "center", mb: 2, width: "100%" }}>
         A standokon kihelyezett QR-kód beolvasásával megtudhatod mi zajlik ott. Tájékozódhatsz az
         interaktív térképen és a programlistából is választhatsz!
-      </FormattedContent>
+      </Typography>
 
       <Stack sx={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: 2, width: "100%" }}>
         <ImageButton href="/terkep" icon={<MapIcon />} text="Tájékozódj a térképen!" />
@@ -27,7 +26,7 @@ const ImageButtonSection = () => {
         />
         <ImageButton
           href="/szakmai-programok"
-          icon={<SchoolIcon sx={{ fontSize: 40 }} />}
+          icon={<WorkIcon sx={{ fontSize: 40 }} />}
           text="Válassz szakmát!"
         />
       </Stack>
