@@ -23,6 +23,11 @@ jobs:
           key: ${{ runner.os }}-docker-szakmasztar-app
 
       - name: Build Docker image
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
+          SITE_BASE: https://app.szakmasztar.httpf.hu
+          NODE_ENV: production
+          GRAPGHQL_BASE: https://dev.szakmavilag-backend.httpf.hu/graphql
         run: |
           TAG=${GITHUB_REF#refs/tags/}
           docker build -t ghcr.io/${{ github.repository_owner }}/szakmasztar-app:$TAG -t ghcr.io/${{ github.repository_owner }}/szakmasztar-app:latest .
