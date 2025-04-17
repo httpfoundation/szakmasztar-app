@@ -50,6 +50,7 @@ const EventPage = ({
             gap: 1,
             display: "flex",
             alignItems: "center",
+            ml: -1,
           }}
           padding={0.75}
         >
@@ -71,7 +72,7 @@ const EventPage = ({
                 whiteSpace: "nowrap",
                 color: "success.contrastText",
                 fontWeight: 300,
-                fontSize: 13,
+                fontSize: 12,
               }}
             >
               {eventType.toUpperCase()}
