@@ -110,7 +110,7 @@ const EventPage = ({
                         gap: 1,
                       }}
                     >
-                      <Typography variant="h3">{competitor.name}</Typography>
+                      <Typography variant="h4">{competitor.name}</Typography>
                       {competitor.school && (
                         <Typography variant="body2">Iskola: {competitor.school}</Typography>
                       )}

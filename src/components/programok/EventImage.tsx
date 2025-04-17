@@ -83,17 +83,32 @@ const EventImage = ({
         }}
       >
         {hasCompetitors && (
-          <Button href="#versenyzok" endIcon={<KeyboardArrowDownIcon sx={{ ml: -0.5 }} />}>
+          <Button
+            href="#versenyzok"
+            endIcon={<KeyboardArrowDownIcon sx={{ ml: -0.5 }} />}
+            size="small"
+            sx={{ px: 2 }}
+          >
             Versenyzők
           </Button>
         )}
         {hasDescription && (
-          <Button href="#leiras" endIcon={<KeyboardArrowDownIcon sx={{ ml: -0.5 }} />}>
+          <Button
+            href="#leiras"
+            endIcon={<KeyboardArrowDownIcon sx={{ ml: -0.5 }} />}
+            size="small"
+            sx={{ px: 2 }}
+          >
             {leirasBtnText}
           </Button>
         )}
         {hasInfo && (
-          <Button href="#info" endIcon={<KeyboardArrowDownIcon sx={{ ml: -0.5 }} />}>
+          <Button
+            href="#info"
+            endIcon={<KeyboardArrowDownIcon sx={{ ml: -0.5 }} />}
+            size="small"
+            sx={{ px: 2 }}
+          >
             {infoBtnText}
           </Button>
         )}
