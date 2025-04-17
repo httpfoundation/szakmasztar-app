@@ -1,10 +1,11 @@
 import { Typography } from "@mui/material";
+import LinkButton from "@/components/common/LinkButton";
 import TwoLinesInfo from "@/components/common/TwoLinesInfo";
 import SectionContainer from "@/components/layouts/SectionContainer";
 
 const OpeningHours = () => {
   return (
-    <SectionContainer>
+    <SectionContainer sx={{ display: "flex", flexDirection: "column" }}>
       <Typography
         variant="h2"
         sx={{
@@ -18,6 +19,23 @@ const OpeningHours = () => {
       </Typography>
       <TwoLinesInfo primaryText="2025. április 28. (hétfő)" secondaryText="10:00 - 16:00" />
       <TwoLinesInfo primaryText="2025. április 29. (kedd)" secondaryText="08:00 - 16:00" />
+
+      <LinkButton
+        href="/utemterv"
+        direction="forward"
+        startIcon={null}
+        sx={{
+          px: 2,
+          py: 1,
+          mt: 0.5,
+          bgcolor: "primary.light",
+          fontSize: 13,
+          fontWeight: 600,
+          alignSelf: "center",
+        }}
+      >
+        Ütemterv megtekintése
+      </LinkButton>
     </SectionContainer>
   );
 };

@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import Link from "next/link";
-import { Box, IconButton, SxProps, Typography } from "@mui/material";
+import { Button, IconButton, SxProps, Typography } from "@mui/material";
 
 interface ImageButtonProps {
   href: string;
@@ -12,7 +12,7 @@ interface ImageButtonProps {
 
 export default function ImageButton({ href, text, icon, sx, iconSx }: ImageButtonProps) {
   return (
-    <Box
+    <Button
       role="button"
       component={Link}
       href={href}
@@ -23,12 +23,19 @@ export default function ImageButton({ href, text, icon, sx, iconSx }: ImageButto
         px: 1,
         py: 1.5,
         backgroundColor: "primary.light",
-        backdropFilter: "blur(10px)",
         textDecoration: "none",
+        textTransform: "none",
+        "&:hover,&:focus": {
+          backgroundColor: "primary.light",
+        },
         ...sx,
+      }}
+      style={{
+        borderRadius: "8px",
       }}
     >
       <IconButton
+        disableRipple
         sx={{
           mr: 1,
           color: "white !important",
@@ -55,6 +62,6 @@ export default function ImageButton({ href, text, icon, sx, iconSx }: ImageButto
       >
         {text}
       </Typography>
-    </Box>
+    </Button>
   );
 }

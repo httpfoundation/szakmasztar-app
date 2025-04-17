@@ -27,7 +27,7 @@ const ImageButtonSection = () => {
         <ImageButton
           href="/szakmai-programok"
           icon={<SchoolIcon sx={{ fontSize: 40 }} />}
-          text="Válassz szakmai terület szerint!"
+          text="Válassz szakmát!"
         />
       </Stack>
     </SectionContainer>
