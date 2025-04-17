@@ -11,6 +11,8 @@ interface EventImageProps {
   leirasBtnText: string;
   infoBtnText: string;
   hasCompetitors: boolean;
+  hasDescription: boolean;
+  hasInfo: boolean;
 }
 
 const EventImage = ({
@@ -19,6 +21,8 @@ const EventImage = ({
   infoBtnText,
   leirasBtnText,
   hasCompetitors,
+  hasDescription,
+  hasInfo,
 }: EventImageProps) => {
   return (
     <Stack sx={{ width: "100%", aspectRatio: "3 / 2", position: "relative" }}>
@@ -83,12 +87,16 @@ const EventImage = ({
             Versenyzők
           </Button>
         )}
-        <Button href="#leiras" endIcon={<KeyboardArrowDownIcon sx={{ ml: -0.5 }} />}>
-          {leirasBtnText}
-        </Button>
-        <Button href="#info" endIcon={<KeyboardArrowDownIcon sx={{ ml: -0.5 }} />}>
-          {infoBtnText}
-        </Button>
+        {hasDescription && (
+          <Button href="#leiras" endIcon={<KeyboardArrowDownIcon sx={{ ml: -0.5 }} />}>
+            {leirasBtnText}
+          </Button>
+        )}
+        {hasInfo && (
+          <Button href="#info" endIcon={<KeyboardArrowDownIcon sx={{ ml: -0.5 }} />}>
+            {infoBtnText}
+          </Button>
+        )}
       </Stack>
     </Stack>
   );
