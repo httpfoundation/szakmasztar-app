@@ -1,0 +1,35 @@
+name: Deploy to prod
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build:
+    permissions:
+      contents: read
+      packages: write
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Cache Docker layers
+        uses: actions/cache@v3
+        with:
+          path: /var/lib/docker
+          key: ${{ runner.os }}-docker-szakmasztar-app
+
+      - name: Build Docker image
+        run: |
+          TAG=${GITHUB_REF#refs/tags/}
+          docker build -t ghcr.io/${{ github.repository_owner }}/szakmasztar-app:$TAG -t ghcr.io/${{ github.repository_owner }}/szakmasztar-app:latest .
+
+      - name: Push Docker image
+        run: |
+          TAG=${GITHUB_REF#refs/tags/}
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+          docker push ghcr.io/${{ github.repository_owner }}/szakmasztar-app:$TAG
+          docker push ghcr.io/${{ github.repository_owner }}/szakmasztar-app:latest
