@@ -1,8 +1,13 @@
+import { Metadata } from "next";
 import MapPageContainer from "@/components/map/MapPageContainer";
 import SvgPanZoom from "@/components/map/SvgPanZoom";
 import HungexpoMap from "./_components/hungexpoMap";
 
 export const dynamic = "force-static";
+
+export const metadata: Metadata = {
+  title: "Hungexpo",
+};
 
 const HungexpoMapPage = () => {
   return (

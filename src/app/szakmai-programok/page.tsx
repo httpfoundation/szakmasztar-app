@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import TravelExploreIcon from "@mui/icons-material/TravelExplore";
 import { Divider } from "@mui/material";
 import { getArticle } from "@/actions/articles/articles";
@@ -15,6 +16,10 @@ export type Sector = {
   name: string;
   imageUrl: string;
   slug: string;
+};
+
+export const metadata: Metadata = {
+  title: "Szakmák",
 };
 
 const EventsPage = async () => {

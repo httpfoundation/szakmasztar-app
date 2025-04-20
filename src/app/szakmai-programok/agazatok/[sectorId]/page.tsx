@@ -17,6 +17,18 @@ export async function generateStaticParams() {
   return eventsBySectors.map((sector) => ({ sectorId: sector.id }));
 }
 
+export async function generateMetadata({ params }: SectorPageProps) {
+  const { sectorId } = await params;
+  const category = await getCategory({ id: sectorId });
+  if (!category) {
+    return {};
+  }
+
+  return {
+    title: category.name,
+  };
+}
+
 interface SectorPageProps {
   params: Promise<{
     sectorId: string;

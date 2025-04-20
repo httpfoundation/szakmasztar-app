@@ -1,7 +1,12 @@
+import { Metadata } from "next";
 import { ArticleFragment } from "@/actions/articles/articles.generated";
 import { getCategoryTree } from "@/actions/categories/categories";
 import YellowTitle from "@/components/ui/YellowTitle";
 import AllSkills from "./AllSkills";
+
+export const metadata: Metadata = {
+  title: "Szakmák",
+};
 
 const AllSkillsPage = async () => {
   const eventsBySectors = (await getCategoryTree({ rootNodeId: "szakmasztar-app-sector" }))

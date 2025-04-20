@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import Image from "next/image";
 import { Stack, Typography } from "@mui/material";
 import eredmenyorientaciosIcon from "@/assets/images/kerdoivek/icon-eredmenyorientacios.svg";
@@ -9,6 +10,10 @@ import Starform from "@/components/ui/Starform";
 import YellowTitle from "@/components/ui/YellowTitle";
 
 export const dynamic = "force-static";
+
+export const metadata: Metadata = {
+  title: "Kérdőívek",
+};
 
 const KerdoivekPage = () => {
   return (

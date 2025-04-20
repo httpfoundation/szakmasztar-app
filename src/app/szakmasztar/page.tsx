@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import { getCurrentCompetition } from "@/actions/competitions/competitions";
 import FormattedContent from "@/components/FormattedContent";
 import SectionContainer from "@/components/layouts/SectionContainer";
@@ -6,6 +7,10 @@ import Starform from "@/components/ui/Starform";
 import SzakmaSztarSymbol from "@/components/ui/SzakmaSztarSymbol";
 
 export const revalidate = 3600;
+
+export const metadata: Metadata = {
+  title: "Szakma Sztár Fesztivál",
+};
 
 const SzakmasztarPage = async () => {
   const currentCompetition = await getCurrentCompetition();

@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import { getMapItems } from "@/actions/articles/articles";
 import MapPageContainer from "@/components/map/MapPageContainer";
 import SvgPanZoom from "@/components/map/SvgPanZoom";
@@ -5,6 +6,10 @@ import { getMapDefaultPosition } from "@/lib/utils";
 import DPavilonMap from "./_components/dPavilonMap";
 
 export const revalidate = 3600;
+
+export const metadata: Metadata = {
+  title: "D Pavilon térképe",
+};
 
 interface DPavilonMapPageProps {
   searchParams: Promise<{ zoomTo?: string }>;

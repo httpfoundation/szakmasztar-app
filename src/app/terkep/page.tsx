@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { Metadata } from "next";
 import Image from "next/image";
 import { Stack, Typography } from "@mui/material";
 import aPavilonIcon from "@/assets/images/maps/a-pavilon-icon.svg";
@@ -11,6 +12,10 @@ import SzakmaSztarSymbol from "@/components/ui/SzakmaSztarSymbol";
 import YellowTitle from "@/components/ui/YellowTitle";
 
 export const dynamic = "force-static";
+
+export const metadata: Metadata = {
+  title: "Térképek",
+};
 
 const MapPage = async () => {
   return (

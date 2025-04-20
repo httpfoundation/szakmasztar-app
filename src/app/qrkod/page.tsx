@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import FormattedContent from "@/components/FormattedContent";
 import PageContainer from "@/components/layouts/PageContainer";
 import Starform from "@/components/ui/Starform";
@@ -6,6 +7,10 @@ import YellowTitle from "@/components/ui/YellowTitle";
 import QrCodeScanner from "./QrCodeScanner";
 
 export const dynamic = "force-static";
+
+export const metadata: Metadata = {
+  title: "QR kód beolvasása",
+};
 
 const QrCodePage = async () => {
   return (

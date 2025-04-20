@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import { Stack } from "@mui/material";
 import { getSponsors } from "@/actions/sponsors/sponsors";
 import PageContainer from "@/components/layouts/PageContainer";
@@ -5,6 +6,10 @@ import SponsorCard from "@/components/sponsor/SponsorCard";
 import YellowTitle from "@/components/ui/YellowTitle";
 
 export const revalidate = 3600;
+
+export const metadata: Metadata = {
+  title: "Szakmai támogatók",
+};
 
 const SponsorsPage = async () => {
   const sponsors = await getSponsors();
