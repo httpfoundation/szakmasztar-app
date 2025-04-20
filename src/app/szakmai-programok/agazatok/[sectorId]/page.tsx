@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Paper, Stack, Typography } from "@mui/material";
 import { getArticles } from "@/actions/articles/articles";
@@ -25,14 +26,17 @@ const categories = [
   {
     name: "WorldSkills Hungary",
     filter: (article: ArticleFragment) => article.slug.startsWith("wshu"),
+    symbolSrc: "/images/wshu-symbol.svg",
   },
   {
     name: "SZKTV/OSZTV",
     filter: (article: ArticleFragment) => article.slug.startsWith("osztvszktv"),
+    symbolSrc: "/images/osztv-symbol.svg",
   },
   {
     name: "NAK",
     filter: (article: ArticleFragment) => article.slug.startsWith("nak"),
+    symbolSrc: "/images/nak-symbol.svg",
   },
   {
     name: "Egyéb",
@@ -40,6 +44,7 @@ const categories = [
       !article.slug.startsWith("wshu") &&
       !article.slug.startsWith("osztvszktv") &&
       !article.slug.startsWith("nak"),
+    symbolSrc: "/images/sponsor-symbol.svg",
   },
 ];
 
@@ -68,12 +73,29 @@ const SectorPage = async ({ params }: SectorPageProps) => {
                 p: 2,
                 pb: 0,
                 bgcolor: "#451F48",
+                position: "relative",
+                overflow: "hidden",
               }}
               style={{
                 borderRadius: 0,
                 boxShadow: "none",
               }}
             >
+              <Image
+                src={category.symbolSrc}
+                width={100}
+                height={100}
+                alt=""
+                role="presentation"
+                style={{
+                  position: "absolute",
+                  right: "-1rem",
+                  top: "-1rem",
+                  opacity: 0.2,
+                  pointerEvents: "none",
+                }}
+              />
+
               <Typography
                 variant="h2"
                 sx={{ fontSize: 18, mb: 1.5, color: "primary.contrastText", fontWeight: 600 }}

@@ -21,13 +21,13 @@ const EventCards = ({ events }: EventCardsProps) => {
   }
 
   return (
-    <Grid container spacing={1.5} sx={{ mb: 2 }}>
+    <Grid container spacing={1.5} sx={{ mb: 3 }}>
       {events
         .sort((a, z) => a.title.localeCompare(z.title))
         .filter((event) => event.__typename === "Article")
         .map((event, eventIndex) => {
           const mapId = getEventMapId(event);
-          const {} = getEventTypeBySlug(event.slug);
+          const { eventType } = getEventTypeBySlug(event.slug);
 
           return (
             <Grid item xs={12} md={6} key={eventIndex}>
@@ -41,10 +41,14 @@ const EventCards = ({ events }: EventCardsProps) => {
                   height: "100%",
                   bgcolor: "primary.light",
                   color: "primary.contrastText",
+                  boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
                 }}
               >
                 <Typography variant="h6" gutterBottom sx={{ mb: 1 }}>
                   {event.title}
+                </Typography>
+                <Typography variant="body2" sx={{ mb: 1, fontStyle: "italic", fontSize: 13 }}>
+                  {eventType}
                 </Typography>
                 <Box sx={{ display: "flex", gap: 2, mt: 1.5 }}>
                   {!!event.content && !!event.lead && (
