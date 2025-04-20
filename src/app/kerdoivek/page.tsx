@@ -15,7 +15,7 @@ const KerdoivekPage = () => {
     <>
       <YellowTitle>Kérdőívek</YellowTitle>
 
-      <SectionContainer sx={{ pb: 4, pt: 2, position: "relative" }}>
+      <SectionContainer sx={{ pb: 4, pt: 2, position: "relative" }} maxWidth="sm">
         <Starform />
 
         <Typography sx={{ color: "white", mb: 2 }} variant="body2" align="justify">
@@ -26,6 +26,7 @@ const KerdoivekPage = () => {
         <Stack direction="column" spacing={2}>
           <ImageButton
             href="/kerdoivek/eredmenyorientacios"
+            sx={{ justifyContent: "flex-start" }}
             icon={
               <Image
                 src={eredmenyorientaciosIcon}
@@ -45,6 +46,7 @@ const KerdoivekPage = () => {
 
           <ImageButton
             href="/kerdoivek/iparagi-erdeklodes"
+            sx={{ justifyContent: "flex-start" }}
             icon={
               <Image
                 src={iparagiIcon}
@@ -65,6 +67,7 @@ const KerdoivekPage = () => {
 
           <ImageButton
             href="/kerdoivek/kompetencia"
+            sx={{ justifyContent: "flex-start" }}
             icon={
               <Image
                 src={kompetenciaIcon}

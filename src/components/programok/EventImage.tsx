@@ -25,7 +25,9 @@ const EventImage = ({
   hasInfo,
 }: EventImageProps) => {
   return (
-    <Stack sx={{ width: "100%", aspectRatio: "3 / 2", position: "relative" }}>
+    <Stack
+      sx={{ width: "min(100%,600px)", aspectRatio: "3 / 2", position: "relative", mx: "auto" }}
+    >
       <Image
         src={image}
         alt={title}

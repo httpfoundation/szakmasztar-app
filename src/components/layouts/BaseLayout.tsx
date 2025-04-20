@@ -17,7 +17,6 @@ export default function BaseLayout({ children, title }: BaseLayoutProps) {
       sx={{
         height: "100%",
         bgcolor: "primary.main",
-        maxWidth: "800px",
         margin: "auto",
         width: "100%",
       }}

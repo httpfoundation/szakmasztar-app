@@ -53,6 +53,7 @@ const EventPage = ({
             display: "flex",
             alignItems: "center",
             ml: -1,
+            mx: "auto",
           }}
           padding={0.75}
         >
@@ -96,7 +97,14 @@ const EventPage = ({
               >
                 VERSENYZŐK
               </Typography>
-              <Stack spacing={2}>
+              <Stack
+                spacing={2}
+                sx={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(auto-fill,minmax(300px,1fr))",
+                  gap: 2,
+                }}
+              >
                 {competitors
                   .sort((a, z) => a.name.localeCompare(z.name, "hu-HU"))
                   .map((competitor) => (

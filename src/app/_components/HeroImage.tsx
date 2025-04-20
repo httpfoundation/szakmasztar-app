@@ -13,10 +13,10 @@ export default function HeroImage({ image, alt, title }: HeroImageProps) {
     <Box
       sx={{
         position: "relative",
-        width: "100%",
+        width: "min(100%,852px)",
         left: "50%",
         transform: "translateX(-50%)",
-        height: { xs: "auto", md: "500px" },
+        height: { xs: "auto", md: "320px" },
         overflow: "hidden",
         aspectRatio: { xs: "3/2", md: "auto" },
       }}
@@ -52,7 +52,7 @@ export default function HeroImage({ image, alt, title }: HeroImageProps) {
             sx={{
               color: "white",
               textAlign: "left",
-              fontSize: { xs: "2.5rem", sm: "4rem", md: "6rem" },
+              fontSize: { xs: "2.5rem", sm: "3rem", md: "4rem" },
               textTransform: "uppercase",
             }}
           >

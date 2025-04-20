@@ -14,7 +14,13 @@ const SponsorsPage = async () => {
       <YellowTitle>Szponzorok</YellowTitle>
 
       <PageContainer sx={{ mb: 3 }}>
-        <Stack sx={{ display: "grid", gridTemplateColumns: { xs: "repeat(2,1fr)" }, gap: 1.5 }}>
+        <Stack
+          sx={{
+            display: "grid",
+            gridTemplateColumns: { xs: "repeat(2,1fr)", md: "repeat(3,1fr)" },
+            gap: 1.5,
+          }}
+        >
           {sponsors
             .filter((x) => !!x.image?.url)
             .map((sponsor) => (

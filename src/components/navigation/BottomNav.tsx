@@ -28,7 +28,7 @@ export default function BottomNav() {
       <BottomNavigation
         value={currentIndex}
         showLabels
-        sx={{ bgcolor: "transparent", height: "80px" }}
+        sx={{ bgcolor: "transparent", height: { xs: "80px", md: "64px" } }}
       >
         {bottomNavItems.map((item, index) => (
           <BottomNavigationAction
@@ -55,8 +55,7 @@ export default function BottomNav() {
                 textAlign: "center !important",
                 lineHeight: 1,
                 color: "white",
-                minHeight: "30px",
-                height: "30px",
+                minHeight: { xs: "30px", md: "unset" },
                 fontWeight: 600,
               },
             }}

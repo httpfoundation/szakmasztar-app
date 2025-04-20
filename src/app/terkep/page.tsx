@@ -17,10 +17,8 @@ const MapPage = async () => {
     <>
       <YellowTitle>Térkép</YellowTitle>
 
-      <PageContainer sx={{ position: "relative", flexGrow: 1 }}>
-        <Starform
-          style={{ top: "unset", bottom: 0, transform: "scale(1.3)", transformOrigin: "right" }}
-        />
+      <PageContainer maxWidth="sm" sx={{ position: "relative", flexGrow: 1, overflow: "hidden" }}>
+        <Starform style={{ top: 0, transform: "scale(1.3)", transformOrigin: "right" }} />
         <SzakmaSztarSymbol />
 
         <Stack direction="column" spacing={2}>

@@ -4,6 +4,7 @@ import { Paper, Stack, Typography } from "@mui/material";
 import { getArticles } from "@/actions/articles/articles";
 import { ArticleFragment } from "@/actions/articles/articles.generated";
 import { getCategory, getCategoryTree } from "@/actions/categories/categories";
+import SectionContainer from "@/components/layouts/SectionContainer";
 import EventCards from "@/components/programok/EventCards";
 import YellowTitle from "@/components/ui/YellowTitle";
 
@@ -81,28 +82,30 @@ const SectorPage = async ({ params }: SectorPageProps) => {
                 boxShadow: "none",
               }}
             >
-              <Image
-                src={category.symbolSrc}
-                width={100}
-                height={100}
-                alt=""
-                role="presentation"
-                style={{
-                  position: "absolute",
-                  right: "-1rem",
-                  top: "-1rem",
-                  opacity: 0.2,
-                  pointerEvents: "none",
-                }}
-              />
+              <SectionContainer padding={0} sx={{ p: 0, position: "relative" }}>
+                <Image
+                  src={category.symbolSrc}
+                  width={100}
+                  height={100}
+                  alt=""
+                  role="presentation"
+                  style={{
+                    position: "absolute",
+                    right: "-1rem",
+                    top: "-1.5rem",
+                    opacity: 0.2,
+                    pointerEvents: "none",
+                  }}
+                />
 
-              <Typography
-                variant="h2"
-                sx={{ fontSize: 18, mb: 1.5, color: "primary.contrastText", fontWeight: 600 }}
-              >
-                {category.name}
-              </Typography>
-              <EventCards events={events.filter(category.filter)} />
+                <Typography
+                  variant="h2"
+                  sx={{ fontSize: 18, mb: 1.5, color: "primary.contrastText", fontWeight: 600 }}
+                >
+                  {category.name}
+                </Typography>
+                <EventCards events={events.filter(category.filter)} />
+              </SectionContainer>
             </Paper>
           );
         })}

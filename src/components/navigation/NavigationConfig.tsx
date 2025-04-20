@@ -5,6 +5,7 @@ import {
   Home as HomeIcon,
   Info as InfoIcon,
   Map as MapIcon,
+  QrCode as QrCodeIcon,
   Quiz as QuizIcon,
   Work as WorkIcon,
 } from "@mui/icons-material";
@@ -53,6 +54,13 @@ export const menuItems: MenuItem[] = [
     slug: "/utemterv",
     link: <Link href="/utemterv">{<EventIcon />}</Link>,
     showInBottomNav: true,
+  },
+  {
+    text: "QR kód",
+    icon: <QrCodeIcon />,
+    slug: "/qrcode",
+    link: <Link href="/qrcode">{<QrCodeIcon />}</Link>,
+    showInBottomNav: false,
   },
   {
     text: "Kérdőívek",

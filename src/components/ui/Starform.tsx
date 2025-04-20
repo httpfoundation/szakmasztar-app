@@ -10,7 +10,7 @@ const Starform = ({ style }: { style?: CSSProperties }) => {
       role="presentation"
       style={{
         position: "absolute",
-        left: 0,
+        right: 0,
         top: 0,
         pointerEvents: "none",
         width: "592px",

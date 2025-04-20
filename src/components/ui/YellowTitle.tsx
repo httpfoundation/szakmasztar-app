@@ -20,6 +20,8 @@ const YellowTitle = ({ children, sx }: YellowTitleProps) => {
         width: "100%",
         color: "white",
         background: "#F4B02A",
+        position: "relative",
+        zIndex: 10,
         ...sx,
       }}
     >
