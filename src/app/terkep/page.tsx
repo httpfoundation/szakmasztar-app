@@ -29,6 +29,7 @@ const MapPage = async () => {
             icon={<Image src={hungexpoMapIcon} alt="Hungexpo" width={46} height={46} />}
             title="HUNGEXPO"
             subtitle="Áttekintő tékép"
+            bgcolor="other.main"
           />
 
           <MapButton
@@ -36,6 +37,7 @@ const MapPage = async () => {
             icon={<Image src={aPavilonIcon} alt="Hungexpo" width={46} height={46} />}
             title="A pavilon"
             subtitle="Szakmai Tanulmányi versenyek és WorldSkills Hungary versenyek"
+            bgcolor="osztv.main"
           />
 
           <MapButton
@@ -43,6 +45,7 @@ const MapPage = async () => {
             icon={<Image src={dPavilonIcon} alt="Hungexpo" width={46} height={46} />}
             title="D pavilon térképe"
             subtitle="Az agrár terület szakmai tanulmányi versenyei"
+            bgcolor="nak.main"
           />
         </Stack>
       </PageContainer>
@@ -56,19 +59,26 @@ const MapButton = ({
   icon,
   href,
   center = false,
+  bgcolor,
 }: {
   title: string;
   subtitle: string;
   icon: ReactNode;
   href: string;
   center?: boolean;
+  bgcolor?: string;
 }) => {
   return (
     <ImageButton
       iconSx={{ ml: center ? "-36px" : 0 }}
       href={href}
       icon={icon}
-      sx={{ justifyContent: center ? "center" : "flex-start", py: 2 }}
+      sx={{
+        justifyContent: center ? "center" : "flex-start",
+        py: 2,
+        boxShadow: "0 2px 5px rgba(0,0,0,.1)",
+      }}
+      bgcolor={bgcolor}
       text={
         <Typography component="div" sx={{ fontSize: 17, fontWeight: 700, width: "fit-content" }}>
           {title}

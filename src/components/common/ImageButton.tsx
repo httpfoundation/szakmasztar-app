@@ -8,9 +8,17 @@ interface ImageButtonProps {
   icon: React.ReactNode;
   sx?: SxProps;
   iconSx?: SxProps;
+  bgcolor?: string;
 }
 
-export default function ImageButton({ href, text, icon, sx, iconSx }: ImageButtonProps) {
+export default function ImageButton({
+  href,
+  text,
+  icon,
+  sx,
+  iconSx,
+  bgcolor = "primary.light",
+}: ImageButtonProps) {
   return (
     <Button
       role="button"
@@ -22,11 +30,11 @@ export default function ImageButton({ href, text, icon, sx, iconSx }: ImageButto
         borderRadius: 3,
         px: 1,
         py: 1.5,
-        backgroundColor: "primary.light",
+        backgroundColor: bgcolor,
         textDecoration: "none",
         textTransform: "none",
         "&:hover,&:focus": {
-          backgroundColor: "primary.light",
+          backgroundColor: bgcolor,
         },
         ...sx,
       }}

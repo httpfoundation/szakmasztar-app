@@ -45,7 +45,7 @@ const EventsPage = async () => {
           icon={<TravelExploreIcon />}
           text="Összes szakma és keresés"
           href="/szakmai-programok/osszes"
-          sx={{ py: 0.5 }}
+          sx={{ py: 0.5, boxShadow: "0 2px 5px rgba(0,0,0,.1)" }}
         />
 
         <Divider sx={{ borderColor: "#ffffff30", my: 2 }} />

@@ -8,6 +8,8 @@ interface SectorCardsProps {
   sectors: Sector[];
 }
 
+const bgcolors = ["wshu.main", "osztv.main", "nak.main", "other.main", "primary.light"];
+
 const SectorCards = ({ sectors }: SectorCardsProps) => {
   return (
     <Stack
@@ -18,8 +20,12 @@ const SectorCards = ({ sectors }: SectorCardsProps) => {
         mb: 3,
       }}
     >
-      {sectors.map((sector) => (
-        <SkillCategoryCard key={sector.name} sector={sector} />
+      {sectors.map((sector, index) => (
+        <SkillCategoryCard
+          key={sector.name}
+          sector={sector}
+          bgcolor={bgcolors[index % bgcolors.length]}
+        />
       ))}
     </Stack>
   );

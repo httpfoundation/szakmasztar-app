@@ -7,9 +7,10 @@ import { Sector } from "@/app/szakmai-programok/page";
 
 interface SkillCategoryCardProps {
   sector: Sector;
+  bgcolor?: string;
 }
 
-const SkillCategoryCard: FC<SkillCategoryCardProps> = ({ sector }) => {
+const SkillCategoryCard: FC<SkillCategoryCardProps> = ({ sector, bgcolor = "primary.light" }) => {
   return (
     <Button
       color="info"
@@ -19,8 +20,8 @@ const SkillCategoryCard: FC<SkillCategoryCardProps> = ({ sector }) => {
         p: 0,
         width: "100%",
         height: "100%",
-        bgcolor: "primary.light",
-        "&:hover,&:focus-visible": { bgcolor: "primary.light" },
+        bgcolor,
+        "&:hover,&:focus-visible": { bgcolor },
         pt: 2,
         flexDirection: "column",
         overflow: "hidden",
