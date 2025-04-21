@@ -72,9 +72,12 @@ type MetadataCompetitor = {
 
 export function parseArticleMetadata(metadata: string) {
   const competitors: MetadataCompetitor[] = [];
+  let mapId: string | undefined = undefined;
 
   try {
     const parsedMetadata = JSON.parse(metadata);
+
+    mapId = parsedMetadata.mapId;
 
     if (parsedMetadata && Array.isArray(parsedMetadata.competitors)) {
       parsedMetadata.competitors.forEach((competitor: MetadataCompetitor) => {
@@ -95,9 +98,9 @@ export function parseArticleMetadata(metadata: string) {
         });
       });
 
-      return { competitors };
+      return { competitors, mapId };
     }
   } catch {}
 
-  return { competitors: [] };
+  return { competitors: [], mapId };
 }

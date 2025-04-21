@@ -1,7 +1,9 @@
+import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { Stack, Typography } from "@mui/material";
 import { getEventTypeBySlug, parseArticleMetadata } from "@/lib/utils";
 import FormattedContent from "../FormattedContent";
 import PageContainer from "../layouts/PageContainer";
+import LinkChip from "../ui/LinkChip";
 import Starform from "../ui/Starform";
 import YellowTitle from "../ui/YellowTitle";
 import EventImage from "./EventImage";
@@ -24,7 +26,7 @@ const EventPage = ({
   slug,
 }: EventPageProps) => {
   const { eventType, eventOwner } = getEventTypeBySlug(slug);
-  const { competitors } = parseArticleMetadata(metadata);
+  const { competitors, mapId } = parseArticleMetadata(metadata);
 
   const eventTypeText = eventType.includes("döntő")
     ? "Verseny"
@@ -48,14 +50,13 @@ const EventPage = ({
       <Stack sx={{ width: "100%", position: "relative", bgcolor: "success.main" }}>
         <PageContainer
           sx={{
-            flexDirection: "row",
-            gap: 1,
+            flexDirection: "column",
             display: "flex",
-            alignItems: "center",
+            alignItems: "flex-start",
             ml: -1,
             mx: "auto",
           }}
-          padding={0.75}
+          padding={0.5}
         >
           {!!eventOwner && (
             <Typography
@@ -83,6 +84,23 @@ const EventPage = ({
           )}
         </PageContainer>
       </Stack>
+      {!!mapId && (
+        <Stack sx={{ width: "100%", position: "relative", bgcolor: "success.dark" }}>
+          <PageContainer padding={0.75}>
+            <LinkChip
+              href={
+                mapId === "d-pavilon-map"
+                  ? `/terkep/d-pavilon?zoomTo=${slug}`
+                  : `/terkep/a-pavilon?zoomTo=${slug}`
+              }
+              icon={<LocationOnIcon />}
+              sx={{ boxShadow: "-1px 2px 4px rgba(0,0,0,.35)" }}
+            >
+              Mutasd a térképen (A pavilon)
+            </LinkChip>
+          </PageContainer>
+        </Stack>
+      )}
 
       <PageContainer sx={{ position: "relative" }}>
         <Starform />
