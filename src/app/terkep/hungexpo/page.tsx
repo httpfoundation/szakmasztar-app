@@ -13,7 +13,7 @@ const HungexpoMapPage = () => {
   return (
     <>
       <MapPageContainer title="Hungexpo térkép">
-        <SvgPanZoom defaultPosition={{ x: 786.49 / 2, y: 414.59 * 1.3, zoom: 0.5 }}>
+        <SvgPanZoom defaultPosition={{ x: 786.49 / 2, y: 414.59 / 2, zoom: 0.5 }}>
           <HungexpoMap />
         </SvgPanZoom>
       </MapPageContainer>

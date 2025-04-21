@@ -38,10 +38,10 @@ const SvgPanZoom = ({ children, defaultPosition }: SvgPanZoomProps) => {
       tool={TOOL_AUTO}
       customMiniature={() => null}
       customToolbar={() => null}
-      scaleFactorMin={0.075}
+      scaleFactorMin={0.08}
       scaleFactorMax={4}
       detectAutoPan={false}
-      background="#350f38"
+      background="#fff"
       style={{ opacity: mounted ? 1 : 0 }}
       scaleFactor={defaultPosition.zoom}
     >

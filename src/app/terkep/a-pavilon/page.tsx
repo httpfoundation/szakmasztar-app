@@ -19,7 +19,7 @@ const APavilonMapPage = async ({ searchParams }: APavilonMapPageProps) => {
   const params = await searchParams;
   const boxItems = (await getMapItems()).filter((x) => x.mapId === "a-pavilon-map");
 
-  const defaultPosition = getMapDefaultPosition(params.zoomTo, boxItems, 3859, 2079 * 2.5);
+  const defaultPosition = getMapDefaultPosition(params.zoomTo, boxItems, 3859, 2079);
 
   return (
     <MapPageContainer title="A pavilon térképe">
