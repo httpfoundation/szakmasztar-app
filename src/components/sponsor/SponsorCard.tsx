@@ -19,6 +19,8 @@ const SponsorCard: FC<SponsorCardProps> = ({ sponsor }) => {
         overflow: "hidden",
         border: "1px solid",
         borderColor: "primary.light",
+        boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
+        bgcolor: "#451F48",
       }}
       style={{ borderRadius: "4px" }}
       disabled={!sponsor.homepageUrl}
@@ -26,14 +28,14 @@ const SponsorCard: FC<SponsorCardProps> = ({ sponsor }) => {
       <Stack
         alignItems="center"
         sx={{
-          background: "linear-gradient(to top right,rgb(46, 16, 46),rgb(79, 27, 79))",
+          background: "primary.light",
           px: 2,
-          py: 2,
+          py: 1.5,
           position: "relative",
           height: "100%",
           width: "100%",
         }}
-        spacing={2}
+        spacing={1.5}
       >
         <Stack
           sx={{
@@ -43,7 +45,6 @@ const SponsorCard: FC<SponsorCardProps> = ({ sponsor }) => {
             left: 0,
             height: "100px",
             bgcolor: "primary.light",
-            clipPath: "polygon(0% 0%, 0% 100%, 80% 100%, 100% 0%)",
           }}
         />
         <Stack
@@ -73,9 +74,9 @@ const SponsorCard: FC<SponsorCardProps> = ({ sponsor }) => {
           textAlign="center"
           color="white"
           fontWeight={500}
-          sx={{ width: "100%" }}
+          sx={{ width: "100%", fontSize: 13, textTransform: "capitalize" }}
         >
-          {sponsor.name.toUpperCase()}
+          {sponsor.name}
         </Typography>
       </Stack>
     </Button>
