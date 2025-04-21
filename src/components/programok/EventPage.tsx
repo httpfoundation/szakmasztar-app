@@ -96,7 +96,7 @@ const EventPage = ({
               icon={<LocationOnIcon />}
               sx={{ boxShadow: "-1px 2px 4px rgba(0,0,0,.35)" }}
             >
-              Mutasd a térképen (A pavilon)
+              Mutasd a térképen {mapId === "d-pavilon-map" ? "(D pavilon)" : "(A pavilon)"}
             </LinkChip>
           </PageContainer>
         </Stack>
