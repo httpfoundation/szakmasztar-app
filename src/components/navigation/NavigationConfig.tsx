@@ -50,7 +50,7 @@ export const menuItems: MenuItem[] = [
     showInBottomNav: true,
   },
   {
-    text: "Ütemterv",
+    text: "Naptár",
     icon: <EventIcon />,
     slug: "/utemterv",
     link: <Link href="/utemterv">{<EventIcon />}</Link>,

@@ -24,7 +24,7 @@ const EventCalendar = () => {
               </Typography>
             </Stack>
 
-            <Grid container spacing={2}>
+            <Grid container spacing={3}>
               {day.events.map((event, eventIndex) => (
                 <Grid item xs={12} md={6} key={eventIndex}>
                   <Paper

@@ -8,12 +8,12 @@ import YellowTitle from "@/components/ui/YellowTitle";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Nemzeti Agrárkamara szakmai események",
+  title: "A Nemzeti Agrárgazdasági Kamara szakmai bemutatói, agrár szabadulószoba",
 };
 
 const NakEventsPage = async () => {
   const events = await getEventsArticlesByCategory("nak");
-  const title = "Nemzeti Agrárkamara szakmai események";
+  const title = "A Nemzeti Agrárgazdasági Kamara szakmai bemutatói, agrár szabadulószoba";
 
   return (
     <>

@@ -8,12 +8,12 @@ import YellowTitle from "@/components/ui/YellowTitle";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "WorldSkills Hungary programok",
+  title: "WorldSkills Shanghai 2026 nemzeti döntők és szakmai bemutatók",
 };
 
 const WshuEventsPage = async () => {
   const events = await getEventsArticlesByCategory("wshu");
-  const title = "WorldSkills Hungary programok";
+  const title = "WorldSkills Shanghai 2026 nemzeti döntők és szakmai bemutatók";
 
   return (
     <>

@@ -8,12 +8,12 @@ import YellowTitle from "@/components/ui/YellowTitle";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Egyéb események",
+  title: "Egyéb: Szakmai támogatóink, az esemény szponzorai",
 };
 
 const OtherEventsPage = async () => {
   const events = await getEventsArticlesByCategory("egyeb");
-  const title = "Egyéb események";
+  const title = "Egyéb: Szakmai támogatóink, az esemény szponzorai";
 
   return (
     <>

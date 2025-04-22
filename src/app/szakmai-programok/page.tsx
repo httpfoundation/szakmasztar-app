@@ -26,7 +26,7 @@ const EventsPage = async () => {
   const eventsBySectors = (await getCategoryTree({ rootNodeId: "szakmasztar-app-sector" }))
     .children;
 
-  const { title, lead } = await getArticle({ slug: "szakmai-programok-oldal" });
+  const { lead } = await getArticle({ slug: "szakmai-programok-oldal" });
 
   const sectors = eventsBySectors
     .filter((sector) => sector.items.length > 0 && sector.name.trim().toLowerCase() !== "egyéb")
@@ -40,7 +40,7 @@ const EventsPage = async () => {
 
   return (
     <>
-      <YellowTitle>{title}</YellowTitle>
+      <YellowTitle>Szakmák</YellowTitle>
       <PageContainer sx={{ position: "relative" }}>
         <FormattedContent sx={{ mb: 2 }} variant="body2">
           {lead}

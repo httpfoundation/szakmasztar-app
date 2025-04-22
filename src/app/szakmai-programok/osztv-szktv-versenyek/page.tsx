@@ -8,12 +8,12 @@ import YellowTitle from "@/components/ui/YellowTitle";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "OSZTV és SZKTV versenyek",
+  title: "OSZTV és SZKTV döntők, szakmai bemutatók és interaktív programok",
 };
 
 const OsztvSzktvSkills = async () => {
   const events = await getEventsArticlesByCategory("osztvszktv");
-  const title = "OSZTV és SZKTV versenyek";
+  const title = "OSZTV és SZKTV döntők, szakmai bemutatók és interaktív programok";
 
   return (
     <>

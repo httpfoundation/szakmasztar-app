@@ -3,16 +3,16 @@
     "title": "Április 28., hétfő",
     "events": [
       {
-        "title": "Nyitóünnepség (zártkörű)",
+        "title": "Nyitóünnepség",
         "description": "Zártkörű nyitóünnepség a versenyek előtt",
         "startTime": "2025-04-28 09:00",
-        "endTime": "2025-04-28 09:00",
-        "location": "C pavilon",
+        "endTime": "2025-04-28 10:00",
+        "location": "CK pavilon",
         "locationSlug": "terkep/hungexpo",
         "eventSlugs": ""
       },
       {
-        "title": "OSZTV és SZKTV versenyek",
+        "title": "Országos szakmai versenyek, szakmai bemutatók és interaktív programok",
         "description": "Az MKIK-hoz tartozó versenyek",
         "startTime": "2025-04-28 10:00",
         "endTime": "2025-04-28 16:00",
@@ -21,8 +21,8 @@
         "eventSlugs": "szakmai-programok/osztv-szktv-versenyek"
       },
       {
-        "title": "Nemzeti Agrárkamara szakmák bemutatói",
-        "description": "A NAK-hoz tartozó szakmák bemutatói",
+        "title": "Nemzeti Agrárgazdasági Kamara szakmai bemutatók, agrár szabadulószoba",
+        "description": "A NAK-hoz tartozó szakmai bemutatók",
         "startTime": "2025-04-28 10:00",
         "endTime": "2025-04-28 16:00",
         "location": "D pavilon",
@@ -44,18 +44,18 @@
     "title": "Április 29., kedd",
     "events": [
       {
-        "title": "OSZTV és SZKTV versenyek",
+        "title": "Országos szakmai versenyek, szakmai bemutatók és interaktív programok",
         "description": "Az MKIK-hoz tartozó versenyek",
-        "startTime": "2025-04-28 10:00",
+        "startTime": "2025-04-28 08:00",
         "endTime": "2025-04-28 16:00",
         "location": "A pavilon",
         "locationSlug": "terkep/a-pavilon",
         "eventSlugs": "szakmai-programok/osztv-szktv-versenyek"
       },
       {
-        "title": "Nemzeti Agrárkamara szakmák bemutatói",
-        "description": "A NAK-hoz tartozó szakmák bemutatói",
-        "startTime": "2025-04-28 10:00",
+        "title": "Nemzeti Agrárgazdasági Kamara szakmai bemutatók, agrár szabadulószoba",
+        "description": "A NAK-hoz tartozó szakmai bemutatók",
+        "startTime": "2025-04-28 08:00",
         "endTime": "2025-04-28 16:00",
         "location": "D pavilon",
         "locationSlug": "terkep/d-pavilon",
@@ -64,7 +64,7 @@
       {
         "title": "WorldSkills Hungary nemzeti válogatók és bemutatók",
         "description": "WorldSkills 2026 válogatók, nemzetközi tréningversenyek és szakma bemutatók",
-        "startTime": "2025-04-28 10:00",
+        "startTime": "2025-04-28 08:00",
         "endTime": "2025-04-28 16:00",
         "location": "D pavilon",
         "locationSlug": "terkep/a-pavilon",

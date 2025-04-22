@@ -39,7 +39,7 @@ const MapPage = async () => {
             href="/terkep/a-pavilon"
             icon={<Image src={aPavilonIcon} alt="Hungexpo" width={46} height={46} />}
             title="A pavilon"
-            subtitle="Szakmai Tanulmányi versenyek és WorldSkills Hungary versenyek"
+            subtitle="Országos szakmai tanulmányi versenyek, WorldSkills Hungary nemzeti döntők, szakmai bemutatók és interaktív programok"
             bgcolor="osztv.main"
           />
 
@@ -47,7 +47,7 @@ const MapPage = async () => {
             href="/terkep/d-pavilon"
             icon={<Image src={dPavilonIcon} alt="Hungexpo" width={46} height={46} />}
             title="D pavilon térképe"
-            subtitle="Az agrár terület szakmai tanulmányi versenyei"
+            subtitle="Az agrár szakmák bemutatói, agrár szabadulószoba"
             bgcolor="nak.main"
           />
         </Stack>

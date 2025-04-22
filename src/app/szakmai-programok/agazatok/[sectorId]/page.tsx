@@ -51,14 +51,14 @@ const categories = [
     filter: (article: ArticleFragment) => article.slug.startsWith("nak"),
     symbolSrc: "/images/nak-symbol.svg",
   },
-  {
-    name: "Egyéb",
-    filter: (article: ArticleFragment) =>
-      !article.slug.startsWith("wshu") &&
-      !article.slug.startsWith("osztvszktv") &&
-      !article.slug.startsWith("nak"),
-    symbolSrc: "/images/sponsor-symbol.svg",
-  },
+  // {
+  //   name: "Egyéb",
+  //   filter: (article: ArticleFragment) =>
+  //     !article.slug.startsWith("wshu") &&
+  //     !article.slug.startsWith("osztvszktv") &&
+  //     !article.slug.startsWith("nak"),
+  //   symbolSrc: "/images/sponsor-symbol.svg",
+  // },
 ];
 
 const SectorPage = async ({ params }: SectorPageProps) => {

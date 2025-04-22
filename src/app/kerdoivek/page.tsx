@@ -23,9 +23,11 @@ const KerdoivekPage = () => {
       <SectionContainer sx={{ pb: 4, pt: 2, position: "relative" }} maxWidth="sm">
         <Starform />
 
-        <Typography sx={{ color: "white", mb: 2 }} variant="body2" align="justify">
+        <Typography sx={{ color: "white", mb: 2, fontWeight: 500 }} variant="body2" align="justify">
           Fedezd fel, hogy melyik szakma illik hozzád leginkább! Az alábbi kérdőívek segítségével
-          jobban megismerheted érdeklődési területeidet, erősségeidet és céljaidat.
+          jobban megismerheted érdeklődési területeidet, erősségeidet és céljaidat, vagy keresd a
+          Fesztivál útlevelet az A pavilon Szakma Sztár Szigetén, és a helyes válaszokkal zsebeld be
+          ajándékainkat!
         </Typography>
 
         <Stack direction="column" spacing={2}>

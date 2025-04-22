@@ -48,13 +48,13 @@ export function getEventTypeBySlug(slug: string) {
     : slug.includes("osztvszktv")
       ? "OSZTV/SZKTV"
       : slug.includes("nak")
-        ? "Nemzeti Agrárkamara"
+        ? "Nemzeti Agrárgazdasági Kamara"
         : "SzakmaSztár";
   const eventType = slug.includes("egyeb")
     ? "egyéb program"
     : slug.includes("verseny")
       ? eventOwner === "Worldskills Hungary"
-        ? "nemzeti válogató döntő"
+        ? "nemzeti döntő"
         : "szakmai tanulmányi verseny döntő"
       : slug.includes("szakmabemutato")
         ? "szakmai bemutató"

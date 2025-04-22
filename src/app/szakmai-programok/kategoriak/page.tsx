@@ -13,11 +13,12 @@ export const metadata: Metadata = {
 const EventsPage = () => {
   return (
     <>
-      <YellowTitle>Szakmai programok</YellowTitle>
+      <YellowTitle>Programok</YellowTitle>
       <PageContainer sx={{ position: "relative", mb: 3 }}>
         <FormattedContent variant="body2">
-          A rendezvény helyet ad a szakmai tanulmányi versenyek döntőinek, a WorldSkills Hungary
-          versenyeinek, szakmabemutatóknak és más pályaválasztást segítő eseménynek egyaránt.
+          A rendezvény helyet ad az országos szakmai tanulmányi versenyek döntőinek, a WorldSkills
+          Hungary nemzeti döntőknek, szakmai bemutatóknak, az agrár szakmák népszerűsítésének és más
+          pályaválasztást segítő eseménynek egyaránt.
         </FormattedContent>
         <EventCategories />
       </PageContainer>
