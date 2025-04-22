@@ -10,8 +10,18 @@ const OtherImageButtonsSection = () => {
       <Divider sx={{ borderColor: "#ffffff30", mb: 2 }} />
 
       <Stack sx={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: 2, width: "100%" }}>
-        <ImageButton href="/kerdoivek" icon={<QuizIcon />} text="Melyik szakma illik hozzád?" />
-        <ImageButton href="/szponzorok" icon={<AccountBalanceIcon />} text="Szakmai támogatók" />
+        <ImageButton
+          bgcolor="osztv.main"
+          href="/kerdoivek"
+          icon={<QuizIcon />}
+          text="Melyik szakma illik hozzád?"
+        />
+        <ImageButton
+          bgcolor="other.main"
+          href="/szponzorok"
+          icon={<AccountBalanceIcon />}
+          text="Szakmai támogatók"
+        />
       </Stack>
     </SectionContainer>
   );
