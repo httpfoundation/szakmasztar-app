@@ -1,7 +1,8 @@
+import { CSSProperties } from "react";
 import Image from "next/image";
 import szakmasztarSymbol from "@/assets/images/szakmasztar-symbol.svg";
 
-const SzakmaSztarSymbol = () => {
+const SzakmaSztarSymbol = ({ style }: { style?: CSSProperties }) => {
   return (
     <Image
       src={szakmasztarSymbol}
@@ -15,6 +16,7 @@ const SzakmaSztarSymbol = () => {
         height: "auto",
         opacity: 0.2,
         pointerEvents: "none",
+        ...style,
       }}
     />
   );

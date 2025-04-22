@@ -2,6 +2,7 @@ import Link from "next/link";
 import {
   Category as CategoryIcon,
   Event as EventIcon,
+  Explore as ExploreIcon,
   Home as HomeIcon,
   Info as InfoIcon,
   Map as MapIcon,
@@ -36,7 +37,7 @@ export const menuItems: MenuItem[] = [
   },
   {
     text: "Térkép",
-    icon: <MapIcon />,
+    icon: <ExploreIcon />,
     slug: "/terkep",
     link: <Link href="/terkep">{<MapIcon />}</Link>,
     showInBottomNav: true,

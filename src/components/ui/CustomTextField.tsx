@@ -26,7 +26,7 @@ const CustomTextField = ({ sx, InputProps, ...rest }: CustomTextFieldProps) => {
           borderBottomLeftRadius: 999,
           fontSize: 14,
           px: 0.9,
-          fontWeight: 400,
+          fontWeight: 500,
           ...InputProps?.sx,
         },
       }}

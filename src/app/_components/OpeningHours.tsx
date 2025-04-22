@@ -2,10 +2,13 @@ import { Typography } from "@mui/material";
 import LinkButton from "@/components/common/LinkButton";
 import TwoLinesInfo from "@/components/common/TwoLinesInfo";
 import SectionContainer from "@/components/layouts/SectionContainer";
+import SzakmaSztarSymbol from "@/components/ui/SzakmaSztarSymbol";
 
 const OpeningHours = () => {
   return (
-    <SectionContainer sx={{ display: "flex", flexDirection: "column" }}>
+    <SectionContainer sx={{ display: "flex", flexDirection: "column", position: "relative" }}>
+      <SzakmaSztarSymbol style={{ opacity: 0.1 }} />
+
       <Typography
         variant="h2"
         sx={{
@@ -29,7 +32,7 @@ const OpeningHours = () => {
           py: 1,
           mt: 0.5,
           bgcolor: "primary.light",
-          fontSize: 13,
+          fontSize: 12,
           fontWeight: 600,
           alignSelf: "center",
         }}
