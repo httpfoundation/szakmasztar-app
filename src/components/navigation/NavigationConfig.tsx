@@ -80,7 +80,7 @@ export const menuItems: MenuItem[] = [
   {
     text: "Infók",
     icon: <InfoIcon />,
-    slug: "/informaciok",
+    slug: "/szakmasztar",
     link: <Link href="/informaciok">{<InfoIcon />}</Link>,
     showInBottomNav: false,
   },
