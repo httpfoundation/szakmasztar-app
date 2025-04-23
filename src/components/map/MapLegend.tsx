@@ -50,7 +50,13 @@ const legendItems3 = [
   {
     icon: (
       <Box
-        sx={{ width: "22px", height: "22px", border: "1px solid white", bgcolor: "wshu.main" }}
+        sx={{
+          width: "22px",
+          height: "22px",
+          marginRight: "4px",
+          border: "1px solid white",
+          bgcolor: "wshu.main",
+        }}
       />
     ),
     text: "WorldSkills Hungary",
@@ -58,7 +64,13 @@ const legendItems3 = [
   {
     icon: (
       <Box
-        sx={{ width: "22px", height: "22px", border: "1px solid white", bgcolor: "osztv.main" }}
+        sx={{
+          width: "22px",
+          height: "22px",
+          marginRight: "4px",
+          border: "1px solid white",
+          bgcolor: "osztv.main",
+        }}
       />
     ),
     text: "Szakmai tanulmányi versenyek",
@@ -66,14 +78,28 @@ const legendItems3 = [
   {
     icon: (
       <Box
-        sx={{ width: "22px", height: "22px", border: "1px solid white", bgcolor: "other.main" }}
+        sx={{
+          width: "22px",
+          height: "22px",
+          marginRight: "4px",
+          border: "1px solid white",
+          bgcolor: "other.main",
+        }}
       />
     ),
     text: "Egyéb események",
   },
   {
     icon: (
-      <Box sx={{ width: "22px", height: "22px", border: "1px solid white", bgcolor: "nak.main" }} />
+      <Box
+        sx={{
+          width: "22px",
+          height: "22px",
+          marginRight: "4px",
+          border: "1px solid white",
+          bgcolor: "nak.main",
+        }}
+      />
     ),
     text: "NAK szakmai bemutatók",
   },
