@@ -1,57 +1,18 @@
 "use client";
 
 import { ReactNode, useEffect, useState } from "react";
-import Image from "next/image";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import { Box, IconButton, Stack, Typography } from "@mui/material";
-import etelcsomagIcon from "@/assets/images/icons/etelcsomag-icon.svg";
-import foodIcon from "@/assets/images/icons/food-icon.svg";
-import helloPayIcon from "@/assets/images/icons/hello-pay-icon.svg";
-import szigetIcon from "@/assets/images/icons/sziget.svg";
-import wcIcon from "@/assets/images/icons/wc-icon.svg";
+import { Box, IconButton, Stack, SxProps, Typography } from "@mui/material";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import SectionContainer from "../layouts/SectionContainer";
 
-const legendItems1 = [
-  {
-    icon: <Image src={wcIcon} alt="WC" style={{ width: "32px", height: "32px" }} />,
-    text: "WC",
-  },
-  {
-    icon: <Image src={etelcsomagIcon} alt="Ételcsomag" style={{ width: "32px", height: "32px" }} />,
-    text: "Ételcsomag",
-  },
-  {
-    icon: <Image src={foodIcon} alt="Étterem / Büfé" style={{ width: "32px", height: "32px" }} />,
-    text: "Étterem / Büfé",
-  },
-];
-
-const legendItems2 = [
-  {
-    icon: (
-      <Image
-        src={helloPayIcon}
-        alt="Hello Pay feltöltő pont"
-        style={{ width: "28px", height: "28px" }}
-      />
-    ),
-    text: "Hello Pay feltöltő pont",
-  },
-  {
-    icon: (
-      <Image src={szigetIcon} alt="Szakma Sztár Sziget" style={{ width: "28px", height: "28px" }} />
-    ),
-    text: "Szakma Sztár Sziget",
-  },
-];
-
-const legendItems3 = [
+const legendItems = [
   {
     icon: (
       <Box
         sx={{
           width: "22px",
+          flexShrink: 0,
           height: "22px",
           marginRight: "4px",
           border: "1px solid white",
@@ -59,13 +20,14 @@ const legendItems3 = [
         }}
       />
     ),
-    text: "WorldSkills Hungary",
+    text: "WorldSkills Shanghai 2026 nemzeti döntők és szakmai bemutatók",
   },
   {
     icon: (
       <Box
         sx={{
           width: "22px",
+          flexShrink: 0,
           height: "22px",
           marginRight: "4px",
           border: "1px solid white",
@@ -73,13 +35,14 @@ const legendItems3 = [
         }}
       />
     ),
-    text: "Szakmai tanulmányi versenyek",
+    text: "OSZTV és SZKTV döntők, szakmai bemutatók és interaktív programok",
   },
   {
     icon: (
       <Box
         sx={{
           width: "22px",
+          flexShrink: 0,
           height: "22px",
           marginRight: "4px",
           border: "1px solid white",
@@ -87,13 +50,14 @@ const legendItems3 = [
         }}
       />
     ),
-    text: "Egyéb események",
+    text: "Egyéb: Szakmai támogatóink, az esemény szponzorai",
   },
   {
     icon: (
       <Box
         sx={{
           width: "22px",
+          flexShrink: 0,
           height: "22px",
           marginRight: "4px",
           border: "1px solid white",
@@ -101,11 +65,11 @@ const legendItems3 = [
         }}
       />
     ),
-    text: "NAK szakmai bemutatók",
+    text: "A Nemzeti Agrárgazdasági Kamara szakmai bemutatói, agrár szabadulószoba",
   },
 ];
 
-const MapLegend = () => {
+const MapLegend = ({ sx }: { sx?: SxProps }) => {
   const [legendOpen, setLegendOpen] = useLocalStorage("mapLegendOpen", true);
   const [mounted, setMounted] = useState(false);
 
@@ -125,46 +89,24 @@ const MapLegend = () => {
         boxShadow: legendOpen ? "0 2px 8px rgba(0,0,0,.5)" : "0 2px 4px rgba(0,0,0,.1)",
         zIndex: 2,
         position: "absolute",
-        top: "52px", // yellow title height
         left: 0,
         right: 0,
+        ...sx,
       }}
     >
-      <SectionContainer padding={1} sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
+      <SectionContainer padding={1}>
         {legendOpen && (
           <>
             <Stack
-              direction="row"
-              alignItems="center"
-              spacing={0.5}
-              sx={{ justifyContent: "space-around", width: "100%" }}
-            >
-              {legendItems1.map((item, index) => (
-                <MapLegendItem key={index} {...item} />
-              ))}
-            </Stack>
-            <Stack
-              direction="row"
-              alignItems="center"
-              spacing={0.5}
-              sx={{ justifyContent: "space-around", width: "100%" }}
-            >
-              {legendItems2.map((item, index) => (
-                <MapLegendItem key={index} {...item} />
-              ))}
-            </Stack>
-
-            <Stack
               spacing={1}
               sx={{
-                borderTop: "1px solid #fff5",
                 width: "100%",
-                pt: 1.5,
                 flexDirection: { xs: "column", md: "row" },
                 justifyContent: "space-around",
+                my: 1,
               }}
             >
-              {legendItems3.map((item, index) => (
+              {legendItems.map((item, index) => (
                 <MapLegendItem key={index} {...item} />
               ))}
             </Stack>
@@ -179,7 +121,7 @@ const MapLegend = () => {
             onClick={() => setLegendOpen(!legendOpen)}
           >
             <KeyboardArrowUpIcon
-              sx={{ transform: legendOpen ? "rotate(180deg)" : undefined, transition: ".2s" }}
+              sx={{ transform: !legendOpen ? "rotate(180deg)" : undefined, transition: ".2s" }}
             />
           </IconButton>
         </Stack>
@@ -188,7 +130,7 @@ const MapLegend = () => {
   );
 };
 
-const MapLegendItem = ({ icon, text }: { icon: ReactNode; text: string }) => {
+export const MapLegendItem = ({ icon, text }: { icon: ReactNode; text: string }) => {
   return (
     <Stack direction="row" alignItems="center" spacing={0.5}>
       {icon}
