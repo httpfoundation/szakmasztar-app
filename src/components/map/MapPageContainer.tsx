@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import { Stack } from "@mui/material";
 import YellowTitle from "../ui/YellowTitle";
+import MapLegend from "./MapLegend";
 
 interface MapPageContainerProps {
   title: string;
@@ -13,11 +14,12 @@ const MapPageContainer = ({ title, children }: MapPageContainerProps) => {
       sx={{
         userSelect: "none",
         width: "100%",
-        height: { xs: "calc(100vh - 56px - 56px)", md: "calc(100vh - 64px - 56px)" },
-        // border: "1px solid white",
+        height: { xs: "calc(100vh - 56px - 80px)", md: "calc(100vh - 64px - 64px)" },
+        position: "relative",
       }}
     >
       <YellowTitle>{title}</YellowTitle>
+      <MapLegend />
       <Stack
         sx={{
           width: "100%",

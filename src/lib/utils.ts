@@ -34,7 +34,7 @@ export function getMapDefaultPosition(
       return {
         x: foundItem.stand.x + foundItem.stand.width / 2,
         y: foundItem.stand.y + foundItem.stand.height / 2,
-        zoom: 0.7,
+        zoom: 0.5,
       };
     }
   }

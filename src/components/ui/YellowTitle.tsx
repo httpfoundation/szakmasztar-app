@@ -22,7 +22,7 @@ const YellowTitle = ({ children, sx }: YellowTitleProps) => {
         background: "#F4B02A",
         position: "relative",
         zIndex: 10,
-        boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
+        boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
         ...sx,
       }}
     >
