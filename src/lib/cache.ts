@@ -44,10 +44,15 @@ export function gqlCache<T extends (...args: any[]) => Promise<any>>(
   );
 }
 
-export function revalidateCache({ tag, id }: { tag: keyof typeof CACHE_TAGS; id?: string }) {
+export function revalidateCache({ tag, id }: { tag: keyof typeof CACHE_TAGS | "*"; id?: string }) {
+  if (tag === "*") {
+    clearFullCache();
+    return;
+  }
+
   if (id) {
-    revalidateTag(getIdTag(id, tag));
+    revalidateTag(getIdTag(id, tag as keyof typeof CACHE_TAGS));
   } else {
-    revalidateTag(getGlobalTag(tag));
+    revalidateTag(getGlobalTag(tag as keyof typeof CACHE_TAGS));
   }
 }
