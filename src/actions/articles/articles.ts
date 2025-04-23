@@ -116,13 +116,17 @@ export async function getMapItems() {
         slug = `/szakmai-programok/${item.slug}`;
       }
 
+      if (!item.content && !item.lead) {
+        slug = "#";
+      }
+
       const parsed = JSON.parse(item.metadata);
       result.push({
         stand: {
           ...parsed.map,
         },
         href: slug,
-        text: item.title,
+        text: item.subtitle ?? item.title,
         jumpCode: parsed.jumpCode,
         mapId: parsed.mapId,
       });

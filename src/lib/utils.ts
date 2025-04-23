@@ -104,3 +104,50 @@ export function parseArticleMetadata(metadata: string) {
 
   return { competitors: [], mapId };
 }
+
+export function fitTextToBox(
+  text: string,
+  maxWidth: number,
+  maxHeight: number,
+  fontFamily = "var(--font-montserrat), Arial, sans-serif",
+  maxFontSize = 36
+): number {
+  const hiddenSpan = document.createElement("div");
+  hiddenSpan.style.position = "absolute";
+  hiddenSpan.style.visibility = "hidden";
+  hiddenSpan.style.wordWrap = "break-word";
+  hiddenSpan.style.lineHeight = "1.2";
+  hiddenSpan.style.fontFamily = fontFamily;
+  hiddenSpan.style.padding = "8px";
+  hiddenSpan.style.margin = "8px";
+  hiddenSpan.style.boxSizing = "border-box";
+  hiddenSpan.style.width = `${maxWidth}px`;
+  hiddenSpan.style.lineHeight = "1.1";
+  hiddenSpan.style.fontWeight = "500";
+  hiddenSpan.style.color = "#fff";
+  hiddenSpan.style.textAlign = "center";
+
+  document.body.appendChild(hiddenSpan);
+
+  let fontSize = maxFontSize;
+
+  hiddenSpan.style.fontSize = `${fontSize}px`;
+  hiddenSpan.textContent = text;
+
+  if (hiddenSpan.offsetWidth <= maxWidth && hiddenSpan.offsetHeight <= maxHeight) {
+    document.body.removeChild(hiddenSpan);
+    return fontSize;
+  }
+
+  while (fontSize > 5) {
+    fontSize--;
+    hiddenSpan.style.fontSize = `${fontSize}px`;
+
+    if (hiddenSpan.offsetWidth <= maxWidth && hiddenSpan.offsetHeight <= maxHeight) {
+      break;
+    }
+  }
+
+  document.body.removeChild(hiddenSpan);
+  return fontSize;
+}

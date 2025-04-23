@@ -1,4 +1,8 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { EventMapItem } from "@/actions/articles/articles";
+import { fitTextToBox } from "@/lib/utils";
 import { nakMain, osztvMain, otherMain, wshuMain } from "@/themes/theme";
 import SvgLink from "./SvgLink";
 
@@ -7,6 +11,16 @@ interface MapBoxesProps {
 }
 
 const MapBoxes = ({ boxItems }: MapBoxesProps) => {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
+
   return boxItems
     .filter((x) => !!x.stand)
     .map((box, index) => (
@@ -37,18 +51,15 @@ const MapBoxes = ({ boxItems }: MapBoxesProps) => {
                 justifyContent: "center",
                 alignItems: "center",
                 textAlign: "center",
-                fontSize: Math.min(
-                  Math.sqrt((box.stand.width - 32) ** 2 + (box.stand.height - 32) ** 2) /
-                    (box.text.length * 0.4),
-                  36
-                ),
+                fontSize:
+                  box.stand.fontSize ?? fitTextToBox(box.text, box.stand.width, box.stand.height),
                 fontFamily: "var(--font-montserrat), Arial, sans-serif",
                 fontWeight: "500",
                 color: "#fff",
                 wordWrap: "break-word",
                 overflow: "hidden",
                 padding: "20px",
-                lineHeight: "1.2",
+                lineHeight: "1.1",
                 // transform: box.rotate ? `rotate(${(box.rotate || 0) * -1}deg)` : undefined,
                 transformOrigin: "center",
               }}
