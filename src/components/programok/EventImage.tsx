@@ -1,7 +1,6 @@
 import Image from "next/image";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { Button, Stack } from "@mui/material";
-import eventColorstars from "@/assets/images/event-colorstars.png";
 import eventHero from "@/assets/images/event-hero.png";
 
 interface EventImageProps {
@@ -39,11 +38,11 @@ const EventImage = ({
           objectFit: "cover",
           objectPosition: "center",
           aspectRatio: "3 / 2",
-          maskImage: "linear-gradient(50deg, transparent 20%, black 70%)",
+          maskImage: "linear-gradient(47deg, transparent 15%, black 70%)",
           zIndex: 100,
         }}
       />
-      <Image
+      {/* <Image
         src={eventColorstars}
         alt={""}
         role="presentation"
@@ -58,7 +57,7 @@ const EventImage = ({
           bottom: 0,
           zIndex: 200,
         }}
-      />
+      /> */}
       <Image
         src={eventHero}
         alt={""}
