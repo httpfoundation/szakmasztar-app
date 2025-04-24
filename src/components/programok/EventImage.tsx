@@ -1,10 +1,10 @@
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { Button, Stack } from "@mui/material";
 import eventHero from "@/assets/images/event-hero.png";
 
 interface EventImageProps {
-  image: string;
+  image: string | StaticImageData;
   title: string;
   slug: string;
   leirasBtnText: string;

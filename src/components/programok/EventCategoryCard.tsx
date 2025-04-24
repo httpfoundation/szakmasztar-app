@@ -32,6 +32,7 @@ const EventCategoryCard = ({ category }: EventCategoryCardProps) => {
         flexDirection: "column",
         position: "relative",
         isolation: "isolate",
+        minHeight: { lg: "10rem" },
       }}
     >
       <EventCategoryCardTitle title={category.title} />

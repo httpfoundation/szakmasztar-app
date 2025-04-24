@@ -10,7 +10,7 @@ const EventCategories = () => {
           display: "grid",
           gridTemplateColumns: {
             xs: "repeat(2, 1fr)",
-            md: "repeat(4, 1fr)",
+            md: "repeat(2, 1fr)",
           },
           gap: 1.5,
           mb: 1.5,

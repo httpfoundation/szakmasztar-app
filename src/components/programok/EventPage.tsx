@@ -1,5 +1,6 @@
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { Stack, Typography } from "@mui/material";
+import szakmasztarImage from "@/assets/images/szakmasztar-w1280.webp";
 import { getEventTypeBySlug, parseArticleMetadata } from "@/lib/utils";
 import FormattedContent from "../FormattedContent";
 import PageContainer from "../layouts/PageContainer";
@@ -21,7 +22,7 @@ const EventPage = ({
   title,
   eventInfo,
   generalInfo,
-  image,
+  image: articleImage,
   metadata = "{}",
   slug,
 }: EventPageProps) => {
@@ -37,6 +38,7 @@ const EventPage = ({
   if (eventType === "interaktív program") {
     eventInfo = "";
   }
+  const image = articleImage || szakmasztarImage;
 
   return (
     <>
