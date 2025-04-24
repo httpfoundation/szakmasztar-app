@@ -34,6 +34,10 @@ const EventPage = ({
       ? "Bemutató"
       : "Egyéb program";
 
+  if (eventType === "interaktív program") {
+    eventInfo = "";
+  }
+
   return (
     <>
       <YellowTitle sx={{ mb: 0 }}>{title}</YellowTitle>
