@@ -126,7 +126,9 @@ export async function getMapItems() {
           ...parsed.map,
         },
         href: slug,
-        text: item.subtitle ?? item.title,
+        text: item.slug.startsWith("interaktiv")
+          ? "Interaktív program"
+          : (item.subtitle ?? item.title),
         jumpCode: parsed.jumpCode,
         mapId: parsed.mapId,
       });
