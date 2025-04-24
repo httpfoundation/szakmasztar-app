@@ -30,7 +30,7 @@ const legendItems = [
         }}
       />
     ),
-    text: "A Nemzeti Agrárgazdasági Kamara szakmai bemutatói, agrár szabadulószoba",
+    text: "A Nemzeti Agrárgazdasági Kamara szakmai bemutatói",
   },
 ];
 

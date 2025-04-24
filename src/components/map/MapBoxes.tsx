@@ -52,7 +52,9 @@ const MapBoxes = ({ boxItems }: MapBoxesProps) => {
                 alignItems: "center",
                 textAlign: "center",
                 fontSize:
-                  box.stand.fontSize ?? fitTextToBox(box.text, box.stand.width, box.stand.height),
+                  (box.stand.fontSize ??
+                    fitTextToBox(box.text, box.stand.width, box.stand.height)) *
+                  (box.href.includes("nak") ? 1 : 0.6),
                 fontFamily: "var(--font-montserrat), Arial, sans-serif",
                 fontWeight: "500",
                 color: "#fff",
