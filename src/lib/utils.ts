@@ -56,10 +56,10 @@ export function getEventTypeBySlug(slug: string) {
       ? eventOwner === "Worldskills Hungary"
         ? "nemzeti döntő"
         : "szakmai tanulmányi verseny döntő"
-      : slug.includes("szakmabemutato")
-        ? "szakmai bemutató"
-        : slug.includes("interaktiv")
-          ? "interaktív program"
+      : slug.includes("interaktiv")
+        ? "interaktív szakmai program"
+        : slug.includes("szakmabemutato")
+          ? "szakmai bemutató"
           : "egyéb program";
 
   return { eventOwner, eventType };

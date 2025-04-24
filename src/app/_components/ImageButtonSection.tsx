@@ -39,7 +39,7 @@ const ImageButtonSection = () => {
           bgcolor="osztv.main"
           href="/szakmai-programok"
           icon={<WorkIcon sx={{ fontSize: 40 }} />}
-          text="Válassz szakmát!"
+          text="Válassz szakmai területet!"
         />
       </Stack>
     </SectionContainer>

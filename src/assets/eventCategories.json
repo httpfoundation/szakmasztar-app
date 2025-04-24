@@ -2,7 +2,7 @@
   {
     "title": "Szakmai tanulmányi versenyek",
     "slug": "szakmai-programok/osztv-szktv-versenyek",
-    "description": "OSZTV és SZKTV döntők, szakmai bemutatók és interaktív programok",
+    "description": "Szakmai tanulmányi verseny döntők (OSZTV és SZKTV)",
     "locations": [{ "title": "A pavilon", "slug": "/terkep/a-pavilon" }],
     "color": "osztv.main",
     "symbolSrc": "/images/osztv-symbol.svg"
@@ -10,10 +10,18 @@
   {
     "title": "WorldSkills Hungary",
     "slug": "szakmai-programok/wshu",
-    "description": "WorldSkills Hungary: WorldSkills Shanghai 2026 nemzeti döntők és szakmai bemutatók",
+    "description": "WorldSkills Hungary nemzeti döntők, nemzetközi tréning versenyek és szakmai bemutatók",
     "locations": [{ "title": "A pavilon", "slug": "/terkep/a-pavilon" }],
     "color": "wshu.main",
     "symbolSrc": "/images/wshu-symbol.svg"
+  },
+  {
+    "title": "Interaktív programok",
+    "slug": "szakmai-programok/egyeb-esemenyek",
+    "description": "Interaktív programok és szakmai bemutatók",
+    "locations": [{ "title": "A pavilon", "slug": "/terkep/a-pavilon" }],
+    "color": "other.main",
+    "symbolSrc": "/images/sponsor-symbol.svg"
   },
   {
     "title": "NAK szakmai bemutatók",
@@ -22,16 +30,5 @@
     "locations": [{ "title": "D pavilon", "slug": "/terkep/d-pavilon" }],
     "color": "nak.main",
     "symbolSrc": "/images/nak-symbol.svg"
-  },
-  {
-    "title": "Egyéb",
-    "slug": "szakmai-programok/egyeb-esemenyek",
-    "description": "Szakmai támogatóink, az esemény szponzorai",
-    "locations": [
-      { "title": "A pavilon", "slug": "/terkep/a-pavilon" },
-      { "title": "D pavilon", "slug": "/terkep/d-pavilon" }
-    ],
-    "color": "other.main",
-    "symbolSrc": "/images/sponsor-symbol.svg"
   }
 ]

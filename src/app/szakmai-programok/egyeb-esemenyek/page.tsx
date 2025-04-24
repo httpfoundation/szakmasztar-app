@@ -12,7 +12,9 @@ export const metadata: Metadata = {
 };
 
 const OtherEventsPage = async () => {
-  const events = await getEventsArticlesByCategory("egyeb");
+  const interactiveEvents = await getEventsArticlesByCategory("interaktiv");
+  const otherEvents = await getEventsArticlesByCategory("egyeb");
+  const events = [...interactiveEvents, ...otherEvents];
   const title = "Interaktív szakmai programok és bemutatók";
 
   return (
