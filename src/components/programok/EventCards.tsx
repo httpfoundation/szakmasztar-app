@@ -1,3 +1,4 @@
+import Link from "next/link";
 import InfoIcon from "@mui/icons-material/Info";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { Box, Grid, Paper, Typography } from "@mui/material";
@@ -44,9 +45,13 @@ const EventCards = ({ events }: EventCardsProps) => {
                   boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
                 }}
               >
-                <Typography variant="h6" gutterBottom sx={{ mb: 1 }}>
-                  {event.title}
-                </Typography>
+                <Link
+                  href={!!event.content && !!event.lead ? `/szakmai-programok/${event.slug}` : "#"}
+                >
+                  <Typography variant="h6" gutterBottom sx={{ mb: 1, color: "white" }}>
+                    {event.title}
+                  </Typography>
+                </Link>
                 <Typography variant="body2" sx={{ mb: 1, fontStyle: "italic", fontSize: 13 }}>
                   {eventType}
                 </Typography>

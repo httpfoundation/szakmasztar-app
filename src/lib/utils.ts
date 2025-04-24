@@ -58,7 +58,9 @@ export function getEventTypeBySlug(slug: string) {
         : "szakmai tanulmányi verseny döntő"
       : slug.includes("szakmabemutato")
         ? "szakmai bemutató"
-        : "egyéb program";
+        : slug.includes("interaktiv")
+          ? "interaktív program"
+          : "egyéb program";
 
   return { eventOwner, eventType };
 }
