@@ -45,7 +45,7 @@ const legendItems = [
         }}
       />
     ),
-    text: "OSZTV és SZKTV döntők, szakmai bemutatók és interaktív programok",
+    text: "Szakmai tanulmányi verseny (OSZTV és SZKTV) döntők",
   },
   {
     icon: (
@@ -60,7 +60,7 @@ const legendItems = [
         }}
       />
     ),
-    text: "Egyéb: Szakmai támogatóink, az esemény szponzorai",
+    text: "Interaktív programok és szakmai bemutatók",
   },
 ];
 
