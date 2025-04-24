@@ -27,21 +27,23 @@ const EventImage = ({
     <Stack
       sx={{ width: "min(100%,600px)", aspectRatio: "3 / 2", position: "relative", mx: "auto" }}
     >
-      <Image
-        src={image}
-        alt={title}
-        width={1200}
-        height={800}
-        style={{
-          width: "100%",
-          height: "auto",
-          objectFit: "cover",
-          objectPosition: "center",
-          aspectRatio: "3 / 2",
-          maskImage: "linear-gradient(47deg, transparent 15%, black 70%)",
-          zIndex: 100,
-        }}
-      />
+      {!!image && (
+        <Image
+          src={image}
+          alt={title}
+          width={1200}
+          height={800}
+          style={{
+            width: "100%",
+            height: "auto",
+            objectFit: "cover",
+            objectPosition: "center",
+            aspectRatio: "3 / 2",
+            maskImage: "linear-gradient(47deg, transparent 15%, black 70%)",
+            zIndex: 100,
+          }}
+        />
+      )}
       {/* <Image
         src={eventColorstars}
         alt={""}
