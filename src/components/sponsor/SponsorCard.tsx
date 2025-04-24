@@ -52,7 +52,7 @@ const SponsorCard: FC<SponsorCardProps> = ({ sponsor }) => {
           justifyContent="center"
           sx={{
             width: "120px",
-            bgcolor: "#F5EDF5",
+            bgcolor: "#fff",
             aspectRatio: "1 / 1",
             borderRadius: "999px",
             zIndex: 2,
