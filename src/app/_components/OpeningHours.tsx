@@ -37,7 +37,7 @@ const OpeningHours = () => {
           alignSelf: "center",
         }}
       >
-        Ütemterv megtekintése
+        Programnaptár megtekintése
       </LinkButton>
     </SectionContainer>
   );
