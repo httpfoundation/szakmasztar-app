@@ -2,80 +2,27 @@
 
 import { ReactNode, useEffect, useState } from "react";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import { Box, IconButton, Stack, SxProps, Typography } from "@mui/material";
+import { IconButton, Stack, SxProps, Typography } from "@mui/material";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import SectionContainer from "../layouts/SectionContainer";
 
-const legendItems = [
-  {
-    icon: (
-      <Box
-        sx={{
-          width: "22px",
-          flexShrink: 0,
-          height: "22px",
-          marginRight: "4px",
-          border: "1px solid white",
-          bgcolor: "wshu.main",
-        }}
-      />
-    ),
-    text: "WorldSkills Shanghai 2026 nemzeti döntők és szakmai bemutatók",
-  },
-  {
-    icon: (
-      <Box
-        sx={{
-          width: "22px",
-          flexShrink: 0,
-          height: "22px",
-          marginRight: "4px",
-          border: "1px solid white",
-          bgcolor: "osztv.main",
-        }}
-      />
-    ),
-    text: "OSZTV és SZKTV döntők, szakmai bemutatók és interaktív programok",
-  },
-  {
-    icon: (
-      <Box
-        sx={{
-          width: "22px",
-          flexShrink: 0,
-          height: "22px",
-          marginRight: "4px",
-          border: "1px solid white",
-          bgcolor: "other.main",
-        }}
-      />
-    ),
-    text: "Egyéb: Szakmai támogatóink, az esemény szponzorai",
-  },
-  {
-    icon: (
-      <Box
-        sx={{
-          width: "22px",
-          flexShrink: 0,
-          height: "22px",
-          marginRight: "4px",
-          border: "1px solid white",
-          bgcolor: "nak.main",
-        }}
-      />
-    ),
-    text: "A Nemzeti Agrárgazdasági Kamara szakmai bemutatói, agrár szabadulószoba",
-  },
-];
-
-const MapLegend = ({ sx }: { sx?: SxProps }) => {
+const MapLegend = ({
+  sx,
+  legendItems,
+}: {
+  sx?: SxProps;
+  legendItems?: { icon: ReactNode; text: string }[];
+}) => {
   const [legendOpen, setLegendOpen] = useLocalStorage("mapLegendOpen", true);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  if (!legendItems || legendItems.length === 0) {
+    return null;
+  }
 
   if (!mounted) {
     return null;
@@ -132,9 +79,9 @@ const MapLegend = ({ sx }: { sx?: SxProps }) => {
 
 export const MapLegendItem = ({ icon, text }: { icon: ReactNode; text: string }) => {
   return (
-    <Stack direction="row" alignItems="center" spacing={0.5}>
+    <Stack direction="row" alignItems="center" spacing={0.75}>
       {icon}
-      <Typography variant="body2" fontWeight={500} fontSize={12}>
+      <Typography variant="body2" fontWeight={500} fontSize={11}>
         {text}
       </Typography>
     </Stack>

@@ -10,15 +10,15 @@ import { MapLegendItem } from "./MapLegend";
 
 const legendItems1 = [
   {
-    icon: <Image src={wcIcon} alt="WC" style={{ width: "32px", height: "32px" }} />,
+    icon: <Image src={wcIcon} alt="WC" style={{ width: "28px", height: "28px" }} />,
     text: "WC",
   },
   {
-    icon: <Image src={etelcsomagIcon} alt="Ételcsomag" style={{ width: "32px", height: "32px" }} />,
+    icon: <Image src={etelcsomagIcon} alt="Ételcsomag" style={{ width: "28px", height: "28px" }} />,
     text: "Ételcsomag",
   },
   {
-    icon: <Image src={foodIcon} alt="Étterem / Büfé" style={{ width: "32px", height: "32px" }} />,
+    icon: <Image src={foodIcon} alt="Étterem / Büfé" style={{ width: "28px", height: "32px" }} />,
     text: "Étterem / Büfé",
   },
 ];
@@ -29,14 +29,14 @@ const legendItems2 = [
       <Image
         src={helloPayIcon}
         alt="Hello Pay feltöltő pont"
-        style={{ width: "28px", height: "28px" }}
+        style={{ width: "24px", height: "24px" }}
       />
     ),
     text: "Hello Pay feltöltő pont",
   },
   {
     icon: (
-      <Image src={szigetIcon} alt="Szakma Sztár Sziget" style={{ width: "28px", height: "28px" }} />
+      <Image src={szigetIcon} alt="Szakma Sztár Sziget" style={{ width: "24px", height: "24px" }} />
     ),
     text: "Szakma Sztár Sziget",
   },
@@ -53,10 +53,10 @@ const MapSymbolLegend = () => {
         position: "absolute",
         left: 0,
         right: 0,
-        bottom: 0,
+        bottom: { xs: "80px", md: "64px" },
       }}
     >
-      <SectionContainer padding={1} sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
+      <SectionContainer padding={0.5} sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
         <Stack
           direction="row"
           alignItems="center"
