@@ -114,6 +114,8 @@ export async function getMapItems() {
         slug = `/szakmai-programok/${item.slug}`;
       } else if (item.slug.startsWith("egyeb")) {
         slug = `/szakmai-programok/${item.slug}`;
+      } else if (item.slug.startsWith("interaktiv")) {
+        slug = `/szakmai-programok/${item.slug}`;
       }
 
       if (!item.content && !item.lead) {
