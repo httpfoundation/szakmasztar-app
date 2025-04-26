@@ -29,8 +29,6 @@ const EventPage = ({
   const { eventType, eventOwner } = getEventTypeBySlug(slug);
   const { competitors, mapId, eventType: metadataEventType } = parseArticleMetadata(metadata);
 
-  console.log(metadataEventType);
-
   const actualEventType = metadataEventType ?? eventType;
 
   const eventTypeText =
@@ -38,9 +36,9 @@ const EventPage = ({
       ? "Verseny"
       : actualEventType.includes("bemutató")
         ? "Bemutató"
-        : "Egyéb program";
+        : "Interaktív program";
 
-  if (actualEventType === "interaktív program") {
+  if (actualEventType === "interaktív szakmai program") {
     eventInfo = "";
   }
   const image = articleImage || szakmasztarImage;
@@ -88,6 +86,7 @@ const EventPage = ({
                 color: "success.contrastText",
                 fontWeight: !eventOwner ? 500 : 300,
                 fontSize: !eventOwner ? 16 : 12,
+                mt: !eventOwner ? 0.5 : 0,
               }}
             >
               {actualEventType.toUpperCase()}
@@ -170,7 +169,10 @@ const EventPage = ({
                 {slug.includes("egyeb") ? "PROGRAM " : "SZAKMA"}
                 <span style={{ fontWeight: "300" }}>LEÍRÁS</span>
               </Typography>
-              <FormattedContent sx={{ color: "white", fontWeight: 500 }}>
+              <FormattedContent
+                sx={{ color: "white", fontWeight: 500, lineHeight: 1.5 }}
+                align="left"
+              >
                 {eventInfo}
               </FormattedContent>
             </>
@@ -191,7 +193,10 @@ const EventPage = ({
               >
                 {eventTypeText} <span style={{ fontWeight: "300" }}>INFORMÁCIÓK</span>
               </Typography>
-              <FormattedContent sx={{ color: "white", fontWeight: 500 }}>
+              <FormattedContent
+                sx={{ color: "white", fontWeight: 500, lineHeight: 1.5 }}
+                align="left"
+              >
                 {generalInfo}
               </FormattedContent>
             </>
