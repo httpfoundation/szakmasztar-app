@@ -6,7 +6,7 @@ import Starform from "@/components/ui/Starform";
 import SzakmaSztarSymbol from "@/components/ui/SzakmaSztarSymbol";
 import YellowTitle from "@/components/ui/YellowTitle";
 
-export const revalidate = 3600;
+export const revalidate = 7200;
 
 export const metadata: Metadata = {
   title: "Szakma Sztár Fesztivál",

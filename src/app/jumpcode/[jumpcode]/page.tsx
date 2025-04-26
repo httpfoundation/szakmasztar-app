@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import { getMapItems } from "@/actions/articles/articles";
 
-export const revalidate = 3600;
+export const revalidate = 7200;
 
 export async function generateStaticParams() {
   const boxItems = await getMapItems();

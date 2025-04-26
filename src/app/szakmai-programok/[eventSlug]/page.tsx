@@ -4,7 +4,7 @@ import { getCategoryTree } from "@/actions/categories/categories";
 import EventPage from "@/components/programok/EventPage";
 import { getArticleMetadata } from "@/lib/metadata";
 
-export const revalidate = 3600;
+export const revalidate = 7200;
 
 interface EventPageProps {
   params: Promise<{

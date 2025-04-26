@@ -8,7 +8,7 @@ import SectionContainer from "@/components/layouts/SectionContainer";
 import EventCards from "@/components/programok/EventCards";
 import YellowTitle from "@/components/ui/YellowTitle";
 
-export const revalidate = 3600;
+export const revalidate = 7200;
 
 export async function generateStaticParams() {
   const eventsBySectors = (await getCategoryTree({ rootNodeId: "szakmasztar-app-sector" }))

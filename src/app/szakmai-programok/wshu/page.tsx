@@ -5,7 +5,7 @@ import EventCards from "@/components/programok/EventCards";
 import Starform from "@/components/ui/Starform";
 import YellowTitle from "@/components/ui/YellowTitle";
 
-export const revalidate = 3600;
+export const revalidate = 7200;
 
 export const metadata: Metadata = {
   title: "WorldSkills Shanghai 2026 nemzeti döntők és szakmai bemutatók",

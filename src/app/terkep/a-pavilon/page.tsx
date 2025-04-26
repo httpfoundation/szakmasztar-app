@@ -6,7 +6,7 @@ import SvgPanZoom from "@/components/map/SvgPanZoom";
 import { getMapDefaultPosition } from "@/lib/utils";
 import APavilonMap from "./_components/aPavilonMap";
 
-export const revalidate = 3600;
+export const revalidate = 7200;
 
 export const metadata: Metadata = {
   title: "A Pavilon térképe",

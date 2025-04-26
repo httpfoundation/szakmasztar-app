@@ -9,7 +9,7 @@ import OpeningHours from "./_components/OpeningHours";
 import OrganizerInfo from "./_components/OrganizerInfo";
 import OtherImageButtonsSection from "./_components/OtherImageButtonsSection";
 
-export const revalidate = 3600;
+export const revalidate = 7200;
 
 const IndexPage = async () => {
   const currentCompetition = await getCurrentCompetition();

@@ -4,7 +4,7 @@ import YellowTitle from "@/components/ui/YellowTitle";
 import OpeningHours from "../_components/OpeningHours";
 import SponsorSection from "../_components/SponsorSection";
 
-export const revalidate = 3600;
+export const revalidate = 7200;
 
 export const metadata: Metadata = {
   title: "Információk",
