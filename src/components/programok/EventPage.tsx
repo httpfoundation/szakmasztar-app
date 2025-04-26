@@ -27,15 +27,20 @@ const EventPage = ({
   slug,
 }: EventPageProps) => {
   const { eventType, eventOwner } = getEventTypeBySlug(slug);
-  const { competitors, mapId } = parseArticleMetadata(metadata);
+  const { competitors, mapId, eventType: metadataEventType } = parseArticleMetadata(metadata);
 
-  const eventTypeText = eventType.includes("döntő")
-    ? "Verseny"
-    : eventType.includes("bemutató")
-      ? "Bemutató"
-      : "Egyéb program";
+  console.log(metadataEventType);
 
-  if (eventType === "interaktív program") {
+  const actualEventType = metadataEventType ?? eventType;
+
+  const eventTypeText =
+    actualEventType.includes("döntő") || actualEventType.includes("verseny")
+      ? "Verseny"
+      : actualEventType.includes("bemutató")
+        ? "Bemutató"
+        : "Egyéb program";
+
+  if (actualEventType === "interaktív program") {
     eventInfo = "";
   }
   const image = articleImage || szakmasztarImage;
@@ -74,18 +79,18 @@ const EventPage = ({
             </Typography>
           )}
 
-          {!!eventType && (
+          {!!actualEventType && (
             <Typography
               component="span"
               variant="body2"
               sx={{
                 whiteSpace: "nowrap",
                 color: "success.contrastText",
-                fontWeight: 300,
-                fontSize: 12,
+                fontWeight: !eventOwner ? 500 : 300,
+                fontSize: !eventOwner ? 16 : 12,
               }}
             >
-              {eventType.toUpperCase()}
+              {actualEventType.toUpperCase()}
             </Typography>
           )}
         </PageContainer>

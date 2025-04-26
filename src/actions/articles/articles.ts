@@ -92,6 +92,7 @@ export type EventMapItem = {
     width: number;
     height: number;
     fontSize?: number;
+    eventType?: string;
   };
 };
 

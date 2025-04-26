@@ -47,7 +47,7 @@ const categories = [
     symbolSrc: "/images/osztv-symbol.svg",
   },
   {
-    name: "NAK",
+    name: "Nemzeti Agrárgazdasági Kamara",
     filter: (article: ArticleFragment) => article.slug.startsWith("nak"),
     symbolSrc: "/images/nak-symbol.svg",
   },

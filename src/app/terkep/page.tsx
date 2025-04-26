@@ -46,7 +46,7 @@ const MapPage = async () => {
           <MapButton
             href="/terkep/d-pavilon"
             icon={<Image src={dPavilonIcon} alt="Hungexpo" width={46} height={46} />}
-            title="D pavilon térképe"
+            title="D pavilon"
             subtitle="Az agrár szakmák bemutatói, agrár szabadulószoba"
             bgcolor="nak.main"
           />

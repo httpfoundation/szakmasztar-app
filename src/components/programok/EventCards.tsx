@@ -8,9 +8,12 @@ import LinkChip from "../ui/LinkChip";
 
 interface EventCardsProps {
   events: ArticleFragment[];
+  permutatingColors?: boolean;
 }
 
-const EventCards = ({ events }: EventCardsProps) => {
+const bgcolors = ["wshu.main", "osztv.main", "primary.light", "nak.main", "other.main"];
+
+const EventCards = ({ events, permutatingColors = false }: EventCardsProps) => {
   function getEventMapId(article: ArticleFragment): string | null {
     try {
       const metadata = JSON.parse(article.metadata);
@@ -21,6 +24,16 @@ const EventCards = ({ events }: EventCardsProps) => {
     }
   }
 
+  function getEventType(article: ArticleFragment): string {
+    try {
+      const metadata = JSON.parse(article.metadata);
+      const eventType = metadata.map?.eventType ?? metadata.eventType;
+      return eventType || getEventTypeBySlug(article.slug).eventType;
+    } catch {
+      return getEventTypeBySlug(article.slug).eventType;
+    }
+  }
+
   return (
     <Grid container spacing={1.5} sx={{ mb: 3 }}>
       {events
@@ -28,7 +41,7 @@ const EventCards = ({ events }: EventCardsProps) => {
         .filter((event) => event.__typename === "Article")
         .map((event, eventIndex) => {
           const mapId = getEventMapId(event);
-          const { eventType } = getEventTypeBySlug(event.slug);
+          const eventType = getEventType(event);
 
           return (
             <Grid item xs={12} md={6} key={eventIndex}>
@@ -40,7 +53,9 @@ const EventCards = ({ events }: EventCardsProps) => {
                   py: 2,
                   px: 1.5,
                   height: "100%",
-                  bgcolor: "primary.light",
+                  bgcolor: permutatingColors
+                    ? bgcolors[eventIndex % bgcolors.length]
+                    : "primary.light",
                   color: "primary.contrastText",
                   boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
                 }}
@@ -52,7 +67,7 @@ const EventCards = ({ events }: EventCardsProps) => {
                     {event.title}
                   </Typography>
                 </Link>
-                <Typography variant="body2" sx={{ mb: 1, fontStyle: "italic", fontSize: 13 }}>
+                <Typography variant="body2" sx={{ mb: 1, fontSize: 13 }}>
                   {eventType}
                 </Typography>
                 <Box sx={{ display: "flex", gap: 2, mt: 1.5 }}>
