@@ -42,6 +42,7 @@ const EventCards = ({ events, permutatingColors = false }: EventCardsProps) => {
         .map((event, eventIndex) => {
           const mapId = getEventMapId(event);
           const eventType = getEventType(event);
+          const hasMapSlug = event.content || event.lead;
 
           return (
             <Grid item xs={12} md={6} key={eventIndex}>
@@ -81,8 +82,8 @@ const EventCards = ({ events, permutatingColors = false }: EventCardsProps) => {
                     <LinkChip
                       href={
                         mapId === "d-pavilon-map"
-                          ? `/terkep/d-pavilon?zoomTo=${event.slug}`
-                          : `/terkep/a-pavilon?zoomTo=${event.slug}`
+                          ? `/terkep/d-pavilon?zoomTo=${hasMapSlug ? event.slug : event.title}`
+                          : `/terkep/a-pavilon?zoomTo=${hasMapSlug ? event.slug : event.title}`
                       }
                       icon={<LocationOnIcon />}
                     >
