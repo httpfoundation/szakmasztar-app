@@ -59,8 +59,8 @@ export const menuItems: MenuItem[] = [
   {
     text: "QR kód",
     icon: <QrCodeIcon />,
-    slug: "/qrcode",
-    link: <Link href="/qrcode">{<QrCodeIcon />}</Link>,
+    slug: "/qrkod",
+    link: <Link href="/qrkod">{<QrCodeIcon />}</Link>,
     showInBottomNav: false,
   },
   {
