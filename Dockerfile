@@ -22,7 +22,7 @@ COPY . .
 # Learn more here: https://nextjs.org/telemetry
 # Uncomment the following line in case you want to disable telemetry during the build.
 # ENV NEXT_TELEMETRY_DISABLED=1
-ENV GRAPGHQL_BASE=https://backend.szakmasztar-app.httpf.hu/graphql
+ENV GRAPHQL_BASE=https://backend.szakmasztar-app.httpf.hu/graphql
 RUN corepack enable pnpm && pnpm run build
 
 # Production image, copy all the files and run next
