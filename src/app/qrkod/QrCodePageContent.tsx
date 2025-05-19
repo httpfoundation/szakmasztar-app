@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
+import qrCode from "@/assets/images/app-qr-code.svg";
 import FormattedContent from "@/components/FormattedContent";
 import PageContainer from "@/components/layouts/PageContainer";
 import Starform from "@/components/ui/Starform";
@@ -14,6 +16,7 @@ const QrCodePageContent = () => {
     const storedKioskKey = localStorage.getItem("kiosk");
     setIsKiosk(storedKioskKey);
   }, []);
+
   return (
     <PageContainer
       sx={{
@@ -39,11 +42,18 @@ const QrCodePageContent = () => {
         </>
       )}
       {isKiosk && (
-        <FormattedContent variant="body1" sx={{ textAlign: "center", mb: 3 }}>
-          Ezen a képernyőn a QR-kód beolvasása nem lehetséges. Használd a mobiltelefonodon a Szakma
-          Sztár webalkazást, és szkenneld be a mobilodon a kihelyezett táblákon látható QR-kódokat,
-          hogy megtudd milyen szakmai program zajlik az adott helyen.
-        </FormattedContent>
+        <>
+          <FormattedContent variant="body1" sx={{ textAlign: "center", mb: 3 }}>
+            Ezen a képernyőn a QR-kód beolvasása nem lehetséges. Használd a mobiltelefonodon a
+            Szakma Sztár webalkazást, és szkenneld be a mobilodon a kihelyezett táblákon látható
+            QR-kódokat, hogy megtudd milyen szakmai program zajlik az adott helyen.
+          </FormattedContent>
+          <Image
+            src={qrCode}
+            alt="Szakma Sztár App QR kód"
+            style={{ width: "100%", maxWidth: "300px", height: "auto" }}
+          />
+        </>
       )}
     </PageContainer>
   );

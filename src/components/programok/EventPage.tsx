@@ -27,15 +27,18 @@ const EventPage = ({
   slug,
 }: EventPageProps) => {
   const { eventType, eventOwner } = getEventTypeBySlug(slug);
-  const { competitors, mapId } = parseArticleMetadata(metadata);
+  const { competitors, mapId, eventType: metadataEventType } = parseArticleMetadata(metadata);
 
-  const eventTypeText = eventType.includes("döntő")
-    ? "Verseny"
-    : eventType.includes("bemutató")
-      ? "Bemutató"
-      : "Egyéb program";
+  const actualEventType = metadataEventType ?? eventType;
 
-  if (eventType === "interaktív program") {
+  const eventTypeText =
+    actualEventType.includes("döntő") || actualEventType.includes("verseny")
+      ? "Verseny"
+      : actualEventType.includes("bemutató")
+        ? "Bemutató"
+        : "Interaktív program";
+
+  if (actualEventType === "interaktív szakmai program") {
     eventInfo = "";
   }
   const image = articleImage || szakmasztarImage;
@@ -74,18 +77,19 @@ const EventPage = ({
             </Typography>
           )}
 
-          {!!eventType && (
+          {!!actualEventType && (
             <Typography
               component="span"
               variant="body2"
               sx={{
                 whiteSpace: "nowrap",
                 color: "success.contrastText",
-                fontWeight: 300,
-                fontSize: 12,
+                fontWeight: !eventOwner ? 500 : 300,
+                fontSize: !eventOwner ? 16 : 12,
+                mt: !eventOwner ? 0.5 : 0,
               }}
             >
-              {eventType.toUpperCase()}
+              {actualEventType.toUpperCase()}
             </Typography>
           )}
         </PageContainer>
@@ -165,7 +169,10 @@ const EventPage = ({
                 {slug.includes("egyeb") ? "PROGRAM " : "SZAKMA"}
                 <span style={{ fontWeight: "300" }}>LEÍRÁS</span>
               </Typography>
-              <FormattedContent sx={{ color: "white", fontWeight: 500 }}>
+              <FormattedContent
+                sx={{ color: "white", fontWeight: 500, lineHeight: 1.5 }}
+                align="left"
+              >
                 {eventInfo}
               </FormattedContent>
             </>
@@ -186,7 +193,10 @@ const EventPage = ({
               >
                 {eventTypeText} <span style={{ fontWeight: "300" }}>INFORMÁCIÓK</span>
               </Typography>
-              <FormattedContent sx={{ color: "white", fontWeight: 500 }}>
+              <FormattedContent
+                sx={{ color: "white", fontWeight: 500, lineHeight: 1.5 }}
+                align="left"
+              >
                 {generalInfo}
               </FormattedContent>
             </>

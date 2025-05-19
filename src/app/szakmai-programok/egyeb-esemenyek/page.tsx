@@ -5,7 +5,7 @@ import EventCards from "@/components/programok/EventCards";
 import Starform from "@/components/ui/Starform";
 import YellowTitle from "@/components/ui/YellowTitle";
 
-export const revalidate = 3600;
+export const revalidate = 7200;
 
 export const metadata: Metadata = {
   title: "Interaktív szakmai programok és bemutatók",
@@ -22,7 +22,7 @@ const OtherEventsPage = async () => {
       <YellowTitle>{title}</YellowTitle>
       <PageContainer sx={{ position: "relative" }}>
         <Starform />
-        <EventCards events={events} />
+        <EventCards events={events} permutatingColors />
       </PageContainer>
     </>
   );

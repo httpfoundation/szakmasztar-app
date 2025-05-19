@@ -49,9 +49,9 @@ export function getEventTypeBySlug(slug: string) {
       ? "OSZTV/SZKTV"
       : slug.includes("nak")
         ? "Nemzeti Agrárgazdasági Kamara"
-        : "SzakmaSztár";
+        : "";
   const eventType = slug.includes("egyeb")
-    ? "egyéb program"
+    ? "kiállító"
     : slug.includes("verseny")
       ? eventOwner === "Worldskills Hungary"
         ? "nemzeti döntő"
@@ -60,7 +60,7 @@ export function getEventTypeBySlug(slug: string) {
         ? "interaktív szakmai program"
         : slug.includes("szakmabemutato")
           ? "szakmai bemutató"
-          : "egyéb program";
+          : "kiállító";
 
   return { eventOwner, eventType };
 }
@@ -75,11 +75,13 @@ type MetadataCompetitor = {
 export function parseArticleMetadata(metadata: string) {
   const competitors: MetadataCompetitor[] = [];
   let mapId: string | undefined = undefined;
+  let eventType: string | undefined = undefined;
 
   try {
     const parsedMetadata = JSON.parse(metadata);
 
     mapId = parsedMetadata.mapId;
+    eventType = parsedMetadata.map?.eventType ?? parsedMetadata.eventType;
 
     if (parsedMetadata && Array.isArray(parsedMetadata.competitors)) {
       parsedMetadata.competitors.forEach((competitor: MetadataCompetitor) => {
@@ -100,11 +102,11 @@ export function parseArticleMetadata(metadata: string) {
         });
       });
 
-      return { competitors, mapId };
+      return { competitors, mapId, eventType };
     }
   } catch {}
 
-  return { competitors: [], mapId };
+  return { competitors: [], mapId, eventType };
 }
 
 export function fitTextToBox(

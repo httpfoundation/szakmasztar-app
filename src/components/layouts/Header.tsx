@@ -32,6 +32,7 @@ export default function Header({ title }: HeaderProps) {
           top: 0,
           background: (theme) =>
             `linear-gradient(to right, ${theme.palette.primary.main}, ${theme.palette.primary.light})`,
+          height: { xs: "56px", md: "64px" },
         }}
       >
         <Toolbar>

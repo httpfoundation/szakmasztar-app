@@ -8,6 +8,7 @@ import { ReactNode } from "react";
 import { Viewport } from "next";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { Analytics } from "@vercel/analytics/react";
 import ThemeRegistry from "@/themes/ThemeRegistry";
 
 export async function generateMetadata() {
@@ -51,6 +52,7 @@ export default async function RootLayout({
         </AppRouterCacheProvider>
       </body>
       <GoogleAnalytics gaId="G-NKDB4NNMYZ" />
+      <Analytics />
     </html>
   );
 }

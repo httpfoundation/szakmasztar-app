@@ -9,7 +9,7 @@ import PageContainer from "@/components/layouts/PageContainer";
 import SectorCards from "@/components/skills/SectorCards";
 import YellowTitle from "@/components/ui/YellowTitle";
 
-export const revalidate = 3600;
+export const revalidate = 7200;
 
 export type Sector = {
   id: string;

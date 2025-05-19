@@ -35,7 +35,7 @@ const AllSkills = ({ skills }: AllSkillsProps) => {
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
-      <EventCards events={filteredSkills} />
+      <EventCards events={filteredSkills} permutatingColors />
       {filteredSkills.length === 0 && (
         <Typography variant="body1" align="center" fontWeight={600}>
           Nincs találat a keresésre. Kérlek próbáld meg más kulcsszóval!
