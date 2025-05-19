@@ -3,6 +3,7 @@ import type { NextConfig } from "next";
 import nextPwa from "@ducanh2912/next-pwa";
 
 const nextConfig: NextConfig = {
+  output: "standalone",
   images: {
     unoptimized: true,
     remotePatterns: [
