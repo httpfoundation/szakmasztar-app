@@ -1,6 +1,6 @@
 # syntax=docker.io/docker/dockerfile:1
 
-FROM node:18-alpine AS base
+FROM node:23-alpine AS base
 
 # Install dependencies only when needed
 FROM base AS deps
@@ -22,7 +22,7 @@ COPY . .
 # Learn more here: https://nextjs.org/telemetry
 # Uncomment the following line in case you want to disable telemetry during the build.
 # ENV NEXT_TELEMETRY_DISABLED=1
-ENV GRAPGHQL_BASE=https://dev.szakmavilag-backend.httpf.hu/graphql
+ENV GRAPGHQL_BASE=https://backend.szakmasztar-app.httpf.hu/graphql
 RUN corepack enable pnpm && pnpm run build
 
 # Production image, copy all the files and run next
