@@ -38,3 +38,9 @@ jobs:
           echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
           docker push ghcr.io/${{ github.repository_owner }}/szakmasztar-app:$TAG
           docker push ghcr.io/${{ github.repository_owner }}/szakmasztar-app:latest
+
+      - name: Pull new image, recreate and start containers using the ${{ github.event.repository.name }}:latest image
+        uses: httpfoundation/docker-manager-deploy-action@v1
+        with:
+          base-url: ${{ secrets.DOCKER_MANAGER_BASE_URL }}
+          token: ${{ secrets.DOCKER_MANAGER_TOKEN }}
