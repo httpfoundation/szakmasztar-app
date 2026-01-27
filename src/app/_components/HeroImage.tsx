@@ -57,7 +57,7 @@ export default function HeroImage({ image, alt, title }: HeroImageProps) {
             }}
           >
             Szakma Sztár <br />
-            <span style={{ fontWeight: 400 }}>Fesztivál 2025</span>
+            <span style={{ fontWeight: 400 }}>Fesztivál 2026</span>
           </Typography>
           <LinkButton
             href="/szakmasztar"

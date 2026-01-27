@@ -20,8 +20,8 @@ const OpeningHours = () => {
       >
         Nyitvatartás
       </Typography>
-      <TwoLinesInfo primaryText="2025. április 28. (hétfő)" secondaryText="10:00 - 16:00" />
-      <TwoLinesInfo primaryText="2025. április 29. (kedd)" secondaryText="08:00 - 16:00" />
+      <TwoLinesInfo primaryText="2026. március 26. (csütörtök)" secondaryText="10:00 - 16:00" />
+      <TwoLinesInfo primaryText="2026. március 27. (péntek)" secondaryText="08:00 - 16:00" />
 
       <LinkButton
         href="/utemterv"
