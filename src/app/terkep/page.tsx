@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import { Metadata } from "next";
 import Image from "next/image";
 import { Stack, Typography } from "@mui/material";
+import { getMapItems } from "@/actions/articles/articles";
 import aPavilonIcon from "@/assets/images/maps/a-pavilon-icon.svg";
 import dPavilonIcon from "@/assets/images/maps/d-pavilon-icon.svg";
 import hungexpoMapIcon from "@/assets/images/maps/hungexpo-icon.svg";
@@ -10,6 +11,7 @@ import PageContainer from "@/components/layouts/PageContainer";
 import Starform from "@/components/ui/Starform";
 import SzakmaSztarSymbol from "@/components/ui/SzakmaSztarSymbol";
 import YellowTitle from "@/components/ui/YellowTitle";
+import InteractiveMap from "./_components/InteractiveMap";
 
 export const dynamic = "force-static";
 
@@ -18,83 +20,13 @@ export const metadata: Metadata = {
 };
 
 const MapPage = async () => {
+  const mapItems = (await getMapItems()).filter((x) => x.mapId === "a-pavilon-map");
+
   return (
     <>
       <YellowTitle>Térkép</YellowTitle>
-
-      <PageContainer maxWidth="sm" sx={{ position: "relative", flexGrow: 1, overflow: "hidden" }}>
-        <Starform style={{ top: 0, transform: "scale(1.3)", transformOrigin: "right" }} />
-        <SzakmaSztarSymbol />
-
-        <Stack direction="column" spacing={2}>
-          <MapButton
-            href="/terkep/hungexpo"
-            icon={<Image src={hungexpoMapIcon} alt="Hungexpo" width={46} height={46} />}
-            title="HUNGEXPO"
-            subtitle="Áttekintő tékép"
-            bgcolor="other.main"
-          />
-
-          <MapButton
-            href="/terkep/a-pavilon"
-            icon={<Image src={aPavilonIcon} alt="Hungexpo" width={46} height={46} />}
-            title="A pavilon"
-            subtitle="Országos szakmai tanulmányi versenyek, WorldSkills Hungary nemzeti döntők, szakmai bemutatók és interaktív programok"
-            bgcolor="osztv.main"
-          />
-
-          <MapButton
-            href="/terkep/d-pavilon"
-            icon={<Image src={dPavilonIcon} alt="Hungexpo" width={46} height={46} />}
-            title="D pavilon"
-            subtitle="Az agrár szakmák bemutatói, agrár szabadulószoba"
-            bgcolor="nak.main"
-          />
-        </Stack>
-      </PageContainer>
+      <InteractiveMap mapItems={mapItems} />
     </>
-  );
-};
-
-const MapButton = ({
-  subtitle,
-  title,
-  icon,
-  href,
-  center = false,
-  bgcolor,
-}: {
-  title: string;
-  subtitle: string;
-  icon: ReactNode;
-  href: string;
-  center?: boolean;
-  bgcolor?: string;
-}) => {
-  return (
-    <ImageButton
-      iconSx={{ ml: center ? "-36px" : 0 }}
-      href={href}
-      icon={icon}
-      sx={{
-        justifyContent: center ? "center" : "flex-start",
-        py: 2,
-        boxShadow: "0 2px 5px rgba(0,0,0,.1)",
-      }}
-      bgcolor={bgcolor}
-      text={
-        <Typography component="div" sx={{ fontSize: 17, fontWeight: 700, width: "fit-content" }}>
-          {title}
-          <Typography
-            component="div"
-            variant="body1"
-            sx={{ fontSize: 13, fontWeight: 500, width: "fit-content", mt: 0.5 }}
-          >
-            {subtitle}
-          </Typography>
-        </Typography>
-      }
-    />
   );
 };
 
