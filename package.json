@@ -42,7 +42,7 @@
     "graphql": "^16.8.1",
     "graphql-codegen-apollo-next-ssr": "^1.7.4",
     "html-react-parser": "^5.1.10",
-    "next": "^15",
+    "next": "^15.5.12",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "react-svg-pan-zoom": "^3.13.1",
