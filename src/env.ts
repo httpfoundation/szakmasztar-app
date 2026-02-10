@@ -7,15 +7,13 @@ export const env = createEnv({
     GRAPHQL_BASE: z
       .string()
       .min(1)
-      // .default("https://szakmavilag-backend.httpf.hu/graphql"),
-      .default("http://127.0.0.1:4000/graphql"),
+      .default("https://test-szakmasztar-app-backend.aws3.httpf.hu/graphql"),
     ARTICLES_CATEGORY_ID: z.string().default("szakmasztar-app-articles"),
     SITE_ID: z.string().default("szakmasztar-app-site"),
-    SITE_BASE: z.string().default("http://localhost:3010"),
+    SITE_BASE: z.string().default("https://test-szakmasztar-app-backend.aws3.httpf.hu"),
     API_KEY: z.string().default(""),
   },
   skipValidation: process.env.SKIP_ENV_VALIDATION === "true",
   client: {},
   experimental__runtimeEnv: {},
 });
-

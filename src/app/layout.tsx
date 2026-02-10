@@ -1,6 +1,6 @@
 import { getCurrentCompetition } from "@/actions/competitions/competitions";
 import BaseLayout from "@/components/layouts/BaseLayout";
-import { marketCondensed, montserrat } from "@/lib/fonts";
+import { marketCondensed, montserrat, montserratBold } from "@/lib/fonts";
 import { getArticleMetadata } from "@/lib/metadata";
 import ShortCodeContext from "@/providers/ShortcodeContext";
 import "@/styles/globals.css";
@@ -39,7 +39,7 @@ export default async function RootLayout({
   return (
     <html
       lang="hu"
-      className={`${montserrat.className} ${montserrat.variable} ${marketCondensed.variable}`}
+      className={`${montserrat.className} ${montserrat.variable} ${marketCondensed.variable} ${montserratBold.variable}`}
       suppressHydrationWarning
     >
       <body suppressHydrationWarning>
