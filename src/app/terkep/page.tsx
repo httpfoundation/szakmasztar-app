@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 };
 
 const MapPage = async () => {
-  const mapItems = (await getMapItems()).filter((x) => x.mapId === "a-pavilon-map");
+  const mapItems = await getMapItems();
 
   return (
     <>
