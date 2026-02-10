@@ -67,7 +67,6 @@ export function createBoothPolygon(item: EventMapItem, config: BuildingConfig): 
 export function generateBoothsGeoJSON(mapItems: EventMapItem[]) {
   const buildingConfigs = getBuildingConfigs();
 
-  console.log({ mapItems });
   const features = mapItems
     .filter((item) => item.stand && item.mapId)
     .map((item) => {

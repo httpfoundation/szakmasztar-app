@@ -4,17 +4,9 @@ import Map, { Layer, Source } from "react-map-gl/maplibre";
 import type { MapRef } from "react-map-gl/maplibre";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { useCallback, useMemo, useRef } from "react";
-import { Explore as ExploreIcon } from "@mui/icons-material";
-import type { FillExtrusionLayerSpecification, SymbolLayerSpecification } from "maplibre-gl";
 import { LngLatBounds } from "maplibre-gl";
 import type { EventMapItem } from "@/actions/articles/articles";
-import {
-  BuildingConfig,
-  calculateInitialBounds,
-  createBoothPolygon,
-  generateBoothsGeoJSON,
-  transformToGeoCoords,
-} from "./mapHelpers";
+import { calculateInitialBounds, generateBoothsGeoJSON } from "./mapHelpers";
 import { staticMapFeatures } from "./staticMapFeatures";
 
 const InteractiveMap = ({ mapItems }: { mapItems: EventMapItem[] }) => {
@@ -24,7 +16,6 @@ const InteractiveMap = ({ mapItems }: { mapItems: EventMapItem[] }) => {
     const map = mapRef.current?.getMap();
     if (map) {
       const layers = map.getStyle().layers;
-      console.log(layers);
       const removeLayers = [
         "highway-shield-non-us",
         "label_other",
@@ -70,7 +61,7 @@ const InteractiveMap = ({ mapItems }: { mapItems: EventMapItem[] }) => {
     return bounds;
   }, [buildingBounds]);
 
-  const outlineViewZoomLevel = 15;
+  // const outlineViewZoomLevel = 15;
 
   const insideViewZoomLevel = 17;
 
