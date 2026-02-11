@@ -60,6 +60,19 @@ export const montserratBold = localFont({
   ],
 });
 
+export const montserratMedium = localFont({
+  variable: "--font-montserrat-medium",
+  display: "swap",
+  fallback: ["Montserrat", "Arial", "sans-serif"],
+  src: [
+    {
+      path: "../assets/fonts/montserrat/montserrat-500.woff",
+      weight: "500",
+      style: "normal",
+    },
+  ],
+});
+
 export const marketCondensed = localFont({
   variable: "--font-market-condensed",
   display: "swap",

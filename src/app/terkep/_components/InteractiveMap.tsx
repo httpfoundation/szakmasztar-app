@@ -88,16 +88,34 @@ const InteractiveMap = ({ mapData }: { mapData: InteractiveMapData }) => {
     });
     return bounds;
   }, [mapData]);
+
   const maxBounds = useMemo(() => {
     const bounds = new LngLatBounds();
-    const amount = 0.02;
+
+    bounds.extend(buildingBounds.getNorthEast());
+    bounds.extend(buildingBounds.getSouthWest());
+
+    staticMapFeatures.features.forEach((feature) => {
+      if (feature.geometry.type === "MultiPolygon") {
+        feature.geometry.coordinates[0].forEach((polygon) => {
+          polygon.forEach((coordinate) => {
+            bounds.extend(coordinate as [number, number]);
+          });
+        });
+      }
+      if (feature.geometry.type === "Point") {
+        bounds.extend(feature.geometry.coordinates as [number, number]);
+      }
+    });
+
+    const extendAmount = 0.03;
     bounds.extend([
-      buildingBounds.getNorthEast().lng + amount,
-      buildingBounds.getNorthEast().lat + amount / 2,
+      buildingBounds.getNorthEast().lng + extendAmount,
+      buildingBounds.getNorthEast().lat + extendAmount / 2,
     ]);
     bounds.extend([
-      buildingBounds.getSouthWest().lng - amount,
-      buildingBounds.getSouthWest().lat - amount / 2,
+      buildingBounds.getSouthWest().lng - extendAmount,
+      buildingBounds.getSouthWest().lat - extendAmount / 5,
     ]);
     return bounds;
   }, [buildingBounds]);
@@ -116,7 +134,7 @@ const InteractiveMap = ({ mapData }: { mapData: InteractiveMapData }) => {
         ref={mapRef}
         initialViewState={{
           pitch: 0,
-          bounds: buildingBounds,
+          bounds: maxBounds,
           fitBoundsOptions: {
             padding: 100,
           },
@@ -126,10 +144,84 @@ const InteractiveMap = ({ mapData }: { mapData: InteractiveMapData }) => {
         maxZoom={22}
         minZoom={buildingZoomLevel}
         maxBounds={maxBounds}
-        style={{ width: "100vw", height: "100vh" }}
+        style={{ width: "100%", height: "100%" }}
         mapStyle="https://tiles.openfreemap.org/styles/positron"
         onLoad={onMapLoad}
       >
+        <Source id="static-features" type="geojson" data={staticMapFeatures}>
+          {/* Hungexpo területe */}
+          <Layer
+            id="outline"
+            type="line"
+            filter={["==", "type", "outline"]}
+            paint={{
+              "line-color": "#000",
+              "line-opacity": 0.5,
+              "line-width": 3,
+            }}
+          />
+          <Layer
+            id="outline-fill"
+            type="fill"
+            filter={["==", "type", "outline"]}
+            paint={{
+              "fill-color": "#000",
+              "fill-opacity": 0.03,
+            }}
+          />
+
+          {/* Hungexpo kapuk */}
+          <Layer
+            id="gates"
+            type="symbol"
+            filter={["==", "type", "gate"]}
+            layout={{
+              "text-field": ["get", "name"],
+              "text-font": ["montserratBold"],
+              "text-transform": "uppercase",
+              "text-anchor": "center",
+              "text-justify": "center",
+              "icon-image": "arrow_upward",
+              "icon-size": ["interpolate", ["exponential", 2], ["zoom"], 16, 0.15, 19, 0.25],
+              "text-size": ["interpolate", ["exponential", 2], ["zoom"], 16, 14, 19, 18],
+              "icon-anchor": "center",
+              "icon-rotate": ["get", "rotate"],
+              "icon-rotation-alignment": "map",
+              "text-rotate": ["get", "rotate"],
+              "text-rotation-alignment": "map",
+              "icon-allow-overlap": true,
+            }}
+            paint={{
+              "text-color": "#000",
+              "text-halo-color": "#fff",
+              "text-halo-width": 2,
+              "icon-translate-anchor": "map",
+            }}
+          />
+
+          {/* Metróállomások */}
+          <Layer
+            id="metro2"
+            type="symbol"
+            filter={["==", "type", "metro2"]}
+            layout={{
+              "icon-image": "metro2",
+              "icon-size": ["interpolate", ["exponential", 2], ["zoom"], 16, 0.04, 19, 0.2],
+              "icon-anchor": "center",
+              "text-field": ["get", "name"],
+              "text-size": ["interpolate", ["exponential", 2], ["zoom"], 16, 12, 19, 18],
+              "text-font": ["montserratBold"],
+              "text-transform": "uppercase",
+              "text-anchor": "center",
+              "text-justify": "center",
+            }}
+            paint={{
+              "text-color": "#000",
+              "text-halo-color": "#fff",
+              "text-halo-width": 2,
+            }}
+          />
+        </Source>
         <Source id="buildings" type="geojson" data={buildingsGeoJSON}>
           {/* Épületek */}
           <Layer
@@ -219,7 +311,7 @@ const InteractiveMap = ({ mapData }: { mapData: InteractiveMapData }) => {
               "text-justify": "center",
               "text-allow-overlap": true,
               "text-rotation-alignment": "viewport",
-              "text-line-height": 1,
+              "text-line-height": 1.2,
               "text-max-width": 8,
             }}
             paint={{
@@ -306,80 +398,6 @@ const InteractiveMap = ({ mapData }: { mapData: InteractiveMapData }) => {
               "text-halo-width": 1,
             }}
             minzoom={boothZoomLevel}
-          />
-        </Source>
-        <Source id="static-features" type="geojson" data={staticMapFeatures}>
-          {/* Hungexpo területe */}
-          <Layer
-            id="outline"
-            type="line"
-            filter={["==", "type", "outline"]}
-            paint={{
-              "line-color": "#000",
-              "line-opacity": 0.5,
-              "line-width": 3,
-            }}
-          />
-          <Layer
-            id="outline-fill"
-            type="fill"
-            filter={["==", "type", "outline"]}
-            paint={{
-              "fill-color": "#000",
-              "fill-opacity": 0.03,
-            }}
-          />
-
-          {/* Hungexpo kapuk */}
-          <Layer
-            id="gates"
-            type="symbol"
-            filter={["==", "type", "gate"]}
-            layout={{
-              "text-field": ["get", "name"],
-              "text-font": ["montserratBold"],
-              "text-transform": "uppercase",
-              "text-anchor": "center",
-              "text-justify": "center",
-              "icon-image": "arrow_upward",
-              "icon-size": ["interpolate", ["exponential", 2], ["zoom"], 16, 0.15, 19, 0.25],
-              "text-size": ["interpolate", ["exponential", 2], ["zoom"], 16, 14, 19, 18],
-              "icon-anchor": "center",
-              "icon-rotate": ["get", "rotate"],
-              "icon-rotation-alignment": "map",
-              "text-rotate": ["get", "rotate"],
-              "text-rotation-alignment": "map",
-              "icon-allow-overlap": true,
-            }}
-            paint={{
-              "text-color": "#000",
-              "text-halo-color": "#fff",
-              "text-halo-width": 2,
-              "icon-translate-anchor": "map",
-            }}
-          />
-
-          {/* Metróállomások */}
-          <Layer
-            id="metro2"
-            type="symbol"
-            filter={["==", "type", "metro2"]}
-            layout={{
-              "icon-image": "metro2",
-              "icon-size": ["interpolate", ["exponential", 2], ["zoom"], 16, 0.04, 19, 0.2],
-              "icon-anchor": "center",
-              "text-field": ["get", "name"],
-              "text-size": ["interpolate", ["exponential", 2], ["zoom"], 16, 12, 19, 18],
-              "text-font": ["montserratBold"],
-              "text-transform": "uppercase",
-              "text-anchor": "center",
-              "text-justify": "center",
-            }}
-            paint={{
-              "text-color": "#000",
-              "text-halo-color": "#fff",
-              "text-halo-width": 2,
-            }}
           />
         </Source>
 

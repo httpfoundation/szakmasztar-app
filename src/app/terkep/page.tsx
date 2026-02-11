@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Stack from "@mui/material/Stack";
 import { getInteractiveMapItems, getMapItems } from "@/actions/articles/articles";
 import { ArticleFragment } from "@/actions/articles/articles.generated";
 import YellowTitle from "@/components/ui/YellowTitle";
@@ -56,10 +57,17 @@ const MapPage = async () => {
   };
 
   return (
-    <>
+    <Stack
+      sx={{
+        userSelect: "none",
+        width: "100%",
+        height: { xs: "calc(100vh - 56px - 80px)", md: "calc(100vh - 64px - 64px)" },
+        position: "relative",
+      }}
+    >
       <YellowTitle>Térkép</YellowTitle>
       <InteractiveMap mapData={data} />
-    </>
+    </Stack>
   );
 };
 
