@@ -21,6 +21,7 @@ export type Article = {
   color: Scalars['String']['output'];
   content: Scalars['String']['output'];
   createdAt: Scalars['Timestamp']['output'];
+  createdBy?: Maybe<User>;
   highlighted: Scalars['Boolean']['output'];
   homeHighlighted: Scalars['Boolean']['output'];
   id: Scalars['ID']['output'];
@@ -530,6 +531,7 @@ export enum MenuItemContentType {
   Qna = 'QNA',
   SzakmasztarEvent = 'SZAKMASZTAR_EVENT',
   SzakmasztarTask = 'SZAKMASZTAR_TASK',
+  SzakmavilagCalendar = 'SZAKMAVILAG_CALENDAR',
   Translation = 'TRANSLATION',
   YtVideo = 'YT_VIDEO'
 }
@@ -1236,6 +1238,7 @@ export type Result = {
 
 export enum Role {
   Admin = 'ADMIN',
+  SzakmavilagCalendarUser = 'SZAKMAVILAG_CALENDAR_USER',
   User = 'USER'
 }
 
@@ -1251,6 +1254,7 @@ export type Sector = {
 
 export type Site = {
   __typename?: 'Site';
+  analyticsPropertyId?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
   name: Scalars['String']['output'];
   url: Scalars['String']['output'];

@@ -52,46 +52,6 @@ export const staticMapFeatures = {
     },
     {
       type: "Feature" as const,
-      properties: { id: 9, name: "G Pavilon", type: "building", color: "#732265" },
-      geometry: {
-        type: "MultiPolygon" as const,
-        coordinates: [
-          [
-            [
-              [19.125605610265371, 47.492873104502337],
-              [19.125723646028554, 47.492873281341872],
-              [19.125723776888599, 47.492846048046609],
-              [19.127630495026128, 47.492852885845011],
-              [19.127633243087125, 47.49219542156083],
-              [19.125729091260354, 47.492188222624733],
-              [19.125726510409407, 47.492228617870367],
-              [19.125610626567042, 47.492228028398017],
-              [19.125605610265371, 47.492873104502337],
-            ],
-          ],
-        ],
-      },
-    },
-    {
-      type: "Feature" as const,
-      properties: { id: 10, name: "F Pavilon", type: "building", color: "#fdb913" },
-      geometry: {
-        type: "MultiPolygon" as const,
-        coordinates: [
-          [
-            [
-              [19.128319320507376, 47.492854912131882],
-              [19.127630578630551, 47.492852881751311],
-              [19.127633507835803, 47.492195421151443],
-              [19.128322519308558, 47.492197230505184],
-              [19.128319320507376, 47.492854912131882],
-            ],
-          ],
-        ],
-      },
-    },
-    {
-      type: "Feature" as const,
       properties: { id: 3, name: "Kongresszusi Központ", type: "building", color: "#5e9984" },
       geometry: {
         type: "MultiPolygon" as const,

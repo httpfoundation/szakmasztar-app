@@ -1,20 +1,5 @@
 import { LngLatBounds } from "maplibre-gl";
-import type { EventMapItem } from "@/actions/articles/articles";
-import { getBuildingConfigs, staticMapFeatures } from "./staticMapFeatures";
-
-/**
- * Building configuration for coordinate transformation
- * Maps SVG pixel space to geographic coordinates
- */
-export type BuildingConfig = {
-  svgWidth: number;
-  svgHeight: number;
-  // Geographic bounding box of the building
-  topLeft: [number, number]; // [lng, lat]
-  topRight: [number, number];
-  bottomLeft: [number, number];
-  bottomRight: [number, number];
-};
+import type { InteractiveMapData } from "./InteractiveMap";
 
 /**
  * Transforms SVG pixel coordinates to geographic coordinates
@@ -48,8 +33,13 @@ export function transformToGeoCoords(
 /**
  * Creates a GeoJSON polygon from booth coordinates
  */
-export function createBoothPolygon(item: EventMapItem, config: BuildingConfig): [number, number][] {
-  const { x, y, width, height } = item.stand;
+export function createRelativePolygon(
+  item:
+    | InteractiveMapData["buildings"][number]["booths"][number]
+    | InteractiveMapData["buildings"][number]["articles"][number],
+  config: BuildingConfig
+): [number, number][] {
+  const { x, y, width, height } = item;
 
   // Create corner points of the booth rectangle
   const topLeft = transformToGeoCoords(x, y, config);
@@ -64,7 +54,9 @@ export function createBoothPolygon(item: EventMapItem, config: BuildingConfig): 
 /**
  * Generates GeoJSON FeatureCollection for all booth items
  */
-export function generateBoothsGeoJSON(mapItems: EventMapItem[]) {
+/*
+export function generateBoothsGeo
+JSON(mapItems: EventMapItem[]) {
   const buildingConfigs = getBuildingConfigs();
 
   const features = mapItems
@@ -118,17 +110,141 @@ export function generateBoothsGeoJSON(mapItems: EventMapItem[]) {
     features,
   };
 }
-
-export const calculateInitialBounds = () => {
-  const bounds = new LngLatBounds();
-  staticMapFeatures.features.forEach((feature) => {
-    if (feature.geometry.type === "MultiPolygon") {
-      feature.geometry.coordinates.forEach((polygon) => {
-        polygon[0].forEach((point) => {
-          bounds.extend(point as [number, number]);
-        });
-      });
-    }
+*/
+export const generateBuildingsGeoJSON = (mapData: InteractiveMapData) => {
+  const features = mapData.buildings.map((building) => {
+    return {
+      type: "Feature" as const,
+      properties: {
+        name: building.name,
+        color: building.color,
+        type: "building",
+      },
+      geometry: {
+        type: "Polygon" as const,
+        coordinates: [building.coordinates],
+      },
+    };
   });
+
+  return {
+    type: "FeatureCollection" as const,
+    features,
+  };
+};
+
+export const getBuildingBounds = (building: InteractiveMapData["buildings"][number]) => {
+  const bounds = new LngLatBounds();
+
+  for (const coordinate of building.coordinates) {
+    bounds.extend(coordinate);
+  }
+
   return bounds;
+};
+
+/**
+ * Building configuration for coordinate transformation
+ * Maps SVG pixel space to geographic coordinates
+ */
+export type BuildingConfig = {
+  svgWidth: number;
+  svgHeight: number;
+  // Geographic bounding box of the building
+  topLeft: [number, number]; // [lng, lat]
+  topRight: [number, number];
+  bottomLeft: [number, number];
+  bottomRight: [number, number];
+};
+export const getBuildingConfig = (
+  building: InteractiveMapData["buildings"][number]
+): BuildingConfig => {
+  const bounds = getBuildingBounds(building);
+
+  const topLeft = bounds.getNorthWest();
+  const topRight = bounds.getNorthEast();
+  const bottomLeft = bounds.getSouthWest();
+  const bottomRight = bounds.getSouthEast();
+
+  return {
+    svgWidth: building.svgWidth,
+    svgHeight: building.svgHeight,
+    topLeft: [topLeft.lng, topLeft.lat],
+    topRight: [topRight.lng, topRight.lat],
+    bottomLeft: [bottomLeft.lng, bottomLeft.lat],
+    bottomRight: [bottomRight.lng, bottomRight.lat],
+  };
+};
+
+export const generateBoothsGeoJSON = (mapData: InteractiveMapData) => {
+  const features = mapData.buildings.map((building) => {
+    if (!building.coordinates.length) return null;
+    const buildingConfig = getBuildingConfig(building);
+
+    return building.booths.map((booth) => {
+      const coordinates = createRelativePolygon(booth, buildingConfig);
+      const center = transformToGeoCoords(
+        booth.x + booth.width / 2,
+        booth.y + booth.height / 2,
+        buildingConfig
+      );
+
+      return {
+        type: "Feature" as const,
+        properties: {
+          name: booth.title,
+          centerLng: center[0],
+          centerLat: center[1],
+          type: "booth",
+        },
+        geometry: {
+          type: "Polygon" as const,
+          coordinates: [coordinates],
+        },
+      };
+    });
+  });
+
+  return {
+    type: "FeatureCollection" as const,
+    features: features.flat().filter((f): f is NonNullable<typeof f> => f !== null),
+  };
+};
+
+export const generateArticlesGeoJSON = (mapData: InteractiveMapData) => {
+  const features = mapData.buildings.map((building) => {
+    if (!building.coordinates.length) return null;
+    const buildingConfig = getBuildingConfig(building);
+
+    console.log(building.name, building.articles);
+
+    return building.articles.map((article) => {
+      const coordinates = createRelativePolygon(article, buildingConfig);
+      const center = transformToGeoCoords(
+        article.x + article.width / 2,
+        article.y + article.height / 2,
+        buildingConfig
+      );
+
+      return {
+        type: "Feature" as const,
+        properties: {
+          name: article.title,
+          centerLng: center[0],
+          centerLat: center[1],
+          type: "article",
+          hasParentBooth: article.hasParentBooth,
+        },
+        geometry: {
+          type: "Polygon" as const,
+          coordinates: [coordinates],
+        },
+      };
+    });
+  });
+
+  return {
+    type: "FeatureCollection" as const,
+    features: features.flat().filter((f): f is NonNullable<typeof f> => f !== null),
+  };
 };

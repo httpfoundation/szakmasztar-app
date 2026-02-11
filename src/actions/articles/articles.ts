@@ -144,3 +144,31 @@ export async function getMapItems() {
 
   return result;
 }
+
+export async function getInteractiveMapItems() {
+  const buildings = await getCategoryTree({ rootNodeId: "szakmasztar-app-buildings" });
+
+  const eventsBySectors = await getCategoryTree({ rootNodeId: "szakmasztar-app-sector" });
+  const articles = (eventsBySectors.children.flatMap((sector) => sector.items) as ArticleFragment[])
+    .map((article) => {
+      const metadata = JSON.parse(article.metadata ?? "{}");
+      if (!metadata.map || !metadata.map.buildingId) {
+        return null;
+      }
+      return {
+        id: article.id,
+        title: article.title,
+        x: metadata.map.x,
+        y: metadata.map.y,
+        width: metadata.map.width,
+        height: metadata.map.height,
+        buildingId: metadata.map.buildingId,
+      };
+    })
+    .filter((x) => !!x);
+
+  return {
+    buildings,
+    articles,
+  };
+}

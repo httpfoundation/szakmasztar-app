@@ -5,11 +5,44 @@ import type { MapRef } from "react-map-gl/maplibre";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { useCallback, useMemo, useRef } from "react";
 import { LngLatBounds } from "maplibre-gl";
-import type { EventMapItem } from "@/actions/articles/articles";
-import { calculateInitialBounds, generateBoothsGeoJSON } from "./mapHelpers";
+import {
+  generateArticlesGeoJSON,
+  generateBoothsGeoJSON,
+  generateBuildingsGeoJSON,
+} from "./mapHelpers";
 import { staticMapFeatures } from "./staticMapFeatures";
 
-const InteractiveMap = ({ mapItems }: { mapItems: EventMapItem[] }) => {
+export interface InteractiveMapData {
+  buildings: {
+    id: string;
+    name: string;
+    color: string;
+    svgWidth: number;
+    svgHeight: number;
+    coordinates: [number, number][];
+    booths: {
+      id: string;
+      title: string;
+      code: string;
+      x: number;
+      y: number;
+      width: number;
+      height: number;
+      articleIds: string[];
+    }[];
+    articles: {
+      id: string;
+      title: string;
+      x: number;
+      y: number;
+      width: number;
+      height: number;
+      hasParentBooth: boolean;
+    }[];
+  }[];
+}
+
+const InteractiveMap = ({ mapData }: { mapData: InteractiveMapData }) => {
   const mapRef = useRef<MapRef>(null);
 
   const onMapLoad = useCallback(async () => {
@@ -46,7 +79,15 @@ const InteractiveMap = ({ mapItems }: { mapItems: EventMapItem[] }) => {
     }
   }, []);
 
-  const buildingBounds = useMemo(calculateInitialBounds, []);
+  const buildingBounds = useMemo(() => {
+    const bounds = new LngLatBounds();
+    mapData.buildings.forEach((building) => {
+      building.coordinates.forEach((coordinate) => {
+        bounds.extend(coordinate);
+      });
+    });
+    return bounds;
+  }, [mapData]);
   const maxBounds = useMemo(() => {
     const bounds = new LngLatBounds();
     const amount = 0.02;
@@ -61,11 +102,13 @@ const InteractiveMap = ({ mapItems }: { mapItems: EventMapItem[] }) => {
     return bounds;
   }, [buildingBounds]);
 
-  // const outlineViewZoomLevel = 15;
+  const buildingZoomLevel = 14;
+  const boothZoomLevel = 18;
+  const articleZoomLevel = 20.5;
 
-  const insideViewZoomLevel = 17;
-
-  const boothsGeoJSON = useMemo(() => generateBoothsGeoJSON(mapItems), [mapItems]);
+  const buildingsGeoJSON = useMemo(() => generateBuildingsGeoJSON(mapData), [mapData]);
+  const boothsGeoJSON = useMemo(() => generateBoothsGeoJSON(mapData), [mapData]);
+  const articlesGeoJSON = useMemo(() => generateArticlesGeoJSON(mapData), [mapData]);
 
   return (
     <>
@@ -80,35 +123,14 @@ const InteractiveMap = ({ mapItems }: { mapItems: EventMapItem[] }) => {
         }}
         minPitch={0}
         maxPitch={60}
-        maxZoom={19}
-        minZoom={14}
+        maxZoom={22}
+        minZoom={buildingZoomLevel}
         maxBounds={maxBounds}
         style={{ width: "100vw", height: "100vh" }}
         mapStyle="https://tiles.openfreemap.org/styles/positron"
         onLoad={onMapLoad}
       >
-        <Source type="geojson" data={staticMapFeatures}>
-          {/* Hungexpo területe */}
-          <Layer
-            id="outline"
-            type="line"
-            filter={["==", "type", "outline"]}
-            paint={{
-              "line-color": "#000",
-              "line-opacity": 0.5,
-              "line-width": 3,
-            }}
-          />
-          <Layer
-            id="outline-fill"
-            type="fill"
-            filter={["==", "type", "outline"]}
-            paint={{
-              "fill-color": "#000",
-              "fill-opacity": 0.03,
-            }}
-          />
-
+        <Source id="buildings" type="geojson" data={buildingsGeoJSON}>
           {/* Épületek */}
           <Layer
             id="buildings"
@@ -118,19 +140,9 @@ const InteractiveMap = ({ mapItems }: { mapItems: EventMapItem[] }) => {
               "fill-extrusion-color": ["get", "color"],
               "fill-extrusion-height": 20,
               "fill-extrusion-base": 0,
-              "fill-extrusion-opacity": [
-                "interpolate",
-                ["linear"],
-                ["zoom"],
-                insideViewZoomLevel - 0.1,
-                1,
-                insideViewZoomLevel,
-                0,
-              ],
-              "fill-extrusion-opacity-transition": {
-                duration: 1000,
-              },
             }}
+            minzoom={buildingZoomLevel}
+            maxzoom={boothZoomLevel}
           />
           <Layer
             id="buildings-floor"
@@ -138,16 +150,9 @@ const InteractiveMap = ({ mapItems }: { mapItems: EventMapItem[] }) => {
             filter={["==", "type", "building"]}
             paint={{
               "fill-color": ["get", "color"],
-              "fill-opacity": [
-                "interpolate",
-                ["linear"],
-                ["zoom"],
-                insideViewZoomLevel - 0.1,
-                0,
-                insideViewZoomLevel,
-                0.2,
-              ],
+              "fill-opacity": 0.2,
             }}
+            minzoom={boothZoomLevel}
           />
           <Layer
             id="buildings-floor-outline"
@@ -156,16 +161,8 @@ const InteractiveMap = ({ mapItems }: { mapItems: EventMapItem[] }) => {
             paint={{
               "line-color": ["get", "color"],
               "line-width": 3,
-              "line-opacity": [
-                "interpolate",
-                ["linear"],
-                ["zoom"],
-                insideViewZoomLevel - 0.1,
-                0,
-                insideViewZoomLevel,
-                0.8,
-              ],
             }}
+            minzoom={boothZoomLevel}
           />
           <Layer
             id="buildings-labels"
@@ -184,15 +181,152 @@ const InteractiveMap = ({ mapItems }: { mapItems: EventMapItem[] }) => {
               "text-color": "#fff",
               "text-halo-color": ["get", "color"],
               "text-halo-width": 2,
-              "text-opacity": [
+            }}
+            minzoom={buildingZoomLevel}
+            maxzoom={boothZoomLevel}
+          />
+        </Source>
+        <Source id="booths" type="geojson" data={boothsGeoJSON}>
+          <Layer
+            id="booths-fill"
+            type="fill-extrusion"
+            filter={["==", "type", "booth"]}
+            paint={{
+              "fill-extrusion-color": "#f4b02a",
+              "fill-extrusion-height": 2,
+              "fill-extrusion-base": 0,
+            }}
+            minzoom={boothZoomLevel}
+            maxzoom={articleZoomLevel}
+          />
+          <Layer
+            id="booths-labels"
+            type="symbol"
+            filter={["==", "type", "booth"]}
+            layout={{
+              "text-field": ["get", "name"],
+              "text-size": [
                 "interpolate",
-                ["linear"],
+                ["exponential", 2],
                 ["zoom"],
-                insideViewZoomLevel - 0.5,
-                1,
-                insideViewZoomLevel,
-                0,
+                boothZoomLevel,
+                10,
+                articleZoomLevel,
+                30,
               ],
+              "text-font": ["montserratBold"],
+              "text-anchor": "center",
+              "text-justify": "center",
+              "text-allow-overlap": true,
+              "text-rotation-alignment": "viewport",
+              "text-line-height": 1,
+              "text-max-width": 8,
+            }}
+            paint={{
+              "text-color": "#fff",
+              "text-halo-color": "#6f6f6fff",
+              "text-halo-width": 1,
+            }}
+            minzoom={boothZoomLevel}
+            maxzoom={articleZoomLevel}
+          />
+        </Source>
+        <Source id="articles" type="geojson" data={articlesGeoJSON}>
+          <Layer
+            id="articles-fill"
+            type="fill-extrusion"
+            filter={["==", "type", "article"]}
+            paint={{
+              "fill-extrusion-color": "#ffcd68ff",
+              "fill-extrusion-height": 1,
+              "fill-extrusion-base": 0,
+            }}
+            minzoom={articleZoomLevel}
+          />
+          <Layer
+            id="articles-labels"
+            type="symbol"
+            filter={["==", "type", "article"]}
+            layout={{
+              "text-field": ["get", "name"],
+              "text-size": 20,
+              "text-font": ["montserratBold"],
+              "text-anchor": "center",
+              "text-justify": "center",
+              "text-allow-overlap": true,
+              "text-rotation-alignment": "viewport",
+              "text-line-height": 1,
+              "text-max-width": 8,
+            }}
+            paint={{
+              "text-color": "#fff",
+              "text-halo-color": "#6f6f6fff",
+              "text-halo-width": 1,
+            }}
+            minzoom={articleZoomLevel}
+          />
+
+          <Layer
+            id="articles-without-parent-booth-fill"
+            type="fill-extrusion"
+            filter={["==", "hasParentBooth", false]}
+            paint={{
+              "fill-extrusion-color": "#ffcd68ff",
+              "fill-extrusion-height": 1,
+              "fill-extrusion-base": 0,
+            }}
+            minzoom={boothZoomLevel}
+          />
+          <Layer
+            id="articles-without-parent-booth-labels"
+            type="symbol"
+            filter={["==", "hasParentBooth", false]}
+            layout={{
+              "text-field": ["get", "name"],
+              "text-size": [
+                "interpolate",
+                ["exponential", 2],
+                ["zoom"],
+                boothZoomLevel,
+                8,
+                articleZoomLevel,
+                30,
+              ],
+              "text-font": ["montserratBold"],
+              "text-anchor": "center",
+              "text-justify": "center",
+              "text-allow-overlap": true,
+              "text-rotation-alignment": "viewport",
+              "text-line-height": 1,
+              "text-max-width": 8,
+            }}
+            paint={{
+              "text-color": "#fff",
+              "text-halo-color": "#6f6f6fff",
+              "text-halo-width": 1,
+            }}
+            minzoom={boothZoomLevel}
+          />
+        </Source>
+        <Source id="static-features" type="geojson" data={staticMapFeatures}>
+          {/* Hungexpo területe */}
+          <Layer
+            id="outline"
+            type="line"
+            filter={["==", "type", "outline"]}
+            paint={{
+              "line-color": "#000",
+              "line-opacity": 0.5,
+              "line-width": 3,
+            }}
+          />
+          <Layer
+            id="outline-fill"
+            type="fill"
+            filter={["==", "type", "outline"]}
+            paint={{
+              "fill-color": "#000",
+              "fill-opacity": 0.03,
             }}
           />
 
@@ -250,6 +384,7 @@ const InteractiveMap = ({ mapItems }: { mapItems: EventMapItem[] }) => {
         </Source>
 
         {/* Standok */}
+        {/*         
         <Source id="booths" type="geojson" data={boothsGeoJSON}>
           <Layer
             id="booths-fill"
@@ -312,7 +447,7 @@ const InteractiveMap = ({ mapItems }: { mapItems: EventMapItem[] }) => {
               ],
             }}
           />
-        </Source>
+        </Source> */}
       </Map>
     </>
   );

@@ -16,6 +16,7 @@ fragment Category on Category {
   name
   color
   slug
+  metadata
   image {
     url
     srcset
@@ -72,4 +73,3 @@ fragment CategoryRecursive on Category {
     }
   }
 }
-
