@@ -217,8 +217,6 @@ export const generateArticlesGeoJSON = (mapData: InteractiveMapData) => {
     if (!building.coordinates.length) return null;
     const buildingConfig = getBuildingConfig(building);
 
-    console.log(building.name, building.articles);
-
     return building.articles.map((article) => {
       const coordinates = createRelativePolygon(article, buildingConfig);
       const center = transformToGeoCoords(

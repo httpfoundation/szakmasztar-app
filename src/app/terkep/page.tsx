@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Stack from "@mui/material/Stack";
-import { getInteractiveMapItems, getMapItems } from "@/actions/articles/articles";
+import { getInteractiveMapItems } from "@/actions/articles/articles";
 import { ArticleFragment } from "@/actions/articles/articles.generated";
 import YellowTitle from "@/components/ui/YellowTitle";
 import InteractiveMap from "./_components/InteractiveMap";
