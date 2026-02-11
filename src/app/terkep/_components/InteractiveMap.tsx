@@ -3,8 +3,10 @@
 import Map, { Layer, Source } from "react-map-gl/maplibre";
 import type { MapRef } from "react-map-gl/maplibre";
 import "maplibre-gl/dist/maplibre-gl.css";
-import { useCallback, useMemo, useRef } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import { LngLatBounds } from "maplibre-gl";
+import type { MapLayerMouseEvent, ViewStateChangeEvent } from "react-map-gl/maplibre";
 import {
   generateArticlesGeoJSON,
   generateBoothsGeoJSON,
@@ -43,11 +45,57 @@ export interface InteractiveMapData {
 }
 
 const InteractiveMap = ({ mapData }: { mapData: InteractiveMapData }) => {
+  const router = useRouter();
   const mapRef = useRef<MapRef>(null);
+  const [hoveredBoothId, setHoveredBoothId] = useState<string | null>(null);
+
+  const onHover = useCallback((event: MapLayerMouseEvent) => {
+    const { features } = event;
+    const hoveredBooth = features?.find((feature) => feature.properties?.type === "booth");
+    setHoveredBoothId(hoveredBooth ? (hoveredBooth.properties?.id as string) : null);
+  }, []);
+
+  const onMouseLeave = useCallback(() => {
+    setHoveredBoothId(null);
+  }, []);
+
+  const onClick = useCallback(
+    (event: MapLayerMouseEvent) => {
+      const { features } = event;
+      const clickedBooth = features?.find((feature) => feature.properties?.type === "booth");
+      if (clickedBooth) {
+        router.push("/terkep/stand");
+      }
+    },
+    [router]
+  );
+
+  const onMoveEnd = useCallback((event: ViewStateChangeEvent) => {
+    const { longitude, latitude, zoom, pitch, bearing } = event.viewState;
+    sessionStorage.setItem(
+      "interactive-map-view-state",
+      JSON.stringify({ longitude, latitude, zoom, pitch, bearing })
+    );
+  }, []);
 
   const onMapLoad = useCallback(async () => {
     const map = mapRef.current?.getMap();
     if (map) {
+      const savedState = sessionStorage.getItem("interactive-map-view-state");
+      if (savedState) {
+        try {
+          const { longitude, latitude, zoom, pitch, bearing } = JSON.parse(savedState);
+          map.jumpTo({
+            center: [longitude, latitude],
+            zoom,
+            pitch,
+            bearing,
+          });
+        } catch (e) {
+          console.error("Failed to parse saved map state", e);
+        }
+      }
+
       const layers = map.getStyle().layers;
       const removeLayers = [
         "highway-shield-non-us",
@@ -147,6 +195,12 @@ const InteractiveMap = ({ mapData }: { mapData: InteractiveMapData }) => {
         style={{ width: "100%", height: "100%" }}
         mapStyle="https://tiles.openfreemap.org/styles/positron"
         onLoad={onMapLoad}
+        interactiveLayerIds={["booths-fill"]}
+        onMouseMove={onHover}
+        onMouseLeave={onMouseLeave}
+        onClick={onClick}
+        onMoveEnd={onMoveEnd}
+        cursor={hoveredBoothId ? "pointer" : undefined}
       >
         <Source id="static-features" type="geojson" data={staticMapFeatures}>
           {/* Hungexpo területe */}
@@ -284,7 +338,12 @@ const InteractiveMap = ({ mapData }: { mapData: InteractiveMapData }) => {
             type="fill-extrusion"
             filter={["==", "type", "booth"]}
             paint={{
-              "fill-extrusion-color": "#f4b02a",
+              "fill-extrusion-color": [
+                "case",
+                ["==", ["get", "id"], hoveredBoothId],
+                "#D98E04", // Hover color
+                "#f4b02a", // Default color
+              ],
               "fill-extrusion-height": 2,
               "fill-extrusion-base": 0,
             }}

@@ -9,7 +9,7 @@ import type { InteractiveMapData } from "./_components/InteractiveMap";
 export const dynamic = "force-static";
 
 export const metadata: Metadata = {
-  title: "Térképek",
+  title: "Térkép",
 };
 
 const MapPage = async () => {

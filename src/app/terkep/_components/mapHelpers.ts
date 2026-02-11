@@ -192,6 +192,7 @@ export const generateBoothsGeoJSON = (mapData: InteractiveMapData) => {
       return {
         type: "Feature" as const,
         properties: {
+          id: booth.id,
           name: booth.title,
           centerLng: center[0],
           centerLat: center[1],
