@@ -20,6 +20,7 @@ export interface InteractiveMapData {
     id: string;
     name: string;
     color: string;
+    hoverColor: string;
     svgWidth: number;
     svgHeight: number;
     coordinates: [number, number][];
@@ -53,6 +54,7 @@ interface InteractiveMapProps {
 const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
   const mapRef = useRef<MapRef>(null);
   const [hoveredBoothId, setHoveredBoothId] = useState<string | null>(null);
+  const [hoveredBuildingId, setHoveredBuildingId] = useState<string | null>(null);
   const [selectedBoothId, setSelectedBoothId] = useState<string | null>(null);
   const [isDismissing, setIsDismissing] = useState(false);
   const [cursor, setCursor] = useState<string | undefined>(undefined);
@@ -62,6 +64,7 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
     const hoveredBooth = features?.find((feature) => feature.properties?.type === "booth");
     const hoveredBuilding = features?.find((feature) => feature.properties?.type === "building");
     setHoveredBoothId(hoveredBooth ? (hoveredBooth.properties?.id as string) : null);
+    setHoveredBuildingId(hoveredBuilding ? (hoveredBuilding.properties?.id as string) : null);
     if (hoveredBooth || hoveredBuilding) {
       setCursor("pointer");
     } else {
@@ -71,6 +74,7 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
 
   const onMouseLeave = useCallback(() => {
     setHoveredBoothId(null);
+    setHoveredBuildingId(null);
     setCursor(undefined);
   }, []);
 
@@ -334,7 +338,12 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
             type="fill-extrusion"
             filter={["==", "type", "building"]}
             paint={{
-              "fill-extrusion-color": ["get", "color"],
+              "fill-extrusion-color": [
+                "case",
+                ["==", ["get", "id"], hoveredBuildingId ?? ""],
+                ["get", "hoverColor"],
+                ["get", "color"],
+              ],
               "fill-extrusion-height": 20,
               "fill-extrusion-base": 0,
             }}

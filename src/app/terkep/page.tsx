@@ -4,6 +4,7 @@ import Stack from "@mui/material/Stack";
 import { getInteractiveMapItems } from "@/actions/articles/articles";
 import { ArticleFragment } from "@/actions/articles/articles.generated";
 import YellowTitle from "@/components/ui/YellowTitle";
+import { darkenColor } from "@/lib/utils";
 import InteractiveMap from "./_components/InteractiveMap";
 import type { InteractiveMapData } from "./_components/InteractiveMap";
 
@@ -24,6 +25,7 @@ const MapPage = async () => {
         id: buildingCategory.id,
         name: buildingCategory.name,
         color: buildingCategory.color,
+        hoverColor: darkenColor(buildingCategory.color, 15),
         coordinates: buildingMetadata.coordinates ?? [],
         svgWidth: buildingMetadata.svgWidth ?? 0,
         svgHeight: buildingMetadata.svgHeight ?? 0,

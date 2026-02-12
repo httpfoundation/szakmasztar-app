@@ -116,8 +116,10 @@ export const generateBuildingsGeoJSON = (mapData: InteractiveMapData) => {
     return {
       type: "Feature" as const,
       properties: {
+        id: building.id,
         name: building.name,
         color: building.color,
+        hoverColor: building.hoverColor,
         type: "building",
       },
       geometry: {
