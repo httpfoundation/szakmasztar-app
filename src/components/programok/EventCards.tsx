@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import InfoIcon from "@mui/icons-material/Info";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import { Box, Button, ButtonBase, Grid, Paper, Typography } from "@mui/material";
+import { Box, ButtonBase, Grid, Paper, Typography } from "@mui/material";
 import { ArticleFragment } from "@/actions/articles/articles.generated";
 import eventCategories from "@/assets/eventCategories.json";
 import { getEventTypeBySlug } from "@/lib/utils";

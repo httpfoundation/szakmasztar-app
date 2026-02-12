@@ -25,7 +25,6 @@ const BoothDetailPanel = ({
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [isClosing, setIsClosing] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
 
   const paperRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -74,7 +73,6 @@ const BoothDetailPanel = ({
       panelOffset.current = initialOffset;
       paperRef.current.style.transition = "transform 0.35s ease-out";
       applyTransforms();
-      setIsOpen(true);
     });
   }, [boothTitle, isMobile, applyTransforms]);
 
