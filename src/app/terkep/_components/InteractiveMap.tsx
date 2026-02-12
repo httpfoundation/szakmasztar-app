@@ -4,9 +4,10 @@ import Map, { Layer, Source } from "react-map-gl/maplibre";
 import type { MapRef } from "react-map-gl/maplibre";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { useCallback, useMemo, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
 import { LngLatBounds } from "maplibre-gl";
 import type { MapLayerMouseEvent, ViewStateChangeEvent } from "react-map-gl/maplibre";
+import { ArticleFragment } from "@/actions/articles/articles.generated";
+import BoothDetailPanel from "./BoothDetailPanel";
 import {
   generateArticlesGeoJSON,
   generateBoothsGeoJSON,
@@ -44,10 +45,16 @@ export interface InteractiveMapData {
   }[];
 }
 
-const InteractiveMap = ({ mapData }: { mapData: InteractiveMapData }) => {
-  const router = useRouter();
+interface InteractiveMapProps {
+  mapData: InteractiveMapData;
+  articlesById: Record<string, ArticleFragment>;
+}
+
+const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
   const mapRef = useRef<MapRef>(null);
   const [hoveredBoothId, setHoveredBoothId] = useState<string | null>(null);
+  const [selectedBoothId, setSelectedBoothId] = useState<string | null>(null);
+  const [isDismissing, setIsDismissing] = useState(false);
 
   const onHover = useCallback((event: MapLayerMouseEvent) => {
     const { features } = event;
@@ -64,11 +71,30 @@ const InteractiveMap = ({ mapData }: { mapData: InteractiveMapData }) => {
       const { features } = event;
       const clickedBooth = features?.find((feature) => feature.properties?.type === "booth");
       if (clickedBooth) {
-        router.push("/terkep/stand");
+        setIsDismissing(false);
+        setSelectedBoothId(clickedBooth.properties?.id as string);
+      } else if (selectedBoothId) {
+        setIsDismissing(true);
       }
     },
-    [router]
+    [selectedBoothId]
   );
+
+  const selectedBooth = useMemo(() => {
+    if (!selectedBoothId) return null;
+    for (const building of mapData.buildings) {
+      const booth = building.booths.find((b) => b.id === selectedBoothId);
+      if (booth) return booth;
+    }
+    return null;
+  }, [selectedBoothId, mapData]);
+
+  const selectedBoothArticles = useMemo(() => {
+    if (!selectedBooth) return [];
+    return selectedBooth.articleIds
+      .map((id) => articlesById[id])
+      .filter((a): a is ArticleFragment => !!a);
+  }, [selectedBooth, articlesById]);
 
   const onMoveEnd = useCallback((event: ViewStateChangeEvent) => {
     const { longitude, latitude, zoom, pitch, bearing } = event.viewState;
@@ -201,6 +227,7 @@ const InteractiveMap = ({ mapData }: { mapData: InteractiveMapData }) => {
         onClick={onClick}
         onMoveEnd={onMoveEnd}
         cursor={hoveredBoothId ? "pointer" : undefined}
+        attributionControl={false}
       >
         <Source id="static-features" type="geojson" data={staticMapFeatures}>
           {/* Hungexpo területe */}
@@ -340,6 +367,8 @@ const InteractiveMap = ({ mapData }: { mapData: InteractiveMapData }) => {
             paint={{
               "fill-extrusion-color": [
                 "case",
+                ["==", ["get", "id"], selectedBoothId ?? ""],
+                "#B87300", // Selected color
                 ["==", ["get", "id"], hoveredBoothId],
                 "#D98E04", // Hover color
                 "#f4b02a", // Default color
@@ -526,6 +555,17 @@ const InteractiveMap = ({ mapData }: { mapData: InteractiveMapData }) => {
           />
         </Source> */}
       </Map>
+      {selectedBooth && (
+        <BoothDetailPanel
+          boothTitle={selectedBooth.title}
+          articles={selectedBoothArticles}
+          requestClose={isDismissing}
+          onClose={() => {
+            setSelectedBoothId(null);
+            setIsDismissing(false);
+          }}
+        />
+      )}
     </>
   );
 };

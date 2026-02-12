@@ -149,7 +149,10 @@ export async function getInteractiveMapItems() {
   const buildings = await getCategoryTree({ rootNodeId: "szakmasztar-app-buildings" });
 
   const eventsBySectors = await getCategoryTree({ rootNodeId: "szakmasztar-app-sector" });
-  const articles = (eventsBySectors.children.flatMap((sector) => sector.items) as ArticleFragment[])
+  const fullArticles = eventsBySectors.children.flatMap(
+    (sector) => sector.items
+  ) as ArticleFragment[];
+  const articles = fullArticles
     .map((article) => {
       const metadata = JSON.parse(article.metadata ?? "{}");
       if (!metadata.map || !metadata.map.buildingId) {
@@ -167,8 +170,13 @@ export async function getInteractiveMapItems() {
     })
     .filter((x) => !!x);
 
+  const articlesById: Record<string, ArticleFragment> = {};
+  for (const article of fullArticles) {
+    articlesById[article.id] = article;
+  }
   return {
     buildings,
     articles,
+    articlesById,
   };
 }

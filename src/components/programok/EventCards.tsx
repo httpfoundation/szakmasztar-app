@@ -9,11 +9,16 @@ import LinkChip from "../ui/LinkChip";
 interface EventCardsProps {
   events: ArticleFragment[];
   permutatingColors?: boolean;
+  singleColumn?: boolean;
 }
 
 const bgcolors = ["wshu.main", "osztv.main", "primary.light", "nak.main", "other.main"];
 
-const EventCards = ({ events, permutatingColors = false }: EventCardsProps) => {
+const EventCards = ({
+  events,
+  permutatingColors = false,
+  singleColumn = false,
+}: EventCardsProps) => {
   function getEventMapId(article: ArticleFragment): string | null {
     try {
       const metadata = JSON.parse(article.metadata);
@@ -45,7 +50,7 @@ const EventCards = ({ events, permutatingColors = false }: EventCardsProps) => {
           const hasMapSlug = event.content || event.lead;
 
           return (
-            <Grid item xs={12} md={6} key={eventIndex}>
+            <Grid item xs={12} md={singleColumn ? 12 : 6} key={eventIndex}>
               <Paper
                 variant="outlined"
                 sx={{

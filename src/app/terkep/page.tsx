@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import { getInteractiveMapItems } from "@/actions/articles/articles";
 import { ArticleFragment } from "@/actions/articles/articles.generated";
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 const MapPage = async () => {
-  const { buildings, articles } = await getInteractiveMapItems();
+  const { buildings, articles, articlesById } = await getInteractiveMapItems();
 
   const data: InteractiveMapData = {
     buildings: buildings.children.map((buildingCategory) => {
@@ -61,12 +62,19 @@ const MapPage = async () => {
       sx={{
         userSelect: "none",
         width: "100%",
-        height: { xs: "calc(100vh - 56px - 80px)", md: "calc(100vh - 64px - 64px)" },
+        height: {
+          xs: "calc(100dvh - 56px - 80px)",
+          md: "calc(100dvh - 64px - 64px)",
+        },
         position: "relative",
+        overflow: "hidden",
+        flexDirection: "column",
       }}
     >
       <YellowTitle>Térkép</YellowTitle>
-      <InteractiveMap mapData={data} />
+      <Box sx={{ flex: 1, position: "relative", minHeight: 0 }}>
+        <InteractiveMap mapData={data} articlesById={articlesById} />
+      </Box>
     </Stack>
   );
 };
