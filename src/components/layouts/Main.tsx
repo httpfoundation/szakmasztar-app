@@ -12,7 +12,7 @@ const Main = ({ children }: MainProps) => {
       sx={{
         flexGrow: 1,
         mt: { xs: "56px", md: "64px" },
-        mb: "56px",
+        mb: "calc(64px + env(safe-area-inset-bottom))",
         width: "100%",
       }}
     >
@@ -22,4 +22,3 @@ const Main = ({ children }: MainProps) => {
 };
 
 export default Main;
-

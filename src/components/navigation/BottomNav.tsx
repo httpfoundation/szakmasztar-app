@@ -23,12 +23,13 @@ export default function BottomNav() {
         m: 0,
         borderRadius: 0,
         background: "linear-gradient(to right, #FFDF12 -20%, #EA5A32, #B14A4D,  #71376A 105%)",
+        paddingBottom: "env(safe-area-inset-bottom)",
       }}
     >
       <BottomNavigation
         value={currentIndex}
         showLabels
-        sx={{ bgcolor: "transparent", height: { xs: "80px", md: "64px" } }}
+        sx={{ bgcolor: "transparent", height: "64px" }}
       >
         {bottomNavItems.map((item, index) => (
           <BottomNavigationAction
@@ -39,23 +40,25 @@ export default function BottomNav() {
             color="white"
             href={item.slug}
             sx={{
-              gap: 1,
+              gap: 0.5,
               px: 0,
+              minWidth: "auto",
               textAlign: "center !important",
+              color: "white",
+              opacity: 0.8,
               "&.Mui-selected": {
                 color: "white",
                 bgcolor: "#ffffff15",
+                opacity: 1,
               },
               "&.Mui-selected .MuiBottomNavigationAction-label": {
-                fontSize: "0.7rem",
+                fontWeight: 700,
               },
-              color: "white",
               "& .MuiBottomNavigationAction-label": {
                 fontSize: "0.7rem",
                 textAlign: "center !important",
-                lineHeight: 1,
+                lineHeight: 1.2,
                 color: "white",
-                minHeight: { xs: "30px", md: "unset" },
                 fontWeight: 600,
               },
             }}

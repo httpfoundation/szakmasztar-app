@@ -63,8 +63,8 @@ const MapPage = async () => {
         userSelect: "none",
         width: "100%",
         height: {
-          xs: "calc(100dvh - 56px - 80px)",
-          md: "calc(100dvh - 64px - 64px)",
+          xs: "calc(100dvh - 56px - 64px - env(safe-area-inset-bottom))",
+          md: "calc(100dvh - 64px - 64px - env(safe-area-inset-bottom))",
         },
         position: "relative",
         overflow: "hidden",
