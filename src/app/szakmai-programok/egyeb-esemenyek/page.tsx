@@ -20,7 +20,7 @@ const OtherEventsPage = async () => {
   return (
     <>
       <YellowTitle>{title}</YellowTitle>
-      <PageContainer sx={{ position: "relative" }}>
+      <PageContainer sx={{ position: "relative", pb: 5 }}>
         <Starform />
         <EventCards events={events} permutatingColors />
       </PageContainer>

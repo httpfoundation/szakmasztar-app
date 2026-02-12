@@ -21,7 +21,7 @@ const AllSkills = ({ skills }: AllSkillsProps) => {
   );
 
   return (
-    <PageContainer sx={{ position: "relative", pb: 4 }}>
+    <PageContainer sx={{ position: "relative", pb: 5 }}>
       <Starform />
 
       <Typography variant="body2" align="justify" sx={{ mb: 1.5 }}>

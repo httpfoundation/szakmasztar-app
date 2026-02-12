@@ -94,7 +94,7 @@ const SectorPage = async ({ params }: SectorPageProps) => {
                 boxShadow: "none",
               }}
             >
-              <SectionContainer padding={0} sx={{ p: 0, position: "relative" }}>
+              <SectionContainer padding={0} sx={{ p: 0, position: "relative", pb: 5 }}>
                 <Image
                   src={category.symbolSrc}
                   width={100}

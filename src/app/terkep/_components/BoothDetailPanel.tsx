@@ -288,7 +288,7 @@ const BoothDetailPanel = ({
           }}
         >
           {articles.length > 0 ? (
-            <EventCards events={articles} permutatingColors singleColumn />
+            <EventCards events={articles} permutatingColors singleColumn showCategoryIcon />
           ) : (
             <Typography variant="body2" color="text.secondary" align="center" sx={{ py: 4 }}>
               Ehhez a standhoz nem tartozik szakmai program.
