@@ -55,26 +55,50 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
   const [hoveredBoothId, setHoveredBoothId] = useState<string | null>(null);
   const [selectedBoothId, setSelectedBoothId] = useState<string | null>(null);
   const [isDismissing, setIsDismissing] = useState(false);
+  const [cursor, setCursor] = useState<string | undefined>(undefined);
 
   const onHover = useCallback((event: MapLayerMouseEvent) => {
     const { features } = event;
     const hoveredBooth = features?.find((feature) => feature.properties?.type === "booth");
+    const hoveredBuilding = features?.find((feature) => feature.properties?.type === "building");
     setHoveredBoothId(hoveredBooth ? (hoveredBooth.properties?.id as string) : null);
+    if (hoveredBooth || hoveredBuilding) {
+      setCursor("pointer");
+    } else {
+      setCursor(undefined);
+    }
   }, []);
 
   const onMouseLeave = useCallback(() => {
     setHoveredBoothId(null);
+    setCursor(undefined);
   }, []);
 
   const onClick = useCallback(
     (event: MapLayerMouseEvent) => {
       const { features } = event;
       const clickedBooth = features?.find((feature) => feature.properties?.type === "booth");
+
       if (clickedBooth) {
         setIsDismissing(false);
         setSelectedBoothId(clickedBooth.properties?.id as string);
-      } else if (selectedBoothId) {
-        setIsDismissing(true);
+      } else {
+        const clickedBuilding = features?.find(
+          (feature) => feature.properties?.type === "building"
+        );
+        if (clickedBuilding) {
+          const geometry = clickedBuilding.geometry;
+          if (geometry.type === "Polygon") {
+            const coordinates = geometry.coordinates[0];
+            const bounds = new LngLatBounds();
+            coordinates.forEach((coord) => {
+              bounds.extend(coord as [number, number]);
+            });
+            mapRef.current?.getMap().fitBounds(bounds, { padding: 50 });
+          }
+        } else if (selectedBoothId) {
+          setIsDismissing(true);
+        }
       }
     },
     [selectedBoothId]
@@ -221,12 +245,12 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
         style={{ width: "100%", height: "100%" }}
         mapStyle="https://tiles.openfreemap.org/styles/positron"
         onLoad={onMapLoad}
-        interactiveLayerIds={["booths-fill"]}
+        interactiveLayerIds={["booths-fill", "buildings"]}
         onMouseMove={onHover}
         onMouseLeave={onMouseLeave}
         onClick={onClick}
         onMoveEnd={onMoveEnd}
-        cursor={hoveredBoothId ? "pointer" : undefined}
+        cursor={cursor}
         attributionControl={false}
       >
         <Source id="static-features" type="geojson" data={staticMapFeatures}>
