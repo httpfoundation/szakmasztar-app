@@ -166,6 +166,7 @@ export async function getInteractiveMapItems() {
         width: metadata.map.width,
         height: metadata.map.height,
         buildingId: metadata.map.buildingId,
+        slug: article.slug,
       };
     })
     .filter((x) => !!x);

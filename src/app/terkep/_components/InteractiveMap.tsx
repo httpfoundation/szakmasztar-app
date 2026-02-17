@@ -8,11 +8,7 @@ import { LngLatBounds } from "maplibre-gl";
 import type { MapLayerMouseEvent, ViewStateChangeEvent } from "react-map-gl/maplibre";
 import { ArticleFragment } from "@/actions/articles/articles.generated";
 import BoothDetailPanel from "./BoothDetailPanel";
-import {
-  generateArticlesGeoJSON,
-  generateBoothsGeoJSON,
-  generateBuildingsGeoJSON,
-} from "./mapHelpers";
+import { generateBoothsGeoJSON, generateBuildingsGeoJSON } from "./mapHelpers";
 import { staticMapFeatures } from "./staticMapFeatures";
 
 export interface InteractiveMapData {
@@ -41,7 +37,7 @@ export interface InteractiveMapData {
       y: number;
       width: number;
       height: number;
-      hasParentBooth: boolean;
+      slug: string;
     }[];
   }[];
 }
@@ -59,6 +55,7 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
   const [isDismissing, setIsDismissing] = useState(false);
   const [cursor, setCursor] = useState<string | undefined>(undefined);
 
+  /* Handles hover events, setting hovered booth and building IDs to highlight them */
   const onHover = useCallback((event: MapLayerMouseEvent) => {
     const { features } = event;
     const hoveredBooth = features?.find((feature) => feature.properties?.type === "booth");
@@ -72,12 +69,14 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
     }
   }, []);
 
+  /* Resets hovered booth and building IDs when mouse leaves the map */
   const onMouseLeave = useCallback(() => {
     setHoveredBoothId(null);
     setHoveredBuildingId(null);
     setCursor(undefined);
   }, []);
 
+  /* Handles click events, setting selected booth ID to open the booth detail panel */
   const onClick = useCallback(
     (event: MapLayerMouseEvent) => {
       const { features } = event;
@@ -108,6 +107,7 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
     [selectedBoothId]
   );
 
+  /* Returns the selected booth based on the selected booth ID */
   const selectedBooth = useMemo(() => {
     if (!selectedBoothId) return null;
     for (const building of mapData.buildings) {
@@ -117,6 +117,7 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
     return null;
   }, [selectedBoothId, mapData]);
 
+  /* Returns the articles associated with the selected booth */
   const selectedBoothArticles = useMemo(() => {
     if (!selectedBooth) return [];
     return selectedBooth.articleIds
@@ -124,6 +125,7 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
       .filter((a): a is ArticleFragment => !!a);
   }, [selectedBooth, articlesById]);
 
+  /* Save the map state (center, zoom, pitch, bearing) to session storage */
   const onMoveEnd = useCallback((event: ViewStateChangeEvent) => {
     const { longitude, latitude, zoom, pitch, bearing } = event.viewState;
     sessionStorage.setItem(
@@ -135,6 +137,7 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
   const onMapLoad = useCallback(async () => {
     const map = mapRef.current?.getMap();
     if (map) {
+      /* Load the map state (center, zoom, pitch, bearing) from session storage */
       const savedState = sessionStorage.getItem("interactive-map-view-state");
       if (savedState) {
         try {
@@ -150,6 +153,7 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
         }
       }
 
+      /* Remove unnecessary map layers */
       const layers = map.getStyle().layers;
       const removeLayers = [
         "highway-shield-non-us",
@@ -169,9 +173,27 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
         }
       });
 
+      /* Add custom images to the map */
       const images = [
         ["arrow_upward", "/images/arrow_upward_256dp_000_FILL0_wght400_GRAD0_opsz48.png"],
-        ["metro2", "/images/Budapest_M2_Metro.png"],
+        ["metro2", "/images/Budapest_M2_Metro_s.png"],
+        ["wshu", "/images/wshu.png"],
+        ["szakmabemutato", "/images/szakmabemutato.png"],
+        ["osztv-szktv", "/images/osztv-szktv.png"],
+        ["wshu-sm", "/images/wshu-sm.png"],
+        ["szakmabemutato-sm", "/images/szakmabemutato-sm.png"],
+        ["osztv-szktv-sm", "/images/osztv-szktv-sm.png"],
+        ["nak_osztv-szktv", "/images/nak_osztv-szktv.png"],
+        ["nak_osztv-szktv_szakmabemutato", "/images/nak_osztv-szktv_szakmabemutato.png"],
+        ["nak_osztv-szktv_szakmabemutato_wshu", "/images/nak_osztv-szktv_szakmabemutato_wshu.png"],
+        ["nak_osztv-szktv_wshu", "/images/nak_osztv-szktv_wshu.png"],
+        ["nak_szakmabemutato", "/images/nak_szakmabemutato.png"],
+        ["nak_szakmabemutato_wshu", "/images/nak_szakmabemutato_wshu.png"],
+        ["nak_wshu", "/images/nak_wshu.png"],
+        ["osztv-szktv_szakmabemutato", "/images/osztv-szktv_szakmabemutato.png"],
+        ["osztv-szktv_szakmabemutato_wshu", "/images/osztv-szktv_szakmabemutato_wshu.png"],
+        ["osztv-szktv_wshu", "/images/osztv-szktv_wshu.png"],
+        ["szakmabemutato_wshu", "/images/szakmabemutato_wshu.png"],
       ];
 
       images.forEach(async ([name, path]) => {
@@ -181,6 +203,7 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
     }
   }, []);
 
+  /* Calculate the bounds of the buildings */
   const buildingBounds = useMemo(() => {
     const bounds = new LngLatBounds();
     mapData.buildings.forEach((building) => {
@@ -191,12 +214,14 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
     return bounds;
   }, [mapData]);
 
+  /* Calculate the maximum bounds of the map */
   const maxBounds = useMemo(() => {
     const bounds = new LngLatBounds();
 
     bounds.extend(buildingBounds.getNorthEast());
     bounds.extend(buildingBounds.getSouthWest());
 
+    /* Include all static map features */
     staticMapFeatures.features.forEach((feature) => {
       if (feature.geometry.type === "MultiPolygon") {
         feature.geometry.coordinates[0].forEach((polygon) => {
@@ -210,6 +235,7 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
       }
     });
 
+    /* Extend the bounds to include some extra space */
     const extendAmount = 0.03;
     bounds.extend([
       buildingBounds.getNorthEast().lng + extendAmount,
@@ -222,13 +248,16 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
     return bounds;
   }, [buildingBounds]);
 
+  /* Controls the zoom levels at which the buildings, booths and articles become visible */
+
   const buildingZoomLevel = 14;
   const boothZoomLevel = 18;
   const articleZoomLevel = 20.5;
 
+  /* Generate the GeoJSON for the buildings, booths and articles */
   const buildingsGeoJSON = useMemo(() => generateBuildingsGeoJSON(mapData), [mapData]);
   const boothsGeoJSON = useMemo(() => generateBoothsGeoJSON(mapData), [mapData]);
-  const articlesGeoJSON = useMemo(() => generateArticlesGeoJSON(mapData), [mapData]);
+  // const articlesGeoJSON = useMemo(() => generateArticlesGeoJSON(mapData), [mapData]);
 
   return (
     <>
@@ -315,14 +344,14 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
             filter={["==", "type", "metro2"]}
             layout={{
               "icon-image": "metro2",
-              "icon-size": ["interpolate", ["exponential", 2], ["zoom"], 16, 0.04, 19, 0.2],
-              "icon-anchor": "center",
+              "icon-size": 0.2,
               "text-field": ["get", "name"],
               "text-size": ["interpolate", ["exponential", 2], ["zoom"], 16, 12, 19, 18],
               "text-font": ["montserratBold"],
               "text-transform": "uppercase",
-              "text-anchor": "center",
-              "text-justify": "center",
+              "text-anchor": "top",
+              "icon-anchor": "bottom",
+              "text-justify": "auto",
             }}
             paint={{
               "text-color": "#000",
@@ -410,7 +439,7 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
               "fill-extrusion-base": 0,
             }}
             minzoom={boothZoomLevel}
-            maxzoom={articleZoomLevel}
+            // maxzoom={articleZoomLevel}
           />
           <Layer
             id="booths-labels"
@@ -428,12 +457,22 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
                 30,
               ],
               "text-font": ["montserratBold"],
-              "text-anchor": "center",
-              "text-justify": "center",
               "text-allow-overlap": true,
               "text-rotation-alignment": "viewport",
               "text-line-height": 1.2,
               "text-max-width": 8,
+              "icon-image": ["get", "combinedIcon"],
+              "icon-size": [
+                "interpolate",
+                ["exponential", 2],
+                ["zoom"],
+                boothZoomLevel,
+                0.07,
+                articleZoomLevel,
+                0.2,
+              ],
+              "text-anchor": "top",
+              "icon-anchor": "bottom",
             }}
             paint={{
               "text-color": "#fff",
@@ -443,65 +482,18 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
             minzoom={boothZoomLevel}
             maxzoom={articleZoomLevel}
           />
-        </Source>
-        <Source id="articles" type="geojson" data={articlesGeoJSON}>
           <Layer
-            id="articles-fill"
-            type="fill-extrusion"
-            filter={["==", "type", "article"]}
-            paint={{
-              "fill-extrusion-color": "#ffcd68ff",
-              "fill-extrusion-height": 1,
-              "fill-extrusion-base": 0,
-            }}
-            minzoom={articleZoomLevel}
-          />
-          <Layer
-            id="articles-labels"
+            id="booths-articles-labels"
             type="symbol"
-            filter={["==", "type", "article"]}
+            filter={["==", "type", "booth"]}
             layout={{
-              "text-field": ["get", "name"],
-              "text-size": 20,
-              "text-font": ["montserratBold"],
-              "text-anchor": "center",
-              "text-justify": "center",
-              "text-allow-overlap": true,
-              "text-rotation-alignment": "viewport",
-              "text-line-height": 1,
-              "text-max-width": 8,
-            }}
-            paint={{
-              "text-color": "#fff",
-              "text-halo-color": "#6f6f6fff",
-              "text-halo-width": 1,
-            }}
-            minzoom={articleZoomLevel}
-          />
-
-          <Layer
-            id="articles-without-parent-booth-fill"
-            type="fill-extrusion"
-            filter={["==", "hasParentBooth", false]}
-            paint={{
-              "fill-extrusion-color": "#ffcd68ff",
-              "fill-extrusion-height": 1,
-              "fill-extrusion-base": 0,
-            }}
-            minzoom={boothZoomLevel}
-          />
-          <Layer
-            id="articles-without-parent-booth-labels"
-            type="symbol"
-            filter={["==", "hasParentBooth", false]}
-            layout={{
-              "text-field": ["get", "name"],
+              "text-field": ["get", "articleNames"],
               "text-size": [
                 "interpolate",
                 ["exponential", 2],
                 ["zoom"],
                 boothZoomLevel,
-                8,
+                10,
                 articleZoomLevel,
                 30,
               ],
@@ -510,83 +502,17 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
               "text-justify": "center",
               "text-allow-overlap": true,
               "text-rotation-alignment": "viewport",
-              "text-line-height": 1,
-              "text-max-width": 8,
+              "text-line-height": 1.2,
+              "text-max-width": 18,
             }}
             paint={{
               "text-color": "#fff",
               "text-halo-color": "#6f6f6fff",
               "text-halo-width": 1,
             }}
-            minzoom={boothZoomLevel}
+            minzoom={articleZoomLevel}
           />
         </Source>
-
-        {/* Standok */}
-        {/*         
-        <Source id="booths" type="geojson" data={boothsGeoJSON}>
-          <Layer
-            id="booths-fill"
-            type="fill"
-            paint={{
-              "fill-color": ["get", "color"],
-              "fill-opacity": [
-                "interpolate",
-                ["linear"],
-                ["zoom"],
-                insideViewZoomLevel - 0.5,
-                0,
-                insideViewZoomLevel,
-                0.8,
-              ],
-            }}
-          />
-          <Layer
-            id="booths-outline"
-            type="line"
-            paint={{
-              "line-color": "#ffffff",
-              "line-width": 1,
-              "line-opacity": [
-                "interpolate",
-                ["linear"],
-                ["zoom"],
-                insideViewZoomLevel - 0.5,
-                0,
-                insideViewZoomLevel,
-                1,
-              ],
-            }}
-          />
-          <Layer
-            id="booths-labels"
-            type="symbol"
-            layout={{
-              "text-field": ["get", "name"],
-              "text-size": ["interpolate", ["exponential", 2], ["zoom"], 17, 8, 19, 14],
-              "text-font": ["montserrat"],
-              "text-anchor": "center",
-              "text-justify": "center",
-              "text-allow-overlap": true,
-              "text-rotation-alignment": "map",
-              "text-line-height": 1,
-              "text-max-width": 8,
-            }}
-            paint={{
-              "text-color": "#fff",
-              "text-halo-width": 1,
-              "text-opacity": [
-                "interpolate",
-                ["linear"],
-                ["zoom"],
-                insideViewZoomLevel,
-                0,
-                insideViewZoomLevel + 0.5,
-                1,
-              ],
-            }}
-          />
-        </Source> */}
       </Map>
       {selectedBooth && (
         <BoothDetailPanel

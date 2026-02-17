@@ -51,66 +51,6 @@ export function createRelativePolygon(
   return [topLeft, topRight, bottomRight, bottomLeft, topLeft];
 }
 
-/**
- * Generates GeoJSON FeatureCollection for all booth items
- */
-/*
-export function generateBoothsGeo
-JSON(mapItems: EventMapItem[]) {
-  const buildingConfigs = getBuildingConfigs();
-
-  const features = mapItems
-    .filter((item) => item.stand && item.mapId)
-    .map((item) => {
-      const config = buildingConfigs[item.mapId];
-
-      if (!config) return null;
-
-      const coordinates = createBoothPolygon(item, config);
-      const center = transformToGeoCoords(
-        item.stand.x + item.stand.width / 2,
-        item.stand.y + item.stand.height / 2,
-        config
-      );
-
-      // Determine booth color based on href
-      let color = "#6b7280"; // default gray
-      if (item.href.includes("wshu")) {
-        color = "#007bff"; // WSHU blue
-      } else if (item.href.includes("osztv")) {
-        color = "#28a745"; // OSZTV green
-      } else if (item.href.includes("nak")) {
-        color = "#dc3545"; // NAK red
-      } else if (item.href.includes("interaktiv")) {
-        color = "#6f42c1"; // Interactive purple
-      }
-
-      return {
-        type: "Feature" as const,
-        properties: {
-          name: item.text,
-          href: item.href,
-          jumpCode: item.jumpCode,
-          mapId: item.mapId,
-          color,
-          eventType: item.stand.eventType,
-          centerLng: center[0],
-          centerLat: center[1],
-        },
-        geometry: {
-          type: "Polygon" as const,
-          coordinates: [coordinates],
-        },
-      };
-    })
-    .filter((f): f is NonNullable<typeof f> => f !== null);
-
-  return {
-    type: "FeatureCollection" as const,
-    features,
-  };
-}
-*/
 export const generateBuildingsGeoJSON = (mapData: InteractiveMapData) => {
   const features = mapData.buildings.map((building) => {
     return {
@@ -178,6 +118,23 @@ export const getBuildingConfig = (
   };
 };
 
+const getCategoryIcon = (slug: string): string | undefined => {
+  if (slug.startsWith("wshu")) {
+    return "wshu";
+  } else if (slug.startsWith("osztvszktv")) {
+    return "osztv-szktv";
+  } else if (
+    slug.startsWith("interaktiv-szakmabemutato") ||
+    slug.startsWith("egyeb-szakmabemutato")
+  ) {
+    return "szakmabemutato";
+  } else if (slug.startsWith("nak")) {
+    return "nak";
+  }
+
+  return undefined;
+};
+
 export const generateBoothsGeoJSON = (mapData: InteractiveMapData) => {
   const features = mapData.buildings.map((building) => {
     if (!building.coordinates.length) return null;
@@ -191,11 +148,19 @@ export const generateBoothsGeoJSON = (mapData: InteractiveMapData) => {
         buildingConfig
       );
 
+      const articles = building.articles.filter((article) => booth.articleIds.includes(article.id));
+      const combinedIcon = [...new Set(articles.map((article) => getCategoryIcon(article.slug)))]
+        .filter(Boolean)
+        .sort()
+        .join("_");
+
       return {
         type: "Feature" as const,
         properties: {
           id: booth.id,
           name: booth.title,
+          articleNames: articles.map((article) => article.title).join("\n"),
+          combinedIcon,
           centerLng: center[0],
           centerLat: center[1],
           type: "booth",
@@ -234,7 +199,6 @@ export const generateArticlesGeoJSON = (mapData: InteractiveMapData) => {
           centerLng: center[0],
           centerLat: center[1],
           type: "article",
-          hasParentBooth: article.hasParentBooth,
         },
         geometry: {
           type: "Polygon" as const,

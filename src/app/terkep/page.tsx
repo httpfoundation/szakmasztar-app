@@ -21,6 +21,47 @@ const MapPage = async () => {
     buildings: buildings.children.map((buildingCategory) => {
       const buildingMetadata = JSON.parse(buildingCategory.metadata ?? "{}");
 
+      const buildingArticles = articles.filter(
+        (article) => article.buildingId === buildingCategory.id.replace("szakmasztar-app-", "")
+      );
+
+      const booths = (buildingCategory.items as ArticleFragment[]).map((boothCategory) => {
+        const boothMetadata = JSON.parse(boothCategory.metadata ?? "{}");
+        return {
+          id: boothCategory.id,
+          title: boothCategory.title,
+          code: boothCategory.subtitle ?? "",
+          articleIds: (boothMetadata.articleIds as string[]) ?? [],
+          x: boothMetadata.map?.x,
+          y: boothMetadata.map?.y,
+          width: boothMetadata.map?.width,
+          height: boothMetadata.map?.height,
+        } as InteractiveMapData["buildings"][number]["booths"][number];
+      });
+
+      const articlesWithoutBooth = buildingArticles.filter((article) => {
+        const hasParentBooth = (buildingCategory.items as ArticleFragment[]).some(
+          (boothCategory) => {
+            const boothMetadata = JSON.parse(boothCategory.metadata ?? "{}");
+            return boothMetadata.articleIds?.includes(article.id);
+          }
+        );
+        return !hasParentBooth;
+      });
+
+      const fakeBooths = articlesWithoutBooth.map((article) => {
+        return {
+          id: article.id,
+          title: article.title,
+          code: "",
+          articleIds: [article.id],
+          x: article?.x,
+          y: article?.y,
+          width: article?.width,
+          height: article?.height,
+        } as InteractiveMapData["buildings"][number]["booths"][number];
+      });
+
       return {
         id: buildingCategory.id,
         name: buildingCategory.name,
@@ -29,32 +70,8 @@ const MapPage = async () => {
         coordinates: buildingMetadata.coordinates ?? [],
         svgWidth: buildingMetadata.svgWidth ?? 0,
         svgHeight: buildingMetadata.svgHeight ?? 0,
-        booths: (buildingCategory.items as ArticleFragment[]).map((boothCategory) => {
-          const boothMetadata = JSON.parse(boothCategory.metadata ?? "{}");
-          return {
-            id: boothCategory.id,
-            title: boothCategory.title,
-            code: boothCategory.subtitle ?? "",
-            articleIds: (boothMetadata.articleIds as string[]) ?? [],
-            x: boothMetadata.map?.x,
-            y: boothMetadata.map?.y,
-            width: boothMetadata.map?.width,
-            height: boothMetadata.map?.height,
-          } as InteractiveMapData["buildings"][number]["booths"][number];
-        }),
-        articles: articles
-          .filter(
-            (article) => article.buildingId === buildingCategory.id.replace("szakmasztar-app-", "")
-          )
-          .map((article) => {
-            const hasParentBooth = (buildingCategory.items as ArticleFragment[]).some(
-              (boothCategory) => {
-                const boothMetadata = JSON.parse(boothCategory.metadata ?? "{}");
-                return boothMetadata.articleIds?.includes(article.id);
-              }
-            );
-            return { ...article, hasParentBooth };
-          }),
+        booths: [...booths, ...fakeBooths],
+        articles: buildingArticles,
       };
     }),
   };
