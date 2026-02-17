@@ -270,6 +270,7 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
   // const articlesGeoJSON = useMemo(() => generateArticlesGeoJSON(mapData), [mapData]);
 
   /* Build a format expression for article labels with inline category icons */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const articleFormatExpression = useMemo((): any => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const format: any[] = ["format"];
