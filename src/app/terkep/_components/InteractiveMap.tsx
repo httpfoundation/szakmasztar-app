@@ -251,8 +251,9 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
   /* Controls the zoom levels at which the buildings, booths and articles become visible */
 
   const buildingZoomLevel = 14;
-  const boothZoomLevel = 18;
-  const articleZoomLevel = 20.5;
+  const boothZoomLevel = 16.5;
+  const articleZoomLevel = 19;
+  const maxZoomLevel = 22;
 
   /* Generate the GeoJSON for the buildings, booths and articles */
   const buildingsGeoJSON = useMemo(() => generateBuildingsGeoJSON(mapData), [mapData]);
@@ -272,7 +273,7 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
         }}
         minPitch={0}
         maxPitch={60}
-        maxZoom={22}
+        maxZoom={maxZoomLevel}
         minZoom={buildingZoomLevel}
         maxBounds={maxBounds}
         style={{ width: "100%", height: "100%" }}
@@ -452,32 +453,34 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
                 ["exponential", 2],
                 ["zoom"],
                 boothZoomLevel,
-                10,
+                5,
                 articleZoomLevel,
-                30,
+                15,
               ],
-              "text-font": ["montserratBold"],
+              "text-font": ["montserrat"],
               "text-allow-overlap": true,
               "text-rotation-alignment": "viewport",
               "text-line-height": 1.2,
-              "text-max-width": 8,
+              "text-max-width": ["get", "textMaxWidth"],
               "icon-image": ["get", "combinedIcon"],
               "icon-size": [
                 "interpolate",
                 ["exponential", 2],
                 ["zoom"],
                 boothZoomLevel,
-                0.07,
+                0.04,
                 articleZoomLevel,
-                0.2,
+                0.15,
               ],
               "text-anchor": "top",
               "icon-anchor": "bottom",
+              "text-optional": true,
+              "icon-optional": false,
             }}
             paint={{
-              "text-color": "#fff",
+              "text-color": "#000",
               "text-halo-color": "#6f6f6fff",
-              "text-halo-width": 1,
+              "text-halo-width": 0,
             }}
             minzoom={boothZoomLevel}
             maxzoom={articleZoomLevel}
@@ -492,12 +495,12 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
                 "interpolate",
                 ["exponential", 2],
                 ["zoom"],
-                boothZoomLevel,
-                10,
                 articleZoomLevel,
-                30,
+                10,
+                maxZoomLevel,
+                40,
               ],
-              "text-font": ["montserratBold"],
+              "text-font": ["montserrat"],
               "text-anchor": "center",
               "text-justify": "center",
               "text-allow-overlap": true,
@@ -506,9 +509,9 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
               "text-max-width": 18,
             }}
             paint={{
-              "text-color": "#fff",
+              "text-color": "#000",
               "text-halo-color": "#6f6f6fff",
-              "text-halo-width": 1,
+              "text-halo-width": 0,
             }}
             minzoom={articleZoomLevel}
           />

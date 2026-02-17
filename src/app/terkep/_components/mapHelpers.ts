@@ -164,6 +164,7 @@ export const generateBoothsGeoJSON = (mapData: InteractiveMapData) => {
           centerLng: center[0],
           centerLat: center[1],
           type: "booth",
+          textMaxWidth: booth.width / 15,
         },
         geometry: {
           type: "Polygon" as const,
