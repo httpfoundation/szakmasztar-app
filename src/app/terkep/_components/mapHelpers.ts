@@ -135,12 +135,17 @@ const getCategoryIcon = (slug: string): string | undefined => {
   return undefined;
 };
 
+/** Max number of article slots for inline icon display in format expressions */
+export const MAX_BOOTH_ARTICLES = 10;
+
 export const generateBoothsGeoJSON = (mapData: InteractiveMapData) => {
+  let boothCounter = 0;
   const features = mapData.buildings.map((building) => {
     if (!building.coordinates.length) return null;
     const buildingConfig = getBuildingConfig(building);
 
     return building.booths.map((booth) => {
+      boothCounter++;
       const coordinates = createRelativePolygon(booth, buildingConfig);
       const center = transformToGeoCoords(
         booth.x + booth.width / 2,
@@ -154,18 +159,33 @@ export const generateBoothsGeoJSON = (mapData: InteractiveMapData) => {
         .sort()
         .join("_");
 
+      const properties: Record<string, unknown> = {
+        id: booth.id,
+        name: `${boothCounter}. ${booth.title}`,
+        boothNumber: String(boothCounter) + ".",
+        articleNames: articles.map((article) => article.title).join("\n"),
+        combinedIcon,
+        centerLng: center[0],
+        centerLat: center[1],
+        type: "booth",
+        textMaxWidth: booth.width / 15,
+      };
+
+      // Add per-article properties for inline icon display (max MAX_BOOTH_ARTICLES)
+      const cappedArticles = articles.slice(0, MAX_BOOTH_ARTICLES);
+      for (let i = 0; i < cappedArticles.length; i++) {
+        const article = cappedArticles[i];
+        const icon = getCategoryIcon(article.slug);
+        if (icon) {
+          properties[`article_${i}_icon`] = `${icon}-sm`;
+        }
+        const isLast = i === cappedArticles.length - 1;
+        properties[`article_${i}_text`] = (icon ? " " : "") + article.title + (isLast ? "" : "\n");
+      }
+
       return {
         type: "Feature" as const,
-        properties: {
-          id: booth.id,
-          name: booth.title,
-          articleNames: articles.map((article) => article.title).join("\n"),
-          combinedIcon,
-          centerLng: center[0],
-          centerLat: center[1],
-          type: "booth",
-          textMaxWidth: booth.width / 15,
-        },
+        properties,
         geometry: {
           type: "Polygon" as const,
           coordinates: [coordinates],

@@ -1,6 +1,3 @@
-import { LngLatBounds } from "maplibre-gl";
-import type { BuildingConfig } from "./mapHelpers";
-
 export const staticMapFeatures = {
   type: "FeatureCollection" as const,
   name: "szakmasztar-map-data",

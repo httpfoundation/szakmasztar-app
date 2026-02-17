@@ -101,7 +101,7 @@ const BoothDetailPanel = ({
   const handleTouchMove = useCallback(
     (e: React.TouchEvent) => {
       if (!isDragging.current || !paperRef.current) return;
-      e.preventDefault();
+      // e.preventDefault();
 
       const currentY = e.touches[0].clientY;
       const frameDelta = lastTouchY.current - currentY; // positive = finger up

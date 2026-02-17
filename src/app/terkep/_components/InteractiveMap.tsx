@@ -8,7 +8,7 @@ import { LngLatBounds } from "maplibre-gl";
 import type { MapLayerMouseEvent, ViewStateChangeEvent } from "react-map-gl/maplibre";
 import { ArticleFragment } from "@/actions/articles/articles.generated";
 import BoothDetailPanel from "./BoothDetailPanel";
-import { generateBoothsGeoJSON, generateBuildingsGeoJSON } from "./mapHelpers";
+import { generateBoothsGeoJSON, generateBuildingsGeoJSON, MAX_BOOTH_ARTICLES } from "./mapHelpers";
 import { staticMapFeatures } from "./staticMapFeatures";
 
 export interface InteractiveMapData {
@@ -174,15 +174,12 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
       });
 
       /* Add custom images to the map */
-      const images = [
+      const images: [string, string][] = [
         ["arrow_upward", "/images/arrow_upward_256dp_000_FILL0_wght400_GRAD0_opsz48.png"],
         ["metro2", "/images/Budapest_M2_Metro_s.png"],
         ["wshu", "/images/wshu.png"],
         ["szakmabemutato", "/images/szakmabemutato.png"],
         ["osztv-szktv", "/images/osztv-szktv.png"],
-        ["wshu-sm", "/images/wshu-sm.png"],
-        ["szakmabemutato-sm", "/images/szakmabemutato-sm.png"],
-        ["osztv-szktv-sm", "/images/osztv-szktv-sm.png"],
         ["nak_osztv-szktv", "/images/nak_osztv-szktv.png"],
         ["nak_osztv-szktv_szakmabemutato", "/images/nak_osztv-szktv_szakmabemutato.png"],
         ["nak_osztv-szktv_szakmabemutato_wshu", "/images/nak_osztv-szktv_szakmabemutato_wshu.png"],
@@ -196,9 +193,21 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
         ["szakmabemutato_wshu", "/images/szakmabemutato_wshu.png"],
       ];
 
+      /* Small inline icons — loaded with higher pixelRatio so they render smaller */
+      const inlineImages: [string, string][] = [
+        ["wshu-sm", "/images/wshu-sm.png"],
+        ["szakmabemutato-sm", "/images/szakmabemutato-sm.png"],
+        ["osztv-szktv-sm", "/images/osztv-szktv-sm.png"],
+      ];
+
       images.forEach(async ([name, path]) => {
         const image = await map.loadImage(path);
         map.addImage(name, image.data);
+      });
+
+      inlineImages.forEach(async ([name, path]) => {
+        const image = await map.loadImage(path);
+        map.addImage(name, image.data, { pixelRatio: 1.5 });
       });
     }
   }, []);
@@ -259,6 +268,21 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
   const buildingsGeoJSON = useMemo(() => generateBuildingsGeoJSON(mapData), [mapData]);
   const boothsGeoJSON = useMemo(() => generateBoothsGeoJSON(mapData), [mapData]);
   // const articlesGeoJSON = useMemo(() => generateArticlesGeoJSON(mapData), [mapData]);
+
+  /* Build a format expression for article labels with inline category icons */
+  const articleFormatExpression = useMemo((): any => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const format: any[] = ["format"];
+    for (let i = 0; i < MAX_BOOTH_ARTICLES; i++) {
+      // Inline icon for the article (skipped if image not found)
+      format.push(["image", ["coalesce", ["get", `article_${i}_icon`], ""]]);
+      format.push({});
+      // Article title text (empty string if slot unused)
+      format.push(["coalesce", ["get", `article_${i}_text`], ""]);
+      format.push({});
+    }
+    return format;
+  }, []);
 
   return (
     <>
@@ -442,6 +466,41 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
             minzoom={boothZoomLevel}
             // maxzoom={articleZoomLevel}
           />
+          {/* Booth numbers — always rendered behind everything, no collision impact */}
+          <Layer
+            id="booths-numbers"
+            type="symbol"
+            filter={["==", "type", "booth"]}
+            layout={{
+              "text-field": ["get", "boothNumber"],
+              "text-size": [
+                "interpolate",
+                ["exponential", 2],
+                ["zoom"],
+                boothZoomLevel,
+                5,
+                articleZoomLevel,
+                14,
+              ],
+              "text-font": ["montserrat"],
+              "text-allow-overlap": true,
+              "text-ignore-placement": true,
+              "text-rotation-alignment": "viewport",
+              "text-anchor": "top",
+              "text-justify": "center",
+              "text-padding": 0,
+              "text-offset": [0, 0.12],
+            }}
+            paint={{
+              "text-color": "#000",
+              "text-halo-color": "#b07800",
+              "text-halo-width": 0,
+            }}
+            minzoom={boothZoomLevel}
+            maxzoom={articleZoomLevel}
+          />
+          {/* Full booth name — collision-checked, rendered on top of numbers */}
+          {/* Where a name fits, its halo visually covers the number underneath */}
           <Layer
             id="booths-labels"
             type="symbol"
@@ -458,10 +517,27 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
                 15,
               ],
               "text-font": ["montserrat"],
-              "text-allow-overlap": true,
+              "text-allow-overlap": false,
               "text-rotation-alignment": "viewport",
               "text-line-height": 1.2,
               "text-max-width": ["get", "textMaxWidth"],
+              "text-anchor": "top",
+              "text-padding": 0,
+            }}
+            paint={{
+              "text-color": "#000",
+              "text-halo-color": "#f4b02a",
+              "text-halo-width": 4,
+            }}
+            minzoom={boothZoomLevel}
+            maxzoom={articleZoomLevel}
+          />
+          {/* Category icons — always visible on top of everything */}
+          <Layer
+            id="booths-icons"
+            type="symbol"
+            filter={["==", "type", "booth"]}
+            layout={{
               "icon-image": ["get", "combinedIcon"],
               "icon-size": [
                 "interpolate",
@@ -472,15 +548,9 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
                 articleZoomLevel,
                 0.15,
               ],
-              "text-anchor": "top",
               "icon-anchor": "bottom",
-              "text-optional": true,
-              "icon-optional": false,
-            }}
-            paint={{
-              "text-color": "#000",
-              "text-halo-color": "#6f6f6fff",
-              "text-halo-width": 0,
+              "icon-allow-overlap": true,
+              "icon-ignore-placement": true,
             }}
             minzoom={boothZoomLevel}
             maxzoom={articleZoomLevel}
@@ -490,7 +560,7 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
             type="symbol"
             filter={["==", "type", "booth"]}
             layout={{
-              "text-field": ["get", "articleNames"],
+              "text-field": articleFormatExpression,
               "text-size": [
                 "interpolate",
                 ["exponential", 2],
