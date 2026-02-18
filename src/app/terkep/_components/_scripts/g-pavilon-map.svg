@@ -50,6 +50,7 @@
 <rect id="Szak&#195;&#161;cs szaktechnikus" x="907.5" y="514" width="241" height="68.6667" fill="#FF0000" fill-opacity="0.3" stroke="#FF0000" stroke-width="2"/>
 <rect id="&#195;&#129;pol&#195;&#161;s &#195;&#169;s gondoz&#195;&#161;s ISZB" x="124.5" y="352" width="89" height="84" fill="#FF0000" fill-opacity="0.3" stroke="#FF0000" stroke-width="2"/>
 <rect id="Grafikus WS" x="257.5" y="263" width="79" height="50" fill="#FF0000" fill-opacity="0.3" stroke="#FF0000" stroke-width="2"/>
+<rect id="Ipari robotika WS" x="257.5" y="315" width="120" height="58" fill="#FF0000" fill-opacity="0.3" stroke="#FF0000" stroke-width="2"/>
 <rect id="Aut&#195;&#179;szerel&#197;&#145; WS" x="139.5" y="92" width="104" height="99" fill="#FF0000" fill-opacity="0.3" stroke="#FF0000" stroke-width="2"/>
 <rect id="J&#195;&#161;rm&#197;&#177;karossz&#195;&#169;ria-el&#197;&#145;k&#195;&#169;sz&#195;&#173;t&#197;&#145;, fel&#195;&#188;letbevon&#195;&#179;" x="245.5" y="92" width="120" height="32" fill="#FF0000" fill-opacity="0.3" stroke="#FF0000" stroke-width="2"/>
 <rect id="J&#195;&#161;rm&#197;&#177;f&#195;&#169;nyez&#197;&#145; ISZB" x="245.5" y="126" width="120" height="32" fill="#FF0000" fill-opacity="0.3" stroke="#FF0000" stroke-width="2"/>
@@ -79,8 +80,25 @@
 <rect id="H&#197;&#177;t&#197;&#145;- &#195;&#169;s kl&#195;&#173;matechnikai szerel&#197;&#145; WS" x="123.5" y="739" width="90" height="79" fill="#FF0000" fill-opacity="0.3" stroke="#FF0000" stroke-width="2"/>
 <rect id=" V&#195;&#173;z-, g&#195;&#161;z- &#195;&#169;s f&#197;&#177;t&#195;&#169;sszerel&#197;&#145; WS" x="123.5" y="658" width="90" height="79" fill="#FF0000" fill-opacity="0.3" stroke="#FF0000" stroke-width="2"/>
 </g>
-<g id="stands">
+<g id="booths">
+<rect id="Mechatronika, Automatikai Technikus, Ipar 4.0" x="603.5" y="658" width="162" height="160" fill="#00FF2F" fill-opacity="0.3" stroke="#00FF2F" stroke-width="2"/>
+<rect id="Informatikai rendszer&#195;&#188;zemeltet&#197;&#145;, Szoftverfejleszt&#197;&#145;, Webfejleszt&#197;&#145;" x="426.5" y="661" width="121" height="157" fill="#00FF2F" fill-opacity="0.3" stroke="#00FF2F" stroke-width="2"/>
+<rect id="Nyomdaipar" x="264.5" y="637" width="101" height="181" fill="#00FF2F" fill-opacity="0.3" stroke="#00FF2F" stroke-width="2"/>
+<rect id="Szak&#195;&#161;cs_2" x="907.5" y="372" width="240" height="210" fill="#00FF2F" fill-opacity="0.3" stroke="#00FF2F" stroke-width="2"/>
+<rect id="Kereskedelmi &#195;&#169;rt&#195;&#169;kes&#195;&#173;t&#197;&#145;, Keresked&#197;&#145; &#195;&#169;s web&#195;&#161;ruh&#195;&#161;zi technikus" x="1149.5" y="372" width="151" height="179" fill="#00FF2F" fill-opacity="0.3" stroke="#00FF2F" stroke-width="2"/>
+<rect id="Fest&#197;&#145;" x="1162.5" y="639" width="161" height="150" fill="#00FF2F" fill-opacity="0.3" stroke="#00FF2F" stroke-width="2"/>
+<rect id="Divatszab&#195;&#179;" x="1149.5" y="213" width="137" height="90" fill="#00FF2F" fill-opacity="0.3" stroke="#00FF2F" stroke-width="2"/>
+<rect id="Villanyszerel&#197;&#145;, Er&#197;&#145;s&#195;&#161;ram&#195;&#186; elektrotechnikus, Elektronikai technikus" x="943.5" y="112" width="161" height="190" fill="#00FF2F" fill-opacity="0.3" stroke="#00FF2F" stroke-width="2"/>
+<rect id="B&#195;&#186;torasztalos, &#195;&#137;p&#195;&#188;letasztalos" x="1336.5" y="92" width="120" height="140" fill="#00FF2F" fill-opacity="0.3" stroke="#00FF2F" stroke-width="2"/>
+<rect id="Kert&#195;&#169;p&#195;&#173;t&#197;&#145;" x="1181.5" y="105" width="100" height="60" fill="#00FF2F" fill-opacity="0.3" stroke="#00FF2F" stroke-width="2"/>
+<rect id="Pinc&#195;&#169;r, Vend&#195;&#169;gt&#195;&#169;ri szaktechnikus" x="714.5" y="372" width="191" height="210" fill="#00FF2F" fill-opacity="0.3" stroke="#00FF2F" stroke-width="2"/>
+<rect id="&#195;&#129;pol&#195;&#161;s &#195;&#169;s gondoz&#195;&#161;s" x="124.5" y="352" width="89" height="170" fill="#00FF2F" fill-opacity="0.3" stroke="#00FF2F" stroke-width="2"/>
+<rect id="Aut&#195;&#179;szerel&#197;&#145;, J&#195;&#161;rm&#197;&#177;f&#195;&#169;nyez&#197;&#145;" x="139.5" y="92" width="226" height="99" fill="#00FF2F" fill-opacity="0.3" stroke="#00FF2F" stroke-width="2"/>
+<rect id="Kozmetikus, Sz&#195;&#169;ps&#195;&#169;g&#195;&#161;pol&#195;&#179;" x="272.5" y="416" width="170" height="151" fill="#00FF2F" fill-opacity="0.3" stroke="#00FF2F" stroke-width="2"/>
 <rect id="Fodr&#195;&#161;sz_2" x="824.5" y="112" width="85" height="190" fill="#00FF2F" fill-opacity="0.3" stroke="#00FF2F" stroke-width="2"/>
+<rect id="Vegy&#195;&#169;sz technikus" x="641.5" y="196" width="117" height="98" fill="#00FF2F" fill-opacity="0.3" stroke="#00FF2F" stroke-width="2"/>
+<rect id="G&#195;&#169;p&#195;&#169;sztechnikus" x="641.5" y="102" width="117" height="92" fill="#00FF2F" fill-opacity="0.3" stroke="#00FF2F" stroke-width="2"/>
+<rect id="J&#195;&#161;rm&#197;&#177;- &#195;&#169;s szerviztechnika" x="426.5" y="102" width="213" height="221" fill="#00FF2F" fill-opacity="0.3" stroke="#00FF2F" stroke-width="2"/>
 <rect id="Cukr&#195;&#161;sz, P&#195;&#169;k" x="807.5" y="655" width="292" height="134" fill="#00FF2F" fill-opacity="0.3" stroke="#00FF2F" stroke-width="2"/>
 </g>
 <path id="g-outline" d="M121.5 1.5V89.5H1581.5V832H121V759.5H1.5V1.5H121.5Z" stroke="#00FF59" stroke-width="3"/>

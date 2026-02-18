@@ -1,0 +1,205 @@
+{
+  "buildings": [
+    {
+      "name": "f-pavilon-map",
+      "articles": [
+        {
+          "name": "Épületgépész technikus",
+          "type": "osztvszktv",
+          "x": 27,
+          "y": 44,
+          "width": 171,
+          "height": 105
+        },
+        {
+          "name": "Épületgépészet",
+          "type": "interaktiv-szakmabemutato",
+          "x": 27,
+          "y": 151,
+          "width": 171,
+          "height": 224
+        },
+        {
+          "name": "Központifűtés- és gázhálózatrendszer-szerelő",
+          "type": "osztvszktv",
+          "x": 27,
+          "y": 377,
+          "width": 171,
+          "height": 135
+        },
+        {
+          "name": "Kőműves",
+          "type": "osztvszktv",
+          "x": 243,
+          "y": 184,
+          "width": 199,
+          "height": 105
+        },
+        {
+          "name": "Mélyépítő technikus",
+          "type": "osztvszktv",
+          "x": 302,
+          "y": 133,
+          "width": 140,
+          "height": 49
+        },
+        {
+          "name": "STRABAG",
+          "type": "osztvszktv",
+          "x": 243,
+          "y": 133,
+          "width": 57,
+          "height": 49
+        },
+        {
+          "name": "Magasépítő technikus",
+          "type": "osztvszktv",
+          "x": 243,
+          "y": 83,
+          "width": 199,
+          "height": 48
+        },
+        {
+          "name": "Magasépítő/mélyépítő technikus",
+          "type": "interaktiv-szakmabemutato",
+          "x": 243,
+          "y": 4,
+          "width": 199,
+          "height": 77
+        },
+        {
+          "name": "Asztalos",
+          "type": "osztvszktv",
+          "x": 28,
+          "y": 549,
+          "width": 179,
+          "height": 66
+        },
+        {
+          "name": "Faipari technikus",
+          "type": "osztvszktv",
+          "x": 28,
+          "y": 617,
+          "width": 179,
+          "height": 66
+        },
+        {
+          "name": "Faipar",
+          "type": "interaktiv-szakmabemutato",
+          "x": 28,
+          "y": 685,
+          "width": 179,
+          "height": 56
+        },
+        {
+          "name": "Ács",
+          "type": "wshu",
+          "x": 336,
+          "y": 662,
+          "width": 106,
+          "height": 49
+        },
+        {
+          "name": "TEGY Tető",
+          "type": "interaktiv-szakmabemutato",
+          "x": 243,
+          "y": 662,
+          "width": 91,
+          "height": 49
+        },
+        {
+          "name": "Ács",
+          "type": "osztvszktv",
+          "x": 243,
+          "y": 526,
+          "width": 199,
+          "height": 134
+        },
+        {
+          "name": "Terrán",
+          "type": "interaktiv-szakmabemutato",
+          "x": 243,
+          "y": 463,
+          "width": 199,
+          "height": 61
+        },
+        {
+          "name": "Bádogos",
+          "type": "osztvszktv",
+          "x": 243,
+          "y": 377,
+          "width": 199,
+          "height": 84
+        },
+        {
+          "name": "Burkoló",
+          "type": "osztvszktv",
+          "x": 295,
+          "y": 291,
+          "width": 96,
+          "height": 84
+        },
+        {
+          "name": "Knauf",
+          "type": "osztvszktv",
+          "x": 243,
+          "y": 291,
+          "width": 50,
+          "height": 84
+        },
+        {
+          "name": "PREFA Hungária Kft.",
+          "type": "osztvszktv",
+          "x": 393,
+          "y": 291,
+          "width": 49,
+          "height": 84
+        }
+      ],
+      "booths": [
+        {
+          "name": "Asztalos, Faipari technikus",
+          "type": "osztvszktv",
+          "x": 28,
+          "y": 549,
+          "width": 179,
+          "height": 192
+        },
+        {
+          "name": "Ács_2",
+          "type": "osztvszktv",
+          "x": 243,
+          "y": 464,
+          "width": 199,
+          "height": 247
+        },
+        {
+          "name": "Kőműves, Burkoló, Bádogos",
+          "type": "osztvszktv",
+          "x": 243,
+          "y": 184,
+          "width": 199,
+          "height": 278
+        },
+        {
+          "name": "Épületgépészet",
+          "type": "osztvszktv",
+          "x": 27,
+          "y": 44,
+          "width": 171,
+          "height": 468
+        },
+        {
+          "name": "Magasépítő technikus, Mélyépítő technikus",
+          "type": "osztvszktv",
+          "x": 243,
+          "y": 4,
+          "width": 199,
+          "height": 178
+        }
+      ],
+      "svgWidth": 482,
+      "svgHeight": 746
+    }
+  ]
+}

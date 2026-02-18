@@ -1,9 +1,10 @@
 "use client";
 
 import Map, { Layer, Source } from "react-map-gl/maplibre";
-import type { MapRef } from "react-map-gl/maplibre";
+import type { LngLat, MapRef } from "react-map-gl/maplibre";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { useCallback, useMemo, useRef, useState } from "react";
+import { useMediaQuery, useTheme } from "@mui/material";
 import { LngLatBounds } from "maplibre-gl";
 import type { MapLayerMouseEvent, ViewStateChangeEvent } from "react-map-gl/maplibre";
 import { ArticleFragment } from "@/actions/articles/articles.generated";
@@ -52,8 +53,17 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
   const [hoveredBoothId, setHoveredBoothId] = useState<string | null>(null);
   const [hoveredBuildingId, setHoveredBuildingId] = useState<string | null>(null);
   const [selectedBoothId, setSelectedBoothId] = useState<string | null>(null);
+  const [returnToMapState, setReturnToMapState] = useState<{
+    center: LngLat;
+    zoom: number;
+    pitch: number;
+    bearing: number;
+  } | null>(null);
   const [isDismissing, setIsDismissing] = useState(false);
   const [cursor, setCursor] = useState<string | undefined>(undefined);
+  const theme = useTheme();
+
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   /* Handles hover events, setting hovered booth and building IDs to highlight them */
   const onHover = useCallback((event: MapLayerMouseEvent) => {
@@ -85,6 +95,27 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
       if (clickedBooth) {
         setIsDismissing(false);
         setSelectedBoothId(clickedBooth.properties?.id as string);
+        const geometry = clickedBooth.geometry;
+        if (geometry.type === "Polygon") {
+          const coordinates = geometry.coordinates[0];
+          const bounds = new LngLatBounds();
+          coordinates.forEach((coord) => {
+            bounds.extend(coord as [number, number]);
+          });
+
+          if (!selectedBoothId) {
+            setReturnToMapState({
+              center: mapRef.current?.getMap().getCenter() as LngLat,
+              zoom: mapRef.current?.getMap().getZoom() as number,
+              pitch: mapRef.current?.getMap().getPitch() as number,
+              bearing: mapRef.current?.getMap().getBearing() as number,
+            });
+          }
+
+          mapRef.current
+            ?.getMap()
+            .fitBounds(bounds, { padding: 100, offset: isMobile ? [0, -80] : [80, 0] });
+        }
       } else {
         const clickedBuilding = features?.find(
           (feature) => feature.properties?.type === "building"
@@ -261,6 +292,7 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
 
   const buildingZoomLevel = 14;
   const boothZoomLevel = 16.5;
+  const boothNameZoomLevel = 17.5;
   const articleZoomLevel = 19;
   const maxZoomLevel = 22;
 
@@ -456,18 +488,45 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
               "fill-extrusion-color": [
                 "case",
                 ["==", ["get", "id"], selectedBoothId ?? ""],
-                "#B87300", // Selected color
+                "#93415a", // Selected color
                 ["==", ["get", "id"], hoveredBoothId],
-                "#D98E04", // Hover color
-                "#f4b02a", // Default color
+                "#904e96", // Hover color
+                "#71376a", // Default color
               ],
-              "fill-extrusion-height": 2,
+              "fill-extrusion-height": 1.5,
               "fill-extrusion-base": 0,
             }}
             minzoom={boothZoomLevel}
-            // maxzoom={articleZoomLevel}
           />
-          {/* Booth numbers — always rendered behind everything, no collision impact */}
+
+          <Layer
+            id="booths-labels"
+            type="symbol"
+            filter={["==", "type", "booth"]}
+            layout={{
+              "text-field": ["get", "name"],
+              "text-size": [
+                "interpolate",
+                ["exponential", 2],
+                ["zoom"],
+                boothNameZoomLevel,
+                4,
+                articleZoomLevel,
+                16,
+              ],
+              "text-font": ["montserratBold"],
+              "text-rotation-alignment": "viewport",
+              "text-anchor": "top",
+              "text-justify": "center",
+              "text-offset": [0, 0.2],
+            }}
+            paint={{
+              "text-color": "#fff",
+              "text-halo-color": "#934c8a",
+              "text-halo-width": 1,
+            }}
+            minzoom={boothNameZoomLevel}
+          />
           <Layer
             id="booths-numbers"
             type="symbol"
@@ -479,30 +538,25 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
                 ["exponential", 2],
                 ["zoom"],
                 boothZoomLevel,
-                5,
+                10,
                 articleZoomLevel,
-                14,
+                20,
               ],
-              "text-font": ["montserrat"],
-              "text-allow-overlap": true,
-              "text-ignore-placement": true,
+              "text-font": ["montserratBold"],
               "text-rotation-alignment": "viewport",
-              "text-anchor": "top",
+              "text-anchor": "center",
               "text-justify": "center",
-              "text-padding": 0,
-              "text-offset": [0, 0.12],
+              "text-ignore-placement": true,
+              "text-offset": [0, -0.5],
             }}
             paint={{
-              "text-color": "#000",
-              "text-halo-color": "#b07800",
-              "text-halo-width": 0,
+              "text-color": "#fff",
             }}
             minzoom={boothZoomLevel}
-            maxzoom={articleZoomLevel}
           />
           {/* Full booth name — collision-checked, rendered on top of numbers */}
           {/* Where a name fits, its halo visually covers the number underneath */}
-          <Layer
+          {/*  <Layer
             id="booths-labels"
             type="symbol"
             filter={["==", "type", "booth"]}
@@ -515,26 +569,26 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
                 boothZoomLevel,
                 5,
                 articleZoomLevel,
-                15,
+                13,
               ],
-              "text-font": ["montserrat"],
+              "text-font": ["montserratMedium"],
               "text-allow-overlap": false,
               "text-rotation-alignment": "viewport",
-              "text-line-height": 1.2,
-              "text-max-width": ["get", "textMaxWidth"],
+              "text-line-height": 1.1,
+              // "text-max-width": ["get", "textMaxWidth"],
               "text-anchor": "top",
               "text-padding": 0,
             }}
             paint={{
-              "text-color": "#000",
+              "text-color": "#fff",
               "text-halo-color": "#f4b02a",
-              "text-halo-width": 4,
+              // "text-halo-width": 4,
             }}
             minzoom={boothZoomLevel}
             maxzoom={articleZoomLevel}
-          />
+          /> */}
           {/* Category icons — always visible on top of everything */}
-          <Layer
+          {/* <Layer
             id="booths-icons"
             type="symbol"
             filter={["==", "type", "booth"]}
@@ -571,7 +625,7 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
                 maxZoomLevel,
                 40,
               ],
-              "text-font": ["montserrat"],
+              "text-font": ["montserratMedium"],
               "text-anchor": "center",
               "text-justify": "center",
               "text-allow-overlap": true,
@@ -580,12 +634,12 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
               "text-max-width": 18,
             }}
             paint={{
-              "text-color": "#000",
+              "text-color": "#fff",
               "text-halo-color": "#6f6f6fff",
               "text-halo-width": 0,
             }}
             minzoom={articleZoomLevel}
-          />
+          /> */}
         </Source>
       </Map>
       {selectedBooth && (
@@ -596,6 +650,17 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
           onClose={() => {
             setSelectedBoothId(null);
             setIsDismissing(false);
+          }}
+          onCloseStart={() => {
+            if (returnToMapState) {
+              mapRef.current?.getMap().flyTo({
+                center: returnToMapState.center,
+                zoom: returnToMapState.zoom,
+                pitch: returnToMapState.pitch,
+                bearing: returnToMapState.bearing,
+              });
+              setReturnToMapState(null);
+            }
           }}
         />
       )}

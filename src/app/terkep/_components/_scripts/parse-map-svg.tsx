@@ -14,7 +14,9 @@ export type MapItem = {
 export type Building = {
   name: string;
   articles: MapItem[];
-  stands: MapItem[];
+  booths: MapItem[];
+  svgWidth: number;
+  svgHeight: number;
 };
 
 export type Data = {
@@ -67,33 +69,39 @@ export function parseSvg(svgText: string): Data {
   // each top-level <g> under the SVG is treated as a "building"
   const buildingGroups = Array.from(doc.querySelectorAll("svg > g")) as SVGElement[];
 
+  const svgWidth = num(doc.querySelector("svg").getAttribute("width"));
+  const svgHeight = num(doc.querySelector("svg").getAttribute("height"));
+
   for (const buildingGroup of buildingGroups) {
     const name = text(buildingGroup.getAttribute("id"));
 
     const articlesGroup = buildingGroup.querySelector("g#articles");
-    const standsGroup = buildingGroup.querySelector("g#stands");
+    const boothsGroup = buildingGroup.querySelector("g#booths");
 
     const articles: MapItem[] = articlesGroup
       ? Array.from(articlesGroup.querySelectorAll("rect")).map(parseRect)
       : [];
 
-    const stands: MapItem[] = standsGroup
-      ? Array.from(standsGroup.querySelectorAll("rect")).map(parseRect)
+    const booths: MapItem[] = boothsGroup
+      ? Array.from(boothsGroup.querySelectorAll("rect")).map(parseRect)
       : [];
 
     buildings.push({
       name,
       articles,
-      stands,
+      booths,
+      svgWidth,
+      svgHeight,
     });
   }
 
   return { buildings };
 }
 
-const filePath = "g-pavilon-map.svg";
+const filePath = process.argv[2];
 
 const main = () => {
+  console.log(filePath);
   const svgText = fs.readFileSync(filePath, "utf-8");
   const data = parseSvg(svgText);
   console.log(data);

@@ -1,0 +1,789 @@
+{
+  "buildings": [
+    {
+      "name": "g-pavilon-map",
+      "articles": [
+        {
+          "name": "Nyomdaipari technikus - Nyomdaipari előkészítő szakmairány",
+          "type": "osztvszktv",
+          "x": 264.5,
+          "y": 700,
+          "width": 101,
+          "height": 59.3333
+        },
+        {
+          "name": "Nyomdaipar",
+          "type": "interaktiv-szakmabemutato",
+          "x": 264.5,
+          "y": 637,
+          "width": 101,
+          "height": 61
+        },
+        {
+          "name": "Kozmetikus",
+          "type": "interaktiv-szakmabemutato",
+          "x": 272.5,
+          "y": 416,
+          "width": 170,
+          "height": 49
+        },
+        {
+          "name": "Fodrász",
+          "type": "wshu",
+          "x": 824.5,
+          "y": 112,
+          "width": 85,
+          "height": 62
+        },
+        {
+          "name": "Villanyszerelő - Épületvillamossági szakmairány",
+          "type": "osztvszktv",
+          "x": 943.5,
+          "y": 112,
+          "width": 52.3333,
+          "height": 62
+        },
+        {
+          "name": "Villanyszerelő - Villamos hálózat szakmairány",
+          "type": "osztvszktv",
+          "x": 997.5,
+          "y": 112,
+          "width": 52.3333,
+          "height": 62
+        },
+        {
+          "name": "Villanyszerelő - Villamos készülék és berendezés szakmairány",
+          "type": "osztvszktv",
+          "x": 1051.5,
+          "y": 112,
+          "width": 53,
+          "height": 62
+        },
+        {
+          "name": "Erősáramú elektrotechnikus",
+          "type": "osztvszktv",
+          "x": 943.5,
+          "y": 176,
+          "width": 161,
+          "height": 62
+        },
+        {
+          "name": "Elektronikai technikus",
+          "type": "osztvszktv",
+          "x": 943.5,
+          "y": 240,
+          "width": 161,
+          "height": 62
+        },
+        {
+          "name": "Virágkötő",
+          "type": "wshu",
+          "x": 1154.5,
+          "y": 105,
+          "width": 25,
+          "height": 60
+        },
+        {
+          "name": "Kertépítő",
+          "type": "wshu",
+          "x": 1181.5,
+          "y": 105,
+          "width": 49,
+          "height": 60
+        },
+        {
+          "name": "Divatszabó - Női szabó szakmairány",
+          "type": "osztvszktv",
+          "x": 1150.5,
+          "y": 213,
+          "width": 67,
+          "height": 90
+        },
+        {
+          "name": "Divatszabó",
+          "type": "interaktiv-szakmabemutato",
+          "x": 1219.5,
+          "y": 213,
+          "width": 67,
+          "height": 90
+        },
+        {
+          "name": "Bútorasztalos",
+          "type": "wshu",
+          "x": 1336.5,
+          "y": 92,
+          "width": 120,
+          "height": 69
+        },
+        {
+          "name": "Épületasztalos",
+          "type": "wshu",
+          "x": 1336.5,
+          "y": 163,
+          "width": 120,
+          "height": 69
+        },
+        {
+          "name": "Villanyszerelő",
+          "type": "wshu",
+          "x": 1336.5,
+          "y": 234,
+          "width": 120,
+          "height": 59
+        },
+        {
+          "name": "HM Kadét",
+          "type": "egyeb-szakmabemutato",
+          "x": 1356.5,
+          "y": 372,
+          "width": 100,
+          "height": 79
+        },
+        {
+          "name": "MOL",
+          "type": "interaktiv-szakmabemutato",
+          "x": 1356.5,
+          "y": 453,
+          "width": 100,
+          "height": 59
+        },
+        {
+          "name": "MOL_2",
+          "type": "osztvszktv",
+          "x": 490.5,
+          "y": 484,
+          "width": 49,
+          "height": 98
+        },
+        {
+          "name": "Richter Gedeon Nyrt.",
+          "type": "egyeb-szakmabemutato",
+          "x": 704.5,
+          "y": 296,
+          "width": 54,
+          "height": 27
+        },
+        {
+          "name": "Gépésztechnikus - CAD-CAM szakmairány",
+          "type": "osztvszktv",
+          "x": 640.5,
+          "y": 102,
+          "width": 118,
+          "height": 45
+        },
+        {
+          "name": "Alternatív járműhajtási technikus",
+          "type": "osztvszktv",
+          "x": 426.5,
+          "y": 102,
+          "width": 212,
+          "height": 43
+        },
+        {
+          "name": "Karosszérialakatos",
+          "type": "osztvszktv",
+          "x": 426.5,
+          "y": 147,
+          "width": 212,
+          "height": 43
+        },
+        {
+          "name": "Gépjármű-mechatronikai technikus - Gyártás szakmairány",
+          "type": "osztvszktv",
+          "x": 426.5,
+          "y": 192,
+          "width": 212,
+          "height": 43
+        },
+        {
+          "name": "Gépjármű-mechatronikai technikus - Szerviz szakmairány",
+          "type": "osztvszktv",
+          "x": 426.5,
+          "y": 237,
+          "width": 212,
+          "height": 43
+        },
+        {
+          "name": "Jármű- és szerviztechnika",
+          "type": "interaktiv-szakmabemutato",
+          "x": 426.5,
+          "y": 282,
+          "width": 212,
+          "height": 41
+        },
+        {
+          "name": "Gépésztechnikus - CAD-CAM szakmairány",
+          "type": "interaktiv-szakmabemutato",
+          "x": 640.5,
+          "y": 149,
+          "width": 118,
+          "height": 45
+        },
+        {
+          "name": "Vegyész technikus - Általános laboráns szakmairány",
+          "type": "osztvszktv",
+          "x": 640.5,
+          "y": 196,
+          "width": 118,
+          "height": 48
+        },
+        {
+          "name": "Vegyész technikus - Termelési folyamatirányító szakmairány",
+          "type": "osztvszktv",
+          "x": 640.5,
+          "y": 246,
+          "width": 118,
+          "height": 48
+        },
+        {
+          "name": "Magyar Kémikusok Egyesülete",
+          "type": "interaktiv-szakmabemutato",
+          "x": 760.5,
+          "y": 139,
+          "width": 19,
+          "height": 55
+        },
+        {
+          "name": "Bálint Analitika",
+          "type": "interaktiv-szakmabemutato",
+          "x": 760.5,
+          "y": 215,
+          "width": 19,
+          "height": 55
+        },
+        {
+          "name": "IKK",
+          "type": "egyeb-szakmabemutato",
+          "x": 1404.5,
+          "y": 514,
+          "width": 52,
+          "height": 28
+        },
+        {
+          "name": "MÁV",
+          "type": "osztvszktv",
+          "x": 1150.5,
+          "y": 554,
+          "width": 150,
+          "height": 29
+        },
+        {
+          "name": "Kertépítő",
+          "type": "interaktiv-szakmabemutato",
+          "x": 1232.5,
+          "y": 105,
+          "width": 49,
+          "height": 60
+        },
+        {
+          "name": "Fodrász",
+          "type": "interaktiv-szakmabemutato",
+          "x": 824.5,
+          "y": 240,
+          "width": 85,
+          "height": 62
+        },
+        {
+          "name": "Fodrász",
+          "type": "osztvszktv",
+          "x": 824.5,
+          "y": 176,
+          "width": 85,
+          "height": 62
+        },
+        {
+          "name": "Pincér - vendégtéri szakember",
+          "type": "osztvszktv",
+          "x": 714.5,
+          "y": 372,
+          "width": 191,
+          "height": 51
+        },
+        {
+          "name": "Vendéglátás",
+          "type": "interaktiv-szakmabemutato",
+          "x": 714.5,
+          "y": 531,
+          "width": 191,
+          "height": 51
+        },
+        {
+          "name": "Pincér",
+          "type": "wshu",
+          "x": 714.5,
+          "y": 478,
+          "width": 191,
+          "height": 51
+        },
+        {
+          "name": "Vendégtéri szaktechnikus",
+          "type": "osztvszktv",
+          "x": 714.5,
+          "y": 425,
+          "width": 191,
+          "height": 51
+        },
+        {
+          "name": "Szakács",
+          "type": "wshu",
+          "x": 907.5,
+          "y": 372,
+          "width": 241,
+          "height": 68.6667
+        },
+        {
+          "name": "Kereskedelmi értékesítő",
+          "type": "osztvszktv",
+          "x": 1150.5,
+          "y": 372,
+          "width": 74,
+          "height": 89
+        },
+        {
+          "name": "Kereskedelmi értékesítő",
+          "type": "interaktiv-szakmabemutato",
+          "x": 1226.5,
+          "y": 372,
+          "width": 74,
+          "height": 89
+        },
+        {
+          "name": "Kereskedő és webáruházi technikus",
+          "type": "osztvszktv",
+          "x": 1150.5,
+          "y": 463,
+          "width": 74,
+          "height": 89
+        },
+        {
+          "name": "Kereskedő és webáruházi technikus",
+          "type": "interaktiv-szakmabemutato",
+          "x": 1226.5,
+          "y": 463,
+          "width": 74,
+          "height": 89
+        },
+        {
+          "name": "Szakács",
+          "type": "osztvszktv",
+          "x": 907.5,
+          "y": 443,
+          "width": 241,
+          "height": 68.6667
+        },
+        {
+          "name": "Szakács szaktechnikus",
+          "type": "osztvszktv",
+          "x": 907.5,
+          "y": 514,
+          "width": 241,
+          "height": 68.6667
+        },
+        {
+          "name": "Ápolás és gondozás",
+          "type": "interaktiv-szakmabemutato",
+          "x": 124.5,
+          "y": 352,
+          "width": 89,
+          "height": 84
+        },
+        {
+          "name": "Grafikus",
+          "type": "wshu",
+          "x": 257.5,
+          "y": 263,
+          "width": 79,
+          "height": 50
+        },
+        {
+          "name": "Ipari robotika",
+          "type": "wshu",
+          "x": 257.5,
+          "y": 315,
+          "width": 120,
+          "height": 58
+        },
+        {
+          "name": "Autószerelő",
+          "type": "wshu",
+          "x": 139.5,
+          "y": 92,
+          "width": 104,
+          "height": 99
+        },
+        {
+          "name": "Járműkarosszéria-előkészítő, felületbevonó",
+          "type": "osztvszktv",
+          "x": 245.5,
+          "y": 92,
+          "width": 120,
+          "height": 32
+        },
+        {
+          "name": "Járműfényező",
+          "type": "interaktiv-szakmabemutato",
+          "x": 245.5,
+          "y": 126,
+          "width": 120,
+          "height": 32
+        },
+        {
+          "name": "Járműfényező",
+          "type": "osztvszktv",
+          "x": 245.5,
+          "y": 160,
+          "width": 120,
+          "height": 31
+        },
+        {
+          "name": "CNC maró",
+          "type": "wshu",
+          "x": 338.5,
+          "y": 263,
+          "width": 39,
+          "height": 50
+        },
+        {
+          "name": "Ápolás és gondozás",
+          "type": "wshu",
+          "x": 124.5,
+          "y": 438,
+          "width": 89,
+          "height": 84
+        },
+        {
+          "name": "MESZK",
+          "type": "osztvszktv",
+          "x": 124.5,
+          "y": 524,
+          "width": 89,
+          "height": 50
+        },
+        {
+          "name": "Szépségápoló",
+          "type": "wshu",
+          "x": 272.5,
+          "y": 518,
+          "width": 170,
+          "height": 49
+        },
+        {
+          "name": "Kozmetikus technikus",
+          "type": "osztvszktv",
+          "x": 272.5,
+          "y": 467,
+          "width": 170,
+          "height": 49
+        },
+        {
+          "name": "Informatikai rendszerüzemeltető",
+          "type": "wshu",
+          "x": 426.5,
+          "y": 661,
+          "width": 121,
+          "height": 51.3333
+        },
+        {
+          "name": "Szoftverfejlesztő",
+          "type": "wshu",
+          "x": 426.5,
+          "y": 714,
+          "width": 121,
+          "height": 51.3333
+        },
+        {
+          "name": "Automatikai technikus, Mechatronikai technikus, Ipar 4.0",
+          "type": "interaktiv-szakmabemutato",
+          "x": 603.5,
+          "y": 658,
+          "width": 162,
+          "height": 32
+        },
+        {
+          "name": "Cukrász",
+          "type": "osztvszktv",
+          "x": 807.5,
+          "y": 655,
+          "width": 292,
+          "height": 32
+        },
+        {
+          "name": "Festő, mázoló, tapétázó",
+          "type": "osztvszktv",
+          "x": 1162.5,
+          "y": 639,
+          "width": 161,
+          "height": 49
+        },
+        {
+          "name": "Festő, díszítőfestő",
+          "type": "wshu",
+          "x": 1162.5,
+          "y": 690,
+          "width": 161,
+          "height": 49
+        },
+        {
+          "name": "Cukrász szaktechnikus",
+          "type": "osztvszktv",
+          "x": 807.5,
+          "y": 689,
+          "width": 292,
+          "height": 32
+        },
+        {
+          "name": "Pék",
+          "type": "wshu",
+          "x": 807.5,
+          "y": 723,
+          "width": 292,
+          "height": 32
+        },
+        {
+          "name": "Cukrász, Cukrász szaktechnikus",
+          "type": "interaktiv-szakmabemutato",
+          "x": 807.5,
+          "y": 757,
+          "width": 292,
+          "height": 32
+        },
+        {
+          "name": "Automatikai technikus - Autóipar szakmairány",
+          "type": "osztvszktv",
+          "x": 603.5,
+          "y": 724,
+          "width": 81,
+          "height": 30
+        },
+        {
+          "name": "Mechatronikai technikus",
+          "type": "osztvszktv",
+          "x": 603.5,
+          "y": 692,
+          "width": 162,
+          "height": 30
+        },
+        {
+          "name": "Mechatronika",
+          "type": "wshu",
+          "x": 603.5,
+          "y": 756,
+          "width": 162,
+          "height": 30
+        },
+        {
+          "name": "Ipar 4.0",
+          "type": "osztvszktv",
+          "x": 603.5,
+          "y": 788,
+          "width": 80,
+          "height": 30
+        },
+        {
+          "name": "Ipar 4.0",
+          "type": "wshu",
+          "x": 685.5,
+          "y": 788,
+          "width": 80,
+          "height": 30
+        },
+        {
+          "name": "Automatikai technikus - Gyártástechnika szakmairány",
+          "type": "osztvszktv",
+          "x": 686.5,
+          "y": 724,
+          "width": 79,
+          "height": 30
+        },
+        {
+          "name": "Webfejlesztő",
+          "type": "wshu",
+          "x": 426.5,
+          "y": 767,
+          "width": 121,
+          "height": 51
+        },
+        {
+          "name": "Nyomdaipari technikus - Nyomdaipari gépmester szakmairány",
+          "type": "osztvszktv",
+          "x": 264.5,
+          "y": 760,
+          "width": 101,
+          "height": 58
+        },
+        {
+          "name": "Hűtő- és klímatechnikai szerelő",
+          "type": "wshu",
+          "x": 123.5,
+          "y": 739,
+          "width": 90,
+          "height": 79
+        },
+        {
+          "name": "Víz-, gáz- és fűtésszerelő",
+          "type": "wshu",
+          "x": 123.5,
+          "y": 658,
+          "width": 90,
+          "height": 79
+        }
+      ],
+      "booths": [
+        {
+          "name": "Mechatronika, Automatikai Technikus, Ipar 4.0",
+          "type": "osztvszktv",
+          "x": 603.5,
+          "y": 658,
+          "width": 162,
+          "height": 160
+        },
+        {
+          "name": "Informatikai rendszerüzemeltető, Szoftverfejlesztő, Webfejlesztő",
+          "type": "osztvszktv",
+          "x": 426.5,
+          "y": 661,
+          "width": 121,
+          "height": 157
+        },
+        {
+          "name": "Nyomdaipar",
+          "type": "osztvszktv",
+          "x": 264.5,
+          "y": 637,
+          "width": 101,
+          "height": 181
+        },
+        {
+          "name": "Szakács_2",
+          "type": "osztvszktv",
+          "x": 907.5,
+          "y": 372,
+          "width": 240,
+          "height": 210
+        },
+        {
+          "name": "Kereskedelmi értékesítő, Kereskedő és webáruházi technikus",
+          "type": "osztvszktv",
+          "x": 1149.5,
+          "y": 372,
+          "width": 151,
+          "height": 179
+        },
+        {
+          "name": "Festő",
+          "type": "osztvszktv",
+          "x": 1162.5,
+          "y": 639,
+          "width": 161,
+          "height": 150
+        },
+        {
+          "name": "Divatszabó",
+          "type": "osztvszktv",
+          "x": 1149.5,
+          "y": 213,
+          "width": 137,
+          "height": 90
+        },
+        {
+          "name": "Villanyszerelő, Erősáramú elektrotechnikus, Elektronikai technikus",
+          "type": "osztvszktv",
+          "x": 943.5,
+          "y": 112,
+          "width": 161,
+          "height": 190
+        },
+        {
+          "name": "Bútorasztalos, Épületasztalos",
+          "type": "osztvszktv",
+          "x": 1336.5,
+          "y": 92,
+          "width": 120,
+          "height": 140
+        },
+        {
+          "name": "Kertépítő",
+          "type": "osztvszktv",
+          "x": 1181.5,
+          "y": 105,
+          "width": 100,
+          "height": 60
+        },
+        {
+          "name": "Pincér, Vendégtéri szaktechnikus",
+          "type": "osztvszktv",
+          "x": 714.5,
+          "y": 372,
+          "width": 191,
+          "height": 210
+        },
+        {
+          "name": "Ápolás és gondozás",
+          "type": "osztvszktv",
+          "x": 124.5,
+          "y": 352,
+          "width": 89,
+          "height": 170
+        },
+        {
+          "name": "Autószerelő, Járműfényező",
+          "type": "osztvszktv",
+          "x": 139.5,
+          "y": 92,
+          "width": 226,
+          "height": 99
+        },
+        {
+          "name": "Kozmetikus, Szépségápoló",
+          "type": "osztvszktv",
+          "x": 272.5,
+          "y": 416,
+          "width": 170,
+          "height": 151
+        },
+        {
+          "name": "Fodrász_2",
+          "type": "osztvszktv",
+          "x": 824.5,
+          "y": 112,
+          "width": 85,
+          "height": 190
+        },
+        {
+          "name": "Vegyész technikus",
+          "type": "osztvszktv",
+          "x": 641.5,
+          "y": 196,
+          "width": 117,
+          "height": 98
+        },
+        {
+          "name": "Gépésztechnikus",
+          "type": "osztvszktv",
+          "x": 641.5,
+          "y": 102,
+          "width": 117,
+          "height": 92
+        },
+        {
+          "name": "Jármű- és szerviztechnika",
+          "type": "osztvszktv",
+          "x": 426.5,
+          "y": 102,
+          "width": 213,
+          "height": 221
+        },
+        {
+          "name": "Cukrász, Pék",
+          "type": "osztvszktv",
+          "x": 807.5,
+          "y": 655,
+          "width": 292,
+          "height": 134
+        }
+      ],
+      "svgWidth": 1583,
+      "svgHeight": 834
+    }
+  ]
+}

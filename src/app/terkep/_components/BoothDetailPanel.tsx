@@ -11,6 +11,7 @@ interface BoothDetailPanelProps {
   articles: ArticleFragment[];
   requestClose?: boolean;
   onClose: () => void;
+  onCloseStart?: () => void;
 }
 
 // How much of the container the panel is shifted down initially
@@ -21,6 +22,7 @@ const BoothDetailPanel = ({
   articles,
   requestClose,
   onClose,
+  onCloseStart,
 }: BoothDetailPanelProps) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
@@ -48,8 +50,11 @@ const BoothDetailPanel = ({
   }, []);
 
   useEffect(() => {
-    if (requestClose) setIsClosing(true);
-  }, [requestClose]);
+    if (requestClose) {
+      setIsClosing(true);
+      onCloseStart?.();
+    }
+  }, [requestClose, onCloseStart]);
 
   // Open animation: start off-screen, transition to collapsed position
   useEffect(() => {
@@ -78,7 +83,8 @@ const BoothDetailPanel = ({
 
   const handleClose = useCallback(() => {
     setIsClosing(true);
-  }, []);
+    onCloseStart?.();
+  }, [onCloseStart]);
 
   const handleTouchStart = useCallback(
     (e: React.TouchEvent) => {
@@ -157,6 +163,7 @@ const BoothDetailPanel = ({
     if (panelOffset.current > initialOffset * 1.3) {
       // Dragged far enough down → dismiss
       setIsClosing(true);
+      onCloseStart?.();
     } else if (panelOffset.current > initialOffset * 0.85 && contentOffset.current === 0) {
       // Snap to collapsed
       panelOffset.current = initialOffset;
@@ -167,7 +174,7 @@ const BoothDetailPanel = ({
       applyTransforms();
     }
     // If contentOffset > 0, keep current position (user was scrolling content)
-  }, [applyTransforms]);
+  }, [applyTransforms, onCloseStart]);
 
   return (
     <Paper

@@ -161,8 +161,8 @@ export const generateBoothsGeoJSON = (mapData: InteractiveMapData) => {
 
       const properties: Record<string, unknown> = {
         id: booth.id,
-        name: `${boothCounter}. ${booth.title}`,
-        boothNumber: String(boothCounter) + ".",
+        name: booth.title,
+        boothNumber: `${boothCounter < 10 ? "0" : ""}${boothCounter}.`,
         articleNames: articles.map((article) => article.title).join("\n"),
         combinedIcon,
         centerLng: center[0],
