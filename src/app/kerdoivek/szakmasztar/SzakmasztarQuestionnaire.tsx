@@ -1,8 +1,18 @@
 "use client";
 
 import { useState } from "react";
-import { Divider, FormControlLabel, Radio, Stack, TextField, Typography } from "@mui/material";
+import {
+  Button,
+  Divider,
+  FormControlLabel,
+  Radio,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { SZAKMASZTAR_QUESTIONS } from "@/lib/questions";
+
+const SZAKMASZTAR_NUMBER = 19;
 
 type SzakmasztarQuestion = (typeof SZAKMASZTAR_QUESTIONS)[number] & { userAnswer: number | null };
 
@@ -11,10 +21,18 @@ const SzakmasztarQuestionnaire = () => {
     SZAKMASZTAR_QUESTIONS.map((question) => ({ ...question, userAnswer: null }))
   );
 
+  const [submitted, setSubmitted] = useState(false);
+
   const [interestingSkill1, setInterestingSkill1] = useState<string>("");
   const [interestingSkill2, setInterestingSkill2] = useState<string>("");
   const [interestingSkill3, setInterestingSkill3] = useState<string>("");
   const [festivalNumber, setFestivalNumber] = useState<string>("");
+
+  const szakmasztarNumberColor = submitted
+    ? Number(festivalNumber) === SZAKMASZTAR_NUMBER
+      ? "#4cd137"
+      : "#ff4747"
+    : "#ffffff";
 
   return (
     <Stack>
@@ -28,27 +46,46 @@ const SzakmasztarQuestionnaire = () => {
               {idx + 1}. {question.question}
             </Typography>
 
-            {question.answers.map((ans, idx) => (
-              <FormControlLabel
-                key={idx}
-                control={
-                  <Radio
-                    color="info"
-                    sx={{ "& svg": { color: "#fff", width: "18px", height: "18px" } }}
-                  />
-                }
-                label={`${ans.text} (${ans.value})`}
-                checked={question.userAnswer === ans.value}
-                sx={{ ml: 1, "& .MuiTypography-root": { fontSize: 14 } }}
-                onChange={() =>
-                  setQuestions(
-                    questions.map((q) =>
-                      q.id === question.id ? { ...q, userAnswer: ans.value } : q
+            {question.answers.map((ans, idx) => {
+              const isCorrect = idx === question.correctAnswerIdx;
+              const isChecked = question.userAnswer === ans.value;
+              const color = submitted
+                ? isChecked && isCorrect
+                  ? "#4cd137"
+                  : isChecked
+                    ? "#ff4747"
+                    : "#fff"
+                : "#fff";
+
+              return (
+                <FormControlLabel
+                  key={idx}
+                  control={
+                    <Radio
+                      color="info"
+                      sx={{ "& svg": { color, width: "18px", height: "18px" } }}
+                    />
+                  }
+                  label={`${ans.text} (${ans.value})`}
+                  checked={isChecked}
+                  sx={{
+                    ml: 1,
+                    "& .MuiTypography-root": {
+                      fontSize: 14,
+                      color: color,
+                      fontWeight: submitted && (isChecked || isCorrect) ? 600 : undefined,
+                    },
+                  }}
+                  onChange={() =>
+                    setQuestions(
+                      questions.map((q) =>
+                        q.id === question.id ? { ...q, userAnswer: ans.value } : q
+                      )
                     )
-                  )
-                }
-              />
-            ))}
+                  }
+                />
+              );
+            })}
           </Stack>
         ))}
       </Stack>
@@ -68,7 +105,9 @@ const SzakmasztarQuestionnaire = () => {
           color="info"
           sx={{
             "& input": {
-              border: "1px solid #ffffff",
+              border: `2px solid ${szakmasztarNumberColor}`,
+              color: szakmasztarNumberColor,
+              bgcolor: `${szakmasztarNumberColor}20`,
               borderRadius: 0,
               textAlign: "center",
               fontWeight: 600,
@@ -143,6 +182,18 @@ const SzakmasztarQuestionnaire = () => {
           a vállalttól.
         </Typography>
       </Stack>
+
+      <Divider sx={{ borderColor: "#ffffff30", my: 3 }} />
+
+      <Button
+        sx={{ width: "fit-content", alignSelf: "center" }}
+        size="large"
+        color="success"
+        disableElevation
+        onClick={() => setSubmitted(true)}
+      >
+        Ellenőrzés
+      </Button>
     </Stack>
   );
 };
