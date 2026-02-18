@@ -10,6 +10,8 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
+import { useMounted } from "@/hooks/useMounted";
 import { SZAKMASZTAR_QUESTIONS } from "@/lib/questions";
 
 const SZAKMASZTAR_NUMBER = 19;
@@ -17,22 +19,37 @@ const SZAKMASZTAR_NUMBER = 19;
 type SzakmasztarQuestion = (typeof SZAKMASZTAR_QUESTIONS)[number] & { userAnswer: number | null };
 
 const SzakmasztarQuestionnaire = () => {
-  const [questions, setQuestions] = useState<SzakmasztarQuestion[]>(
+  const [questions, setQuestions] = useLocalStorage<SzakmasztarQuestion[]>(
+    "szakmasztar-questions",
     SZAKMASZTAR_QUESTIONS.map((question) => ({ ...question, userAnswer: null }))
   );
 
-  const [submitted, setSubmitted] = useState(false);
+  const [interestingSkill1, setInterestingSkill1] = useLocalStorage<string>(
+    "interestingSkill1",
+    ""
+  );
+  const [interestingSkill2, setInterestingSkill2] = useLocalStorage<string>(
+    "interestingSkill2",
+    ""
+  );
+  const [interestingSkill3, setInterestingSkill3] = useLocalStorage<string>(
+    "interestingSkill3",
+    ""
+  );
+  const [festivalNumber, setFestivalNumber] = useLocalStorage<string>("festivalNumber", "");
 
-  const [interestingSkill1, setInterestingSkill1] = useState<string>("");
-  const [interestingSkill2, setInterestingSkill2] = useState<string>("");
-  const [interestingSkill3, setInterestingSkill3] = useState<string>("");
-  const [festivalNumber, setFestivalNumber] = useState<string>("");
+  const [submitted, setSubmitted] = useState(false);
+  const mounted = useMounted();
 
   const szakmasztarNumberColor = submitted
     ? Number(festivalNumber) === SZAKMASZTAR_NUMBER
       ? "#4cd137"
       : "#ff4747"
     : "#ffffff";
+
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <Stack>
