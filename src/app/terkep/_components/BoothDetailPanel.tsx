@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import { Box, IconButton, Paper, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { ArticleFragment } from "@/actions/articles/articles.generated";
@@ -27,6 +27,19 @@ const BoothDetailPanel = ({
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [isClosing, setIsClosing] = useState(false);
+
+  // Sort articles by category priority (same order as map symbol icons)
+  const sortedArticles = useMemo(() => {
+    const getCategoryPriority = (slug: string): number => {
+      if (slug.startsWith("interaktiv-szakmabemutato") || slug.startsWith("egyeb-szakmabemutato"))
+        return 0;
+      if (slug.startsWith("nak")) return 1;
+      if (slug.startsWith("osztvszktv")) return 2;
+      if (slug.startsWith("wshu")) return 3;
+      return 4;
+    };
+    return [...articles].sort((a, b) => getCategoryPriority(a.slug) - getCategoryPriority(b.slug));
+  }, [articles]);
 
   const paperRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -294,12 +307,13 @@ const BoothDetailPanel = ({
         >
           {articles.length > 0 ? (
             <EventCards
-              events={articles}
+              events={sortedArticles}
               permutatingColors
               singleColumn
               showCategoryIcon
               showMapLink={false}
               wholeCardLink
+              sort={false}
             />
           ) : (
             <Typography variant="body2" color="text.secondary" align="center" sx={{ py: 4 }}>
