@@ -37,10 +37,7 @@ SET target.metadata = JSON_SET(
   '$.articleIds', COALESCE(agg.article_ids, JSON_ARRAY()),
   '$.map', JSON_OBJECT(
     'buildingId', "f-pavilon",
-    'x', 28,
-    'y', 549,
-    'width', 179,
-    'height', 192
+    'coordinates', JSON_ARRAY(JSON_ARRAY(28, 549), JSON_ARRAY(207, 549), JSON_ARRAY(207, 741), JSON_ARRAY(28, 741))
   )
 )
 WHERE target.title = "Asztalos, Faipari technikus" AND target.categoryId LIKE "szakmasztar-app-f-pavilon%";
@@ -76,10 +73,7 @@ SET target.metadata = JSON_SET(
   '$.articleIds', COALESCE(agg.article_ids, JSON_ARRAY()),
   '$.map', JSON_OBJECT(
     'buildingId', "f-pavilon",
-    'x', 243,
-    'y', 464,
-    'width', 199,
-    'height', 247
+    'coordinates', JSON_ARRAY(JSON_ARRAY(243, 464), JSON_ARRAY(442, 464), JSON_ARRAY(442, 711), JSON_ARRAY(243, 711))
   )
 )
 WHERE target.title = "Ács" AND target.categoryId LIKE "szakmasztar-app-f-pavilon%";
@@ -115,52 +109,10 @@ SET target.metadata = JSON_SET(
   '$.articleIds', COALESCE(agg.article_ids, JSON_ARRAY()),
   '$.map', JSON_OBJECT(
     'buildingId', "f-pavilon",
-    'x', 243,
-    'y', 184,
-    'width', 199,
-    'height', 278
+    'coordinates', JSON_ARRAY(JSON_ARRAY(243, 184), JSON_ARRAY(442, 184), JSON_ARRAY(442, 462), JSON_ARRAY(243, 462))
   )
 )
 WHERE target.title = "Kőműves, Burkoló, Bádogos" AND target.categoryId LIKE "szakmasztar-app-f-pavilon%";
-
-INSERT INTO `Article` (`id`, `title`, `slug`, `content`, `siteId`, `categoryId`, `createdAt`, `updatedAt`, `lead`, `position`, `metadata`)
-SELECT 
-  UUID(),
-  "Épületgépészet",
-  "epuletgepeszet",
-  '<p>.</p>',
-  'szakmasztar-app-site',
-  "szakmasztar-app-f-pavilon",
-  NOW(),
-  NOW(),
-  '<p>.</p>',
-  0,
-  JSON_OBJECT()
-WHERE NOT EXISTS (
-  SELECT 1
-  FROM Article
-  WHERE title = "Épületgépészet"
-    AND categoryId LIKE "szakmasztar-app-f-pavilon%"
-);
-
-UPDATE Article target
-JOIN (
-  SELECT JSON_ARRAYAGG(a.id) AS article_ids
-  FROM Article a
-  WHERE (a.title = "Épületgépész technikus" AND a.slug LIKE "osztvszktv%") OR (a.title = "Épületgépészet" AND a.slug LIKE "interaktiv-szakmabemutato%") OR (a.title = "Központifűtés- és gázhálózatrendszer-szerelő" AND a.slug LIKE "osztvszktv%")
-) agg
-SET target.metadata = JSON_SET(
-  COALESCE(target.metadata, JSON_OBJECT()),
-  '$.articleIds', COALESCE(agg.article_ids, JSON_ARRAY()),
-  '$.map', JSON_OBJECT(
-    'buildingId', "f-pavilon",
-    'x', 27,
-    'y', 44,
-    'width', 171,
-    'height', 468
-  )
-)
-WHERE target.title = "Épületgépészet" AND target.categoryId LIKE "szakmasztar-app-f-pavilon%";
 
 INSERT INTO `Article` (`id`, `title`, `slug`, `content`, `siteId`, `categoryId`, `createdAt`, `updatedAt`, `lead`, `position`, `metadata`)
 SELECT 
@@ -193,23 +145,53 @@ SET target.metadata = JSON_SET(
   '$.articleIds', COALESCE(agg.article_ids, JSON_ARRAY()),
   '$.map', JSON_OBJECT(
     'buildingId', "f-pavilon",
-    'x', 243,
-    'y', 4,
-    'width', 199,
-    'height', 178
+    'coordinates', JSON_ARRAY(JSON_ARRAY(243, 4), JSON_ARRAY(442, 4), JSON_ARRAY(442, 182), JSON_ARRAY(243, 182))
   )
 )
 WHERE target.title = "Magasépítő technikus, Mélyépítő technikus" AND target.categoryId LIKE "szakmasztar-app-f-pavilon%";
+
+INSERT INTO `Article` (`id`, `title`, `slug`, `content`, `siteId`, `categoryId`, `createdAt`, `updatedAt`, `lead`, `position`, `metadata`)
+SELECT 
+  UUID(),
+  "Épületgépészet",
+  "epuletgepeszet",
+  '<p>.</p>',
+  'szakmasztar-app-site',
+  "szakmasztar-app-f-pavilon",
+  NOW(),
+  NOW(),
+  '<p>.</p>',
+  0,
+  JSON_OBJECT()
+WHERE NOT EXISTS (
+  SELECT 1
+  FROM Article
+  WHERE title = "Épületgépészet"
+    AND categoryId LIKE "szakmasztar-app-f-pavilon%"
+);
+
+UPDATE Article target
+JOIN (
+  SELECT JSON_ARRAYAGG(a.id) AS article_ids
+  FROM Article a
+  WHERE (a.title = "Épületgépész technikus" AND a.slug LIKE "osztvszktv%") OR (a.title = "Épületgépészet" AND a.slug LIKE "interaktiv-szakmabemutato%") OR (a.title = "Központifűtés- és gázhálózatrendszer-szerelő" AND a.slug LIKE "osztvszktv%")
+) agg
+SET target.metadata = JSON_SET(
+  COALESCE(target.metadata, JSON_OBJECT()),
+  '$.articleIds', COALESCE(agg.article_ids, JSON_ARRAY()),
+  '$.map', JSON_OBJECT(
+    'buildingId', "f-pavilon",
+    'coordinates', JSON_ARRAY(JSON_ARRAY(198, 44), JSON_ARRAY(198, 512), JSON_ARRAY(128.5, 512), JSON_ARRAY(128.5, 451), JSON_ARRAY(87.5, 451), JSON_ARRAY(87.5, 268.5), JSON_ARRAY(27, 268.5), JSON_ARRAY(27, 44), JSON_ARRAY(198, 44))
+  )
+)
+WHERE target.title = "Épületgépészet" AND target.categoryId LIKE "szakmasztar-app-f-pavilon%";
 
 UPDATE Article
 SET metadata = JSON_SET(
   COALESCE(metadata, JSON_OBJECT()),
   '$.map', JSON_OBJECT(
     'buildingId', 'f-pavilon',
-    'x', 27,
-    'y', 44,
-    'width', 171,
-    'height', 105
+    'coordinates', JSON_ARRAY(JSON_ARRAY(27, 44), JSON_ARRAY(198, 44), JSON_ARRAY(198, 149), JSON_ARRAY(27, 149))
   ),
   '$.buildingId', 'f-pavilon'
 )
@@ -221,10 +203,7 @@ SET metadata = JSON_SET(
   COALESCE(metadata, JSON_OBJECT()),
   '$.map', JSON_OBJECT(
     'buildingId', 'f-pavilon',
-    'x', 27,
-    'y', 151,
-    'width', 171,
-    'height', 224
+    'coordinates', JSON_ARRAY(JSON_ARRAY(27, 151), JSON_ARRAY(198, 151), JSON_ARRAY(198, 375), JSON_ARRAY(27, 375))
   ),
   '$.buildingId', 'f-pavilon'
 )
@@ -236,10 +215,7 @@ SET metadata = JSON_SET(
   COALESCE(metadata, JSON_OBJECT()),
   '$.map', JSON_OBJECT(
     'buildingId', 'f-pavilon',
-    'x', 27,
-    'y', 377,
-    'width', 171,
-    'height', 135
+    'coordinates', JSON_ARRAY(JSON_ARRAY(27, 377), JSON_ARRAY(198, 377), JSON_ARRAY(198, 512), JSON_ARRAY(27, 512))
   ),
   '$.buildingId', 'f-pavilon'
 )
@@ -251,10 +227,7 @@ SET metadata = JSON_SET(
   COALESCE(metadata, JSON_OBJECT()),
   '$.map', JSON_OBJECT(
     'buildingId', 'f-pavilon',
-    'x', 243,
-    'y', 184,
-    'width', 199,
-    'height', 105
+    'coordinates', JSON_ARRAY(JSON_ARRAY(243, 184), JSON_ARRAY(442, 184), JSON_ARRAY(442, 289), JSON_ARRAY(243, 289))
   ),
   '$.buildingId', 'f-pavilon'
 )
@@ -266,10 +239,7 @@ SET metadata = JSON_SET(
   COALESCE(metadata, JSON_OBJECT()),
   '$.map', JSON_OBJECT(
     'buildingId', 'f-pavilon',
-    'x', 302,
-    'y', 133,
-    'width', 140,
-    'height', 49
+    'coordinates', JSON_ARRAY(JSON_ARRAY(302, 133), JSON_ARRAY(442, 133), JSON_ARRAY(442, 182), JSON_ARRAY(302, 182))
   ),
   '$.buildingId', 'f-pavilon'
 )
@@ -281,10 +251,7 @@ SET metadata = JSON_SET(
   COALESCE(metadata, JSON_OBJECT()),
   '$.map', JSON_OBJECT(
     'buildingId', 'f-pavilon',
-    'x', 243,
-    'y', 133,
-    'width', 57,
-    'height', 49
+    'coordinates', JSON_ARRAY(JSON_ARRAY(243, 133), JSON_ARRAY(300, 133), JSON_ARRAY(300, 182), JSON_ARRAY(243, 182))
   ),
   '$.buildingId', 'f-pavilon'
 )
@@ -296,10 +263,7 @@ SET metadata = JSON_SET(
   COALESCE(metadata, JSON_OBJECT()),
   '$.map', JSON_OBJECT(
     'buildingId', 'f-pavilon',
-    'x', 243,
-    'y', 83,
-    'width', 199,
-    'height', 48
+    'coordinates', JSON_ARRAY(JSON_ARRAY(243, 83), JSON_ARRAY(442, 83), JSON_ARRAY(442, 131), JSON_ARRAY(243, 131))
   ),
   '$.buildingId', 'f-pavilon'
 )
@@ -311,10 +275,7 @@ SET metadata = JSON_SET(
   COALESCE(metadata, JSON_OBJECT()),
   '$.map', JSON_OBJECT(
     'buildingId', 'f-pavilon',
-    'x', 243,
-    'y', 4,
-    'width', 199,
-    'height', 77
+    'coordinates', JSON_ARRAY(JSON_ARRAY(243, 4), JSON_ARRAY(442, 4), JSON_ARRAY(442, 81), JSON_ARRAY(243, 81))
   ),
   '$.buildingId', 'f-pavilon'
 )
@@ -326,10 +287,7 @@ SET metadata = JSON_SET(
   COALESCE(metadata, JSON_OBJECT()),
   '$.map', JSON_OBJECT(
     'buildingId', 'f-pavilon',
-    'x', 28,
-    'y', 549,
-    'width', 179,
-    'height', 66
+    'coordinates', JSON_ARRAY(JSON_ARRAY(28, 549), JSON_ARRAY(207, 549), JSON_ARRAY(207, 615), JSON_ARRAY(28, 615))
   ),
   '$.buildingId', 'f-pavilon'
 )
@@ -341,10 +299,7 @@ SET metadata = JSON_SET(
   COALESCE(metadata, JSON_OBJECT()),
   '$.map', JSON_OBJECT(
     'buildingId', 'f-pavilon',
-    'x', 28,
-    'y', 617,
-    'width', 179,
-    'height', 66
+    'coordinates', JSON_ARRAY(JSON_ARRAY(28, 617), JSON_ARRAY(207, 617), JSON_ARRAY(207, 683), JSON_ARRAY(28, 683))
   ),
   '$.buildingId', 'f-pavilon'
 )
@@ -356,10 +311,7 @@ SET metadata = JSON_SET(
   COALESCE(metadata, JSON_OBJECT()),
   '$.map', JSON_OBJECT(
     'buildingId', 'f-pavilon',
-    'x', 28,
-    'y', 685,
-    'width', 179,
-    'height', 56
+    'coordinates', JSON_ARRAY(JSON_ARRAY(28, 685), JSON_ARRAY(207, 685), JSON_ARRAY(207, 741), JSON_ARRAY(28, 741))
   ),
   '$.buildingId', 'f-pavilon'
 )
@@ -371,10 +323,7 @@ SET metadata = JSON_SET(
   COALESCE(metadata, JSON_OBJECT()),
   '$.map', JSON_OBJECT(
     'buildingId', 'f-pavilon',
-    'x', 336,
-    'y', 662,
-    'width', 106,
-    'height', 49
+    'coordinates', JSON_ARRAY(JSON_ARRAY(336, 662), JSON_ARRAY(442, 662), JSON_ARRAY(442, 711), JSON_ARRAY(336, 711))
   ),
   '$.buildingId', 'f-pavilon'
 )
@@ -386,10 +335,7 @@ SET metadata = JSON_SET(
   COALESCE(metadata, JSON_OBJECT()),
   '$.map', JSON_OBJECT(
     'buildingId', 'f-pavilon',
-    'x', 243,
-    'y', 662,
-    'width', 91,
-    'height', 49
+    'coordinates', JSON_ARRAY(JSON_ARRAY(243, 662), JSON_ARRAY(334, 662), JSON_ARRAY(334, 711), JSON_ARRAY(243, 711))
   ),
   '$.buildingId', 'f-pavilon'
 )
@@ -401,10 +347,7 @@ SET metadata = JSON_SET(
   COALESCE(metadata, JSON_OBJECT()),
   '$.map', JSON_OBJECT(
     'buildingId', 'f-pavilon',
-    'x', 243,
-    'y', 526,
-    'width', 199,
-    'height', 134
+    'coordinates', JSON_ARRAY(JSON_ARRAY(243, 526), JSON_ARRAY(442, 526), JSON_ARRAY(442, 660), JSON_ARRAY(243, 660))
   ),
   '$.buildingId', 'f-pavilon'
 )
@@ -416,10 +359,7 @@ SET metadata = JSON_SET(
   COALESCE(metadata, JSON_OBJECT()),
   '$.map', JSON_OBJECT(
     'buildingId', 'f-pavilon',
-    'x', 243,
-    'y', 463,
-    'width', 199,
-    'height', 61
+    'coordinates', JSON_ARRAY(JSON_ARRAY(243, 463), JSON_ARRAY(442, 463), JSON_ARRAY(442, 524), JSON_ARRAY(243, 524))
   ),
   '$.buildingId', 'f-pavilon'
 )
@@ -431,10 +371,7 @@ SET metadata = JSON_SET(
   COALESCE(metadata, JSON_OBJECT()),
   '$.map', JSON_OBJECT(
     'buildingId', 'f-pavilon',
-    'x', 243,
-    'y', 377,
-    'width', 199,
-    'height', 84
+    'coordinates', JSON_ARRAY(JSON_ARRAY(243, 377), JSON_ARRAY(442, 377), JSON_ARRAY(442, 461), JSON_ARRAY(243, 461))
   ),
   '$.buildingId', 'f-pavilon'
 )
@@ -446,10 +383,7 @@ SET metadata = JSON_SET(
   COALESCE(metadata, JSON_OBJECT()),
   '$.map', JSON_OBJECT(
     'buildingId', 'f-pavilon',
-    'x', 295,
-    'y', 291,
-    'width', 96,
-    'height', 84
+    'coordinates', JSON_ARRAY(JSON_ARRAY(295, 291), JSON_ARRAY(391, 291), JSON_ARRAY(391, 375), JSON_ARRAY(295, 375))
   ),
   '$.buildingId', 'f-pavilon'
 )
@@ -461,10 +395,7 @@ SET metadata = JSON_SET(
   COALESCE(metadata, JSON_OBJECT()),
   '$.map', JSON_OBJECT(
     'buildingId', 'f-pavilon',
-    'x', 243,
-    'y', 291,
-    'width', 50,
-    'height', 84
+    'coordinates', JSON_ARRAY(JSON_ARRAY(243, 291), JSON_ARRAY(293, 291), JSON_ARRAY(293, 375), JSON_ARRAY(243, 375))
   ),
   '$.buildingId', 'f-pavilon'
 )
@@ -476,10 +407,7 @@ SET metadata = JSON_SET(
   COALESCE(metadata, JSON_OBJECT()),
   '$.map', JSON_OBJECT(
     'buildingId', 'f-pavilon',
-    'x', 393,
-    'y', 291,
-    'width', 49,
-    'height', 84
+    'coordinates', JSON_ARRAY(JSON_ARRAY(393, 291), JSON_ARRAY(442, 291), JSON_ARRAY(442, 375), JSON_ARRAY(393, 375))
   ),
   '$.buildingId', 'f-pavilon'
 )

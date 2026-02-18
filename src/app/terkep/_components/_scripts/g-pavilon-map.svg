@@ -51,7 +51,7 @@
 <rect id="&#195;&#129;pol&#195;&#161;s &#195;&#169;s gondoz&#195;&#161;s ISZB" x="124.5" y="352" width="89" height="84" fill="#FF0000" fill-opacity="0.3" stroke="#FF0000" stroke-width="2"/>
 <rect id="Grafikus WS" x="257.5" y="263" width="79" height="50" fill="#FF0000" fill-opacity="0.3" stroke="#FF0000" stroke-width="2"/>
 <rect id="Ipari robotika WS" x="257.5" y="315" width="120" height="58" fill="#FF0000" fill-opacity="0.3" stroke="#FF0000" stroke-width="2"/>
-<rect id="Aut&#195;&#179;szerel&#197;&#145; WS" x="139.5" y="92" width="104" height="99" fill="#FF0000" fill-opacity="0.3" stroke="#FF0000" stroke-width="2"/>
+<path id="Aut&#195;&#179;szerel&#197;&#145; WS" d="M243.5 92V191H182.409L152.701 161.787L152.409 161.5H138.896L124 147.565V92H243.5Z" fill="#FF0000" fill-opacity="0.3" stroke="#FF0000" stroke-width="2"/>
 <rect id="J&#195;&#161;rm&#197;&#177;karossz&#195;&#169;ria-el&#197;&#145;k&#195;&#169;sz&#195;&#173;t&#197;&#145;, fel&#195;&#188;letbevon&#195;&#179;" x="245.5" y="92" width="120" height="32" fill="#FF0000" fill-opacity="0.3" stroke="#FF0000" stroke-width="2"/>
 <rect id="J&#195;&#161;rm&#197;&#177;f&#195;&#169;nyez&#197;&#145; ISZB" x="245.5" y="126" width="120" height="32" fill="#FF0000" fill-opacity="0.3" stroke="#FF0000" stroke-width="2"/>
 <rect id="J&#195;&#161;rm&#197;&#177;f&#195;&#169;nyez&#197;&#145;" x="245.5" y="160" width="120" height="31" fill="#FF0000" fill-opacity="0.3" stroke="#FF0000" stroke-width="2"/>
@@ -93,7 +93,7 @@
 <rect id="Kert&#195;&#169;p&#195;&#173;t&#197;&#145;" x="1181.5" y="105" width="100" height="60" fill="#00FF2F" fill-opacity="0.3" stroke="#00FF2F" stroke-width="2"/>
 <rect id="Pinc&#195;&#169;r, Vend&#195;&#169;gt&#195;&#169;ri szaktechnikus" x="714.5" y="372" width="191" height="210" fill="#00FF2F" fill-opacity="0.3" stroke="#00FF2F" stroke-width="2"/>
 <rect id="&#195;&#129;pol&#195;&#161;s &#195;&#169;s gondoz&#195;&#161;s" x="124.5" y="352" width="89" height="170" fill="#00FF2F" fill-opacity="0.3" stroke="#00FF2F" stroke-width="2"/>
-<rect id="Aut&#195;&#179;szerel&#197;&#145;, J&#195;&#161;rm&#197;&#177;f&#195;&#169;nyez&#197;&#145;" x="139.5" y="92" width="226" height="99" fill="#00FF2F" fill-opacity="0.3" stroke="#00FF2F" stroke-width="2"/>
+<path id="Aut&#195;&#179;szerel&#197;&#145;, J&#195;&#161;rm&#197;&#177;f&#195;&#169;nyez&#197;&#145;" d="M365.5 92V191H183.409L153.701 161.787L153.409 161.5H139.414L124.5 146.586V92H365.5Z" fill="#00FF2F" fill-opacity="0.3" stroke="#00FF2F" stroke-width="2"/>
 <rect id="Kozmetikus, Sz&#195;&#169;ps&#195;&#169;g&#195;&#161;pol&#195;&#179;" x="272.5" y="416" width="170" height="151" fill="#00FF2F" fill-opacity="0.3" stroke="#00FF2F" stroke-width="2"/>
 <rect id="Fodr&#195;&#161;sz_2" x="824.5" y="112" width="85" height="190" fill="#00FF2F" fill-opacity="0.3" stroke="#00FF2F" stroke-width="2"/>
 <rect id="Vegy&#195;&#169;sz technikus" x="641.5" y="196" width="117" height="98" fill="#00FF2F" fill-opacity="0.3" stroke="#00FF2F" stroke-width="2"/>

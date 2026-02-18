@@ -32,10 +32,7 @@ const MapPage = async () => {
           title: boothCategory.title,
           code: boothCategory.subtitle ?? "",
           articleIds: (boothMetadata.articleIds as string[]) ?? [],
-          x: boothMetadata.map?.x,
-          y: boothMetadata.map?.y,
-          width: boothMetadata.map?.width,
-          height: boothMetadata.map?.height,
+          coordinates: (boothMetadata.map?.coordinates as [number, number][]) ?? [],
         } as InteractiveMapData["buildings"][number]["booths"][number];
       });
 
@@ -55,10 +52,7 @@ const MapPage = async () => {
           title: article.title,
           code: "",
           articleIds: [article.id],
-          x: article?.x,
-          y: article?.y,
-          width: article?.width,
-          height: article?.height,
+          coordinates: article.coordinates ?? [],
         } as InteractiveMapData["buildings"][number]["booths"][number];
       });
 

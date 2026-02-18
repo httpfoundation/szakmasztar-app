@@ -25,7 +25,7 @@
 <rect id="Asztalos, Faipari technikus" x="28" y="549" width="179" height="192" fill="#00FF2F" fill-opacity="0.3" stroke="#00FF2F" stroke-width="2"/>
 <rect id="&#195;&#129;cs_2" x="243" y="464" width="199" height="247" fill="#00FF2F" fill-opacity="0.3" stroke="#00FF2F" stroke-width="2"/>
 <rect id="K&#197;&#145;m&#197;&#177;ves, Burkol&#195;&#179;, B&#195;&#161;dogos" x="243" y="184" width="199" height="278" fill="#00FF2F" fill-opacity="0.3" stroke="#00FF2F" stroke-width="2"/>
-<rect id="&#195;&#137;p&#195;&#188;letg&#195;&#169;p&#195;&#169;szet" x="27" y="44" width="171" height="468" fill="#00FF2F" fill-opacity="0.3" stroke="#00FF2F" stroke-width="2"/>
+<path id="&#195;&#137;p&#195;&#188;letg&#195;&#169;p&#195;&#169;szet" d="M198 44V512H128.5V451H87.5V268.5H27V44H198Z" fill="#00FF2F" fill-opacity="0.3" stroke="#00FF2F" stroke-width="2"/>
 <rect id="Magas&#195;&#169;p&#195;&#173;t&#197;&#145; technikus, M&#195;&#169;ly&#195;&#169;p&#195;&#173;t&#197;&#145; technikus" x="243" y="4" width="199" height="178" fill="#00FF2F" fill-opacity="0.3" stroke="#00FF2F" stroke-width="2"/>
 </g>
 <path id="f-outline" d="M480.5 1.5V744H1.5V1.5H480.5Z" stroke="#00FF59" stroke-width="3"/>

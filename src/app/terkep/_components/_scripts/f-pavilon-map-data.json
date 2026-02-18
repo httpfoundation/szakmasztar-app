@@ -6,196 +6,249 @@
         {
           "name": "Épületgépész technikus",
           "type": "osztvszktv",
-          "x": 27,
-          "y": 44,
-          "width": 171,
-          "height": 105
+          "coordinates": [
+            [27, 44],
+            [198, 44],
+            [198, 149],
+            [27, 149]
+          ]
         },
         {
           "name": "Épületgépészet",
           "type": "interaktiv-szakmabemutato",
-          "x": 27,
-          "y": 151,
-          "width": 171,
-          "height": 224
+          "coordinates": [
+            [27, 151],
+            [198, 151],
+            [198, 375],
+            [27, 375]
+          ]
         },
         {
           "name": "Központifűtés- és gázhálózatrendszer-szerelő",
           "type": "osztvszktv",
-          "x": 27,
-          "y": 377,
-          "width": 171,
-          "height": 135
+          "coordinates": [
+            [27, 377],
+            [198, 377],
+            [198, 512],
+            [27, 512]
+          ]
         },
         {
           "name": "Kőműves",
           "type": "osztvszktv",
-          "x": 243,
-          "y": 184,
-          "width": 199,
-          "height": 105
+          "coordinates": [
+            [243, 184],
+            [442, 184],
+            [442, 289],
+            [243, 289]
+          ]
         },
         {
           "name": "Mélyépítő technikus",
           "type": "osztvszktv",
-          "x": 302,
-          "y": 133,
-          "width": 140,
-          "height": 49
+          "coordinates": [
+            [302, 133],
+            [442, 133],
+            [442, 182],
+            [302, 182]
+          ]
         },
         {
           "name": "STRABAG",
           "type": "osztvszktv",
-          "x": 243,
-          "y": 133,
-          "width": 57,
-          "height": 49
+          "coordinates": [
+            [243, 133],
+            [300, 133],
+            [300, 182],
+            [243, 182]
+          ]
         },
         {
           "name": "Magasépítő technikus",
           "type": "osztvszktv",
-          "x": 243,
-          "y": 83,
-          "width": 199,
-          "height": 48
+          "coordinates": [
+            [243, 83],
+            [442, 83],
+            [442, 131],
+            [243, 131]
+          ]
         },
         {
           "name": "Magasépítő/mélyépítő technikus",
           "type": "interaktiv-szakmabemutato",
-          "x": 243,
-          "y": 4,
-          "width": 199,
-          "height": 77
+          "coordinates": [
+            [243, 4],
+            [442, 4],
+            [442, 81],
+            [243, 81]
+          ]
         },
         {
           "name": "Asztalos",
           "type": "osztvszktv",
-          "x": 28,
-          "y": 549,
-          "width": 179,
-          "height": 66
+          "coordinates": [
+            [28, 549],
+            [207, 549],
+            [207, 615],
+            [28, 615]
+          ]
         },
         {
           "name": "Faipari technikus",
           "type": "osztvszktv",
-          "x": 28,
-          "y": 617,
-          "width": 179,
-          "height": 66
+          "coordinates": [
+            [28, 617],
+            [207, 617],
+            [207, 683],
+            [28, 683]
+          ]
         },
         {
           "name": "Faipar",
           "type": "interaktiv-szakmabemutato",
-          "x": 28,
-          "y": 685,
-          "width": 179,
-          "height": 56
+          "coordinates": [
+            [28, 685],
+            [207, 685],
+            [207, 741],
+            [28, 741]
+          ]
         },
         {
           "name": "Ács",
           "type": "wshu",
-          "x": 336,
-          "y": 662,
-          "width": 106,
-          "height": 49
+          "coordinates": [
+            [336, 662],
+            [442, 662],
+            [442, 711],
+            [336, 711]
+          ]
         },
         {
           "name": "TEGY Tető",
           "type": "interaktiv-szakmabemutato",
-          "x": 243,
-          "y": 662,
-          "width": 91,
-          "height": 49
+          "coordinates": [
+            [243, 662],
+            [334, 662],
+            [334, 711],
+            [243, 711]
+          ]
         },
         {
           "name": "Ács",
           "type": "osztvszktv",
-          "x": 243,
-          "y": 526,
-          "width": 199,
-          "height": 134
+          "coordinates": [
+            [243, 526],
+            [442, 526],
+            [442, 660],
+            [243, 660]
+          ]
         },
         {
           "name": "Terrán",
           "type": "interaktiv-szakmabemutato",
-          "x": 243,
-          "y": 463,
-          "width": 199,
-          "height": 61
+          "coordinates": [
+            [243, 463],
+            [442, 463],
+            [442, 524],
+            [243, 524]
+          ]
         },
         {
           "name": "Bádogos",
           "type": "osztvszktv",
-          "x": 243,
-          "y": 377,
-          "width": 199,
-          "height": 84
+          "coordinates": [
+            [243, 377],
+            [442, 377],
+            [442, 461],
+            [243, 461]
+          ]
         },
         {
           "name": "Burkoló",
           "type": "osztvszktv",
-          "x": 295,
-          "y": 291,
-          "width": 96,
-          "height": 84
+          "coordinates": [
+            [295, 291],
+            [391, 291],
+            [391, 375],
+            [295, 375]
+          ]
         },
         {
           "name": "Knauf",
           "type": "osztvszktv",
-          "x": 243,
-          "y": 291,
-          "width": 50,
-          "height": 84
+          "coordinates": [
+            [243, 291],
+            [293, 291],
+            [293, 375],
+            [243, 375]
+          ]
         },
         {
           "name": "PREFA Hungária Kft.",
           "type": "osztvszktv",
-          "x": 393,
-          "y": 291,
-          "width": 49,
-          "height": 84
+          "coordinates": [
+            [393, 291],
+            [442, 291],
+            [442, 375],
+            [393, 375]
+          ]
         }
       ],
       "booths": [
         {
           "name": "Asztalos, Faipari technikus",
           "type": "osztvszktv",
-          "x": 28,
-          "y": 549,
-          "width": 179,
-          "height": 192
+          "coordinates": [
+            [28, 549],
+            [207, 549],
+            [207, 741],
+            [28, 741]
+          ]
         },
         {
           "name": "Ács_2",
           "type": "osztvszktv",
-          "x": 243,
-          "y": 464,
-          "width": 199,
-          "height": 247
+          "coordinates": [
+            [243, 464],
+            [442, 464],
+            [442, 711],
+            [243, 711]
+          ]
         },
         {
           "name": "Kőműves, Burkoló, Bádogos",
           "type": "osztvszktv",
-          "x": 243,
-          "y": 184,
-          "width": 199,
-          "height": 278
-        },
-        {
-          "name": "Épületgépészet",
-          "type": "osztvszktv",
-          "x": 27,
-          "y": 44,
-          "width": 171,
-          "height": 468
+          "coordinates": [
+            [243, 184],
+            [442, 184],
+            [442, 462],
+            [243, 462]
+          ]
         },
         {
           "name": "Magasépítő technikus, Mélyépítő technikus",
           "type": "osztvszktv",
-          "x": 243,
-          "y": 4,
-          "width": 199,
-          "height": 178
+          "coordinates": [
+            [243, 4],
+            [442, 4],
+            [442, 182],
+            [243, 182]
+          ]
+        },
+        {
+          "name": "Épületgépészet",
+          "type": "osztvszktv",
+          "coordinates": [
+            [198, 44],
+            [198, 512],
+            [128.5, 512],
+            [128.5, 451],
+            [87.5, 451],
+            [87.5, 268.5],
+            [27, 268.5],
+            [27, 44],
+            [198, 44]
+          ]
         }
       ],
       "svgWidth": 482,

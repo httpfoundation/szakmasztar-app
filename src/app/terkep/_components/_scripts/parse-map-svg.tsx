@@ -5,10 +5,7 @@ import { JSDOM } from "jsdom";
 export type MapItem = {
   name: string;
   type: string;
-  x: number;
-  y: number;
-  width: number;
-  height: number;
+  coordinates: [number, number][];
 };
 
 export type Building = {
@@ -36,8 +33,9 @@ function normalizeText(value: string | null): string {
 const num = (v: string | null) => (v ? Number(v) : 0);
 const text = (v: string | null) => (v ? normalizeText(v.trim()) : "");
 
-function parseRect(rect: Element): MapItem {
-  let name = text(rect.getAttribute("id"));
+/** Extracts the name and type suffix from an element's id attribute. */
+function extractNameAndType(el: Element): { name: string; type: string } {
+  let name = text(el.getAttribute("id"));
   let type = "osztvszktv";
 
   if (name.endsWith(" WS")) {
@@ -50,14 +48,100 @@ function parseRect(rect: Element): MapItem {
 
   name = name.replace(" WS", "").replace(" ISZB", "").replace(" ESZB", "").trim();
 
-  return {
-    name,
-    type,
-    x: num(rect.getAttribute("x")),
-    y: num(rect.getAttribute("y")),
-    width: num(rect.getAttribute("width")),
-    height: num(rect.getAttribute("height")),
-  };
+  return { name, type };
+}
+
+/** Converts a <rect> element to corner coordinates. */
+function rectToCoordinates(rect: Element): [number, number][] {
+  const x = num(rect.getAttribute("x"));
+  const y = num(rect.getAttribute("y"));
+  const w = num(rect.getAttribute("width"));
+  const h = num(rect.getAttribute("height"));
+
+  return [
+    [x, y],
+    [x + w, y],
+    [x + w, y + h],
+    [x, y + h],
+  ];
+}
+
+/**
+ * Parses an SVG path `d` attribute into coordinate pairs.
+ * Supports the absolute commands used in polygon-like paths: M, L, H, V, Z.
+ */
+function pathToCoordinates(path: Element): [number, number][] {
+  const d = path.getAttribute("d") ?? "";
+  const coords: [number, number][] = [];
+
+  let cx = 0;
+  let cy = 0;
+
+  // Tokenise: split on command letters while keeping them
+  const tokens = d.match(/[MLHVZmlhvz][^MLHVZmlhvz]*/gi) ?? [];
+
+  for (const token of tokens) {
+    const cmd = token[0];
+    const args = token
+      .slice(1)
+      .trim()
+      .split(/[\s,]+/)
+      .map(Number);
+
+    switch (cmd) {
+      case "M": // absolute moveto
+        cx = args[0];
+        cy = args[1];
+        coords.push([cx, cy]);
+        break;
+      case "m": // relative moveto
+        cx += args[0];
+        cy += args[1];
+        coords.push([cx, cy]);
+        break;
+      case "L": // absolute lineto
+        cx = args[0];
+        cy = args[1];
+        coords.push([cx, cy]);
+        break;
+      case "l": // relative lineto
+        cx += args[0];
+        cy += args[1];
+        coords.push([cx, cy]);
+        break;
+      case "H": // absolute horizontal lineto
+        cx = args[0];
+        coords.push([cx, cy]);
+        break;
+      case "h": // relative horizontal lineto
+        cx += args[0];
+        coords.push([cx, cy]);
+        break;
+      case "V": // absolute vertical lineto
+        cy = args[0];
+        coords.push([cx, cy]);
+        break;
+      case "v": // relative vertical lineto
+        cy += args[0];
+        coords.push([cx, cy]);
+        break;
+      case "Z": // closepath (no coordinate needed)
+      case "z":
+        break;
+    }
+  }
+
+  return coords;
+}
+
+/** Parses a <rect> or <path> element into a MapItem. */
+function parseElement(el: Element): MapItem {
+  const { name, type } = extractNameAndType(el);
+
+  const tag = el.tagName.toLowerCase();
+  const coordinates = tag === "rect" ? rectToCoordinates(el) : pathToCoordinates(el);
+
+  return { name, type, coordinates };
 }
 
 export function parseSvg(svgText: string): Data {
@@ -79,11 +163,11 @@ export function parseSvg(svgText: string): Data {
     const boothsGroup = buildingGroup.querySelector("g#booths");
 
     const articles: MapItem[] = articlesGroup
-      ? Array.from(articlesGroup.querySelectorAll("rect")).map(parseRect)
+      ? Array.from(articlesGroup.querySelectorAll("rect, path")).map(parseElement)
       : [];
 
     const booths: MapItem[] = boothsGroup
-      ? Array.from(boothsGroup.querySelectorAll("rect")).map(parseRect)
+      ? Array.from(boothsGroup.querySelectorAll("rect, path")).map(parseElement)
       : [];
 
     buildings.push({

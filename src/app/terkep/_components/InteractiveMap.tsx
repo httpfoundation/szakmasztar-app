@@ -25,19 +25,13 @@ export interface InteractiveMapData {
       id: string;
       title: string;
       code: string;
-      x: number;
-      y: number;
-      width: number;
-      height: number;
+      coordinates: [number, number][];
       articleIds: string[];
     }[];
     articles: {
       id: string;
       title: string;
-      x: number;
-      y: number;
-      width: number;
-      height: number;
+      coordinates: [number, number][];
       slug: string;
     }[];
   }[];

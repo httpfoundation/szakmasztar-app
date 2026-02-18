@@ -31,7 +31,7 @@ export function transformToGeoCoords(
 }
 
 /**
- * Creates a GeoJSON polygon from booth coordinates
+ * Creates a GeoJSON polygon by transforming SVG coordinates to geo coordinates
  */
 export function createRelativePolygon(
   item:
@@ -39,16 +39,18 @@ export function createRelativePolygon(
     | InteractiveMapData["buildings"][number]["articles"][number],
   config: BuildingConfig
 ): [number, number][] {
-  const { x, y, width, height } = item;
+  const geoCoords = item.coordinates.map(([x, y]) => transformToGeoCoords(x, y, config));
 
-  // Create corner points of the booth rectangle
-  const topLeft = transformToGeoCoords(x, y, config);
-  const topRight = transformToGeoCoords(x + width, y, config);
-  const bottomRight = transformToGeoCoords(x + width, y + height, config);
-  const bottomLeft = transformToGeoCoords(x, y + height, config);
+  // Ensure the polygon is closed (first point repeated at end)
+  if (
+    geoCoords.length > 0 &&
+    (geoCoords[0][0] !== geoCoords[geoCoords.length - 1][0] ||
+      geoCoords[0][1] !== geoCoords[geoCoords.length - 1][1])
+  ) {
+    geoCoords.push(geoCoords[0]);
+  }
 
-  // Return closed polygon (first point repeated at end)
-  return [topLeft, topRight, bottomRight, bottomLeft, topLeft];
+  return geoCoords;
 }
 
 export const generateBuildingsGeoJSON = (mapData: InteractiveMapData) => {
@@ -147,11 +149,6 @@ export const generateBoothsGeoJSON = (mapData: InteractiveMapData) => {
     return building.booths.map((booth) => {
       boothCounter++;
       const coordinates = createRelativePolygon(booth, buildingConfig);
-      const center = transformToGeoCoords(
-        booth.x + booth.width / 2,
-        booth.y + booth.height / 2,
-        buildingConfig
-      );
 
       const articles = building.articles.filter((article) => booth.articleIds.includes(article.id));
       const combinedIcon = [...new Set(articles.map((article) => getCategoryIcon(article.slug)))]
@@ -165,10 +162,7 @@ export const generateBoothsGeoJSON = (mapData: InteractiveMapData) => {
         boothNumber: `${boothCounter < 10 ? "0" : ""}${boothCounter}.`,
         articleNames: articles.map((article) => article.title).join("\n"),
         combinedIcon,
-        centerLng: center[0],
-        centerLat: center[1],
         type: "booth",
-        textMaxWidth: booth.width / 15,
       };
 
       // Add per-article properties for inline icon display (max MAX_BOOTH_ARTICLES)
@@ -207,18 +201,11 @@ export const generateArticlesGeoJSON = (mapData: InteractiveMapData) => {
 
     return building.articles.map((article) => {
       const coordinates = createRelativePolygon(article, buildingConfig);
-      const center = transformToGeoCoords(
-        article.x + article.width / 2,
-        article.y + article.height / 2,
-        buildingConfig
-      );
 
       return {
         type: "Feature" as const,
         properties: {
           name: article.title,
-          centerLng: center[0],
-          centerLat: center[1],
           type: "article",
         },
         geometry: {

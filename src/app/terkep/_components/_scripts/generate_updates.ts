@@ -1,23 +1,32 @@
 import fs from "fs";
-import type { Data } from "./parse-map-svg";
+import type { Data, MapItem } from "./parse-map-svg";
 
 const filePath = process.argv[2];
 
-const getArticlesOverlappingBooth = (
-  booth: Data["buildings"][number]["booths"][number],
-  allBuildingArticles: Data["buildings"][number]["articles"][number][]
-) => {
-  return allBuildingArticles.filter((article) => {
-    if (article.x == null || article.y == null || article.width == null || article.height == null) {
-      return false;
-    }
+/** Compute an axis-aligned bounding box from a coordinate list. */
+const getBBox = (coords: [number, number][]) => {
+  let minX = Infinity;
+  let minY = Infinity;
+  let maxX = -Infinity;
+  let maxY = -Infinity;
+  for (const [x, y] of coords) {
+    if (x < minX) minX = x;
+    if (y < minY) minY = y;
+    if (x > maxX) maxX = x;
+    if (y > maxY) maxY = y;
+  }
+  return { minX, minY, maxX, maxY };
+};
 
-    return (
-      article.x < booth.x + booth.width &&
-      article.x + article.width > booth.x &&
-      article.y < booth.y + booth.height &&
-      article.y + article.height > booth.y
-    );
+const getArticlesOverlappingBooth = (booth: MapItem, allBuildingArticles: MapItem[]) => {
+  if (!booth.coordinates.length) return [];
+  const b = getBBox(booth.coordinates);
+
+  return allBuildingArticles.filter((article) => {
+    if (!article.coordinates.length) return false;
+    const a = getBBox(article.coordinates);
+
+    return a.minX < b.maxX && a.maxX > b.minX && a.minY < b.maxY && a.maxY > b.minY;
   });
 };
 
@@ -53,6 +62,12 @@ const createSlug = (text: string) => {
     .replace(/-+/g, "-"); // collapse multiple hyphens
 };
 
+/** Format a coordinates array as a MySQL JSON literal, e.g. JSON_ARRAY(JSON_ARRAY(1,2), ...) */
+const coordinatesToSql = (coords: [number, number][]) => {
+  const inner = coords.map(([x, y]) => `JSON_ARRAY(${x}, ${y})`).join(", ");
+  return `JSON_ARRAY(${inner})`;
+};
+
 const main = () => {
   const data = JSON.parse(fs.readFileSync(filePath, "utf-8")) as Data;
 
@@ -75,12 +90,7 @@ WHERE id = ${JSON.stringify(`szakmasztar-app-${building.name.replace("-map", "")
     );
 
     for (const article of building.articles) {
-      if (
-        article.x == null ||
-        article.y == null ||
-        article.width == null ||
-        article.height == null
-      ) {
+      if (!article.coordinates.length) {
         continue;
       }
 
@@ -95,10 +105,7 @@ SET metadata = JSON_SET(
   COALESCE(metadata, JSON_OBJECT()),
   '$.map', JSON_OBJECT(
     'buildingId', '${building.name.replace("-map", "")}',
-    'x', ${article.x},
-    'y', ${article.y},
-    'width', ${article.width},
-    'height', ${article.height}
+    'coordinates', ${coordinatesToSql(article.coordinates)}
   ),
   '$.buildingId', '${building.name.replace("-map", "")}'
 )
@@ -118,7 +125,7 @@ SELECT ${title} AS title, ${slugLike} AS slugLike
     /* CREATE BOOTHS */
 
     for (const booth of building.booths) {
-      if (booth.x == null || booth.y == null || booth.width == null || booth.height == null) {
+      if (!booth.coordinates.length) {
         continue;
       }
 
@@ -170,10 +177,7 @@ SET target.metadata = JSON_SET(
   '$.articleIds', COALESCE(agg.article_ids, JSON_ARRAY()),
   '$.map', JSON_OBJECT(
     'buildingId', ${JSON.stringify(building.name.replace("-map", ""))},
-    'x', ${booth.x},
-    'y', ${booth.y},
-    'width', ${booth.width},
-    'height', ${booth.height}
+    'coordinates', ${coordinatesToSql(booth.coordinates)}
   )
 )
 WHERE target.title = ${title} AND target.categoryId LIKE ${categoryLike};

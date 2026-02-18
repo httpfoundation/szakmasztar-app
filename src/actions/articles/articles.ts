@@ -161,10 +161,7 @@ export async function getInteractiveMapItems() {
       return {
         id: article.id,
         title: article.title,
-        x: metadata.map.x,
-        y: metadata.map.y,
-        width: metadata.map.width,
-        height: metadata.map.height,
+        coordinates: (metadata.map.coordinates as [number, number][]) ?? [],
         buildingId: metadata.map.buildingId,
         slug: article.slug,
       };
