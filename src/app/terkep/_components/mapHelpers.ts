@@ -194,6 +194,71 @@ export const generateBoothsGeoJSON = (mapData: InteractiveMapData) => {
   };
 };
 
+/** Map from category key to SVG symbol image name loaded in the map */
+const CATEGORY_SYMBOL_MAP: Record<string, string> = {
+  wshu: "wshu-symbol",
+  "osztv-szktv": "osztv-symbol",
+  szakmabemutato: "sponsor-symbol",
+  nak: "nak-symbol",
+};
+
+/**
+ * Generates Point features along the bottom-right corner of each booth polygon,
+ * one per unique category. Multiple categories are spread horizontally from right
+ * to left along the bottom edge, creating a row of watermark symbols.
+ */
+export const generateBoothSymbolsGeoJSON = (mapData: InteractiveMapData) => {
+  const features = mapData.buildings.flatMap((building) => {
+    if (!building.coordinates.length) return [];
+    const buildingConfig = getBuildingConfig(building);
+
+    return building.booths.flatMap((booth) => {
+      const geoCoords = createRelativePolygon(booth, buildingConfig);
+      const articles = building.articles.filter((a) => booth.articleIds.includes(a.id));
+
+      // Collect unique categories and sort by fixed priority for consistent ordering
+      const CATEGORY_ORDER = ["wshu", "osztv-szktv", "szakmabemutato", "nak"];
+      const categories = [
+        ...new Set(articles.map((a) => getCategoryIcon(a.slug)).filter(Boolean)),
+      ].sort((a, b) => CATEGORY_ORDER.indexOf(a!) - CATEGORY_ORDER.indexOf(b!)) as string[];
+      if (categories.length === 0) return [];
+
+      // Compute bounding box
+      const lngs = geoCoords.map((c) => c[0]);
+      const lats = geoCoords.map((c) => c[1]);
+      const maxLng = Math.max(...lngs);
+      const minLat = Math.min(...lats);
+
+      // Fixed geographic offset between symbols (~2-3m at Budapest's latitude)
+      const offsetStep = 0.00003;
+
+      return categories
+        .map((cat, i) => {
+          const symbolName = CATEGORY_SYMBOL_MAP[cat];
+          if (!symbolName) return null;
+
+          return {
+            type: "Feature" as const,
+            properties: {
+              symbolIcon: symbolName,
+              type: "booth-symbol",
+            },
+            geometry: {
+              type: "Point" as const,
+              coordinates: [maxLng - i * offsetStep, minLat],
+            },
+          };
+        })
+        .filter((f): f is NonNullable<typeof f> => f !== null);
+    });
+  });
+
+  return {
+    type: "FeatureCollection" as const,
+    features,
+  };
+};
+
 export const generateArticlesGeoJSON = (mapData: InteractiveMapData) => {
   const features = mapData.buildings.map((building) => {
     if (!building.coordinates.length) return null;

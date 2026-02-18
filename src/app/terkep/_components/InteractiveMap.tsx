@@ -9,7 +9,12 @@ import { LngLatBounds } from "maplibre-gl";
 import type { MapLayerMouseEvent, ViewStateChangeEvent } from "react-map-gl/maplibre";
 import { ArticleFragment } from "@/actions/articles/articles.generated";
 import BoothDetailPanel from "./BoothDetailPanel";
-import { generateBoothsGeoJSON, generateBuildingsGeoJSON, MAX_BOOTH_ARTICLES } from "./mapHelpers";
+import {
+  generateBoothsGeoJSON,
+  generateBoothSymbolsGeoJSON,
+  generateBuildingsGeoJSON,
+  MAX_BOOTH_ARTICLES,
+} from "./mapHelpers";
 import { staticMapFeatures } from "./staticMapFeatures";
 
 export interface InteractiveMapData {
@@ -225,6 +230,14 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
         ["osztv-szktv-sm", "/images/osztv-szktv-sm.png"],
       ];
 
+      /* Category SVG symbol images for booth watermarks */
+      const symbolImages: [string, string][] = [
+        ["wshu-symbol", "/images/wshu-symbol.svg"],
+        ["osztv-symbol", "/images/osztv-symbol.svg"],
+        ["sponsor-symbol", "/images/sponsor-symbol.svg"],
+        ["nak-symbol", "/images/nak-symbol.svg"],
+      ];
+
       images.forEach(async ([name, path]) => {
         const image = await map.loadImage(path);
         map.addImage(name, image.data);
@@ -233,6 +246,34 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
       inlineImages.forEach(async ([name, path]) => {
         const image = await map.loadImage(path);
         map.addImage(name, image.data, { pixelRatio: 1.5 });
+      });
+
+      /* Rasterize SVGs via Image + Canvas since MapLibre can't decode SVGs directly */
+      const loadSvgAsImage = (src: string, size: number): Promise<ImageData> =>
+        new Promise((resolve, reject) => {
+          const img = new Image();
+          img.onload = () => {
+            const aspect = img.naturalHeight / img.naturalWidth;
+            const w = size;
+            const h = Math.round(size * aspect);
+            const canvas = document.createElement("canvas");
+            canvas.width = w;
+            canvas.height = h;
+            const ctx = canvas.getContext("2d")!;
+            ctx.drawImage(img, 0, 0, w, h);
+            resolve(ctx.getImageData(0, 0, w, h));
+          };
+          img.onerror = reject;
+          img.src = src;
+        });
+
+      symbolImages.forEach(async ([name, path]) => {
+        try {
+          const imageData = await loadSvgAsImage(path, 256);
+          map.addImage(name, imageData);
+        } catch (e) {
+          console.error(`Failed to load symbol image: ${name}`, e);
+        }
       });
     }
   }, []);
@@ -286,13 +327,14 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
 
   const buildingZoomLevel = 14;
   const boothZoomLevel = 16.5;
-  const boothNameZoomLevel = 17.5;
+  const boothNameZoomLevel = 17.7;
   const articleZoomLevel = 19;
   const maxZoomLevel = 22;
 
   /* Generate the GeoJSON for the buildings, booths and articles */
   const buildingsGeoJSON = useMemo(() => generateBuildingsGeoJSON(mapData), [mapData]);
   const boothsGeoJSON = useMemo(() => generateBoothsGeoJSON(mapData), [mapData]);
+  const boothSymbolsGeoJSON = useMemo(() => generateBoothSymbolsGeoJSON(mapData), [mapData]);
   // const articlesGeoJSON = useMemo(() => generateArticlesGeoJSON(mapData), [mapData]);
 
   /* Build a format expression for article labels with inline category icons */
@@ -503,10 +545,10 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
                 "interpolate",
                 ["exponential", 2],
                 ["zoom"],
-                boothNameZoomLevel,
-                4,
-                articleZoomLevel,
-                16,
+                boothZoomLevel,
+                5,
+                maxZoomLevel,
+                60,
               ],
               "text-font": ["montserratBold"],
               "text-rotation-alignment": "viewport",
@@ -520,6 +562,34 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
               "text-halo-width": 1,
             }}
             minzoom={boothNameZoomLevel}
+          />
+          <Layer
+            id="booths-numbers-center"
+            type="symbol"
+            filter={["==", "type", "booth"]}
+            layout={{
+              "text-field": ["get", "boothNumber"],
+              "text-size": [
+                "interpolate",
+                ["exponential", 2],
+                ["zoom"],
+                boothZoomLevel,
+                10,
+                articleZoomLevel,
+                20,
+              ],
+              "text-font": ["montserratBold"],
+              "text-rotation-alignment": "viewport",
+              "text-anchor": "center",
+              "text-justify": "center",
+              "text-ignore-placement": true,
+              "text-offset": [0, 0],
+            }}
+            paint={{
+              "text-color": "#fff",
+            }}
+            minzoom={boothZoomLevel}
+            maxzoom={boothNameZoomLevel}
           />
           <Layer
             id="booths-numbers"
@@ -546,7 +616,7 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
             paint={{
               "text-color": "#fff",
             }}
-            minzoom={boothZoomLevel}
+            minzoom={boothNameZoomLevel}
           />
           {/* Full booth name — collision-checked, rendered on top of numbers */}
           {/* Where a name fits, its halo visually covers the number underneath */}
@@ -581,59 +651,34 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
             minzoom={boothZoomLevel}
             maxzoom={articleZoomLevel}
           /> */}
-          {/* Category icons — always visible on top of everything */}
-          {/* <Layer
-            id="booths-icons"
+        </Source>
+        {/* Booth watermark symbols — placed near the bottom-right corner of each booth */}
+        <Source id="booth-symbols" type="geojson" data={boothSymbolsGeoJSON}>
+          <Layer
+            id="booth-symbol-icons"
             type="symbol"
-            filter={["==", "type", "booth"]}
             layout={{
-              "icon-image": ["get", "combinedIcon"],
+              "icon-image": ["get", "symbolIcon"],
               "icon-size": [
                 "interpolate",
                 ["exponential", 2],
                 ["zoom"],
                 boothZoomLevel,
-                0.04,
-                articleZoomLevel,
-                0.15,
+                0.03,
+                maxZoomLevel,
+                0.7,
               ],
-              "icon-anchor": "bottom",
+              "icon-anchor": "bottom-right",
               "icon-allow-overlap": true,
               "icon-ignore-placement": true,
-            }}
-            minzoom={boothZoomLevel}
-            maxzoom={articleZoomLevel}
-          />
-          <Layer
-            id="booths-articles-labels"
-            type="symbol"
-            filter={["==", "type", "booth"]}
-            layout={{
-              "text-field": articleFormatExpression,
-              "text-size": [
-                "interpolate",
-                ["exponential", 2],
-                ["zoom"],
-                articleZoomLevel,
-                10,
-                maxZoomLevel,
-                40,
-              ],
-              "text-font": ["montserratMedium"],
-              "text-anchor": "center",
-              "text-justify": "center",
-              "text-allow-overlap": true,
-              "text-rotation-alignment": "viewport",
-              "text-line-height": 1.2,
-              "text-max-width": 18,
+              "icon-rotation-alignment": "map",
+              "icon-pitch-alignment": "map",
             }}
             paint={{
-              "text-color": "#fff",
-              "text-halo-color": "#6f6f6fff",
-              "text-halo-width": 0,
+              "icon-opacity": 0.8,
             }}
-            minzoom={articleZoomLevel}
-          /> */}
+            minzoom={boothZoomLevel}
+          />
         </Source>
       </Map>
       {selectedBooth && (
