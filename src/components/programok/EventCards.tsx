@@ -15,6 +15,7 @@ interface EventCardsProps {
   showCategoryIcon?: boolean;
   showMapLink?: boolean;
   wholeCardLink?: boolean;
+  sort?: boolean;
 }
 
 const bgcolors = ["wshu.main", "osztv.main", "primary.light", "nak.main", "other.main"];
@@ -26,6 +27,7 @@ const EventCards = ({
   showCategoryIcon = false,
   showMapLink = true,
   wholeCardLink = false,
+  sort = true,
 }: EventCardsProps) => {
   function getEventMapId(article: ArticleFragment): string | null {
     try {
@@ -100,8 +102,7 @@ const EventCards = ({
 
   return (
     <Grid container spacing={1.5} sx={{ mb: 0 }}>
-      {events
-        .sort((a, z) => a.title.localeCompare(z.title))
+      {(sort ? [...events].sort((a, z) => a.title.localeCompare(z.title)) : events)
         .filter((event) => event.__typename === "Article")
         .map((event, eventIndex) => {
           const mapId = getEventMapId(event);

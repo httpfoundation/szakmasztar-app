@@ -529,7 +529,7 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
                 "#904e96", // Hover color
                 "#71376a", // Default color
               ],
-              "fill-extrusion-height": 1.5,
+              "fill-extrusion-height": 0,
               "fill-extrusion-base": 0,
             }}
             minzoom={boothZoomLevel}
@@ -575,8 +575,8 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
                 ["zoom"],
                 boothZoomLevel,
                 10,
-                articleZoomLevel,
-                20,
+                maxZoomLevel,
+                80,
               ],
               "text-font": ["montserratBold"],
               "text-rotation-alignment": "viewport",
@@ -603,8 +603,8 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
                 ["zoom"],
                 boothZoomLevel,
                 10,
-                articleZoomLevel,
-                20,
+                maxZoomLevel,
+                80,
               ],
               "text-font": ["montserratBold"],
               "text-rotation-alignment": "viewport",
