@@ -331,3 +331,129 @@ export const KOMPETENCIA_QUESTIONS = [
     ],
   },
 ];
+
+export const SZAKMASZTAR_QUESTIONS = [
+  {
+    id: 1,
+    question: "Melyik szakma felelős egy elektromos hálózat kiépítéséért és karbantartásáért?",
+    answers: [
+      { text: "Ipar 4.0", value: 2 },
+      { text: "Villanyszerelő", value: 1 },
+      { text: "Automatikai technikus", value: 3 },
+      { text: "Elektrotechnikai technikus", value: 4 },
+    ],
+    correctAnswerIdx: 1,
+  },
+  {
+    id: 2,
+    question: "Melyik szakma versenyzőinek a feladata a pezsgőtöltés és a díszasztalkészítés?",
+    answers: [
+      { text: "Szakács", value: 3 },
+      { text: "Kereskedő", value: 4 },
+      { text: "Pincér - vendégtéri szakember", value: 1 },
+      { text: "Cukrász", value: 2 },
+    ],
+    correctAnswerIdx: 2,
+  },
+  {
+    id: 3,
+    question: "Melyik ágazathoz tartozik a kereskedő és webáruházi technikus szakma?",
+    answers: [
+      { text: "Informatika és távközlés", value: 2 },
+      { text: "Turizmus.vendéglátás", value: 4 },
+      { text: "Kereskedelem", value: 1 },
+      { text: "Közlekedés és szállítmányozás", value: 3 },
+    ],
+    correctAnswerIdx: 2,
+  },
+  {
+    id: 4,
+    question:
+      "Melyik szakmára igaz, hogy előregyártott elemekkel dolgozik, könnyű szerkezeteket használ és nincs szükség száradási időre?",
+    answers: [
+      { text: "Burkoló", value: 1 },
+      { text: "Kőműves", value: 2 },
+      { text: "Ács", value: 4 },
+      { text: "Szárazépítő", value: 3 },
+    ],
+    correctAnswerIdx: 3,
+  },
+  {
+    id: 5,
+    question: "2026-ban hol kerül megrendezésre a WorldSkills verseny?",
+    answers: [
+      { text: "Herning, Dánia", value: 4 },
+      { text: "Shanghai, Kína", value: 3 },
+      { text: "Lyon, Franciaország", value: 1 },
+      { text: "Gdansk, Lengyelország", value: 2 },
+    ],
+    correctAnswerIdx: 1,
+  },
+  {
+    id: 6,
+    question: "Milyen bizonyítványt kapsz, ha elvégzed a grafikus szakmát?",
+    answers: [
+      { text: "érettségi bizonyítvány", value: 4 },
+      { text: "érettségi + technikusi bizonyítvány", value: 2 },
+      { text: "szakmai bizonyítvány", value: 1 },
+      { text: "nem kapok bizonyítványt", value: 3 },
+    ],
+    correctAnswerIdx: 1,
+  },
+  {
+    id: 7,
+    question: "Melyik szakma standjánál látsz hajlított csőrendszereket?",
+    answers: [
+      { text: "Épületasztalos", value: 2 },
+      { text: "Központifűtés és gázhálózat szerelő", value: 1 },
+      { text: "Automatikai technikus", value: 3 },
+      { text: "CNC-programozó", value: 4 },
+    ],
+    correctAnswerIdx: 1,
+  },
+  {
+    id: 8,
+    question: "Az alábbiak közül melyik szakma eszközei a csiszológép, az orrfűrész és a gyalu?",
+    answers: [
+      { text: "Mechatronikai technikus", value: 1 },
+      { text: "Asztalos", value: 3 },
+      { text: "Villanyszerelő", value: 4 },
+      { text: "Gépi és CNC forgácsoló", value: 2 },
+    ],
+    correctAnswerIdx: 1,
+  },
+  {
+    id: 9,
+    question: "A szépészet ágazatban melyik két szakmában lehet versenyezni?",
+    answers: [
+      { text: "Műkörmös és Műszempillás", value: 2 },
+      { text: "Kozmetikus technikus és Fodrász", value: 1 },
+      { text: "Sminkes és Masszőr", value: 3 },
+      { text: "Kéz- és lábápoló technikus és Borbély", value: 4 },
+    ],
+    correctAnswerIdx: 1,
+  },
+  {
+    id: 10,
+    question:
+      "Milyen pályaorientációs programot szerveznek a területi kereskedelmi és iparkamarák?",
+    answers: [
+      { text: "Sítábor", value: 2 },
+      { text: "Cég- és üzemlátogatás", value: 1 },
+      { text: "Filmklub", value: 4 },
+      { text: "Focitúra", value: 3 },
+    ],
+    correctAnswerIdx: 1,
+  },
+  {
+    id: 11,
+    question: "Minek a rövidítése az MKIK?",
+    answers: [
+      { text: "Megyei Kisiskolások Közössége", value: 4 },
+      { text: "Magyar Kereskedők Ipari Közössége", value: 3 },
+      { text: "Magyar Kereskedők Ipari Közössége", value: 2 },
+      { text: "Magyar Közértek Igazgatósági Központja", value: 1 },
+    ],
+    correctAnswerIdx: 2,
+  },
+];
