@@ -13,6 +13,18 @@ import { generateBoothsGeoJSON, generateBuildingsGeoJSON } from "./mapHelpers";
 import MapSearchPanel from "./MapSearchPanel";
 import { staticMapFeatures } from "./staticMapFeatures";
 
+export interface BoothData {
+  id: string;
+  title: string;
+  code: number | null;
+  image: {
+    url: string;
+  } | null;
+  imageRotate: number | null;
+  coordinates: [number, number][];
+  articles: ArticleFragment[];
+}
+
 export interface InteractiveMapData {
   buildings: {
     id: string;
@@ -23,17 +35,7 @@ export interface InteractiveMapData {
     coordinates: [number, number][];
     svgWidth: number;
     svgHeight: number;
-    booths: {
-      id: string;
-      title: string;
-      code: number | null;
-      image: {
-        url: string;
-      } | null;
-      imageRotate: number | null;
-      coordinates: [number, number][];
-      articles: ArticleFragment[];
-    }[];
+    booths: BoothData[];
   }[];
 }
 
@@ -61,6 +63,8 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
 
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
+  const allBooths = useMemo(() => mapData.buildings.flatMap((b) => b.booths), [mapData]);
+
   /* Handles hover events, setting hovered booth and building IDs to highlight them */
   const onHover = useCallback((event: MapLayerMouseEvent) => {
     const { features } = event;
@@ -77,7 +81,7 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
     }
   }, []);
 
-  /* Resets hovered booth and building IDs when mouse leaves the map */
+  // Resets hovered booth and building IDs when mouse leaves the map
   const onMouseLeave = useCallback(() => {
     setHoveredBoothId(null);
     setHoveredBuildingId(null);
@@ -95,9 +99,12 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
       if (clickedBooth) {
         setIsDismissing(false);
         setSelectedBoothId(clickedBooth.properties?.id as string);
+        setActiveFilter(null);
+        setActivePoiType(null);
         const geometry = clickedBooth.geometry;
         const imageRotate = clickedBooth.properties?.imageRotate;
         const bearing = imageRotate && imageRotate !== false ? (imageRotate as number) : 0;
+
         if (geometry.type === "Polygon") {
           const coordinates = geometry.coordinates[0];
           const bounds = new LngLatBounds();
@@ -333,11 +340,19 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
   /** Handle category selection from search panel */
   const handleCategorySelect = useCallback((slugPrefix: string | null) => {
     setActiveFilter(slugPrefix);
+    if (slugPrefix) {
+      setActivePoiType(null);
+      setSelectedBoothId(null);
+    }
   }, []);
 
   /** Handle POI type selection — fit map to bounds of all matching POIs */
   const handlePoiTypeSelect = useCallback((poiType: string | null) => {
     setActivePoiType(poiType);
+    if (poiType) {
+      setActiveFilter(null);
+      setSelectedBoothId(null);
+    }
     if (poiType && mapRef.current) {
       const matchingFeatures = staticMapFeatures.features.filter(
         (f) =>
@@ -354,6 +369,45 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
       }
     }
   }, []);
+
+  const handleBoothSelect = useCallback(
+    (boothId: string) => {
+      const feature = boothsGeoJSON.features.find((f) => f.properties.id === boothId);
+      if (feature) {
+        setIsDismissing(false);
+        setSelectedBoothId(boothId);
+        setActiveFilter(null);
+        setActivePoiType(null);
+
+        if (feature.geometry.type === "Polygon") {
+          const coordinates = feature.geometry.coordinates[0];
+          const bounds = new LngLatBounds();
+          coordinates.forEach((coord) => {
+            bounds.extend(coord as [number, number]);
+          });
+
+          const imageRotate = feature.properties.imageRotate;
+          const bearing = imageRotate && imageRotate !== false ? (imageRotate as number) : 0;
+
+          if (!selectedBoothId) {
+            setReturnToMapState({
+              center: mapRef.current?.getMap().getCenter() as LngLat,
+              zoom: mapRef.current?.getMap().getZoom() as number,
+              pitch: mapRef.current?.getMap().getPitch() as number,
+              bearing: mapRef.current?.getMap().getBearing() as number,
+            });
+          }
+
+          mapRef.current?.getMap().fitBounds(bounds, {
+            padding: 100,
+            offset: isMobile ? [0, -80] : [80, 0],
+            bearing,
+          });
+        }
+      }
+    },
+    [boothsGeoJSON, selectedBoothId, isMobile]
+  );
 
   return (
     <>
@@ -796,6 +850,8 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
         activePoiType={activePoiType}
         onCategorySelect={handleCategorySelect}
         onPoiTypeSelect={handlePoiTypeSelect}
+        booths={allBooths}
+        onBoothSelect={handleBoothSelect}
       />
     </>
   );

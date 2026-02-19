@@ -15,6 +15,7 @@ import {
   Typography,
 } from "@mui/material";
 import eventCategories from "@/assets/eventCategories.json";
+import { BoothData } from "./InteractiveMap";
 import { staticMapFeatures } from "./staticMapFeatures";
 
 /** Unique POI types derived from staticMapFeatures */
@@ -29,6 +30,8 @@ interface MapSearchPanelProps {
   activePoiType: string | null;
   onCategorySelect: (slugPrefix: string | null) => void;
   onPoiTypeSelect: (poiType: string | null) => void;
+  booths: BoothData[];
+  onBoothSelect: (boothId: string) => void;
 }
 
 /** Maps poiType to a MUI icon component */
@@ -50,6 +53,8 @@ const MapSearchPanel = ({
   activePoiType,
   onCategorySelect,
   onPoiTypeSelect,
+  booths,
+  onBoothSelect,
 }: MapSearchPanelProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -90,6 +95,26 @@ const MapSearchPanel = ({
     const q = searchQuery.toLowerCase();
     return poiTypes.filter((poi) => poi.name.toLowerCase().includes(q));
   }, [searchQuery, poiTypes]);
+
+  const filteredBooths = useMemo(() => {
+    let result = [...booths];
+    const q = searchQuery.toLowerCase();
+
+    if (q.trim()) {
+      result = result.filter(
+        (b) =>
+          b.title.toLowerCase().includes(q) ||
+          b.articles.some((a) => a.title.toLowerCase().includes(q))
+      );
+    }
+
+    return result.sort((a, b) => {
+      if (a.code && b.code) return a.code - b.code;
+      if (a.code) return -1;
+      if (b.code) return 1;
+      return a.title.localeCompare(b.title);
+    });
+  }, [searchQuery, booths]);
 
   const handleToggle = useCallback(() => {
     setIsOpen((prev) => !prev);
@@ -424,11 +449,108 @@ const MapSearchPanel = ({
               </>
             )}
 
-            {filteredCategories.length === 0 && filteredPois.length === 0 && (
-              <Typography variant="body2" sx={{ textAlign: "center", opacity: 0.5, py: 3 }}>
-                Nincs találat
-              </Typography>
+            {/* Booths */}
+            {filteredBooths.length > 0 && (
+              <>
+                <Typography
+                  variant="caption"
+                  sx={{
+                    display: "block",
+                    mb: 1,
+                    mt: 2,
+                    textTransform: "uppercase",
+                    letterSpacing: 1,
+                    opacity: 0.6,
+                    fontWeight: 600,
+                  }}
+                >
+                  Standok
+                </Typography>
+                <Box sx={{ display: "flex", flexDirection: "column", gap: 0.75 }}>
+                  {filteredBooths.map((booth) => {
+                    const q = searchQuery.toLowerCase();
+                    const matchingArticles = booth.articles.filter((a) =>
+                      a.title.toLowerCase().includes(q)
+                    );
+
+                    return (
+                      <ButtonBase
+                        key={booth.id}
+                        onClick={() => {
+                          onBoothSelect(booth.id);
+                          setIsOpen(false);
+                        }}
+                        sx={{
+                          display: "flex",
+                          flexDirection: "column",
+                          alignItems: "flex-start",
+                          gap: 0.5,
+                          px: 1.5,
+                          py: 1,
+                          borderRadius: 2,
+                          bgcolor: "rgba(255,255,255,0.05)",
+                          border: "1px solid rgba(255,255,255,0.1)",
+                          transition: "all 0.15s ease",
+                          textAlign: "left",
+                          width: "100%",
+                          "&:hover": {
+                            bgcolor: "rgba(255,255,255,0.1)",
+                            borderColor: "rgba(255,255,255,0.2)",
+                          },
+                        }}
+                      >
+                        <Box sx={{ width: "100%", display: "flex", alignItems: "center" }}>
+                          <Typography variant="body2" sx={{ fontWeight: 600 }}>
+                            {booth.code && (
+                              <Box component="span" sx={{ fontWeight: 800, mr: 1, opacity: 0.8 }}>
+                                {String(booth.code).padStart(2, "0")}.
+                              </Box>
+                            )}
+                            {booth.title}
+                          </Typography>
+                        </Box>
+
+                        {/* Show matching articles if any */}
+                        {searchQuery && matchingArticles.length > 0 && (
+                          <Box
+                            sx={{
+                              display: "flex",
+                              flexDirection: "column",
+                              gap: 0.25,
+                              width: "100%",
+                            }}
+                          >
+                            {matchingArticles.map((article) => (
+                              <Typography
+                                key={article.slug}
+                                variant="caption"
+                                sx={{
+                                  color: "rgba(255,255,255,0.7)",
+                                  fontSize: 11,
+                                  display: "flex",
+                                  alignItems: "center",
+                                  gap: 0.5,
+                                }}
+                              >
+                                • {article.title}
+                              </Typography>
+                            ))}
+                          </Box>
+                        )}
+                      </ButtonBase>
+                    );
+                  })}
+                </Box>
+              </>
             )}
+
+            {filteredCategories.length === 0 &&
+              filteredPois.length === 0 &&
+              filteredBooths.length === 0 && (
+                <Typography variant="body2" sx={{ textAlign: "center", opacity: 0.5, py: 3 }}>
+                  Nincs találat
+                </Typography>
+              )}
           </Box>
         </Paper>
       )}
