@@ -5,13 +5,16 @@ import { JSDOM } from "jsdom";
 export type MapItem = {
   name: string;
   type: string;
+  code?: number;
   coordinates: [number, number][];
 };
+
+export type MapItemWithoutType = Omit<MapItem, "type">;
 
 export type Building = {
   name: string;
   articles: MapItem[];
-  booths: MapItem[];
+  booths: MapItemWithoutType[];
   svgWidth: number;
   svgHeight: number;
 };
@@ -34,7 +37,7 @@ const num = (v: string | null) => (v ? Number(v) : 0);
 const text = (v: string | null) => (v ? normalizeText(v.trim()) : "");
 
 /** Extracts the name and type suffix from an element's id attribute. */
-function extractNameAndType(el: Element): { name: string; type: string } {
+function extractNameAndType(el: Element): { name: string; type: string; code?: number } {
   let name = text(el.getAttribute("id"));
   let type = "osztvszktv";
 
@@ -48,7 +51,16 @@ function extractNameAndType(el: Element): { name: string; type: string } {
 
   name = name.replace(" WS", "").replace(" ISZB", "").replace(" ESZB", "").trim();
 
-  return { name, type };
+  // name might have _1, _2, etc. at the end
+  name = name.replace(/_\d+$/, "");
+
+  // code might be at the start of the name, eg: "1. Fodrász"
+  const codeMatch = name.match(/^\d+\. /);
+  const code = codeMatch ? Number(codeMatch[0].replace(".", "")) : undefined;
+
+  name = name.replace(/^\d+\. /, "").trim();
+
+  return { name, type, code };
 }
 
 /** Converts a <rect> element to corner coordinates. */
@@ -136,12 +148,12 @@ function pathToCoordinates(path: Element): [number, number][] {
 
 /** Parses a <rect> or <path> element into a MapItem. */
 function parseElement(el: Element): MapItem {
-  const { name, type } = extractNameAndType(el);
+  const { name, type, code } = extractNameAndType(el);
 
   const tag = el.tagName.toLowerCase();
   const coordinates = tag === "rect" ? rectToCoordinates(el) : pathToCoordinates(el);
 
-  return { name, type, coordinates };
+  return { name, type, code, coordinates };
 }
 
 export function parseSvg(svgText: string): Data {
@@ -163,11 +175,16 @@ export function parseSvg(svgText: string): Data {
     const boothsGroup = buildingGroup.querySelector("g#booths");
 
     const articles: MapItem[] = articlesGroup
-      ? Array.from(articlesGroup.querySelectorAll("rect, path")).map(parseElement)
+      ? Array.from(articlesGroup.querySelectorAll("rect, path"))
+          .map(parseElement)
+          .filter((item) => item.name !== "")
       : [];
 
-    const booths: MapItem[] = boothsGroup
-      ? Array.from(boothsGroup.querySelectorAll("rect, path")).map(parseElement)
+    const booths: MapItemWithoutType[] = boothsGroup
+      ? Array.from(boothsGroup.querySelectorAll("rect, path"))
+          .map(parseElement)
+          .filter((item) => item.name !== "")
+          .map((item) => ({ name: item.name, coordinates: item.coordinates, code: item.code }))
       : [];
 
     buildings.push({
@@ -188,7 +205,24 @@ const main = () => {
   console.log(filePath);
   const svgText = fs.readFileSync(filePath, "utf-8");
   const data = parseSvg(svgText);
-  console.log(data);
+
+  data.buildings.forEach((building) => {
+    console.log(`\n=== ${building.name} ===`);
+
+    console.log(`\nBooths (${building.booths.length}):`);
+    building.booths
+      .sort((a, b) => a.name.localeCompare(b.name))
+      .forEach((booth) => {
+        console.log(`  - ${booth.name}`);
+      });
+
+    console.log(`\nArticles (${building.articles.length}):`);
+    building.articles
+      .sort((a, b) => a.name.localeCompare(b.name))
+      .forEach((article) => {
+        console.log(`  - ${article.name} (${article.type})`);
+      });
+  });
 
   fs.writeFileSync(filePath.replace(".svg", "") + "-data.json", JSON.stringify(data, null, 2));
 };

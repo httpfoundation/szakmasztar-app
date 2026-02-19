@@ -9,45 +9,37 @@ import { LngLatBounds } from "maplibre-gl";
 import type { MapLayerMouseEvent, ViewStateChangeEvent } from "react-map-gl/maplibre";
 import { ArticleFragment } from "@/actions/articles/articles.generated";
 import BoothDetailPanel from "./BoothDetailPanel";
-import {
-  generateBoothsGeoJSON,
-  generateBoothSymbolsGeoJSON,
-  generateBuildingsGeoJSON,
-  MAX_BOOTH_ARTICLES,
-} from "./mapHelpers";
+import { generateBoothsGeoJSON, generateBuildingsGeoJSON } from "./mapHelpers";
 import { staticMapFeatures } from "./staticMapFeatures";
 
 export interface InteractiveMapData {
   buildings: {
     id: string;
     name: string;
+    code?: number;
     color: string;
     hoverColor: string;
+    coordinates: [number, number][];
     svgWidth: number;
     svgHeight: number;
-    coordinates: [number, number][];
     booths: {
       id: string;
       title: string;
-      code: string;
+      code: number | null;
+      image: {
+        url: string;
+      } | null;
       coordinates: [number, number][];
-      articleIds: string[];
-    }[];
-    articles: {
-      id: string;
-      title: string;
-      coordinates: [number, number][];
-      slug: string;
+      articles: ArticleFragment[];
     }[];
   }[];
 }
 
 interface InteractiveMapProps {
   mapData: InteractiveMapData;
-  articlesById: Record<string, ArticleFragment>;
 }
 
-const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
+const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
   const mapRef = useRef<MapRef>(null);
   const [hoveredBoothId, setHoveredBoothId] = useState<string | null>(null);
   const [hoveredBuildingId, setHoveredBuildingId] = useState<string | null>(null);
@@ -147,14 +139,6 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
     return null;
   }, [selectedBoothId, mapData]);
 
-  /* Returns the articles associated with the selected booth */
-  const selectedBoothArticles = useMemo(() => {
-    if (!selectedBooth) return [];
-    return selectedBooth.articleIds
-      .map((id) => articlesById[id])
-      .filter((a): a is ArticleFragment => !!a);
-  }, [selectedBooth, articlesById]);
-
   /* Save the map state (center, zoom, pitch, bearing) to session storage */
   const onMoveEnd = useCallback((event: ViewStateChangeEvent) => {
     const { longitude, latitude, zoom, pitch, bearing } = event.viewState;
@@ -223,57 +207,9 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
         ["szakmabemutato_wshu", "/images/szakmabemutato_wshu.png"],
       ];
 
-      /* Small inline icons — loaded with higher pixelRatio so they render smaller */
-      const inlineImages: [string, string][] = [
-        ["wshu-sm", "/images/wshu-sm.png"],
-        ["szakmabemutato-sm", "/images/szakmabemutato-sm.png"],
-        ["osztv-szktv-sm", "/images/osztv-szktv-sm.png"],
-      ];
-
-      /* Category SVG symbol images for booth watermarks */
-      const symbolImages: [string, string][] = [
-        ["wshu-symbol", "/images/wshu-symbol.svg"],
-        ["osztv-symbol", "/images/osztv-symbol.svg"],
-        ["sponsor-symbol", "/images/sponsor-symbol.svg"],
-        ["nak-symbol", "/images/nak-symbol.svg"],
-      ];
-
       images.forEach(async ([name, path]) => {
         const image = await map.loadImage(path);
         map.addImage(name, image.data);
-      });
-
-      inlineImages.forEach(async ([name, path]) => {
-        const image = await map.loadImage(path);
-        map.addImage(name, image.data, { pixelRatio: 1.5 });
-      });
-
-      /* Rasterize SVGs via Image + Canvas since MapLibre can't decode SVGs directly */
-      const loadSvgAsImage = (src: string, size: number): Promise<ImageData> =>
-        new Promise((resolve, reject) => {
-          const img = new Image();
-          img.onload = () => {
-            const aspect = img.naturalHeight / img.naturalWidth;
-            const w = size;
-            const h = Math.round(size * aspect);
-            const canvas = document.createElement("canvas");
-            canvas.width = w;
-            canvas.height = h;
-            const ctx = canvas.getContext("2d")!;
-            ctx.drawImage(img, 0, 0, w, h);
-            resolve(ctx.getImageData(0, 0, w, h));
-          };
-          img.onerror = reject;
-          img.src = src;
-        });
-
-      symbolImages.forEach(async ([name, path]) => {
-        try {
-          const imageData = await loadSvgAsImage(path, 256);
-          map.addImage(name, imageData);
-        } catch (e) {
-          console.error(`Failed to load symbol image: ${name}`, e);
-        }
       });
     }
   }, []);
@@ -328,30 +264,11 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
   const buildingZoomLevel = 14;
   const boothZoomLevel = 16.5;
   const boothNameZoomLevel = 17.7;
-  const articleZoomLevel = 19;
   const maxZoomLevel = 22;
 
   /* Generate the GeoJSON for the buildings, booths and articles */
   const buildingsGeoJSON = useMemo(() => generateBuildingsGeoJSON(mapData), [mapData]);
   const boothsGeoJSON = useMemo(() => generateBoothsGeoJSON(mapData), [mapData]);
-  const boothSymbolsGeoJSON = useMemo(() => generateBoothSymbolsGeoJSON(mapData), [mapData]);
-  // const articlesGeoJSON = useMemo(() => generateArticlesGeoJSON(mapData), [mapData]);
-
-  /* Build a format expression for article labels with inline category icons */
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const articleFormatExpression = useMemo((): any => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const format: any[] = ["format"];
-    for (let i = 0; i < MAX_BOOTH_ARTICLES; i++) {
-      // Inline icon for the article (skipped if image not found)
-      format.push(["image", ["coalesce", ["get", `article_${i}_icon`], ""]]);
-      format.push({});
-      // Article title text (empty string if slot unused)
-      format.push(["coalesce", ["get", `article_${i}_text`], ""]);
-      format.push({});
-    }
-    return format;
-  }, []);
 
   return (
     <>
@@ -523,22 +440,33 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
             paint={{
               "fill-extrusion-color": [
                 "case",
-                ["==", ["get", "id"], selectedBoothId ?? ""],
-                "#93415a", // Selected color
-                ["==", ["get", "id"], hoveredBoothId],
-                "#904e96", // Hover color
-                "#71376a", // Default color
+                ["!=", ["get", "image"], false],
+                [
+                  "case",
+                  ["==", ["get", "id"], selectedBoothId ?? ""],
+                  "#e0e0e0",
+                  ["==", ["get", "id"], hoveredBoothId],
+                  "#f0f0f0",
+                  "#ffffff",
+                ],
+                [
+                  "case",
+                  ["==", ["get", "id"], selectedBoothId ?? ""],
+                  "#93415a",
+                  ["==", ["get", "id"], hoveredBoothId],
+                  "#904e96",
+                  "#71376a",
+                ],
               ],
               "fill-extrusion-height": 0,
               "fill-extrusion-base": 0,
             }}
             minzoom={boothZoomLevel}
           />
-
           <Layer
             id="booths-labels"
             type="symbol"
-            filter={["==", "type", "booth"]}
+            filter={["all", ["==", "type", "booth"], ["==", "image", false]]}
             layout={{
               "text-field": ["get", "name"],
               "text-size": [
@@ -552,7 +480,7 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
               ],
               "text-font": ["montserratBold"],
               "text-rotation-alignment": "viewport",
-              "text-anchor": "top",
+              "text-anchor": ["case", ["==", ["get", "code"], false], "center", "top"],
               "text-justify": "center",
               "text-offset": [0, 0.2],
             }}
@@ -566,9 +494,9 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
           <Layer
             id="booths-numbers-center"
             type="symbol"
-            filter={["==", "type", "booth"]}
+            filter={["all", ["==", "type", "booth"], ["!=", "code", false]]}
             layout={{
-              "text-field": ["get", "boothNumber"],
+              "text-field": ["get", "code"],
               "text-size": [
                 "interpolate",
                 ["exponential", 2],
@@ -594,9 +522,9 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
           <Layer
             id="booths-numbers"
             type="symbol"
-            filter={["==", "type", "booth"]}
+            filter={["all", ["==", "type", "booth"], ["!=", "code", false]]}
             layout={{
-              "text-field": ["get", "boothNumber"],
+              "text-field": ["get", "code"],
               "text-size": [
                 "interpolate",
                 ["exponential", 2],
@@ -618,73 +546,13 @@ const InteractiveMap = ({ mapData, articlesById }: InteractiveMapProps) => {
             }}
             minzoom={boothNameZoomLevel}
           />
-          {/* Full booth name — collision-checked, rendered on top of numbers */}
-          {/* Where a name fits, its halo visually covers the number underneath */}
-          {/*  <Layer
-            id="booths-labels"
-            type="symbol"
-            filter={["==", "type", "booth"]}
-            layout={{
-              "text-field": ["get", "name"],
-              "text-size": [
-                "interpolate",
-                ["exponential", 2],
-                ["zoom"],
-                boothZoomLevel,
-                5,
-                articleZoomLevel,
-                13,
-              ],
-              "text-font": ["montserratMedium"],
-              "text-allow-overlap": false,
-              "text-rotation-alignment": "viewport",
-              "text-line-height": 1.1,
-              // "text-max-width": ["get", "textMaxWidth"],
-              "text-anchor": "top",
-              "text-padding": 0,
-            }}
-            paint={{
-              "text-color": "#fff",
-              "text-halo-color": "#f4b02a",
-              // "text-halo-width": 4,
-            }}
-            minzoom={boothZoomLevel}
-            maxzoom={articleZoomLevel}
-          /> */}
-        </Source>
-        {/* Booth watermark symbols — placed near the bottom-right corner of each booth */}
-        <Source id="booth-symbols" type="geojson" data={boothSymbolsGeoJSON}>
-          <Layer
-            id="booth-symbol-icons"
-            type="symbol"
-            layout={{
-              "icon-image": ["get", "symbolIcon"],
-              "icon-size": [
-                "interpolate",
-                ["exponential", 2],
-                ["zoom"],
-                boothZoomLevel,
-                0.03,
-                maxZoomLevel,
-                0.7,
-              ],
-              "icon-anchor": "bottom-right",
-              "icon-allow-overlap": true,
-              "icon-ignore-placement": true,
-              "icon-rotation-alignment": "map",
-              "icon-pitch-alignment": "map",
-            }}
-            paint={{
-              "icon-opacity": 0.8,
-            }}
-            minzoom={boothZoomLevel}
-          />
         </Source>
       </Map>
       {selectedBooth && (
         <BoothDetailPanel
           boothTitle={selectedBooth.title}
-          articles={selectedBoothArticles}
+          boothCode={selectedBooth.code}
+          articles={selectedBooth.articles}
           requestClose={isDismissing}
           onClose={() => {
             setSelectedBoothId(null);

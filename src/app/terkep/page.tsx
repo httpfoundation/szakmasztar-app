@@ -15,45 +15,29 @@ export const metadata: Metadata = {
 };
 
 const MapPage = async () => {
-  const { buildings, articles, articlesById } = await getInteractiveMapItems();
+  const { boothsByBuilding, articles } = await getInteractiveMapItems();
 
   const data: InteractiveMapData = {
-    buildings: buildings.children.map((buildingCategory) => {
+    buildings: boothsByBuilding.children.map((buildingCategory) => {
       const buildingMetadata = JSON.parse(buildingCategory.metadata ?? "{}");
 
-      const buildingArticles = articles.filter(
-        (article) => article.buildingId === buildingCategory.id.replace("szakmasztar-app-", "")
-      );
-
-      const booths = (buildingCategory.items as ArticleFragment[]).map((boothCategory) => {
+      const buildingBooths = (buildingCategory.items as ArticleFragment[]).map((boothCategory) => {
         const boothMetadata = JSON.parse(boothCategory.metadata ?? "{}");
+        const boothArticleIds = (boothMetadata.articleIds as string[]) ?? [];
+        const boothArticles = articles.filter((article) => boothArticleIds.includes(article.id));
+        const code = boothCategory.subtitle;
         return {
           id: boothCategory.id,
           title: boothCategory.title,
-          code: boothCategory.subtitle ?? "",
-          articleIds: (boothMetadata.articleIds as string[]) ?? [],
-          coordinates: (boothMetadata.map?.coordinates as [number, number][]) ?? [],
-        } as InteractiveMapData["buildings"][number]["booths"][number];
-      });
-
-      const articlesWithoutBooth = buildingArticles.filter((article) => {
-        const hasParentBooth = (buildingCategory.items as ArticleFragment[]).some(
-          (boothCategory) => {
-            const boothMetadata = JSON.parse(boothCategory.metadata ?? "{}");
-            return boothMetadata.articleIds?.includes(article.id);
-          }
-        );
-        return !hasParentBooth;
-      });
-
-      const fakeBooths = articlesWithoutBooth.map((article) => {
-        return {
-          id: article.id,
-          title: article.title,
-          code: "",
-          articleIds: [article.id],
-          coordinates: article.coordinates ?? [],
-        } as InteractiveMapData["buildings"][number]["booths"][number];
+          code: code ? Number(code) : null,
+          image: boothCategory.image
+            ? {
+                url: boothCategory.image.url,
+              }
+            : null,
+          coordinates: boothMetadata.coordinates ?? [],
+          articles: boothArticles,
+        };
       });
 
       return {
@@ -64,11 +48,21 @@ const MapPage = async () => {
         coordinates: buildingMetadata.coordinates ?? [],
         svgWidth: buildingMetadata.svgWidth ?? 0,
         svgHeight: buildingMetadata.svgHeight ?? 0,
-        booths: [...booths, ...fakeBooths],
-        articles: buildingArticles,
+        booths: buildingBooths,
       };
     }),
   };
+
+  const boothsWithoutArticles = data.buildings
+    .flatMap((building) => building.booths)
+    .filter((booth) => booth.articles.length === 0);
+
+  console.warn(
+    "!! Booths without articles:",
+    boothsWithoutArticles.map((booth) => `"${booth.title}"`).join(", ")
+  );
+
+  // return <pre>{JSON.stringify(data, null, 2)}</pre>;
 
   return (
     <Stack
@@ -86,7 +80,7 @@ const MapPage = async () => {
     >
       <YellowTitle>Térkép</YellowTitle>
       <Box sx={{ flex: 1, position: "relative", minHeight: 0 }}>
-        <InteractiveMap mapData={data} articlesById={articlesById} />
+        <InteractiveMap mapData={data} />
       </Box>
     </Stack>
   );

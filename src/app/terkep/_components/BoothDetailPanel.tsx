@@ -8,6 +8,7 @@ import EventCards from "@/components/programok/EventCards";
 
 interface BoothDetailPanelProps {
   boothTitle: string;
+  boothCode: number | null;
   articles: ArticleFragment[];
   requestClose?: boolean;
   onClose: () => void;
@@ -19,6 +20,7 @@ const INITIAL_OFFSET_RATIO = 0.6; // 60% hidden → 40% visible
 
 const BoothDetailPanel = ({
   boothTitle,
+  boothCode,
   articles,
   requestClose,
   onClose,
@@ -278,6 +280,11 @@ const BoothDetailPanel = ({
         }}
       >
         <Typography variant="h6" noWrap sx={{ fontWeight: 700, flex: 1 }}>
+          {boothCode && (
+            <Box component="span" sx={{ fontWeight: 900, mr: 1 }}>
+              {boothCode.toString().padStart(2, "0")}
+            </Box>
+          )}
           {boothTitle}
         </Typography>
         <IconButton onClick={handleClose} size="small" sx={{ color: "inherit", ml: 1 }}>
@@ -316,7 +323,7 @@ const BoothDetailPanel = ({
               sort={false}
             />
           ) : (
-            <Typography variant="body2" color="text.secondary" align="center" sx={{ py: 4 }}>
+            <Typography variant="body2" color="text.primary" align="center" sx={{ py: 4 }}>
               Ehhez a standhoz nem tartozik szakmai program.
             </Typography>
           )}

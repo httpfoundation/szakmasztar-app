@@ -4,133 +4,88 @@
       "name": "g-pavilon-map",
       "articles": [
         {
-          "name": "Nyomdaipari technikus - Nyomdaipari előkészítő szakmairány",
+          "name": "Alternatív járműhajtási technikus",
           "type": "osztvszktv",
           "coordinates": [
-            [264.5, 700],
-            [365.5, 700],
-            [365.5, 759.3333],
-            [264.5, 759.3333]
+            [426.5, 102],
+            [638.5, 102],
+            [638.5, 145],
+            [426.5, 145]
           ]
         },
         {
-          "name": "Nyomdaipar",
+          "name": "Ápolás és gondozás",
           "type": "interaktiv-szakmabemutato",
           "coordinates": [
-            [264.5, 637],
-            [365.5, 637],
-            [365.5, 698],
-            [264.5, 698]
+            [124.5, 352],
+            [213.5, 352],
+            [213.5, 436],
+            [124.5, 436]
           ]
         },
         {
-          "name": "Kozmetikus",
+          "name": "Ápolás és gondozás",
+          "type": "wshu",
+          "coordinates": [
+            [124.5, 438],
+            [213.5, 438],
+            [213.5, 522],
+            [124.5, 522]
+          ]
+        },
+        {
+          "name": "Automatikai technikus - Autóipar szakmairány",
+          "type": "osztvszktv",
+          "coordinates": [
+            [603.5, 724],
+            [684.5, 724],
+            [684.5, 754],
+            [603.5, 754]
+          ]
+        },
+        {
+          "name": "Automatikai technikus - Gyártástechnika szakmairány",
+          "type": "osztvszktv",
+          "coordinates": [
+            [686.5, 724],
+            [765.5, 724],
+            [765.5, 754],
+            [686.5, 754]
+          ]
+        },
+        {
+          "name": "Automatikai technikus, Mechatronikai technikus, Ipar 4.0",
           "type": "interaktiv-szakmabemutato",
           "coordinates": [
-            [272.5, 416],
-            [442.5, 416],
-            [442.5, 465],
-            [272.5, 465]
+            [603.5, 658],
+            [765.5, 658],
+            [765.5, 690],
+            [603.5, 690]
           ]
         },
         {
-          "name": "Fodrász",
+          "name": "Autószerelő",
           "type": "wshu",
           "coordinates": [
-            [824.5, 112],
-            [909.5, 112],
-            [909.5, 174],
-            [824.5, 174]
+            [243.5, 92],
+            [243.5, 191],
+            [182.409, 191],
+            [152.701, 161.787],
+            [152.409, 161.5],
+            [138.896, 161.5],
+            [124, 147.565],
+            [124, 92],
+            [243.5, 92]
           ]
         },
         {
-          "name": "Villanyszerelő - Épületvillamossági szakmairány",
-          "type": "osztvszktv",
-          "coordinates": [
-            [943.5, 112],
-            [995.8333, 112],
-            [995.8333, 174],
-            [943.5, 174]
-          ]
-        },
-        {
-          "name": "Villanyszerelő - Villamos hálózat szakmairány",
-          "type": "osztvszktv",
-          "coordinates": [
-            [997.5, 112],
-            [1049.8333, 112],
-            [1049.8333, 174],
-            [997.5, 174]
-          ]
-        },
-        {
-          "name": "Villanyszerelő - Villamos készülék és berendezés szakmairány",
-          "type": "osztvszktv",
-          "coordinates": [
-            [1051.5, 112],
-            [1104.5, 112],
-            [1104.5, 174],
-            [1051.5, 174]
-          ]
-        },
-        {
-          "name": "Erősáramú elektrotechnikus",
-          "type": "osztvszktv",
-          "coordinates": [
-            [943.5, 176],
-            [1104.5, 176],
-            [1104.5, 238],
-            [943.5, 238]
-          ]
-        },
-        {
-          "name": "Elektronikai technikus",
-          "type": "osztvszktv",
-          "coordinates": [
-            [943.5, 240],
-            [1104.5, 240],
-            [1104.5, 302],
-            [943.5, 302]
-          ]
-        },
-        {
-          "name": "Virágkötő",
-          "type": "wshu",
-          "coordinates": [
-            [1154.5, 105],
-            [1179.5, 105],
-            [1179.5, 165],
-            [1154.5, 165]
-          ]
-        },
-        {
-          "name": "Kertépítő",
-          "type": "wshu",
-          "coordinates": [
-            [1181.5, 105],
-            [1230.5, 105],
-            [1230.5, 165],
-            [1181.5, 165]
-          ]
-        },
-        {
-          "name": "Divatszabó - Női szabó szakmairány",
-          "type": "osztvszktv",
-          "coordinates": [
-            [1150.5, 213],
-            [1217.5, 213],
-            [1217.5, 303],
-            [1150.5, 303]
-          ]
-        },
-        {
-          "name": "Divatszabó",
+          "name": "Bálint Analitika",
           "type": "interaktiv-szakmabemutato",
           "coordinates": [
-            [1219.5, 213],
-            [1286.5, 213],
-            [1286.5, 303],
-            [1219.5, 303]
+            [760.5, 215],
+            [786.5, 215],
+            [786.5, 283],
+            [760.5, 283]
           ]
         },
         {
@@ -144,6 +99,77 @@
           ]
         },
         {
+          "name": "CNC maró",
+          "type": "wshu",
+          "code": 7,
+          "coordinates": [
+            [338.5, 263],
+            [377.5, 263],
+            [377.5, 313],
+            [338.5, 313]
+          ]
+        },
+        {
+          "name": "Cukrász",
+          "type": "osztvszktv",
+          "coordinates": [
+            [807.5, 655],
+            [1099.5, 655],
+            [1099.5, 687],
+            [807.5, 687]
+          ]
+        },
+        {
+          "name": "Cukrász szaktechnikus",
+          "type": "osztvszktv",
+          "coordinates": [
+            [807.5, 689],
+            [1099.5, 689],
+            [1099.5, 721],
+            [807.5, 721]
+          ]
+        },
+        {
+          "name": "Cukrász, Cukrász szaktechnikus",
+          "type": "interaktiv-szakmabemutato",
+          "coordinates": [
+            [807.5, 757],
+            [1099.5, 757],
+            [1099.5, 789],
+            [807.5, 789]
+          ]
+        },
+        {
+          "name": "Divatszabó",
+          "type": "interaktiv-szakmabemutato",
+          "coordinates": [
+            [1219.5, 213],
+            [1286.5, 213],
+            [1286.5, 303],
+            [1219.5, 303]
+          ]
+        },
+        {
+          "name": "Divatszabó - Női szabó szakmairány",
+          "type": "osztvszktv",
+          "coordinates": [
+            [1150.5, 213],
+            [1217.5, 213],
+            [1217.5, 303],
+            [1150.5, 303]
+          ]
+        },
+        {
+          "name": "Elektronikai technikus",
+          "type": "osztvszktv",
+          "coordinates": [
+            [943.5, 240],
+            [1104.5, 240],
+            [1104.5, 302],
+            [943.5, 302]
+          ]
+        },
+        {
           "name": "Épületasztalos",
           "type": "wshu",
           "coordinates": [
@@ -154,193 +180,43 @@
           ]
         },
         {
-          "name": "Villanyszerelő",
+          "name": "Erősáramú elektrotechnikus",
+          "type": "osztvszktv",
+          "coordinates": [
+            [943.5, 176],
+            [1104.5, 176],
+            [1104.5, 238],
+            [943.5, 238]
+          ]
+        },
+        {
+          "name": "Festő, díszítőfestő",
           "type": "wshu",
           "coordinates": [
-            [1336.5, 234],
-            [1456.5, 234],
-            [1456.5, 293],
-            [1336.5, 293]
+            [1162.5, 690],
+            [1323.5, 690],
+            [1323.5, 739],
+            [1162.5, 739]
           ]
         },
         {
-          "name": "HM Kadét",
-          "type": "egyeb-szakmabemutato",
-          "coordinates": [
-            [1356.5, 372],
-            [1456.5, 372],
-            [1456.5, 451],
-            [1356.5, 451]
-          ]
-        },
-        {
-          "name": "MOL",
-          "type": "interaktiv-szakmabemutato",
-          "coordinates": [
-            [1356.5, 453],
-            [1456.5, 453],
-            [1456.5, 512],
-            [1356.5, 512]
-          ]
-        },
-        {
-          "name": "MOL_2",
+          "name": "Festő, mázoló, tapétázó",
           "type": "osztvszktv",
           "coordinates": [
-            [490.5, 484],
-            [539.5, 484],
-            [539.5, 582],
-            [490.5, 582]
+            [1162.5, 639],
+            [1323.5, 639],
+            [1323.5, 688],
+            [1162.5, 688]
           ]
         },
         {
-          "name": "Richter Gedeon Nyrt.",
-          "type": "egyeb-szakmabemutato",
+          "name": "Fodrász",
+          "type": "wshu",
           "coordinates": [
-            [704.5, 296],
-            [758.5, 296],
-            [758.5, 323],
-            [704.5, 323]
-          ]
-        },
-        {
-          "name": "Gépésztechnikus - CAD-CAM szakmairány",
-          "type": "osztvszktv",
-          "coordinates": [
-            [640.5, 102],
-            [758.5, 102],
-            [758.5, 147],
-            [640.5, 147]
-          ]
-        },
-        {
-          "name": "Alternatív járműhajtási technikus",
-          "type": "osztvszktv",
-          "coordinates": [
-            [426.5, 102],
-            [638.5, 102],
-            [638.5, 145],
-            [426.5, 145]
-          ]
-        },
-        {
-          "name": "Karosszérialakatos",
-          "type": "osztvszktv",
-          "coordinates": [
-            [426.5, 147],
-            [638.5, 147],
-            [638.5, 190],
-            [426.5, 190]
-          ]
-        },
-        {
-          "name": "Gépjármű-mechatronikai technikus - Gyártás szakmairány",
-          "type": "osztvszktv",
-          "coordinates": [
-            [426.5, 192],
-            [638.5, 192],
-            [638.5, 235],
-            [426.5, 235]
-          ]
-        },
-        {
-          "name": "Gépjármű-mechatronikai technikus - Szerviz szakmairány",
-          "type": "osztvszktv",
-          "coordinates": [
-            [426.5, 237],
-            [638.5, 237],
-            [638.5, 280],
-            [426.5, 280]
-          ]
-        },
-        {
-          "name": "Jármű- és szerviztechnika",
-          "type": "interaktiv-szakmabemutato",
-          "coordinates": [
-            [426.5, 282],
-            [638.5, 282],
-            [638.5, 323],
-            [426.5, 323]
-          ]
-        },
-        {
-          "name": "Gépésztechnikus - CAD-CAM szakmairány",
-          "type": "interaktiv-szakmabemutato",
-          "coordinates": [
-            [640.5, 149],
-            [758.5, 149],
-            [758.5, 194],
-            [640.5, 194]
-          ]
-        },
-        {
-          "name": "Vegyész technikus - Általános laboráns szakmairány",
-          "type": "osztvszktv",
-          "coordinates": [
-            [640.5, 196],
-            [758.5, 196],
-            [758.5, 244],
-            [640.5, 244]
-          ]
-        },
-        {
-          "name": "Vegyész technikus - Termelési folyamatirányító szakmairány",
-          "type": "osztvszktv",
-          "coordinates": [
-            [640.5, 246],
-            [758.5, 246],
-            [758.5, 294],
-            [640.5, 294]
-          ]
-        },
-        {
-          "name": "Magyar Kémikusok Egyesülete",
-          "type": "interaktiv-szakmabemutato",
-          "coordinates": [
-            [760.5, 139],
-            [779.5, 139],
-            [779.5, 194],
-            [760.5, 194]
-          ]
-        },
-        {
-          "name": "Bálint Analitika",
-          "type": "interaktiv-szakmabemutato",
-          "coordinates": [
-            [760.5, 215],
-            [779.5, 215],
-            [779.5, 270],
-            [760.5, 270]
-          ]
-        },
-        {
-          "name": "IKK",
-          "type": "egyeb-szakmabemutato",
-          "coordinates": [
-            [1404.5, 514],
-            [1456.5, 514],
-            [1456.5, 542],
-            [1404.5, 542]
-          ]
-        },
-        {
-          "name": "MÁV",
-          "type": "osztvszktv",
-          "coordinates": [
-            [1150.5, 554],
-            [1300.5, 554],
-            [1300.5, 583],
-            [1150.5, 583]
-          ]
-        },
-        {
-          "name": "Kertépítő",
-          "type": "interaktiv-szakmabemutato",
-          "coordinates": [
-            [1232.5, 105],
-            [1281.5, 105],
-            [1281.5, 165],
-            [1232.5, 165]
+            [824.5, 112],
+            [909.5, 112],
+            [909.5, 174],
+            [824.5, 174]
           ]
         },
         {
@@ -364,53 +240,176 @@
           ]
         },
         {
-          "name": "Pincér - vendégtéri szakember",
+          "name": "Gépésztechnikus - CAD-CAM szakmairány",
           "type": "osztvszktv",
           "coordinates": [
-            [714.5, 372],
-            [905.5, 372],
-            [905.5, 423],
-            [714.5, 423]
+            [640.5, 102],
+            [758.5, 102],
+            [758.5, 147],
+            [640.5, 147]
           ]
         },
         {
-          "name": "Vendéglátás",
+          "name": "Gépésztechnikus - CAD-CAM szakmairány",
           "type": "interaktiv-szakmabemutato",
           "coordinates": [
-            [714.5, 531],
-            [905.5, 531],
-            [905.5, 582],
-            [714.5, 582]
+            [640.5, 149],
+            [758.5, 149],
+            [758.5, 194],
+            [640.5, 194]
           ]
         },
         {
-          "name": "Pincér",
-          "type": "wshu",
-          "coordinates": [
-            [714.5, 478],
-            [905.5, 478],
-            [905.5, 529],
-            [714.5, 529]
-          ]
-        },
-        {
-          "name": "Vendégtéri szaktechnikus",
+          "name": "Gépjármű-mechatronikai technikus - Gyártás szakmairány",
           "type": "osztvszktv",
           "coordinates": [
-            [714.5, 425],
-            [905.5, 425],
-            [905.5, 476],
-            [714.5, 476]
+            [426.5, 192],
+            [638.5, 192],
+            [638.5, 235],
+            [426.5, 235]
           ]
         },
         {
-          "name": "Szakács",
+          "name": "Gépjármű-mechatronikai technikus - Szerviz szakmairány",
+          "type": "osztvszktv",
+          "coordinates": [
+            [426.5, 237],
+            [638.5, 237],
+            [638.5, 280],
+            [426.5, 280]
+          ]
+        },
+        {
+          "name": "Grafikus",
+          "type": "wshu",
+          "code": 6,
+          "coordinates": [
+            [257.5, 263],
+            [336.5, 263],
+            [336.5, 313],
+            [257.5, 313]
+          ]
+        },
+        {
+          "name": "HM Kadét",
+          "type": "egyeb-szakmabemutato",
+          "coordinates": [
+            [1356.5, 372],
+            [1456.5, 372],
+            [1456.5, 451],
+            [1356.5, 451]
+          ]
+        },
+        {
+          "name": "Hűtő- és klímatechnikai szerelő",
+          "type": "wshu",
+          "code": 1,
+          "coordinates": [
+            [123.5, 739],
+            [213.5, 739],
+            [213.5, 818],
+            [123.5, 818]
+          ]
+        },
+        {
+          "name": "IKK",
+          "type": "egyeb-szakmabemutato",
+          "coordinates": [
+            [1404.5, 514],
+            [1456.5, 514],
+            [1456.5, 542],
+            [1404.5, 542]
+          ]
+        },
+        {
+          "name": "Informatikai rendszerüzemeltető",
           "type": "wshu",
           "coordinates": [
-            [907.5, 372],
-            [1148.5, 372],
-            [1148.5, 440.6667],
-            [907.5, 440.6667]
+            [426.5, 661],
+            [547.5, 661],
+            [547.5, 712.3333],
+            [426.5, 712.3333]
+          ]
+        },
+        {
+          "name": "Ipar 4.0",
+          "type": "osztvszktv",
+          "coordinates": [
+            [603.5, 788],
+            [683.5, 788],
+            [683.5, 818],
+            [603.5, 818]
+          ]
+        },
+        {
+          "name": "Ipar 4.0",
+          "type": "wshu",
+          "coordinates": [
+            [685.5, 788],
+            [765.5, 788],
+            [765.5, 818],
+            [685.5, 818]
+          ]
+        },
+        {
+          "name": "Ipari robotika",
+          "type": "wshu",
+          "code": 5,
+          "coordinates": [
+            [257.5, 315],
+            [377.5, 315],
+            [377.5, 373],
+            [257.5, 373]
+          ]
+        },
+        {
+          "name": "Jármű- és szerviztechnika",
+          "type": "interaktiv-szakmabemutato",
+          "coordinates": [
+            [426.5, 282],
+            [638.5, 282],
+            [638.5, 323],
+            [426.5, 323]
+          ]
+        },
+        {
+          "name": "Járműfényező",
+          "type": "interaktiv-szakmabemutato",
+          "coordinates": [
+            [245.5, 126],
+            [365.5, 126],
+            [365.5, 158],
+            [245.5, 158]
+          ]
+        },
+        {
+          "name": "Járműfényező",
+          "type": "osztvszktv",
+          "coordinates": [
+            [245.5, 160],
+            [365.5, 160],
+            [365.5, 191],
+            [245.5, 191]
+          ]
+        },
+        {
+          "name": "Járműkarosszéria-előkészítő, felületbevonó",
+          "type": "osztvszktv",
+          "coordinates": [
+            [245.5, 92],
+            [365.5, 92],
+            [365.5, 124],
+            [245.5, 124]
+          ]
+        },
+        {
+          "name": "Karosszérialakatos",
+          "type": "osztvszktv",
+          "coordinates": [
+            [426.5, 147],
+            [638.5, 147],
+            [638.5, 190],
+            [426.5, 190]
           ]
         },
         {
@@ -454,6 +453,186 @@
           ]
         },
         {
+          "name": "Kertépítő",
+          "type": "wshu",
+          "coordinates": [
+            [1181.5, 105],
+            [1230.5, 105],
+            [1230.5, 165],
+            [1181.5, 165]
+          ]
+        },
+        {
+          "name": "Kertépítő",
+          "type": "interaktiv-szakmabemutato",
+          "coordinates": [
+            [1232.5, 105],
+            [1281.5, 105],
+            [1281.5, 165],
+            [1232.5, 165]
+          ]
+        },
+        {
+          "name": "Kozmetikus",
+          "type": "interaktiv-szakmabemutato",
+          "coordinates": [
+            [272.5, 416],
+            [442.5, 416],
+            [442.5, 465],
+            [272.5, 465]
+          ]
+        },
+        {
+          "name": "Kozmetikus technikus",
+          "type": "osztvszktv",
+          "coordinates": [
+            [272.5, 467],
+            [442.5, 467],
+            [442.5, 516],
+            [272.5, 516]
+          ]
+        },
+        {
+          "name": "Magyar Kémikusok Egyesülete",
+          "type": "interaktiv-szakmabemutato",
+          "coordinates": [
+            [760.5, 139],
+            [786.5, 139],
+            [786.5, 201],
+            [760.5, 201]
+          ]
+        },
+        {
+          "name": "MÁV",
+          "type": "interaktiv-szakmabemutato",
+          "coordinates": [
+            [1150.5, 554],
+            [1300.5, 554],
+            [1300.5, 583],
+            [1150.5, 583]
+          ]
+        },
+        {
+          "name": "Mechatronika",
+          "type": "wshu",
+          "coordinates": [
+            [603.5, 756],
+            [765.5, 756],
+            [765.5, 786],
+            [603.5, 786]
+          ]
+        },
+        {
+          "name": "Mechatronikai technikus",
+          "type": "osztvszktv",
+          "coordinates": [
+            [603.5, 692],
+            [765.5, 692],
+            [765.5, 722],
+            [603.5, 722]
+          ]
+        },
+        {
+          "name": "MESZK",
+          "type": "interaktiv-szakmabemutato",
+          "coordinates": [
+            [124.5, 524],
+            [213.5, 524],
+            [213.5, 574],
+            [124.5, 574]
+          ]
+        },
+        {
+          "name": "MOL",
+          "type": "interaktiv-szakmabemutato",
+          "coordinates": [
+            [1356.5, 453],
+            [1456.5, 453],
+            [1456.5, 512],
+            [1356.5, 512]
+          ]
+        },
+        {
+          "name": "Nyomdaipar",
+          "type": "interaktiv-szakmabemutato",
+          "coordinates": [
+            [264.5, 637],
+            [365.5, 637],
+            [365.5, 698],
+            [264.5, 698]
+          ]
+        },
+        {
+          "name": "Nyomdaipari technikus - Nyomdaipari előkészítő szakmairány",
+          "type": "osztvszktv",
+          "coordinates": [
+            [264.5, 700],
+            [365.5, 700],
+            [365.5, 759.3333],
+            [264.5, 759.3333]
+          ]
+        },
+        {
+          "name": "Nyomdaipari technikus - Nyomdaipari gépmester szakmairány",
+          "type": "osztvszktv",
+          "coordinates": [
+            [264.5, 760],
+            [365.5, 760],
+            [365.5, 818],
+            [264.5, 818]
+          ]
+        },
+        {
+          "name": "Pék",
+          "type": "wshu",
+          "coordinates": [
+            [807.5, 723],
+            [1099.5, 723],
+            [1099.5, 755],
+            [807.5, 755]
+          ]
+        },
+        {
+          "name": "Pincér",
+          "type": "wshu",
+          "coordinates": [
+            [714.5, 478],
+            [905.5, 478],
+            [905.5, 529],
+            [714.5, 529]
+          ]
+        },
+        {
+          "name": "Pincér - vendégtéri szakember",
+          "type": "osztvszktv",
+          "coordinates": [
+            [714.5, 372],
+            [905.5, 372],
+            [905.5, 423],
+            [714.5, 423]
+          ]
+        },
+        {
+          "name": "Richter Gedeon Nyrt.",
+          "type": "egyeb-szakmabemutato",
+          "coordinates": [
+            [696.5, 296],
+            [758.5, 296],
+            [758.5, 330],
+            [696.5, 330]
+          ]
+        },
+        {
+          "name": "Szakács",
+          "type": "wshu",
+          "coordinates": [
+            [907.5, 372],
+            [1148.5, 372],
+            [1148.5, 440.6667],
+            [907.5, 440.6667]
+          ]
+        },
+        {
           "name": "Szakács",
           "type": "osztvszktv",
           "coordinates": [
@@ -474,96 +653,6 @@
           ]
         },
         {
-          "name": "Ápolás és gondozás",
-          "type": "interaktiv-szakmabemutato",
-          "coordinates": [
-            [124.5, 352],
-            [213.5, 352],
-            [213.5, 436],
-            [124.5, 436]
-          ]
-        },
-        {
-          "name": "Grafikus",
-          "type": "wshu",
-          "coordinates": [
-            [257.5, 263],
-            [336.5, 263],
-            [336.5, 313],
-            [257.5, 313]
-          ]
-        },
-        {
-          "name": "Ipari robotika",
-          "type": "wshu",
-          "coordinates": [
-            [257.5, 315],
-            [377.5, 315],
-            [377.5, 373],
-            [257.5, 373]
-          ]
-        },
-        {
-          "name": "Járműkarosszéria-előkészítő, felületbevonó",
-          "type": "osztvszktv",
-          "coordinates": [
-            [245.5, 92],
-            [365.5, 92],
-            [365.5, 124],
-            [245.5, 124]
-          ]
-        },
-        {
-          "name": "Járműfényező",
-          "type": "interaktiv-szakmabemutato",
-          "coordinates": [
-            [245.5, 126],
-            [365.5, 126],
-            [365.5, 158],
-            [245.5, 158]
-          ]
-        },
-        {
-          "name": "Járműfényező",
-          "type": "osztvszktv",
-          "coordinates": [
-            [245.5, 160],
-            [365.5, 160],
-            [365.5, 191],
-            [245.5, 191]
-          ]
-        },
-        {
-          "name": "CNC maró",
-          "type": "wshu",
-          "coordinates": [
-            [338.5, 263],
-            [377.5, 263],
-            [377.5, 313],
-            [338.5, 313]
-          ]
-        },
-        {
-          "name": "Ápolás és gondozás",
-          "type": "wshu",
-          "coordinates": [
-            [124.5, 438],
-            [213.5, 438],
-            [213.5, 522],
-            [124.5, 522]
-          ]
-        },
-        {
-          "name": "MESZK",
-          "type": "osztvszktv",
-          "coordinates": [
-            [124.5, 524],
-            [213.5, 524],
-            [213.5, 574],
-            [124.5, 574]
-          ]
-        },
-        {
           "name": "Szépségápoló",
           "type": "wshu",
           "coordinates": [
@@ -571,26 +660,6 @@
             [442.5, 518],
             [442.5, 567],
             [272.5, 567]
-          ]
-        },
-        {
-          "name": "Kozmetikus technikus",
-          "type": "osztvszktv",
-          "coordinates": [
-            [272.5, 467],
-            [442.5, 467],
-            [442.5, 516],
-            [272.5, 516]
-          ]
-        },
-        {
-          "name": "Informatikai rendszerüzemeltető",
-          "type": "wshu",
-          "coordinates": [
-            [426.5, 661],
-            [547.5, 661],
-            [547.5, 712.3333],
-            [426.5, 712.3333]
           ]
         },
         {
@@ -604,133 +673,104 @@
           ]
         },
         {
-          "name": "Automatikai technikus, Mechatronikai technikus, Ipar 4.0",
+          "name": "Vegyész technikus - Általános laboráns szakmairány",
+          "type": "osztvszktv",
+          "coordinates": [
+            [640.5, 196],
+            [758.5, 196],
+            [758.5, 244],
+            [640.5, 244]
+          ]
+        },
+        {
+          "name": "Vegyész technikus - Termelési folyamatirányító szakmairány",
+          "type": "osztvszktv",
+          "coordinates": [
+            [640.5, 246],
+            [758.5, 246],
+            [758.5, 294],
+            [640.5, 294]
+          ]
+        },
+        {
+          "name": "Vendéglátás",
           "type": "interaktiv-szakmabemutato",
           "coordinates": [
-            [603.5, 658],
-            [765.5, 658],
-            [765.5, 690],
-            [603.5, 690]
+            [714.5, 531],
+            [905.5, 531],
+            [905.5, 582],
+            [714.5, 582]
           ]
         },
         {
-          "name": "Cukrász",
+          "name": "Vendégtéri szaktechnikus",
           "type": "osztvszktv",
           "coordinates": [
-            [807.5, 655],
-            [1099.5, 655],
-            [1099.5, 687],
-            [807.5, 687]
+            [714.5, 425],
+            [905.5, 425],
+            [905.5, 476],
+            [714.5, 476]
           ]
         },
         {
-          "name": "Festő, mázoló, tapétázó",
-          "type": "osztvszktv",
-          "coordinates": [
-            [1162.5, 639],
-            [1323.5, 639],
-            [1323.5, 688],
-            [1162.5, 688]
-          ]
-        },
-        {
-          "name": "Festő, díszítőfestő",
+          "name": "Villanyszerelő",
           "type": "wshu",
           "coordinates": [
-            [1162.5, 690],
-            [1323.5, 690],
-            [1323.5, 739],
-            [1162.5, 739]
+            [1336.5, 234],
+            [1456.5, 234],
+            [1456.5, 293],
+            [1336.5, 293]
           ]
         },
         {
-          "name": "Cukrász szaktechnikus",
+          "name": "Villanyszerelő - Épületvillamossági szakmairány",
           "type": "osztvszktv",
           "coordinates": [
-            [807.5, 689],
-            [1099.5, 689],
-            [1099.5, 721],
-            [807.5, 721]
+            [943.5, 112],
+            [995.8333, 112],
+            [995.8333, 174],
+            [943.5, 174]
           ]
         },
         {
-          "name": "Pék",
+          "name": "Villanyszerelő - Villamos hálózat szakmairány",
+          "type": "osztvszktv",
+          "coordinates": [
+            [997.5, 112],
+            [1049.8333, 112],
+            [1049.8333, 174],
+            [997.5, 174]
+          ]
+        },
+        {
+          "name": "Villanyszerelő - Villamos készülék és berendezés szakmairány",
+          "type": "osztvszktv",
+          "coordinates": [
+            [1051.5, 112],
+            [1104.5, 112],
+            [1104.5, 174],
+            [1051.5, 174]
+          ]
+        },
+        {
+          "name": "Virágkötő",
           "type": "wshu",
           "coordinates": [
-            [807.5, 723],
-            [1099.5, 723],
-            [1099.5, 755],
-            [807.5, 755]
+            [1154.5, 105],
+            [1179.5, 105],
+            [1179.5, 165],
+            [1154.5, 165]
           ]
         },
         {
-          "name": "Cukrász, Cukrász szaktechnikus",
-          "type": "interaktiv-szakmabemutato",
-          "coordinates": [
-            [807.5, 757],
-            [1099.5, 757],
-            [1099.5, 789],
-            [807.5, 789]
-          ]
-        },
-        {
-          "name": "Automatikai technikus - Autóipar szakmairány",
-          "type": "osztvszktv",
-          "coordinates": [
-            [603.5, 724],
-            [684.5, 724],
-            [684.5, 754],
-            [603.5, 754]
-          ]
-        },
-        {
-          "name": "Mechatronikai technikus",
-          "type": "osztvszktv",
-          "coordinates": [
-            [603.5, 692],
-            [765.5, 692],
-            [765.5, 722],
-            [603.5, 722]
-          ]
-        },
-        {
-          "name": "Mechatronika",
+          "name": "Víz-, gáz- és fűtésszerelő",
           "type": "wshu",
+          "code": 2,
           "coordinates": [
-            [603.5, 756],
-            [765.5, 756],
-            [765.5, 786],
-            [603.5, 786]
-          ]
-        },
-        {
-          "name": "Ipar 4.0",
-          "type": "osztvszktv",
-          "coordinates": [
-            [603.5, 788],
-            [683.5, 788],
-            [683.5, 818],
-            [603.5, 818]
-          ]
-        },
-        {
-          "name": "Ipar 4.0",
-          "type": "wshu",
-          "coordinates": [
-            [685.5, 788],
-            [765.5, 788],
-            [765.5, 818],
-            [685.5, 818]
-          ]
-        },
-        {
-          "name": "Automatikai technikus - Gyártástechnika szakmairány",
-          "type": "osztvszktv",
-          "coordinates": [
-            [686.5, 724],
-            [765.5, 724],
-            [765.5, 754],
-            [686.5, 754]
+            [123.5, 658],
+            [213.5, 658],
+            [213.5, 737],
+            [123.5, 737]
           ]
         },
         {
@@ -742,237 +782,21 @@
             [547.5, 818],
             [426.5, 818]
           ]
-        },
-        {
-          "name": "Nyomdaipari technikus - Nyomdaipari gépmester szakmairány",
-          "type": "osztvszktv",
-          "coordinates": [
-            [264.5, 760],
-            [365.5, 760],
-            [365.5, 818],
-            [264.5, 818]
-          ]
-        },
-        {
-          "name": "Hűtő- és klímatechnikai szerelő",
-          "type": "wshu",
-          "coordinates": [
-            [123.5, 739],
-            [213.5, 739],
-            [213.5, 818],
-            [123.5, 818]
-          ]
-        },
-        {
-          "name": "Víz-, gáz- és fűtésszerelő",
-          "type": "wshu",
-          "coordinates": [
-            [123.5, 658],
-            [213.5, 658],
-            [213.5, 737],
-            [123.5, 737]
-          ]
-        },
-        {
-          "name": "Autószerelő",
-          "type": "wshu",
-          "coordinates": [
-            [243.5, 92],
-            [243.5, 191],
-            [182.409, 191],
-            [152.701, 161.787],
-            [152.409, 161.5],
-            [138.896, 161.5],
-            [124, 147.565],
-            [124, 92],
-            [243.5, 92]
-          ]
         }
       ],
       "booths": [
         {
-          "name": "Mechatronika, Automatikai Technikus, Ipar 4.0",
-          "type": "osztvszktv",
-          "coordinates": [
-            [603.5, 658],
-            [765.5, 658],
-            [765.5, 818],
-            [603.5, 818]
-          ]
-        },
-        {
-          "name": "Informatikai rendszerüzemeltető, Szoftverfejlesztő, Webfejlesztő",
-          "type": "osztvszktv",
-          "coordinates": [
-            [426.5, 661],
-            [547.5, 661],
-            [547.5, 818],
-            [426.5, 818]
-          ]
-        },
-        {
-          "name": "Nyomdaipar",
-          "type": "osztvszktv",
-          "coordinates": [
-            [264.5, 637],
-            [365.5, 637],
-            [365.5, 818],
-            [264.5, 818]
-          ]
-        },
-        {
-          "name": "Szakács_2",
-          "type": "osztvszktv",
-          "coordinates": [
-            [907.5, 372],
-            [1147.5, 372],
-            [1147.5, 582],
-            [907.5, 582]
-          ]
-        },
-        {
-          "name": "Kereskedelmi értékesítő, Kereskedő és webáruházi technikus",
-          "type": "osztvszktv",
-          "coordinates": [
-            [1149.5, 372],
-            [1300.5, 372],
-            [1300.5, 551],
-            [1149.5, 551]
-          ]
-        },
-        {
-          "name": "Festő",
-          "type": "osztvszktv",
-          "coordinates": [
-            [1162.5, 639],
-            [1323.5, 639],
-            [1323.5, 789],
-            [1162.5, 789]
-          ]
-        },
-        {
-          "name": "Divatszabó",
-          "type": "osztvszktv",
-          "coordinates": [
-            [1149.5, 213],
-            [1286.5, 213],
-            [1286.5, 303],
-            [1149.5, 303]
-          ]
-        },
-        {
-          "name": "Villanyszerelő, Erősáramú elektrotechnikus, Elektronikai technikus",
-          "type": "osztvszktv",
-          "coordinates": [
-            [943.5, 112],
-            [1104.5, 112],
-            [1104.5, 302],
-            [943.5, 302]
-          ]
-        },
-        {
-          "name": "Bútorasztalos, Épületasztalos",
-          "type": "osztvszktv",
-          "coordinates": [
-            [1336.5, 92],
-            [1456.5, 92],
-            [1456.5, 232],
-            [1336.5, 232]
-          ]
-        },
-        {
-          "name": "Kertépítő",
-          "type": "osztvszktv",
-          "coordinates": [
-            [1181.5, 105],
-            [1281.5, 105],
-            [1281.5, 165],
-            [1181.5, 165]
-          ]
-        },
-        {
-          "name": "Pincér, Vendégtéri szaktechnikus",
-          "type": "osztvszktv",
-          "coordinates": [
-            [714.5, 372],
-            [905.5, 372],
-            [905.5, 582],
-            [714.5, 582]
-          ]
-        },
-        {
           "name": "Ápolás és gondozás",
-          "type": "osztvszktv",
           "coordinates": [
             [124.5, 352],
             [213.5, 352],
             [213.5, 522],
             [124.5, 522]
-          ]
-        },
-        {
-          "name": "Kozmetikus, Szépségápoló",
-          "type": "osztvszktv",
-          "coordinates": [
-            [272.5, 416],
-            [442.5, 416],
-            [442.5, 567],
-            [272.5, 567]
-          ]
-        },
-        {
-          "name": "Fodrász_2",
-          "type": "osztvszktv",
-          "coordinates": [
-            [824.5, 112],
-            [909.5, 112],
-            [909.5, 302],
-            [824.5, 302]
-          ]
-        },
-        {
-          "name": "Vegyész technikus",
-          "type": "osztvszktv",
-          "coordinates": [
-            [641.5, 196],
-            [758.5, 196],
-            [758.5, 294],
-            [641.5, 294]
-          ]
-        },
-        {
-          "name": "Gépésztechnikus",
-          "type": "osztvszktv",
-          "coordinates": [
-            [641.5, 102],
-            [758.5, 102],
-            [758.5, 194],
-            [641.5, 194]
-          ]
-        },
-        {
-          "name": "Jármű- és szerviztechnika",
-          "type": "osztvszktv",
-          "coordinates": [
-            [426.5, 102],
-            [639.5, 102],
-            [639.5, 323],
-            [426.5, 323]
-          ]
-        },
-        {
-          "name": "Cukrász, Pék",
-          "type": "osztvszktv",
-          "coordinates": [
-            [807.5, 655],
-            [1099.5, 655],
-            [1099.5, 789],
-            [807.5, 789]
-          ]
+          ],
+          "code": 4
         },
         {
           "name": "Autószerelő, Járműfényező",
-          "type": "osztvszktv",
           "coordinates": [
             [365.5, 92],
             [365.5, 191],
@@ -983,6 +807,160 @@
             [124.5, 146.586],
             [124.5, 92],
             [365.5, 92]
+          ],
+          "code": 8
+        },
+        {
+          "name": "Bútorasztalos, Épületasztalos",
+          "coordinates": [
+            [1336.5, 92],
+            [1456.5, 92],
+            [1456.5, 232],
+            [1336.5, 232]
+          ]
+        },
+        {
+          "name": "Cukrász, Pék",
+          "coordinates": [
+            [807.5, 655],
+            [1099.5, 655],
+            [1099.5, 789],
+            [807.5, 789]
+          ]
+        },
+        {
+          "name": "Divatszabó",
+          "coordinates": [
+            [1149.5, 213],
+            [1286.5, 213],
+            [1286.5, 303],
+            [1149.5, 303]
+          ]
+        },
+        {
+          "name": "Festő",
+          "coordinates": [
+            [1162.5, 639],
+            [1323.5, 639],
+            [1323.5, 789],
+            [1162.5, 789]
+          ]
+        },
+        {
+          "name": "Fodrász",
+          "coordinates": [
+            [824.5, 112],
+            [909.5, 112],
+            [909.5, 302],
+            [824.5, 302]
+          ]
+        },
+        {
+          "name": "Gépésztechnikus",
+          "coordinates": [
+            [641.5, 102],
+            [758.5, 102],
+            [758.5, 194],
+            [641.5, 194]
+          ]
+        },
+        {
+          "name": "Informatikai rendszerüzemeltető, Szoftverfejlesztő, Webfejlesztő",
+          "coordinates": [
+            [426.5, 661],
+            [547.5, 661],
+            [547.5, 818],
+            [426.5, 818]
+          ]
+        },
+        {
+          "name": "Jármű- és szerviztechnika",
+          "coordinates": [
+            [426.5, 102],
+            [639.5, 102],
+            [639.5, 323],
+            [426.5, 323]
+          ]
+        },
+        {
+          "name": "Kereskedelmi értékesítő, Kereskedő és webáruházi technikus",
+          "coordinates": [
+            [1149.5, 372],
+            [1300.5, 372],
+            [1300.5, 551],
+            [1149.5, 551]
+          ]
+        },
+        {
+          "name": "Kertépítő",
+          "coordinates": [
+            [1181.5, 105],
+            [1281.5, 105],
+            [1281.5, 165],
+            [1181.5, 165]
+          ]
+        },
+        {
+          "name": "Kozmetikus, Szépségápoló",
+          "coordinates": [
+            [272.5, 416],
+            [442.5, 416],
+            [442.5, 567],
+            [272.5, 567]
+          ]
+        },
+        {
+          "name": "Mechatronika, Automatikai Technikus, Ipar 4.0",
+          "coordinates": [
+            [603.5, 658],
+            [765.5, 658],
+            [765.5, 818],
+            [603.5, 818]
+          ]
+        },
+        {
+          "name": "Nyomdaipar",
+          "coordinates": [
+            [264.5, 637],
+            [365.5, 637],
+            [365.5, 818],
+            [264.5, 818]
+          ]
+        },
+        {
+          "name": "Pincér, Vendégtéri szaktechnikus",
+          "coordinates": [
+            [714.5, 372],
+            [905.5, 372],
+            [905.5, 582],
+            [714.5, 582]
+          ]
+        },
+        {
+          "name": "Szakács",
+          "coordinates": [
+            [907.5, 372],
+            [1147.5, 372],
+            [1147.5, 582],
+            [907.5, 582]
+          ]
+        },
+        {
+          "name": "Vegyész technikus",
+          "coordinates": [
+            [641.5, 196],
+            [758.5, 196],
+            [758.5, 294],
+            [641.5, 294]
+          ]
+        },
+        {
+          "name": "Villanyszerelő, Erősáramú elektrotechnikus, Elektronikai technikus",
+          "coordinates": [
+            [943.5, 112],
+            [1104.5, 112],
+            [1104.5, 302],
+            [943.5, 302]
           ]
         }
       ],

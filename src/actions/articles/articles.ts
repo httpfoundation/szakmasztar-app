@@ -5,6 +5,7 @@ import { getIdTag, gqlCache } from "@/lib/cache";
 import { graphqlClient } from "@/lib/client";
 import { isNotFound } from "@/lib/utils";
 import { getCategoryTree } from "../categories/categories";
+import { CategoryRecursiveFragment } from "../categories/categories.generated";
 import {
   ArticleFragment,
   GetArticleDocument,
@@ -146,35 +147,18 @@ export async function getMapItems() {
 }
 
 export async function getInteractiveMapItems() {
-  const buildings = await getCategoryTree({ rootNodeId: "szakmasztar-app-buildings" });
+  const boothsByBuilding = await getCategoryTree({ rootNodeId: "szakmasztar-app-buildings" });
+  const eventsBySectors = (await getCategoryTree({
+    rootNodeId: "szakmasztar-app-sector",
+  })) as CategoryRecursiveFragment & { items: ArticleFragment[] };
 
-  const eventsBySectors = await getCategoryTree({ rootNodeId: "szakmasztar-app-sector" });
-  const fullArticles = eventsBySectors.children.flatMap(
-    (sector) => sector.items
-  ) as ArticleFragment[];
-  const articles = fullArticles
-    .map((article) => {
-      const metadata = JSON.parse(article.metadata ?? "{}");
-      if (!metadata.map || !metadata.map.buildingId) {
-        return null;
-      }
-      return {
-        id: article.id,
-        title: article.title,
-        coordinates: (metadata.map.coordinates as [number, number][]) ?? [],
-        buildingId: metadata.map.buildingId,
-        slug: article.slug,
-      };
-    })
-    .filter((x) => !!x);
+  const articles = [
+    ...eventsBySectors.items,
+    ...(eventsBySectors.children.flatMap((sector) => sector.items) as ArticleFragment[]),
+  ];
 
-  const articlesById: Record<string, ArticleFragment> = {};
-  for (const article of fullArticles) {
-    articlesById[article.id] = article;
-  }
   return {
-    buildings,
+    boothsByBuilding,
     articles,
-    articlesById,
   };
 }
