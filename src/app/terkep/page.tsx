@@ -32,9 +32,10 @@ const MapPage = async () => {
           code: code ? Number(code) : null,
           image: boothCategory.image
             ? {
-                url: boothCategory.image.url,
+                url: boothCategory.image.url.replace("-w1920.webp", "-w1280.webp"),
               }
             : null,
+          imageRotate: (boothMetadata.imageRotate as number) ?? null,
           coordinates: boothMetadata.coordinates ?? [],
           articles: boothArticles,
         };

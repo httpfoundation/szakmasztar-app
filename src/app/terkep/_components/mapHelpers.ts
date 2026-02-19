@@ -126,12 +126,27 @@ export const generateBoothsGeoJSON = (mapData: InteractiveMapData) => {
     return building.booths.map((booth) => {
       const coordinates = createRelativePolygon(booth, buildingConfig);
 
+      const imageUrl = booth.image?.url ?? false;
+      const imageRotate = booth.imageRotate ?? false;
+
+      // Calculate booth bounding box dimensions in degrees for image sizing
+      const lngs = coordinates.map((c) => c[0]);
+      const lats = coordinates.map((c) => c[1]);
+      const boothWidthDeg = Math.max(...lngs) - Math.min(...lngs);
+      const boothHeightDeg = Math.max(...lats) - Math.min(...lats);
+      // When rotated, the image width aligns with the booth height
+      const boothSizeDeg = imageRotate ? boothHeightDeg : boothWidthDeg;
+
       const properties: Record<string, unknown> = {
         id: booth.id,
         name: booth.title,
         code: booth.code?.toString().padStart(2, "0") ?? false,
         type: "booth",
-        image: booth.image ?? false,
+        image: imageUrl,
+        imageId: imageUrl ? `booth-img-${booth.id}` : false,
+        imageRotate,
+        boothSizeDeg,
+        hasArticles: booth.articles.length > 0,
       };
 
       return {

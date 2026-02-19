@@ -42,7 +42,7 @@
 <path d="M1375.5 633H1401.5V693H1375.5V633Z" fill="#FF0000" fill-opacity="0.3"/>
 <path d="M1375.5 633H1401.5V693H1375.5V633Z" stroke="#FF0000" stroke-width="2"/>
 </g>
-<rect id="M&#195;&#129;V ISZB" x="1150.5" y="554" width="150" height="29" fill="#FF0000" fill-opacity="0.3" stroke="#FF0000" stroke-width="2"/>
+<rect id="M&#195;&#129;V ISZB" x="1150.5" y="542" width="150" height="41" fill="#FF0000" fill-opacity="0.3" stroke="#FF0000" stroke-width="2"/>
 <rect id="Kert&#195;&#169;p&#195;&#173;t&#197;&#145; ISZB" x="1232.5" y="105" width="49" height="60" fill="#FF0000" fill-opacity="0.3" stroke="#FF0000" stroke-width="2"/>
 <rect id="Fodr&#195;&#161;sz ISZB" x="824.5" y="240" width="85" height="62" fill="#FF0000" fill-opacity="0.3" stroke="#FF0000" stroke-width="2"/>
 <rect id="Fodr&#195;&#161;sz" x="824.5" y="176" width="85" height="62" fill="#FF0000" fill-opacity="0.3" stroke="#FF0000" stroke-width="2"/>
@@ -53,8 +53,8 @@
 <rect id="Szak&#195;&#161;cs WS" x="907.5" y="372" width="241" height="68.6667" fill="#FF0000" fill-opacity="0.3" stroke="#FF0000" stroke-width="2"/>
 <rect id="Kereskedelmi &#195;&#169;rt&#195;&#169;kes&#195;&#173;t&#197;&#145;" x="1150.5" y="372" width="74" height="89" fill="#FF0000" fill-opacity="0.3" stroke="#FF0000" stroke-width="2"/>
 <rect id="Kereskedelmi &#195;&#169;rt&#195;&#169;kes&#195;&#173;t&#197;&#145; ISZB" x="1226.5" y="372" width="74" height="89" fill="#FF0000" fill-opacity="0.3" stroke="#FF0000" stroke-width="2"/>
-<rect id="Keresked&#197;&#145; &#195;&#169;s web&#195;&#161;ruh&#195;&#161;zi technikus" x="1150.5" y="463" width="74" height="89" fill="#FF0000" fill-opacity="0.3" stroke="#FF0000" stroke-width="2"/>
-<rect id="Keresked&#197;&#145; &#195;&#169;s web&#195;&#161;ruh&#195;&#161;zi technikus ISZB" x="1226.5" y="463" width="74" height="89" fill="#FF0000" fill-opacity="0.3" stroke="#FF0000" stroke-width="2"/>
+<rect id="Keresked&#197;&#145; &#195;&#169;s web&#195;&#161;ruh&#195;&#161;zi technikus" x="1150.5" y="463" width="74" height="77" fill="#FF0000" fill-opacity="0.3" stroke="#FF0000" stroke-width="2"/>
+<rect id="Keresked&#197;&#145; &#195;&#169;s web&#195;&#161;ruh&#195;&#161;zi technikus ISZB" x="1226.5" y="463" width="74" height="77" fill="#FF0000" fill-opacity="0.3" stroke="#FF0000" stroke-width="2"/>
 <rect id="Szak&#195;&#161;cs" x="907.5" y="443" width="241" height="68.6667" fill="#FF0000" fill-opacity="0.3" stroke="#FF0000" stroke-width="2"/>
 <rect id="Szak&#195;&#161;cs szaktechnikus" x="907.5" y="514" width="241" height="68.6667" fill="#FF0000" fill-opacity="0.3" stroke="#FF0000" stroke-width="2"/>
 <rect id="&#195;&#129;pol&#195;&#161;s &#195;&#169;s gondoz&#195;&#161;s ISZB" x="124.5" y="352" width="89" height="84" fill="#FF0000" fill-opacity="0.3" stroke="#FF0000" stroke-width="2"/>
@@ -94,7 +94,7 @@
 <rect id="Informatikai rendszer&#195;&#188;zemeltet&#197;&#145;, Szoftverfejleszt&#197;&#145;, Webfejleszt&#197;&#145;" x="426.5" y="661" width="121" height="157" fill="#00FF2F" fill-opacity="0.3" stroke="#00FF2F" stroke-width="2"/>
 <rect id="Nyomdaipar" x="264.5" y="637" width="101" height="181" fill="#00FF2F" fill-opacity="0.3" stroke="#00FF2F" stroke-width="2"/>
 <rect id="Szak&#195;&#161;cs_2" x="907.5" y="372" width="240" height="210" fill="#00FF2F" fill-opacity="0.3" stroke="#00FF2F" stroke-width="2"/>
-<rect id="Kereskedelmi &#195;&#169;rt&#195;&#169;kes&#195;&#173;t&#197;&#145;, Keresked&#197;&#145; &#195;&#169;s web&#195;&#161;ruh&#195;&#161;zi technikus" x="1149.5" y="372" width="151" height="179" fill="#00FF2F" fill-opacity="0.3" stroke="#00FF2F" stroke-width="2"/>
+<rect id="Kereskedelmi &#195;&#169;rt&#195;&#169;kes&#195;&#173;t&#197;&#145;, Keresked&#197;&#145; &#195;&#169;s web&#195;&#161;ruh&#195;&#161;zi technikus" x="1149.5" y="372" width="151" height="168" fill="#00FF2F" fill-opacity="0.3" stroke="#00FF2F" stroke-width="2"/>
 <rect id="Fest&#197;&#145;" x="1162.5" y="639" width="161" height="150" fill="#00FF2F" fill-opacity="0.3" stroke="#00FF2F" stroke-width="2"/>
 <rect id="Divatszab&#195;&#179;" x="1149.5" y="213" width="137" height="90" fill="#00FF2F" fill-opacity="0.3" stroke="#00FF2F" stroke-width="2"/>
 <rect id="Villanyszerel&#197;&#145;, Er&#197;&#145;s&#195;&#161;ram&#195;&#186; elektrotechnikus, Elektronikai technikus" x="943.5" y="112" width="161" height="190" fill="#00FF2F" fill-opacity="0.3" stroke="#00FF2F" stroke-width="2"/>
@@ -102,7 +102,7 @@
 <rect id="Kert&#195;&#169;p&#195;&#173;t&#197;&#145;" x="1181.5" y="105" width="100" height="60" fill="#00FF2F" fill-opacity="0.3" stroke="#00FF2F" stroke-width="2"/>
 <rect id="Pinc&#195;&#169;r, Vend&#195;&#169;gt&#195;&#169;ri szaktechnikus" x="714.5" y="372" width="191" height="210" fill="#00FF2F" fill-opacity="0.3" stroke="#00FF2F" stroke-width="2"/>
 <rect id="4. &#195;&#129;pol&#195;&#161;s &#195;&#169;s gondoz&#195;&#161;s" x="124.5" y="352" width="89" height="170" fill="#00FF2F" fill-opacity="0.3" stroke="#00FF2F" stroke-width="2"/>
-<path id="8. Aut&#195;&#179;szerel&#197;&#145;, J&#195;&#161;rm&#197;&#177;f&#195;&#169;nyez&#197;&#145;" d="M365.5 92V191H183.409L153.701 161.787L153.409 161.5H139.414L124.5 146.586V92H365.5Z" fill="#00FF2F" fill-opacity="0.3" stroke="#00FF2F" stroke-width="2"/>
+<path id="8. Aut&#195;&#179;szerel&#197;&#145;, J&#195;&#161;rm&#197;&#177;f&#195;&#169;nyez&#197;&#145;" d="M365.5 91V190H183.409L153.701 160.787L153.409 160.5H139.414L124.5 145.586V91H365.5Z" fill="#00FF2F" fill-opacity="0.3" stroke="#00FF2F" stroke-width="2"/>
 <rect id="Kozmetikus, Sz&#195;&#169;ps&#195;&#169;g&#195;&#161;pol&#195;&#179;" x="272.5" y="416" width="170" height="151" fill="#00FF2F" fill-opacity="0.3" stroke="#00FF2F" stroke-width="2"/>
 <rect id="Fodr&#195;&#161;sz_2" x="824.5" y="112" width="85" height="190" fill="#00FF2F" fill-opacity="0.3" stroke="#00FF2F" stroke-width="2"/>
 <rect id="Vegy&#195;&#169;sz technikus" x="641.5" y="196" width="117" height="98" fill="#00FF2F" fill-opacity="0.3" stroke="#00FF2F" stroke-width="2"/>

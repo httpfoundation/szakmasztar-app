@@ -70,7 +70,7 @@ UPDATE Article target
       SET target.metadata = JSON_SET(
         COALESCE(target.metadata, JSON_OBJECT()),
         '$.articleIds', COALESCE(agg.article_ids, JSON_ARRAY()),
-        '$.coordinates', JSON_ARRAY(JSON_ARRAY(365.5, 92), JSON_ARRAY(365.5, 191), JSON_ARRAY(183.409, 191), JSON_ARRAY(153.701, 161.787), JSON_ARRAY(153.409, 161.5), JSON_ARRAY(139.414, 161.5), JSON_ARRAY(124.5, 146.586), JSON_ARRAY(124.5, 92), JSON_ARRAY(365.5, 92))
+        '$.coordinates', JSON_ARRAY(JSON_ARRAY(365.5, 91), JSON_ARRAY(365.5, 190), JSON_ARRAY(183.409, 190), JSON_ARRAY(153.701, 160.787), JSON_ARRAY(153.409, 160.5), JSON_ARRAY(139.414, 160.5), JSON_ARRAY(124.5, 145.586), JSON_ARRAY(124.5, 91), JSON_ARRAY(365.5, 91))
       ), target.subtitle = 8
       WHERE target.title = "Autószerelő, Járműfényező" AND target.categoryId LIKE "szakmasztar-app-g-pavilon%";
 
@@ -376,7 +376,7 @@ UPDATE Article target
       SET target.metadata = JSON_SET(
         COALESCE(target.metadata, JSON_OBJECT()),
         '$.articleIds', COALESCE(agg.article_ids, JSON_ARRAY()),
-        '$.coordinates', JSON_ARRAY(JSON_ARRAY(1149.5, 372), JSON_ARRAY(1300.5, 372), JSON_ARRAY(1300.5, 551), JSON_ARRAY(1149.5, 551))
+        '$.coordinates', JSON_ARRAY(JSON_ARRAY(1149.5, 372), JSON_ARRAY(1300.5, 372), JSON_ARRAY(1300.5, 540), JSON_ARRAY(1149.5, 540))
       )
       WHERE target.title = "Kereskedelmi értékesítő, Kereskedő és webáruházi technikus" AND target.categoryId LIKE "szakmasztar-app-g-pavilon%";
 
@@ -954,7 +954,7 @@ UPDATE Article target
       SET target.metadata = JSON_SET(
         COALESCE(target.metadata, JSON_OBJECT()),
         '$.articleIds', COALESCE(agg.article_ids, JSON_ARRAY()),
-        '$.coordinates', JSON_ARRAY(JSON_ARRAY(1150.5, 554), JSON_ARRAY(1300.5, 554), JSON_ARRAY(1300.5, 583), JSON_ARRAY(1150.5, 583))
+        '$.coordinates', JSON_ARRAY(JSON_ARRAY(1150.5, 542), JSON_ARRAY(1300.5, 542), JSON_ARRAY(1300.5, 583), JSON_ARRAY(1150.5, 583))
       )
       WHERE target.title = "MÁV" AND target.categoryId LIKE "szakmasztar-app-g-pavilon%";
 

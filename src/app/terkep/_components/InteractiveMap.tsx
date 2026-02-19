@@ -3,7 +3,7 @@
 import Map, { Layer, Source } from "react-map-gl/maplibre";
 import type { LngLat, MapRef } from "react-map-gl/maplibre";
 import "maplibre-gl/dist/maplibre-gl.css";
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useMediaQuery, useTheme } from "@mui/material";
 import { LngLatBounds } from "maplibre-gl";
 import type { MapLayerMouseEvent, ViewStateChangeEvent } from "react-map-gl/maplibre";
@@ -29,6 +29,7 @@ export interface InteractiveMapData {
       image: {
         url: string;
       } | null;
+      imageRotate: number | null;
       coordinates: [number, number][];
       articles: ArticleFragment[];
     }[];
@@ -52,6 +53,7 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
   } | null>(null);
   const [isDismissing, setIsDismissing] = useState(false);
   const [cursor, setCursor] = useState<string | undefined>(undefined);
+  const [boothImagesLoaded, setBoothImagesLoaded] = useState(false);
   const theme = useTheme();
 
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
@@ -59,7 +61,9 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
   /* Handles hover events, setting hovered booth and building IDs to highlight them */
   const onHover = useCallback((event: MapLayerMouseEvent) => {
     const { features } = event;
-    const hoveredBooth = features?.find((feature) => feature.properties?.type === "booth");
+    const hoveredBooth = features?.find(
+      (feature) => feature.properties?.type === "booth" && feature.properties?.hasArticles
+    );
     const hoveredBuilding = features?.find((feature) => feature.properties?.type === "building");
     setHoveredBoothId(hoveredBooth ? (hoveredBooth.properties?.id as string) : null);
     setHoveredBuildingId(hoveredBuilding ? (hoveredBuilding.properties?.id as string) : null);
@@ -81,12 +85,16 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
   const onClick = useCallback(
     (event: MapLayerMouseEvent) => {
       const { features } = event;
-      const clickedBooth = features?.find((feature) => feature.properties?.type === "booth");
+      const clickedBooth = features?.find(
+        (feature) => feature.properties?.type === "booth" && feature.properties?.hasArticles
+      );
 
       if (clickedBooth) {
         setIsDismissing(false);
         setSelectedBoothId(clickedBooth.properties?.id as string);
         const geometry = clickedBooth.geometry;
+        const imageRotate = clickedBooth.properties?.imageRotate;
+        const bearing = imageRotate && imageRotate !== false ? (imageRotate as number) : 0;
         if (geometry.type === "Polygon") {
           const coordinates = geometry.coordinates[0];
           const bounds = new LngLatBounds();
@@ -105,7 +113,7 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
 
           mapRef.current
             ?.getMap()
-            .fitBounds(bounds, { padding: 100, offset: isMobile ? [0, -80] : [80, 0] });
+            .fitBounds(bounds, { padding: 100, offset: isMobile ? [0, -80] : [80, 0], bearing });
         }
       } else {
         const clickedBuilding = features?.find(
@@ -211,8 +219,31 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
         const image = await map.loadImage(path);
         map.addImage(name, image.data);
       });
+
+      /* Load booth exhibitor images */
+      const boothImages = mapData.buildings
+        .flatMap((building) => building.booths)
+        .filter((booth) => booth.image !== null)
+        .map((booth) => ({
+          id: `booth-img-${booth.id}`,
+          url: booth.image!.url,
+        }));
+
+      await Promise.all(
+        boothImages.map(async ({ id, url }) => {
+          try {
+            const image = await map.loadImage(url);
+            if (!map.hasImage(id)) {
+              map.addImage(id, image.data);
+            }
+          } catch (e) {
+            console.error(`Failed to load booth image: ${url}`, e);
+          }
+        })
+      );
+      setBoothImagesLoaded(true);
     }
-  }, []);
+  }, [mapData]);
 
   /* Calculate the bounds of the buildings */
   const buildingBounds = useMemo(() => {
@@ -463,6 +494,38 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
             }}
             minzoom={boothZoomLevel}
           />
+          {boothImagesLoaded && (
+            <Layer
+              id="booths-images"
+              type="symbol"
+              filter={["all", ["==", "type", "booth"], ["!=", "imageId", false]]}
+              layout={{
+                "icon-image": ["get", "imageId"],
+                "icon-size": [
+                  "interpolate",
+                  ["exponential", 2],
+                  ["zoom"],
+                  boothZoomLevel,
+                  // 256 * 2^16.5 / (360 * 1280) * 1.4 ≈ 72.09
+                  ["*", ["get", "boothSizeDeg"], 72.09],
+                  maxZoomLevel,
+                  // 256 * 2^22 / (360 * 1280) * 1.4 ≈ 3262.24
+                  ["*", ["get", "boothSizeDeg"], 3262.24],
+                ],
+                "icon-rotate": [
+                  "case",
+                  ["!=", ["get", "imageRotate"], false],
+                  ["get", "imageRotate"],
+                  0,
+                ],
+                "icon-allow-overlap": true,
+                "icon-ignore-placement": true,
+                "icon-rotation-alignment": "map",
+                "icon-pitch-alignment": "map",
+              }}
+              minzoom={boothZoomLevel}
+            />
+          )}
           <Layer
             id="booths-labels"
             type="symbol"
