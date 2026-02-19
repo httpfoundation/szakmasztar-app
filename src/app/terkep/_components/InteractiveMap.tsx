@@ -296,46 +296,25 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
 
   /* Generate the GeoJSON for the buildings, booths and articles */
   const buildingsGeoJSON = useMemo(() => generateBuildingsGeoJSON(mapData), [mapData]);
-  const boothsGeoJSON = useMemo(() => {
-    const geojson = generateBoothsGeoJSON(mapData);
-    if (activeFilter) {
-      // Add a matchesFilter property for each booth and set color based on category
-      const prefixes = activeFilter.split(",");
+  const boothsGeoJSON = useMemo(() => generateBoothsGeoJSON(mapData), [mapData]);
 
-      // Map category prefixes to colors
-      const categoryColors: Record<string, string> = {
-        wshu: "#93415A",
-        osztv: "#71376A",
-        nak: "#703346",
-        other: "#904E96",
-      };
+  // Determine the active color based on the filter
+  const activeColorValue = useMemo(() => {
+    if (!activeFilter) return "#582d52";
+    if (activeFilter.includes("wshu")) return "#93415A";
+    if (activeFilter.includes("osztv")) return "#71376A";
+    if (activeFilter.includes("nak")) return "#703346";
+    return "#904E96"; // other
+  }, [activeFilter]);
 
-      // Find the color for the active filter (first matching prefix)
-      const activeColor = Object.entries(categoryColors).find(([prefix]) =>
-        prefixes.some((p) => p.includes(prefix) || prefix.includes(p))
-      )?.[1];
-
-      geojson.features = geojson.features.map((f) => {
-        const slugs = f.properties.articleSlugs as string;
-        const matches = prefixes.some((prefix) => slugs && slugs.includes(prefix));
-        return {
-          ...f,
-          properties: {
-            ...f.properties,
-            matchesFilter: matches,
-            color: matches && activeColor ? activeColor : "#582d52", // Default darker purple
-          },
-        };
-      });
-    } else {
-      // Reset to default color when no filter
-      geojson.features = geojson.features.map((f) => ({
-        ...f,
-        properties: { ...f.properties, color: "#582d52" },
-      }));
-    }
-    return geojson;
-  }, [mapData, activeFilter]);
+  // Determine the filter match expression
+  const filterMatchExpression = useMemo<any>(() => {
+    if (!activeFilter) return ["literal", true];
+    if (activeFilter.includes("wshu")) return ["get", "hasWshu"];
+    if (activeFilter.includes("osztv")) return ["get", "hasOsztv"];
+    if (activeFilter.includes("nak")) return ["get", "hasNak"];
+    return ["get", "hasOther"];
+  }, [activeFilter]);
 
   /** Handle category selection from search panel */
   const handleCategorySelect = useCallback((slugPrefix: string | null) => {
@@ -605,7 +584,7 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
                 : activeFilter
                   ? [
                       "case",
-                      ["==", ["get", "matchesFilter"], true],
+                      filterMatchExpression,
                       // Matching booths: normal vivid colors
                       [
                         "case",
@@ -624,7 +603,7 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
                           "#93415a",
                           ["==", ["get", "id"], hoveredBoothId],
                           "#904e96",
-                          ["get", "color"],
+                          activeColorValue,
                         ],
                       ],
                       // Non-matching booths: faded grey
@@ -647,7 +626,7 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
                         "#93415a", // Selected/Active color (maybe should depend on category? keeping simple for now)
                         ["==", ["get", "id"], hoveredBoothId],
                         "#904e96", // Hover color
-                        ["get", "color"], // Dynamic category color
+                        "#582d52", // Default Dark Purple
                       ],
                     ],
               "fill-extrusion-height": 0.3,
@@ -688,7 +667,7 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
                 "icon-opacity": activePoiType
                   ? 0.15
                   : activeFilter
-                    ? ["case", ["==", ["get", "matchesFilter"], true], 1, 0.15]
+                    ? ["case", filterMatchExpression, 1, 0.15]
                     : 1,
               }}
               minzoom={boothZoomLevel}
@@ -719,18 +698,18 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
               "text-color": activePoiType
                 ? "#555"
                 : activeFilter
-                  ? ["case", ["==", ["get", "matchesFilter"], true], "#fff", "#555"]
+                  ? ["case", filterMatchExpression, "#fff", "#555"]
                   : "#fff",
               "text-halo-color": activePoiType
                 ? "#fff"
                 : activeFilter
-                  ? ["case", ["==", ["get", "matchesFilter"], true], ["get", "color"], "#fff"]
+                  ? ["case", filterMatchExpression, activeColorValue, "#fff"]
                   : "#934c8a",
               "text-halo-width": 1,
               "text-opacity": activePoiType
                 ? 0.5
                 : activeFilter
-                  ? ["case", ["==", ["get", "matchesFilter"], true], 1, 0.5]
+                  ? ["case", filterMatchExpression, 1, 0.5]
                   : 1,
             }}
             minzoom={boothNameZoomLevel}
@@ -761,18 +740,28 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
               "text-color": activePoiType
                 ? "#555"
                 : activeFilter
-                  ? ["case", ["==", ["get", "matchesFilter"], true], "#fff", "#555"]
+                  ? [
+                      "case",
+                      filterMatchExpression,
+                      ["case", ["!=", ["get", "image"], false], activeColorValue, "#fff"],
+                      "#555",
+                    ]
                   : "#fff",
               "text-halo-color": activePoiType
                 ? "#fff"
                 : activeFilter
-                  ? ["case", ["==", ["get", "matchesFilter"], true], ["get", "color"], "#fff"]
+                  ? [
+                      "case",
+                      filterMatchExpression,
+                      ["case", ["!=", ["get", "image"], false], "#fff", activeColorValue],
+                      "#fff",
+                    ]
                   : "#934c8a",
               "text-halo-width": 1,
               "text-opacity": activePoiType
                 ? 0.5
                 : activeFilter
-                  ? ["case", ["==", ["get", "matchesFilter"], true], 1, 0.5]
+                  ? ["case", filterMatchExpression, 1, 0.5]
                   : 1,
             }}
             minzoom={boothZoomLevel}
@@ -804,18 +793,28 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
               "text-color": activePoiType
                 ? "#555"
                 : activeFilter
-                  ? ["case", ["==", ["get", "matchesFilter"], true], "#fff", "#555"]
+                  ? [
+                      "case",
+                      filterMatchExpression,
+                      ["case", ["!=", ["get", "image"], false], activeColorValue, "#fff"],
+                      "#555",
+                    ]
                   : "#fff",
               "text-halo-color": activePoiType
                 ? "#fff"
                 : activeFilter
-                  ? ["case", ["==", ["get", "matchesFilter"], true], ["get", "color"], "#fff"]
+                  ? [
+                      "case",
+                      filterMatchExpression,
+                      ["case", ["!=", ["get", "image"], false], "#fff", activeColorValue],
+                      "#fff",
+                    ]
                   : "#934c8a",
               "text-halo-width": 1,
               "text-opacity": activePoiType
                 ? 0.5
                 : activeFilter
-                  ? ["case", ["==", ["get", "matchesFilter"], true], 1, 0.5]
+                  ? ["case", filterMatchExpression, 1, 0.5]
                   : 1,
             }}
             minzoom={boothNameZoomLevel}

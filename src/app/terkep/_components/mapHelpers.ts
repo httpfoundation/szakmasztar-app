@@ -137,17 +137,26 @@ export const generateBoothsGeoJSON = (mapData: InteractiveMapData) => {
       // When rotated, the image width aligns with the booth height
       const boothSizeDeg = imageRotate ? boothHeightDeg : boothWidthDeg;
 
+      const articlSlugsList = booth.articles.map((a) => a.slug);
+      const hasWshu = articlSlugsList.some((s) => s.includes("wshu"));
+      const hasOsztv = articlSlugsList.some((s) => s.includes("osztv"));
+      const hasNak = articlSlugsList.some((s) => s.includes("nak"));
+      const hasOther = articlSlugsList.some((s) => s.includes("egyeb") || s.includes("interaktiv"));
+
       const properties: Record<string, unknown> = {
         id: booth.id,
         name: booth.title,
         code: booth.code?.toString().padStart(2, "0") ?? false,
-        articleSlugs: JSON.stringify(booth.articles.map((a) => a.slug)),
         type: "booth",
         image: imageUrl,
         imageId: imageUrl ? `booth-img-${booth.id}` : false,
         imageRotate,
         boothSizeDeg,
         hasArticles: booth.articles.length > 0,
+        hasWshu: hasWshu,
+        hasOsztv: hasOsztv,
+        hasNak: hasNak,
+        hasOther: hasOther,
       };
 
       return {
