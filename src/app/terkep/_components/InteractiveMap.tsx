@@ -316,7 +316,7 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
           properties: {
             ...f.properties,
             matchesFilter: matches,
-            color: matches && activeColor ? activeColor : "#71376A", // Default purple if not matching or no color found
+            color: matches && activeColor ? activeColor : "#582d52", // Default darker purple
           },
         };
       });
@@ -324,7 +324,7 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
       // Reset to default color when no filter
       geojson.features = geojson.features.map((f) => ({
         ...f,
-        properties: { ...f.properties, color: "#71376A" },
+        properties: { ...f.properties, color: "#582d52" },
       }));
     }
     return geojson;
