@@ -292,16 +292,40 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
   const boothsGeoJSON = useMemo(() => {
     const geojson = generateBoothsGeoJSON(mapData);
     if (activeFilter) {
-      // Add a matchesFilter property for each booth
+      // Add a matchesFilter property for each booth and set color based on category
       const prefixes = activeFilter.split(",");
+
+      // Map category prefixes to colors
+      const categoryColors: Record<string, string> = {
+        wshu: "#93415A",
+        osztv: "#71376A",
+        nak: "#703346",
+        other: "#904E96",
+      };
+
+      // Find the color for the active filter (first matching prefix)
+      const activeColor = Object.entries(categoryColors).find(([prefix]) =>
+        prefixes.some((p) => p.includes(prefix) || prefix.includes(p))
+      )?.[1];
+
       geojson.features = geojson.features.map((f) => {
         const slugs = f.properties.articleSlugs as string;
         const matches = prefixes.some((prefix) => slugs && slugs.includes(prefix));
         return {
           ...f,
-          properties: { ...f.properties, matchesFilter: matches },
+          properties: {
+            ...f.properties,
+            matchesFilter: matches,
+            color: matches && activeColor ? activeColor : "#71376A", // Default purple if not matching or no color found
+          },
         };
       });
+    } else {
+      // Reset to default color when no filter
+      geojson.features = geojson.features.map((f) => ({
+        ...f,
+        properties: { ...f.properties, color: "#71376A" },
+      }));
     }
     return geojson;
   }, [mapData, activeFilter]);
@@ -546,7 +570,7 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
                           "#93415a",
                           ["==", ["get", "id"], hoveredBoothId],
                           "#904e96",
-                          "#71376a",
+                          ["get", "color"],
                         ],
                       ],
                       // Non-matching booths: faded grey
@@ -566,10 +590,10 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
                       [
                         "case",
                         ["==", ["get", "id"], selectedBoothId ?? ""],
-                        "#93415a",
+                        "#93415a", // Selected/Active color (maybe should depend on category? keeping simple for now)
                         ["==", ["get", "id"], hoveredBoothId],
-                        "#904e96",
-                        "#71376a",
+                        "#904e96", // Hover color
+                        ["get", "color"], // Dynamic category color
                       ],
                     ],
               "fill-extrusion-height": 0.3,
@@ -638,17 +662,21 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
               "text-offset": [0, 0.2],
             }}
             paint={{
-              "text-color": "#fff",
-              "text-halo-color": "#934c8a",
-              "text-halo-width": activePoiType
-                ? 0
+              "text-color": activePoiType
+                ? "#555"
                 : activeFilter
-                  ? ["case", ["==", ["get", "matchesFilter"], true], 1, 0]
-                  : 1,
+                  ? ["case", ["==", ["get", "matchesFilter"], true], "#fff", "#555"]
+                  : "#fff",
+              "text-halo-color": activePoiType
+                ? "#fff"
+                : activeFilter
+                  ? ["case", ["==", ["get", "matchesFilter"], true], ["get", "color"], "#fff"]
+                  : "#934c8a",
+              "text-halo-width": 1,
               "text-opacity": activePoiType
-                ? 0.15
+                ? 0.5
                 : activeFilter
-                  ? ["case", ["==", ["get", "matchesFilter"], true], 1, 0.15]
+                  ? ["case", ["==", ["get", "matchesFilter"], true], 1, 0.5]
                   : 1,
             }}
             minzoom={boothNameZoomLevel}
@@ -676,17 +704,21 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
               "text-offset": [0, 0],
             }}
             paint={{
-              "text-color": "#fff",
-              "text-halo-color": "#934c8a",
-              "text-halo-width": activePoiType
-                ? 0
+              "text-color": activePoiType
+                ? "#555"
                 : activeFilter
-                  ? ["case", ["==", ["get", "matchesFilter"], true], 1, 0]
-                  : 1,
+                  ? ["case", ["==", ["get", "matchesFilter"], true], "#fff", "#555"]
+                  : "#fff",
+              "text-halo-color": activePoiType
+                ? "#fff"
+                : activeFilter
+                  ? ["case", ["==", ["get", "matchesFilter"], true], ["get", "color"], "#fff"]
+                  : "#934c8a",
+              "text-halo-width": 1,
               "text-opacity": activePoiType
-                ? 0.15
+                ? 0.5
                 : activeFilter
-                  ? ["case", ["==", ["get", "matchesFilter"], true], 1, 0.15]
+                  ? ["case", ["==", ["get", "matchesFilter"], true], 1, 0.5]
                   : 1,
             }}
             minzoom={boothZoomLevel}
@@ -715,17 +747,21 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
               "text-offset": [0, -0.5],
             }}
             paint={{
-              "text-color": "#fff",
-              "text-halo-color": "#934c8a",
-              "text-halo-width": activePoiType
-                ? 0
+              "text-color": activePoiType
+                ? "#555"
                 : activeFilter
-                  ? ["case", ["==", ["get", "matchesFilter"], true], 1, 0]
-                  : 1,
+                  ? ["case", ["==", ["get", "matchesFilter"], true], "#fff", "#555"]
+                  : "#fff",
+              "text-halo-color": activePoiType
+                ? "#fff"
+                : activeFilter
+                  ? ["case", ["==", ["get", "matchesFilter"], true], ["get", "color"], "#fff"]
+                  : "#934c8a",
+              "text-halo-width": 1,
               "text-opacity": activePoiType
-                ? 0.15
+                ? 0.5
                 : activeFilter
-                  ? ["case", ["==", ["get", "matchesFilter"], true], 1, 0.15]
+                  ? ["case", ["==", ["get", "matchesFilter"], true], 1, 0.5]
                   : 1,
             }}
             minzoom={boothNameZoomLevel}
