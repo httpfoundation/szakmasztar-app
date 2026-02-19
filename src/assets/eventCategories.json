@@ -10,7 +10,7 @@
   {
     "title": "WorldSkills Hungary",
     "slug": "szakmai-programok/wshu",
-    "description": "WorldSkills Hungary nemzeti döntők, nemzetközi tréning versenyek és szakmai bemutatók",
+    "description": "Nemzeti döntők, nemzetközi tréning versenyek és szakmai bemutatók",
     "locations": [{ "title": "A pavilon", "slug": "/terkep/a-pavilon" }],
     "color": "wshu.main",
     "symbolSrc": "/images/wshu-symbol.svg"
@@ -18,7 +18,7 @@
   {
     "title": "Interaktív programok",
     "slug": "szakmai-programok/egyeb-esemenyek",
-    "description": "Interaktív programok és szakmai bemutatók",
+    "description": "Interaktív programok, szakmai bemutatók, és kiállítók",
     "locations": [{ "title": "A pavilon", "slug": "/terkep/a-pavilon" }],
     "color": "other.main",
     "symbolSrc": "/images/sponsor-symbol.svg"

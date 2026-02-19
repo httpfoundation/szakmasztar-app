@@ -141,6 +141,7 @@ export const generateBoothsGeoJSON = (mapData: InteractiveMapData) => {
         id: booth.id,
         name: booth.title,
         code: booth.code?.toString().padStart(2, "0") ?? false,
+        articleSlugs: JSON.stringify(booth.articles.map((a) => a.slug)),
         type: "booth",
         image: imageUrl,
         imageId: imageUrl ? `booth-img-${booth.id}` : false,

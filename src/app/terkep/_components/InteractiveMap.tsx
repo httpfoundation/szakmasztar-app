@@ -10,6 +10,7 @@ import type { MapLayerMouseEvent, ViewStateChangeEvent } from "react-map-gl/mapl
 import { ArticleFragment } from "@/actions/articles/articles.generated";
 import BoothDetailPanel from "./BoothDetailPanel";
 import { generateBoothsGeoJSON, generateBuildingsGeoJSON } from "./mapHelpers";
+import MapSearchPanel from "./MapSearchPanel";
 import { staticMapFeatures } from "./staticMapFeatures";
 
 export interface InteractiveMapData {
@@ -54,6 +55,8 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
   const [isDismissing, setIsDismissing] = useState(false);
   const [cursor, setCursor] = useState<string | undefined>(undefined);
   const [boothImagesLoaded, setBoothImagesLoaded] = useState(false);
+  const [activeFilter, setActiveFilter] = useState<string | null>(null);
+  const [activePoiType, setActivePoiType] = useState<string | null>(null);
   const theme = useTheme();
 
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
@@ -199,20 +202,7 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
       const images: [string, string][] = [
         ["arrow_upward", "/images/arrow_upward_256dp_000_FILL0_wght400_GRAD0_opsz48.png"],
         ["metro2", "/images/Budapest_M2_Metro_s.png"],
-        ["wshu", "/images/wshu.png"],
-        ["szakmabemutato", "/images/szakmabemutato.png"],
-        ["osztv-szktv", "/images/osztv-szktv.png"],
-        ["nak_osztv-szktv", "/images/nak_osztv-szktv.png"],
-        ["nak_osztv-szktv_szakmabemutato", "/images/nak_osztv-szktv_szakmabemutato.png"],
-        ["nak_osztv-szktv_szakmabemutato_wshu", "/images/nak_osztv-szktv_szakmabemutato_wshu.png"],
-        ["nak_osztv-szktv_wshu", "/images/nak_osztv-szktv_wshu.png"],
-        ["nak_szakmabemutato", "/images/nak_szakmabemutato.png"],
-        ["nak_szakmabemutato_wshu", "/images/nak_szakmabemutato_wshu.png"],
-        ["nak_wshu", "/images/nak_wshu.png"],
-        ["osztv-szktv_szakmabemutato", "/images/osztv-szktv_szakmabemutato.png"],
-        ["osztv-szktv_szakmabemutato_wshu", "/images/osztv-szktv_szakmabemutato_wshu.png"],
-        ["osztv-szktv_wshu", "/images/osztv-szktv_wshu.png"],
-        ["szakmabemutato_wshu", "/images/szakmabemutato_wshu.png"],
+        ["wc", "/images/wc.png"],
       ];
 
       images.forEach(async ([name, path]) => {
@@ -299,7 +289,47 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
 
   /* Generate the GeoJSON for the buildings, booths and articles */
   const buildingsGeoJSON = useMemo(() => generateBuildingsGeoJSON(mapData), [mapData]);
-  const boothsGeoJSON = useMemo(() => generateBoothsGeoJSON(mapData), [mapData]);
+  const boothsGeoJSON = useMemo(() => {
+    const geojson = generateBoothsGeoJSON(mapData);
+    if (activeFilter) {
+      // Add a matchesFilter property for each booth
+      const prefixes = activeFilter.split(",");
+      geojson.features = geojson.features.map((f) => {
+        const slugs = f.properties.articleSlugs as string;
+        const matches = prefixes.some((prefix) => slugs && slugs.includes(prefix));
+        return {
+          ...f,
+          properties: { ...f.properties, matchesFilter: matches },
+        };
+      });
+    }
+    return geojson;
+  }, [mapData, activeFilter]);
+
+  /** Handle category selection from search panel */
+  const handleCategorySelect = useCallback((slugPrefix: string | null) => {
+    setActiveFilter(slugPrefix);
+  }, []);
+
+  /** Handle POI type selection — fit map to bounds of all matching POIs */
+  const handlePoiTypeSelect = useCallback((poiType: string | null) => {
+    setActivePoiType(poiType);
+    if (poiType && mapRef.current) {
+      const matchingFeatures = staticMapFeatures.features.filter(
+        (f) =>
+          f.properties.type === "poi" && (f.properties as { poiType?: string }).poiType === poiType
+      );
+      if (matchingFeatures.length > 0) {
+        const bounds = new LngLatBounds();
+        matchingFeatures.forEach((f) => {
+          if (f.geometry.type === "Point") {
+            bounds.extend(f.geometry.coordinates as [number, number]);
+          }
+        });
+        mapRef.current.getMap().fitBounds(bounds, { padding: 120, maxZoom: 18 });
+      }
+    }
+  }, []);
 
   return (
     <>
@@ -401,6 +431,29 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
               "text-halo-width": 2,
             }}
           />
+
+          {/* POI markers */}
+          <Layer
+            id="poi-icons"
+            type="symbol"
+            filter={["==", "type", "poi"]}
+            layout={{
+              "icon-image": ["get", "icon"],
+              "icon-size": ["interpolate", ["exponential", 2], ["zoom"], 14, 0.15, 19, 0.35],
+              "icon-anchor": "center",
+              "icon-allow-overlap": true,
+              "icon-rotation-alignment": "map",
+            }}
+            paint={{
+              "icon-opacity": [
+                "case",
+                ["==", ["get", "poiType"], activePoiType ?? ""],
+                1,
+                activePoiType ? 0.3 : 0.8,
+              ],
+            }}
+            minzoom={16}
+          />
         </Source>
         <Source id="buildings" type="geojson" data={buildingsGeoJSON}>
           {/* Épületek */}
@@ -469,27 +522,57 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
             type="fill-extrusion"
             filter={["==", "type", "booth"]}
             paint={{
-              "fill-extrusion-color": [
-                "case",
-                ["!=", ["get", "image"], false],
-                [
-                  "case",
-                  ["==", ["get", "id"], selectedBoothId ?? ""],
-                  "#e0e0e0",
-                  ["==", ["get", "id"], hoveredBoothId],
-                  "#f0f0f0",
-                  "#ffffff",
-                ],
-                [
-                  "case",
-                  ["==", ["get", "id"], selectedBoothId ?? ""],
-                  "#93415a",
-                  ["==", ["get", "id"], hoveredBoothId],
-                  "#904e96",
-                  "#71376a",
-                ],
-              ],
-              "fill-extrusion-height": 0,
+              "fill-extrusion-color": activePoiType
+                ? ["case", ["!=", ["get", "image"], false], "#e8e8e8", "#d0d0d0"]
+                : activeFilter
+                  ? [
+                      "case",
+                      ["==", ["get", "matchesFilter"], true],
+                      // Matching booths: normal vivid colors
+                      [
+                        "case",
+                        ["!=", ["get", "image"], false],
+                        [
+                          "case",
+                          ["==", ["get", "id"], selectedBoothId ?? ""],
+                          "#e0e0e0",
+                          ["==", ["get", "id"], hoveredBoothId],
+                          "#f0f0f0",
+                          "#ffffff",
+                        ],
+                        [
+                          "case",
+                          ["==", ["get", "id"], selectedBoothId ?? ""],
+                          "#93415a",
+                          ["==", ["get", "id"], hoveredBoothId],
+                          "#904e96",
+                          "#71376a",
+                        ],
+                      ],
+                      // Non-matching booths: faded grey
+                      ["case", ["!=", ["get", "image"], false], "#e8e8e8", "#d0d0d0"],
+                    ]
+                  : [
+                      "case",
+                      ["!=", ["get", "image"], false],
+                      [
+                        "case",
+                        ["==", ["get", "id"], selectedBoothId ?? ""],
+                        "#e0e0e0",
+                        ["==", ["get", "id"], hoveredBoothId],
+                        "#f0f0f0",
+                        "#ffffff",
+                      ],
+                      [
+                        "case",
+                        ["==", ["get", "id"], selectedBoothId ?? ""],
+                        "#93415a",
+                        ["==", ["get", "id"], hoveredBoothId],
+                        "#904e96",
+                        "#71376a",
+                      ],
+                    ],
+              "fill-extrusion-height": 0.3,
               "fill-extrusion-base": 0,
             }}
             minzoom={boothZoomLevel}
@@ -523,6 +606,13 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
                 "icon-rotation-alignment": "map",
                 "icon-pitch-alignment": "map",
               }}
+              paint={{
+                "icon-opacity": activePoiType
+                  ? 0.15
+                  : activeFilter
+                    ? ["case", ["==", ["get", "matchesFilter"], true], 1, 0.15]
+                    : 1,
+              }}
               minzoom={boothZoomLevel}
             />
           )}
@@ -550,7 +640,16 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
             paint={{
               "text-color": "#fff",
               "text-halo-color": "#934c8a",
-              "text-halo-width": 1,
+              "text-halo-width": activePoiType
+                ? 0
+                : activeFilter
+                  ? ["case", ["==", ["get", "matchesFilter"], true], 1, 0]
+                  : 1,
+              "text-opacity": activePoiType
+                ? 0.15
+                : activeFilter
+                  ? ["case", ["==", ["get", "matchesFilter"], true], 1, 0.15]
+                  : 1,
             }}
             minzoom={boothNameZoomLevel}
           />
@@ -578,6 +677,17 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
             }}
             paint={{
               "text-color": "#fff",
+              "text-halo-color": "#934c8a",
+              "text-halo-width": activePoiType
+                ? 0
+                : activeFilter
+                  ? ["case", ["==", ["get", "matchesFilter"], true], 1, 0]
+                  : 1,
+              "text-opacity": activePoiType
+                ? 0.15
+                : activeFilter
+                  ? ["case", ["==", ["get", "matchesFilter"], true], 1, 0.15]
+                  : 1,
             }}
             minzoom={boothZoomLevel}
             maxzoom={boothNameZoomLevel}
@@ -606,6 +716,17 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
             }}
             paint={{
               "text-color": "#fff",
+              "text-halo-color": "#934c8a",
+              "text-halo-width": activePoiType
+                ? 0
+                : activeFilter
+                  ? ["case", ["==", ["get", "matchesFilter"], true], 1, 0]
+                  : 1,
+              "text-opacity": activePoiType
+                ? 0.15
+                : activeFilter
+                  ? ["case", ["==", ["get", "matchesFilter"], true], 1, 0.15]
+                  : 1,
             }}
             minzoom={boothNameZoomLevel}
           />
@@ -634,6 +755,12 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
           }}
         />
       )}
+      <MapSearchPanel
+        activeFilter={activeFilter}
+        activePoiType={activePoiType}
+        onCategorySelect={handleCategorySelect}
+        onPoiTypeSelect={handlePoiTypeSelect}
+      />
     </>
   );
 };

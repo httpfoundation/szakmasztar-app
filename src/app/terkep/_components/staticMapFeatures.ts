@@ -159,5 +159,21 @@ export const staticMapFeatures = {
         ],
       },
     },
+    {
+      type: "Feature" as const,
+      properties: { id: null, name: "WC", type: "poi", poiType: "toilet", icon: "wc", size: 0.5 },
+      geometry: {
+        type: "Point" as const,
+        coordinates: [19.1268, 47.4935],
+      },
+    },
+    {
+      type: "Feature" as const,
+      properties: { id: null, name: "WC", type: "poi", poiType: "toilet", icon: "wc", size: 0.5 },
+      geometry: {
+        type: "Point" as const,
+        coordinates: [19.1248, 47.4935],
+      },
+    },
   ],
 };
