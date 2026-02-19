@@ -145,7 +145,7 @@ export const generateBoothsGeoJSON = (mapData: InteractiveMapData) => {
 
       const properties: Record<string, unknown> = {
         id: booth.id,
-        name: booth.title,
+        name: booth.title.replaceAll(", ", "\n"),
         code: booth.code?.toString().padStart(2, "0") ?? false,
         type: "booth",
         image: imageUrl,

@@ -693,6 +693,7 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
               "text-anchor": ["case", ["==", ["get", "code"], false], "center", "top"],
               "text-justify": "center",
               "text-offset": [0, 0.2],
+              "text-max-width": Infinity,
             }}
             paint={{
               "text-color": activePoiType

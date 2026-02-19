@@ -15,6 +15,7 @@ import {
   Typography,
 } from "@mui/material";
 import eventCategories from "@/assets/eventCategories.json";
+import { getEventTypeBySlug } from "@/lib/utils";
 import { BoothData } from "./InteractiveMap";
 import { staticMapFeatures } from "./staticMapFeatures";
 
@@ -289,7 +290,7 @@ const MapSearchPanel = ({
                     fontWeight: 600,
                   }}
                 >
-                  Kategóriák
+                  Programok
                 </Typography>
                 <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
                   {filteredCategories.map((cat) => {
@@ -386,7 +387,7 @@ const MapSearchPanel = ({
                     fontWeight: 600,
                   }}
                 >
-                  Létesítmények
+                  Egyéb
                 </Typography>
                 <Box sx={{ display: "flex", flexDirection: "column", gap: 0.75 }}>
                   {filteredPois.map((poi) => {
@@ -401,12 +402,12 @@ const MapSearchPanel = ({
                           alignItems: "center",
                           gap: 1.5,
                           px: 1.5,
-                          py: 1,
+                          py: 2.3,
                           borderRadius: 2,
                           bgcolor: isActive ? "rgba(255,255,255,0.15)" : "rgba(255,255,255,0.05)",
-                          border: isActive
-                            ? "2px solid rgba(255,255,255,0.5)"
-                            : "2px solid transparent",
+                          boxShadow: isActive
+                            ? "0 0 0 3px #F4B02A, 0 4px 12px rgba(244,176,42,0.4)"
+                            : "0 2px 4px rgba(0, 0, 0, 0.1)",
                           transition: "all 0.15s ease",
                           textAlign: "left",
                           width: "100%",
@@ -426,21 +427,11 @@ const MapSearchPanel = ({
                         >
                           {poiIcons[poi.poiType] || <SearchIcon sx={{ fontSize: 20 }} />}
                         </Box>
-                        <Typography variant="body2" sx={{ fontWeight: isActive ? 700 : 500 }}>
-                          {poi.name}
-                        </Typography>
                         <Typography
-                          variant="caption"
-                          sx={{
-                            ml: "auto",
-                            opacity: 0.5,
-                            bgcolor: "rgba(255,255,255,0.1)",
-                            px: 1,
-                            py: 0.25,
-                            borderRadius: 1,
-                          }}
+                          variant="body2"
+                          sx={{ fontWeight: isActive ? 700 : 500, flexGrow: 1 }}
                         >
-                          {poi.count}×
+                          {poi.name}
                         </Typography>
                       </ButtonBase>
                     );
@@ -485,11 +476,8 @@ const MapSearchPanel = ({
                           flexDirection: "column",
                           alignItems: "flex-start",
                           gap: 0.5,
-                          px: 1.5,
-                          py: 1,
                           borderRadius: 2,
                           bgcolor: "rgba(255,255,255,0.05)",
-                          border: "1px solid rgba(255,255,255,0.1)",
                           transition: "all 0.15s ease",
                           textAlign: "left",
                           width: "100%",
@@ -499,42 +487,72 @@ const MapSearchPanel = ({
                           },
                         }}
                       >
-                        <Box sx={{ width: "100%", display: "flex", alignItems: "center" }}>
+                        <Box
+                          sx={{
+                            width: "100%",
+                            display: "flex",
+                            alignItems: "center",
+                            bgcolor: "rgba(0,0,0,0.1)",
+                            borderRadius: 1,
+                            px: 1.5,
+                            py: 1.5,
+                          }}
+                        >
                           <Typography variant="body2" sx={{ fontWeight: 600 }}>
                             {booth.code && (
                               <Box component="span" sx={{ fontWeight: 800, mr: 1, opacity: 0.8 }}>
-                                {String(booth.code).padStart(2, "0")}.
+                                {String(booth.code).padStart(2, "0")}
                               </Box>
                             )}
                             {booth.title}
                           </Typography>
                         </Box>
 
-                        {/* Show matching articles if any */}
-                        {searchQuery && matchingArticles.length > 0 && (
+                        {booth.articles.length > 0 && (
                           <Box
                             sx={{
                               display: "flex",
                               flexDirection: "column",
-                              gap: 0.25,
+                              gap: 1,
                               width: "100%",
+                              px: 1.5,
+                              pt: 0.5,
+                              pb: 1.5,
                             }}
                           >
-                            {matchingArticles.map((article) => (
-                              <Typography
-                                key={article.slug}
-                                variant="caption"
-                                sx={{
-                                  color: "rgba(255,255,255,0.7)",
-                                  fontSize: 11,
-                                  display: "flex",
-                                  alignItems: "center",
-                                  gap: 0.5,
-                                }}
-                              >
-                                • {article.title}
-                              </Typography>
-                            ))}
+                            {booth.articles.map((article) => {
+                              const eventType = getEventTypeBySlug(article.slug);
+                              return (
+                                <Box key={article.slug}>
+                                  <Typography
+                                    variant="caption"
+                                    sx={{
+                                      color: "rgba(255,255,255,0.8)",
+                                      fontSize: 12,
+                                      display: "flex",
+                                      alignItems: "center",
+                                    }}
+                                  >
+                                    – {article.title}
+                                  </Typography>
+                                  <Typography
+                                    variant="caption"
+                                    sx={{
+                                      color: "rgba(255,255,255,0.5)",
+                                      fontSize: 10,
+                                      display: "flex",
+                                      alignItems: "center",
+                                      ml: 1.1,
+                                      mt: -0.25,
+                                    }}
+                                  >
+                                    {[eventType.eventOwner, eventType.eventType]
+                                      .filter(Boolean)
+                                      .join(" ")}
+                                  </Typography>
+                                </Box>
+                              );
+                            })}
                           </Box>
                         )}
                       </ButtonBase>
