@@ -45,78 +45,6 @@ WHERE target.title = "Asztalos, Faipari technikus" AND target.categoryId LIKE "s
 INSERT INTO `Article` (`id`, `title`, `slug`, `content`, `siteId`, `categoryId`, `createdAt`, `updatedAt`, `lead`, `position`, `metadata`)
 SELECT 
   UUID(),
-  "Ács",
-  "acs",
-  '<p>.</p>',
-  'szakmasztar-app-site',
-  "szakmasztar-app-f-pavilon",
-  NOW(),
-  NOW(),
-  '<p>.</p>',
-  0,
-  JSON_OBJECT()
-WHERE NOT EXISTS (
-  SELECT 1
-  FROM Article
-  WHERE title = "Ács"
-    AND categoryId LIKE "szakmasztar-app-f-pavilon%"
-);
-
-UPDATE Article target
-JOIN (
-  SELECT JSON_ARRAYAGG(a.id) AS article_ids
-  FROM Article a
-  WHERE (a.title = "Ács" AND a.slug LIKE "wshu%") OR (a.title = "TEGY Tető" AND a.slug LIKE "interaktiv-szakmabemutato%") OR (a.title = "Ács" AND a.slug LIKE "osztvszktv%") OR (a.title = "Terrán" AND a.slug LIKE "interaktiv-szakmabemutato%")
-) agg
-SET target.metadata = JSON_SET(
-  COALESCE(target.metadata, JSON_OBJECT()),
-  '$.articleIds', COALESCE(agg.article_ids, JSON_ARRAY()),
-  '$.map', JSON_OBJECT(
-    'buildingId', "f-pavilon",
-    'coordinates', JSON_ARRAY(JSON_ARRAY(243, 464), JSON_ARRAY(442, 464), JSON_ARRAY(442, 711), JSON_ARRAY(243, 711))
-  )
-)
-WHERE target.title = "Ács" AND target.categoryId LIKE "szakmasztar-app-f-pavilon%";
-
-INSERT INTO `Article` (`id`, `title`, `slug`, `content`, `siteId`, `categoryId`, `createdAt`, `updatedAt`, `lead`, `position`, `metadata`)
-SELECT 
-  UUID(),
-  "Kőműves, Burkoló, Bádogos",
-  "komuves-burkolo-badogos",
-  '<p>.</p>',
-  'szakmasztar-app-site',
-  "szakmasztar-app-f-pavilon",
-  NOW(),
-  NOW(),
-  '<p>.</p>',
-  0,
-  JSON_OBJECT()
-WHERE NOT EXISTS (
-  SELECT 1
-  FROM Article
-  WHERE title = "Kőműves, Burkoló, Bádogos"
-    AND categoryId LIKE "szakmasztar-app-f-pavilon%"
-);
-
-UPDATE Article target
-JOIN (
-  SELECT JSON_ARRAYAGG(a.id) AS article_ids
-  FROM Article a
-  WHERE (a.title = "Kőműves" AND a.slug LIKE "osztvszktv%") OR (a.title = "Bádogos" AND a.slug LIKE "osztvszktv%") OR (a.title = "Burkoló" AND a.slug LIKE "osztvszktv%") OR (a.title = "Knauf" AND a.slug LIKE "osztvszktv%") OR (a.title = "PREFA Hungária Kft." AND a.slug LIKE "osztvszktv%")
-) agg
-SET target.metadata = JSON_SET(
-  COALESCE(target.metadata, JSON_OBJECT()),
-  '$.articleIds', COALESCE(agg.article_ids, JSON_ARRAY()),
-  '$.map', JSON_OBJECT(
-    'buildingId', "f-pavilon",
-    'coordinates', JSON_ARRAY(JSON_ARRAY(243, 184), JSON_ARRAY(442, 184), JSON_ARRAY(442, 462), JSON_ARRAY(243, 462))
-  )
-)
-WHERE target.title = "Kőműves, Burkoló, Bádogos" AND target.categoryId LIKE "szakmasztar-app-f-pavilon%";
-
-INSERT INTO `Article` (`id`, `title`, `slug`, `content`, `siteId`, `categoryId`, `createdAt`, `updatedAt`, `lead`, `position`, `metadata`)
-SELECT 
-  UUID(),
   "Magasépítő technikus, Mélyépítő technikus",
   "magasepito-technikus-melyepito-technikus",
   '<p>.</p>',
@@ -149,6 +77,78 @@ SET target.metadata = JSON_SET(
   )
 )
 WHERE target.title = "Magasépítő technikus, Mélyépítő technikus" AND target.categoryId LIKE "szakmasztar-app-f-pavilon%";
+
+INSERT INTO `Article` (`id`, `title`, `slug`, `content`, `siteId`, `categoryId`, `createdAt`, `updatedAt`, `lead`, `position`, `metadata`)
+SELECT 
+  UUID(),
+  "Ács B",
+  "acs-b",
+  '<p>.</p>',
+  'szakmasztar-app-site',
+  "szakmasztar-app-f-pavilon",
+  NOW(),
+  NOW(),
+  '<p>.</p>',
+  0,
+  JSON_OBJECT()
+WHERE NOT EXISTS (
+  SELECT 1
+  FROM Article
+  WHERE title = "Ács B"
+    AND categoryId LIKE "szakmasztar-app-f-pavilon%"
+);
+
+UPDATE Article target
+JOIN (
+  SELECT JSON_ARRAYAGG(a.id) AS article_ids
+  FROM Article a
+  WHERE (a.title = "Ács" AND a.slug LIKE "wshu%") OR (a.title = "Ács" AND a.slug LIKE "osztvszktv%")
+) agg
+SET target.metadata = JSON_SET(
+  COALESCE(target.metadata, JSON_OBJECT()),
+  '$.articleIds', COALESCE(agg.article_ids, JSON_ARRAY()),
+  '$.map', JSON_OBJECT(
+    'buildingId', "f-pavilon",
+    'coordinates', JSON_ARRAY(JSON_ARRAY(442, 463), JSON_ARRAY(442, 711), JSON_ARRAY(336, 711), JSON_ARRAY(336, 612), JSON_ARRAY(243, 612), JSON_ARRAY(243, 528), JSON_ARRAY(273, 528), JSON_ARRAY(273, 474), JSON_ARRAY(243, 474), JSON_ARRAY(243, 463), JSON_ARRAY(442, 463))
+  )
+)
+WHERE target.title = "Ács B" AND target.categoryId LIKE "szakmasztar-app-f-pavilon%";
+
+INSERT INTO `Article` (`id`, `title`, `slug`, `content`, `siteId`, `categoryId`, `createdAt`, `updatedAt`, `lead`, `position`, `metadata`)
+SELECT 
+  UUID(),
+  "Kőműves, Burkoló, Bádogos",
+  "komuves-burkolo-badogos",
+  '<p>.</p>',
+  'szakmasztar-app-site',
+  "szakmasztar-app-f-pavilon",
+  NOW(),
+  NOW(),
+  '<p>.</p>',
+  0,
+  JSON_OBJECT()
+WHERE NOT EXISTS (
+  SELECT 1
+  FROM Article
+  WHERE title = "Kőműves, Burkoló, Bádogos"
+    AND categoryId LIKE "szakmasztar-app-f-pavilon%"
+);
+
+UPDATE Article target
+JOIN (
+  SELECT JSON_ARRAYAGG(a.id) AS article_ids
+  FROM Article a
+  WHERE (a.title = "Kőműves" AND a.slug LIKE "osztvszktv%") OR (a.title = "Bádogos" AND a.slug LIKE "osztvszktv%") OR (a.title = "Burkoló" AND a.slug LIKE "osztvszktv%") OR (a.title = "Knauf" AND a.slug LIKE "osztvszktv%") OR (a.title = "PREFA Hungária Kft." AND a.slug LIKE "osztvszktv%")
+) agg
+SET target.metadata = JSON_SET(
+  COALESCE(target.metadata, JSON_OBJECT()),
+  '$.articleIds', COALESCE(agg.article_ids, JSON_ARRAY()),
+  '$.map', JSON_OBJECT(
+    'buildingId', "f-pavilon",
+    'coordinates', JSON_ARRAY(JSON_ARRAY(442, 184), JSON_ARRAY(442, 461), JSON_ARRAY(243, 461), JSON_ARRAY(243, 184), JSON_ARRAY(442, 184))
+  )
+)
+WHERE target.title = "Kőműves, Burkoló, Bádogos" AND target.categoryId LIKE "szakmasztar-app-f-pavilon%";
 
 INSERT INTO `Article` (`id`, `title`, `slug`, `content`, `siteId`, `categoryId`, `createdAt`, `updatedAt`, `lead`, `position`, `metadata`)
 SELECT 
@@ -323,7 +323,7 @@ SET metadata = JSON_SET(
   COALESCE(metadata, JSON_OBJECT()),
   '$.map', JSON_OBJECT(
     'buildingId', 'f-pavilon',
-    'coordinates', JSON_ARRAY(JSON_ARRAY(336, 662), JSON_ARRAY(442, 662), JSON_ARRAY(442, 711), JSON_ARRAY(336, 711))
+    'coordinates', JSON_ARRAY(JSON_ARRAY(372, 662), JSON_ARRAY(442, 662), JSON_ARRAY(442, 711), JSON_ARRAY(372, 711))
   ),
   '$.buildingId', 'f-pavilon'
 )
@@ -335,35 +335,11 @@ SET metadata = JSON_SET(
   COALESCE(metadata, JSON_OBJECT()),
   '$.map', JSON_OBJECT(
     'buildingId', 'f-pavilon',
-    'coordinates', JSON_ARRAY(JSON_ARRAY(243, 662), JSON_ARRAY(334, 662), JSON_ARRAY(334, 711), JSON_ARRAY(243, 711))
+    'coordinates', JSON_ARRAY(JSON_ARRAY(243, 614), JSON_ARRAY(334, 614), JSON_ARRAY(334, 711), JSON_ARRAY(243, 711))
   ),
   '$.buildingId', 'f-pavilon'
 )
 WHERE title = "TEGY Tető"
-  AND slug LIKE "interaktiv-szakmabemutato%";
-
-UPDATE Article
-SET metadata = JSON_SET(
-  COALESCE(metadata, JSON_OBJECT()),
-  '$.map', JSON_OBJECT(
-    'buildingId', 'f-pavilon',
-    'coordinates', JSON_ARRAY(JSON_ARRAY(243, 526), JSON_ARRAY(442, 526), JSON_ARRAY(442, 660), JSON_ARRAY(243, 660))
-  ),
-  '$.buildingId', 'f-pavilon'
-)
-WHERE title = "Ács"
-  AND slug LIKE "osztvszktv%";
-
-UPDATE Article
-SET metadata = JSON_SET(
-  COALESCE(metadata, JSON_OBJECT()),
-  '$.map', JSON_OBJECT(
-    'buildingId', 'f-pavilon',
-    'coordinates', JSON_ARRAY(JSON_ARRAY(243, 463), JSON_ARRAY(442, 463), JSON_ARRAY(442, 524), JSON_ARRAY(243, 524))
-  ),
-  '$.buildingId', 'f-pavilon'
-)
-WHERE title = "Terrán"
   AND slug LIKE "interaktiv-szakmabemutato%";
 
 UPDATE Article
@@ -412,4 +388,28 @@ SET metadata = JSON_SET(
   '$.buildingId', 'f-pavilon'
 )
 WHERE title = "PREFA Hungária Kft."
+  AND slug LIKE "osztvszktv%";
+
+UPDATE Article
+SET metadata = JSON_SET(
+  COALESCE(metadata, JSON_OBJECT()),
+  '$.map', JSON_OBJECT(
+    'buildingId', 'f-pavilon',
+    'coordinates', JSON_ARRAY(JSON_ARRAY(243, 476), JSON_ARRAY(271, 476), JSON_ARRAY(271, 526), JSON_ARRAY(243, 526))
+  ),
+  '$.buildingId', 'f-pavilon'
+)
+WHERE title = "Terrán"
+  AND slug LIKE "interaktiv-szakmabemutato%";
+
+UPDATE Article
+SET metadata = JSON_SET(
+  COALESCE(metadata, JSON_OBJECT()),
+  '$.map', JSON_OBJECT(
+    'buildingId', 'f-pavilon',
+    'coordinates', JSON_ARRAY(JSON_ARRAY(442, 463), JSON_ARRAY(442, 660), JSON_ARRAY(370, 660), JSON_ARRAY(370, 711), JSON_ARRAY(336, 711), JSON_ARRAY(336, 612), JSON_ARRAY(243, 612), JSON_ARRAY(243, 528), JSON_ARRAY(273, 528), JSON_ARRAY(273, 474.5), JSON_ARRAY(243, 474.5), JSON_ARRAY(243, 463), JSON_ARRAY(442, 463))
+  ),
+  '$.buildingId', 'f-pavilon'
+)
+WHERE title = "Ács"
   AND slug LIKE "osztvszktv%";
