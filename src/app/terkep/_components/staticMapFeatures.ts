@@ -172,7 +172,53 @@ export const staticMapFeatures = {
       properties: { id: null, name: "WC", type: "poi", poiType: "toilet", icon: "wc", size: 0.5 },
       geometry: {
         type: "Point" as const,
+        coordinates: [19.127, 47.4935],
+      },
+    },
+    {
+      type: "Feature" as const,
+      properties: {
+        id: null,
+        name: "Étterem / Büfé",
+        type: "poi",
+        poiType: "restaurant",
+        icon: "restaurant",
+        size: 0.5,
+      },
+      geometry: {
+        type: "Point" as const,
         coordinates: [19.1248, 47.4935],
+      },
+    },
+    {
+      type: "Feature" as const,
+      properties: {
+        id: null,
+        name: "Ételcsomag",
+        type: "poi",
+        poiType: "food",
+        icon: "food",
+        size: 0.5,
+      },
+      geometry: {
+        type: "Point" as const,
+        coordinates: [19.1248, 47.4937],
+      },
+    },
+
+    {
+      type: "Feature" as const,
+      properties: {
+        id: null,
+        name: "HelloPay feltöltő pont",
+        type: "poi",
+        poiType: "hellopay",
+        icon: "hellopay",
+        size: 0.5,
+      },
+      geometry: {
+        type: "Point" as const,
+        coordinates: [19.1248, 47.4939],
       },
     },
   ],

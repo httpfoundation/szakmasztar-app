@@ -3,7 +3,7 @@
 import Map, { Layer, Source } from "react-map-gl/maplibre";
 import type { LngLat, MapRef } from "react-map-gl/maplibre";
 import "maplibre-gl/dist/maplibre-gl.css";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import { useMediaQuery, useTheme } from "@mui/material";
 import { LngLatBounds } from "maplibre-gl";
 import type { MapLayerMouseEvent, ViewStateChangeEvent } from "react-map-gl/maplibre";
@@ -174,6 +174,7 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
       if (savedState) {
         try {
           const { longitude, latitude, zoom, pitch, bearing } = JSON.parse(savedState);
+
           map.jumpTo({
             center: [longitude, latitude],
             zoom,
@@ -210,10 +211,14 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
         ["arrow_upward", "/images/arrow_upward_256dp_000_FILL0_wght400_GRAD0_opsz48.png"],
         ["metro2", "/images/Budapest_M2_Metro_s.png"],
         ["wc", "/images/wc.png"],
+        ["restaurant", "/images/restaurant.png"],
+        ["food", "/images/food.png"],
+        ["hellopay", "/images/hellopay.png"],
       ];
 
       images.forEach(async ([name, path]) => {
         const image = await map.loadImage(path);
+        if (map.hasImage(name)) map.removeImage(name);
         map.addImage(name, image.data);
       });
 
@@ -308,6 +313,7 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
   }, [activeFilter]);
 
   // Determine the filter match expression
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const filterMatchExpression = useMemo<any>(() => {
     if (!activeFilter) return ["literal", true];
     if (activeFilter.includes("wshu")) return ["get", "hasWshu"];
@@ -394,9 +400,9 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
         ref={mapRef}
         initialViewState={{
           pitch: 0,
-          bounds: maxBounds,
+          bounds: buildingBounds,
           fitBoundsOptions: {
-            padding: 100,
+            padding: 60,
           },
         }}
         minPitch={0}
@@ -496,7 +502,15 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
             filter={["==", "type", "poi"]}
             layout={{
               "icon-image": ["get", "icon"],
-              "icon-size": ["interpolate", ["exponential", 2], ["zoom"], 14, 0.15, 19, 0.35],
+              "icon-size": [
+                "interpolate",
+                ["exponential", 2],
+                ["zoom"],
+                boothZoomLevel,
+                ["*", ["get", "size"], 0.13],
+                maxZoomLevel,
+                ["*", ["get", "size"], 3],
+              ],
               "icon-anchor": "center",
               "icon-allow-overlap": true,
               "icon-rotation-alignment": "map",
@@ -509,7 +523,7 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
                 activePoiType ? 0.3 : 0.8,
               ],
             }}
-            minzoom={16}
+            minzoom={boothZoomLevel}
           />
         </Source>
         <Source id="buildings" type="geojson" data={buildingsGeoJSON}>

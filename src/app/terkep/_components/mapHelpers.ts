@@ -1,5 +1,4 @@
 import { LngLatBounds } from "maplibre-gl";
-import type { ArticleFragment } from "@/actions/articles/articles.generated";
 import type { InteractiveMapData } from "./InteractiveMap";
 
 /**

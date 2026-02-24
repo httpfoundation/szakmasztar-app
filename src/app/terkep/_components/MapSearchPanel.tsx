@@ -3,7 +3,6 @@
 import { useCallback, useMemo, useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import SearchIcon from "@mui/icons-material/Search";
-import WcIcon from "@mui/icons-material/Wc";
 import {
   Box,
   ButtonBase,
@@ -35,9 +34,39 @@ interface MapSearchPanelProps {
   onBoothSelect: (boothId: string) => void;
 }
 
-/** Maps poiType to a MUI icon component */
 const poiIcons: Record<string, React.ReactNode> = {
-  toilet: <WcIcon sx={{ fontSize: 20 }} />,
+  toilet: (
+    <Box
+      component="img"
+      src="/images/wc.png"
+      alt=""
+      sx={{ width: 33, height: 33, objectFit: "contain" }}
+    />
+  ),
+  restaurant: (
+    <Box
+      component="img"
+      src="/images/restaurant.png"
+      alt=""
+      sx={{ width: 33, height: 33, objectFit: "contain" }}
+    />
+  ),
+  food: (
+    <Box
+      component="img"
+      src="/images/food.png"
+      alt=""
+      sx={{ width: 33, height: 33, objectFit: "contain" }}
+    />
+  ),
+  hellopay: (
+    <Box
+      component="img"
+      src="/images/hellopay.png"
+      alt=""
+      sx={{ width: 33, height: 33, objectFit: "contain" }}
+    />
+  ),
 };
 
 /** Derives a slug prefix from a category slug for article matching */
@@ -204,14 +233,17 @@ const MapSearchPanel = ({
           elevation={8}
           sx={{
             position: "absolute",
-            bottom: 80,
-            right: 16,
-            width: { xs: "calc(100% - 32px)", sm: 340 },
-            maxHeight: { xs: "60vh", md: "70vh" },
+            top: { xs: 0, sm: "auto" },
+            left: { xs: 0, sm: "auto" },
+            bottom: { xs: 0, sm: 80 },
+            right: { xs: 0, sm: 16 },
+            width: { xs: "100%", sm: 420 },
+            height: { xs: "100%", sm: "auto" },
+            maxHeight: { xs: "none", sm: "60vh", md: "70vh" },
             zIndex: 10,
             bgcolor: "primary.main",
             color: "primary.contrastText",
-            borderRadius: 3,
+            borderRadius: { xs: 0, sm: 3 },
             overflow: "hidden",
             display: "flex",
             flexDirection: "column",
@@ -222,27 +254,19 @@ const MapSearchPanel = ({
             },
           }}
         >
-          {/* Header */}
+          {/* Dark Header Section */}
           <Box
             sx={{
+              bgcolor: "primary.dark",
+              boxShadow: "0 4px 8px rgba(0,0,0,0.25)",
+              zIndex: 1,
+              position: "relative",
               display: "flex",
               alignItems: "center",
-              justifyContent: "space-between",
-              px: 2,
-              pt: 1.5,
-              pb: 1,
+              gap: 1.5,
+              p: 2,
             }}
           >
-            <Typography variant="h6" sx={{ fontWeight: 700 }}>
-              Keresés a térképen
-            </Typography>
-            <IconButton onClick={handleClose} size="small" sx={{ color: "inherit" }}>
-              <CloseIcon fontSize="small" />
-            </IconButton>
-          </Box>
-
-          {/* Search input */}
-          <Box sx={{ px: 2, pb: 1.5 }}>
             <TextField
               fullWidth
               size="small"
@@ -257,6 +281,7 @@ const MapSearchPanel = ({
                 ),
               }}
               sx={{
+                flex: 1,
                 "& .MuiOutlinedInput-root": {
                   bgcolor: "rgba(255,255,255,0.08)",
                   borderRadius: 2,
@@ -271,10 +296,13 @@ const MapSearchPanel = ({
                 },
               }}
             />
+            <IconButton onClick={handleClose} size="small" sx={{ color: "inherit", flexShrink: 0 }}>
+              <CloseIcon />
+            </IconButton>
           </Box>
 
           {/* Scrollable content */}
-          <Box sx={{ overflow: "auto", px: 2, pb: 2, flex: 1 }}>
+          <Box sx={{ overflow: "auto", px: 2, pb: 2, pt: 2, flex: 1 }}>
             {/* Categories */}
             {filteredCategories.length > 0 && (
               <>
@@ -283,7 +311,6 @@ const MapSearchPanel = ({
                   sx={{
                     display: "block",
                     mb: 1,
-                    mt: 0.5,
                     textTransform: "uppercase",
                     letterSpacing: 1,
                     opacity: 0.6,
@@ -402,7 +429,7 @@ const MapSearchPanel = ({
                           alignItems: "center",
                           gap: 1.5,
                           px: 1.5,
-                          py: 2.3,
+                          py: 1.5,
                           borderRadius: 2,
                           bgcolor: isActive ? "rgba(255,255,255,0.15)" : "rgba(255,255,255,0.05)",
                           boxShadow: isActive
@@ -459,11 +486,6 @@ const MapSearchPanel = ({
                 </Typography>
                 <Box sx={{ display: "flex", flexDirection: "column", gap: 0.75 }}>
                   {filteredBooths.map((booth) => {
-                    const q = searchQuery.toLowerCase();
-                    const matchingArticles = booth.articles.filter((a) =>
-                      a.title.toLowerCase().includes(q)
-                    );
-
                     return (
                       <ButtonBase
                         key={booth.id}
@@ -508,7 +530,9 @@ const MapSearchPanel = ({
                           </Typography>
                         </Box>
 
-                        {booth.articles.length > 0 && (
+                        {(booth.articles.length > 1 ||
+                          (booth.articles.length === 1 &&
+                            booth.title !== booth.articles[0].title)) && (
                           <Box
                             sx={{
                               display: "flex",
