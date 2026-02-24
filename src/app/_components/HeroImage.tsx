@@ -8,6 +8,7 @@ import Hero2 from "@/assets/images/hero/hero-2.png";
 import Hero3 from "@/assets/images/hero/hero-3.webp";
 import HeroLeftOverlay from "@/assets/images/hero/hero-left-overlay.png";
 import HeroRightOverlay from "@/assets/images/hero/hero-right-overlay.png";
+import StarLogo from "@/assets/images/logo-star.svg";
 import LinkButton from "@/components/common/LinkButton";
 
 const HERO_IMAGES = [Hero1, Hero2, Hero3];
@@ -153,16 +154,43 @@ export default function HeroImage({ alt, title }: HeroImageProps) {
               lineHeight: 1.1,
             }}
           >
-            <Box component="span" sx={{ fontWeight: 700, fontSize: "1.8rem" }}>
+            <Box
+              component="span"
+              sx={{ fontWeight: 700, fontSize: { xs: "1.8rem", sm: "2.4rem", md: "3.6rem" } }}
+            >
               Szakma
             </Box>
-            <Box component="span" sx={{ fontWeight: 700, fontSize: "2.4rem" }}>
+            <Box
+              component="span"
+              sx={{ fontWeight: 700, fontSize: { xs: "2.4rem", sm: "3.2rem", md: "4.7rem" } }}
+            >
               Sztár
             </Box>
-            <Box component="span" sx={{ fontWeight: 300, fontSize: "1.55rem" }}>
+            <Box
+              component="span"
+              sx={{ fontWeight: 300, fontSize: { xs: "1.55rem", sm: "2rem", md: "2.9rem" } }}
+            >
               Fesztivál
             </Box>
           </Typography>
+          <Image
+            src={StarLogo}
+            alt=""
+            style={{
+              position: "absolute",
+              left: "-15%",
+              top: "50%",
+              transform: "translateY(-50%)",
+              zIndex: 2,
+              pointerEvents: "none",
+              width: "150%",
+              height: "150%",
+              objectFit: "contain",
+              objectPosition: "center",
+              opacity: 0.3,
+              maxWidth: "none",
+            }}
+          />
         </Box>
       )}
 
