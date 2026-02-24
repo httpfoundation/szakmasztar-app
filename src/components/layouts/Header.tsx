@@ -22,6 +22,9 @@ export default function Header({ title }: HeaderProps) {
     window.scrollTo({ top: 0, behavior: "instant" });
   }, [pathname]);
 
+  const year = title.split(" ").pop() || "";
+  const titleWithoutYear = title.replace(year, "");
+
   return (
     <>
       <AppBar
@@ -40,9 +43,21 @@ export default function Header({ title }: HeaderProps) {
           <Typography
             variant="h6"
             component="div"
-            sx={{ flexGrow: 1, textTransform: "uppercase", lineHeight: 1 }}
+            sx={{
+              flexGrow: 1,
+              textTransform: "uppercase",
+              lineHeight: 1,
+              fontWeight: 300,
+              fontSize: "1.35rem",
+            }}
           >
-            {title}
+            {titleWithoutYear}
+            <Typography
+              component="span"
+              sx={{ lineHeight: 1, fontSize: "1.35rem", fontWeight: 700 }}
+            >
+              {year}
+            </Typography>
           </Typography>
         </Toolbar>
       </AppBar>

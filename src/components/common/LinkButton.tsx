@@ -1,5 +1,8 @@
 import Link from "next/link";
-import { ChevronLeft, ChevronRight } from "@mui/icons-material";
+import {
+  ChevronLeftRounded as ChevronLeft,
+  ChevronRightRounded as ChevronRight,
+} from "@mui/icons-material";
 import InfoIcon from "@mui/icons-material/Info";
 import { Button, ButtonProps } from "@mui/material";
 

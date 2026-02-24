@@ -1,6 +1,5 @@
 import { Box, Stack } from "@mui/material";
 import { getCurrentCompetition } from "@/actions/competitions/competitions";
-import heroImage from "@/assets/images/hero.png";
 import HeroImage from "./_components/HeroImage";
 import HeroSection from "./_components/HeroSection";
 import ImageButtonSection from "./_components/ImageButtonSection";
@@ -16,7 +15,7 @@ const IndexPage = async () => {
 
   return (
     <Box>
-      <HeroImage image={heroImage} alt={currentCompetition.name} title={currentCompetition.name} />
+      <HeroImage alt={currentCompetition.name} title={currentCompetition.name} />
 
       <Stack sx={{ width: "100%", position: "relative" }}>
         <HeroSection />

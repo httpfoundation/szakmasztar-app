@@ -7,7 +7,7 @@ type HamburgerButtonProps = {
 
 export default function HamburgerButton({ onClick }: HamburgerButtonProps) {
   return (
-    <IconButton color="inherit" edge="start" onClick={onClick} sx={{ mr: 2 }}>
+    <IconButton color="inherit" edge="start" onClick={onClick} sx={{ mr: 1, ml: -0.5 }}>
       <MenuIcon />
     </IconButton>
   );
