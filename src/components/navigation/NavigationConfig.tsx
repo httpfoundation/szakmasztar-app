@@ -61,7 +61,7 @@ export const menuItems: MenuItem[] = [
     icon: <EventIcon />,
     slug: "/utemterv",
     link: <Link href="/utemterv">{<EventIcon />}</Link>,
-    showInBottomNav: true,
+    showInBottomNav: false,
   },
   {
     text: "QR kód",

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
 import { menuItems } from "./NavigationConfig";
 
@@ -13,6 +14,8 @@ export default function SideDrawer({ open, onClose }: SideDrawerProps) {
   const handleItemClick = () => {
     onClose();
   };
+
+  const pathname = usePathname();
 
   return (
     <Drawer
@@ -30,7 +33,17 @@ export default function SideDrawer({ open, onClose }: SideDrawerProps) {
       <List>
         {menuItems.map((item, index) => (
           <ListItem key={index} disablePadding>
-            <ListItemButton component={Link} href={item.slug} onClick={handleItemClick}>
+            <ListItemButton
+              component={Link}
+              href={item.slug}
+              onClick={handleItemClick}
+              selected={item.slug === pathname}
+              sx={{
+                "&.Mui-selected": {
+                  bgcolor: "primary.dark",
+                },
+              }}
+            >
               <ListItemIcon sx={{ color: "white", mr: -2 }}>{item.icon}</ListItemIcon>
               <ListItemText primary={item.text} />
             </ListItemButton>
