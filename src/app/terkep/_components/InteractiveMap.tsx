@@ -4,6 +4,7 @@ import Map, { Layer, Source } from "react-map-gl/maplibre";
 import type { LngLat, MapRef } from "react-map-gl/maplibre";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { useCallback, useMemo, useRef, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { useMediaQuery, useTheme } from "@mui/material";
 import { LngLatBounds } from "maplibre-gl";
 import type { MapLayerMouseEvent, ViewStateChangeEvent } from "react-map-gl/maplibre";
@@ -44,6 +45,9 @@ interface InteractiveMapProps {
 }
 
 const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
+  const searchParams = useSearchParams();
+  const [initialBuilding] = [...searchParams.keys()];
+
   const mapRef = useRef<MapRef>(null);
   const [hoveredBoothId, setHoveredBoothId] = useState<string | null>(null);
   const [hoveredBuildingId, setHoveredBuildingId] = useState<string | null>(null);
@@ -171,7 +175,7 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
     if (map) {
       /* Load the map state (center, zoom, pitch, bearing) from session storage */
       const savedState = sessionStorage.getItem("interactive-map-view-state");
-      if (savedState) {
+      if (savedState && !initialBuilding) {
         try {
           const { longitude, latitude, zoom, pitch, bearing } = JSON.parse(savedState);
 
@@ -184,6 +188,18 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
         } catch (e) {
           console.error("Failed to parse saved map state", e);
         }
+      }
+
+      if (initialBuilding) {
+        const building = mapData.buildings.find((b) => b.id.includes(initialBuilding));
+        if (building) {
+          const bounds = new LngLatBounds();
+          building.coordinates.forEach((coord) => {
+            bounds.extend(coord as [number, number]);
+          });
+          map.fitBounds(bounds, { padding: 50 });
+        }
+        window.history.replaceState({}, "", "/terkep");
       }
 
       /* Remove unnecessary map layers */

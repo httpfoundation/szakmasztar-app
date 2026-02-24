@@ -3,7 +3,10 @@
     "title": "Szakmai tanulmányi versenyek",
     "slug": "szakmai-programok/osztv-szktv-versenyek",
     "description": "Szakmai tanulmányi verseny döntők (OSZTV és SZKTV)",
-    "locations": [{ "title": "A pavilon", "slug": "/terkep/a-pavilon" }],
+    "locations": [
+      { "title": "F pavilon", "slug": "/terkep?f-pavilon" },
+      { "title": "G pavilon", "slug": "/terkep?g-pavilon" }
+    ],
     "color": "osztv.main",
     "symbolSrc": "/images/osztv-symbol.svg"
   },
@@ -11,7 +14,10 @@
     "title": "WorldSkills Hungary",
     "slug": "szakmai-programok/wshu",
     "description": "Nemzeti döntők, nemzetközi tréning versenyek és szakmai bemutatók",
-    "locations": [{ "title": "A pavilon", "slug": "/terkep/a-pavilon" }],
+    "locations": [
+      { "title": "F pavilon", "slug": "/terkep?f-pavilon" },
+      { "title": "G pavilon", "slug": "/terkep?g-pavilon" }
+    ],
     "color": "wshu.main",
     "symbolSrc": "/images/wshu-symbol.svg"
   },
@@ -19,7 +25,10 @@
     "title": "Interaktív programok",
     "slug": "szakmai-programok/egyeb-esemenyek",
     "description": "Interaktív programok, szakmai bemutatók, és kiállítók",
-    "locations": [{ "title": "A pavilon", "slug": "/terkep/a-pavilon" }],
+    "locations": [
+      { "title": "F pavilon", "slug": "/terkep?f-pavilon" },
+      { "title": "G pavilon", "slug": "/terkep?g-pavilon" }
+    ],
     "color": "other.main",
     "symbolSrc": "/images/sponsor-symbol.svg"
   },
@@ -27,7 +36,7 @@
     "title": "NAK szakmai bemutatók",
     "slug": "szakmai-programok/nak-bemutatok",
     "description": "A Nemzeti Agrárgazdasági Kamara szakmai bemutatói, agrár szabadulószoba",
-    "locations": [{ "title": "D pavilon", "slug": "/terkep/d-pavilon" }],
+    "locations": [{ "title": "H pavilon", "slug": "/terkep?h-pavilon" }],
     "color": "nak.main",
     "symbolSrc": "/images/nak-symbol.svg"
   }
