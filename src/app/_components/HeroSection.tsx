@@ -1,6 +1,6 @@
 // import { Stack, Typography } from "@mui/material";
 // import SectionContainer from "@/components/layouts/SectionContainer";
-import Starform from "@/components/ui/Starform";
+// import Starform from "@/components/ui/Starform";
 
 const HeroSection = () => {
   return (
@@ -25,7 +25,7 @@ const HeroSection = () => {
         </Stack>
       </SectionContainer> */}
 
-      <Starform />
+      {/* <Starform /> */}
     </>
   );
 };

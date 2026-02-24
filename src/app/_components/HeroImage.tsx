@@ -20,8 +20,11 @@ type HeroImageProps = {
 export default function HeroImage({ alt, title }: HeroImageProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [fadeIndex, setFadeIndex] = useState(-1);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    const timeout = setTimeout(() => setIsMounted(true), 50);
+
     const interval = setInterval(() => {
       setCurrentImageIndex((prev) => {
         setFadeIndex(prev);
@@ -29,7 +32,10 @@ export default function HeroImage({ alt, title }: HeroImageProps) {
         return (prev + 1) % HERO_IMAGES.length;
       });
     }, 5000);
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+      clearTimeout(timeout);
+    };
   }, []);
 
   return (
@@ -39,9 +45,9 @@ export default function HeroImage({ alt, title }: HeroImageProps) {
         width: "min(100%,852px)",
         left: "50%",
         transform: "translateX(-50%)",
-        height: { xs: "auto", md: "320px" },
+        height: { xs: "auto", md: "auto" },
         overflow: "hidden",
-        aspectRatio: { xs: "4/3", md: "auto" },
+        aspectRatio: { xs: "4/3", md: "5/3" },
       }}
     >
       {HERO_IMAGES.map((img, index) => {
@@ -67,7 +73,7 @@ export default function HeroImage({ alt, title }: HeroImageProps) {
                 width: "100%",
                 height: "100%",
                 transform:
-                  isActive || isFadingOut
+                  (isActive || isFadingOut) && isMounted
                     ? "translateX(5%) scale(1.1)"
                     : "translateX(0px) scale(1)",
                 transition: isActive || isFadingOut ? "transform 8s linear" : "none",

@@ -2,12 +2,12 @@ import Link from "next/link";
 import {
   Category as CategoryIcon,
   Event as EventIcon,
-  Explore as ExploreIcon,
   Home as HomeIcon,
   Info as InfoIcon,
   Map as MapIcon,
   QrCode as QrCodeIcon,
   Quiz as QuizIcon,
+  SportsEsports as SportsEsportsIcon,
   Work as WorkIcon,
 } from "@mui/icons-material";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
@@ -37,7 +37,7 @@ export const menuItems: MenuItem[] = [
   },
   {
     text: "Térkép",
-    icon: <ExploreIcon />,
+    icon: <MapIcon />,
     slug: "/terkep",
     link: <Link href="/terkep">{<MapIcon />}</Link>,
     showInBottomNav: true,
@@ -47,6 +47,13 @@ export const menuItems: MenuItem[] = [
     icon: <CategoryIcon />,
     slug: "/szakmai-programok/kategoriak",
     link: <Link href="/szakmai-programok/kategoriak">{<WorkIcon />}</Link>,
+    showInBottomNav: true,
+  },
+  {
+    text: "Játsz és nyerj!",
+    icon: <SportsEsportsIcon />,
+    slug: "/",
+    link: <Link href="/">{<SportsEsportsIcon />}</Link>,
     showInBottomNav: true,
   },
   {
