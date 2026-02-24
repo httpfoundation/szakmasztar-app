@@ -35,8 +35,7 @@ const QrCodePageContent = () => {
       {!isKiosk && (
         <>
           <FormattedContent variant="body1" sx={{ textAlign: "center", mb: 3 }}>
-            Olvasd be a szakmai program QR-kód-ját! Első alkalommal engedélyezned kell a kamerád
-            használatát az alkalmazás számára.
+            Olvasd be a szakmai program QR-kód-ját!
           </FormattedContent>
           <QrCodeScanner />
         </>
