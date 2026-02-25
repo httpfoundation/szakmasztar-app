@@ -71,6 +71,33 @@ const BoothDetailPanel = ({
     }
   }, [requestClose, onCloseStart]);
 
+  // Intercept the browser back button on mobile to close the panel
+  useEffect(() => {
+    if (!isMobile) return;
+
+    // Push a sentinel state so pressing back fires popstate instead of navigating
+    window.history.pushState({ boothPanelOpen: true }, "");
+
+    const onPopState = () => {
+      // Back button pressed → close the panel
+      setIsClosing(true);
+      onCloseStart?.();
+    };
+
+    window.addEventListener("popstate", onPopState);
+
+    return () => {
+      window.removeEventListener("popstate", onPopState);
+      // If the panel is being unmounted while the sentinel state is still on the
+      // stack (e.g. closed via the X button or drag), pop it to keep history clean.
+      if (window.history.state?.boothPanelOpen) {
+        window.history.back();
+      }
+    };
+    // We intentionally run this only on mount/unmount per booth opening.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isMobile, boothTitle]);
+
   // Open animation: start off-screen, transition to collapsed position
   useEffect(() => {
     if (!paperRef.current || !isMobile) return;
