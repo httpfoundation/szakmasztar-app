@@ -5,7 +5,6 @@ import GameIconImg from "@/assets/images/game-icon.svg";
 import eredmenyorientaciosIcon from "@/assets/images/kerdoivek/icon-eredmenyorientacios.svg";
 import iparagiIcon from "@/assets/images/kerdoivek/icon-iparagi.svg";
 import kompetenciaIcon from "@/assets/images/kerdoivek/icon-kompetencia.svg";
-import szakmasztarSymbol from "@/assets/images/symbol.svg";
 import ImageButton from "@/components/common/ImageButton";
 import SectionContainer from "@/components/layouts/SectionContainer";
 import Starform from "@/components/ui/Starform";

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
 import { Check as CheckIcon, Close as CloseIcon } from "@mui/icons-material";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
@@ -8,17 +8,7 @@ import InfoIcon from "@mui/icons-material/Info";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
 import ReplayIcon from "@mui/icons-material/Replay";
-import {
-  Box,
-  Button,
-  Collapse,
-  Divider,
-  FormControlLabel,
-  Radio,
-  Stack,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Divider, FormControlLabel, Radio, Stack, Typography } from "@mui/material";
 import GameImg from "@/assets/images/game-icon.svg";
 import PageContainer from "@/components/layouts/PageContainer";
 import SectionContainer from "@/components/layouts/SectionContainer";
@@ -92,8 +82,8 @@ const SzakmasztarQuestionnaire = () => {
             >
               Válaszolj helyesen a kérdésekre és nyerj ajándékot!
               <br />
-              Jelöld be a helyes válaszokat, majd kattints a képernyő alatt található "Válaszok
-              ellenőrzése" gombra!
+              Jelöld be a helyes válaszokat, majd kattints a képernyő alatt található &quot;Válaszok
+              ellenőrzése&quot; gombra!
             </Typography>
           </Stack>
           <Box
