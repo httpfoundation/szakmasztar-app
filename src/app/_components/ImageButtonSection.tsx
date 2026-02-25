@@ -178,8 +178,8 @@ function HexagonMenu() {
         direction="right"
       />
       <CenterHexagonButton
-        label="Játsz és nyerj!"
-        href="/versenyek"
+        label="Játssz és nyerj!"
+        href="/jatssz-es-nyerj"
         sx={{ gridColumn: 2, gridRow: "2 / 4" }}
       />
     </Box>

@@ -83,10 +83,10 @@ export const menuItems: MenuItem[] = [
     showInBottomNav: true,
   },
   {
-    text: "Játsz és nyerj!",
+    text: "Játssz és nyerj!",
     icon: <GameIcon />,
-    slug: "/",
-    link: <Link href="/">{<GameIcon />}</Link>,
+    slug: "/jatssz-es-nyerj",
+    link: <Link href="/jatssz-es-nyerj">{<GameIcon />}</Link>,
     showInBottomNav: true,
   },
   {
