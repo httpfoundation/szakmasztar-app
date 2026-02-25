@@ -4,6 +4,7 @@ import { Stack, Typography } from "@mui/material";
 import eredmenyorientaciosIcon from "@/assets/images/kerdoivek/icon-eredmenyorientacios.svg";
 import iparagiIcon from "@/assets/images/kerdoivek/icon-iparagi.svg";
 import kompetenciaIcon from "@/assets/images/kerdoivek/icon-kompetencia.svg";
+import szakmasztarSymbol from "@/assets/images/symbol.svg";
 import ImageButton from "@/components/common/ImageButton";
 import SectionContainer from "@/components/layouts/SectionContainer";
 import Starform from "@/components/ui/Starform";
@@ -31,6 +32,26 @@ const KerdoivekPage = () => {
         </Typography>
 
         <Stack direction="column" spacing={2}>
+          <ImageButton
+            href="/kerdoivek/szakmasztar"
+            sx={{ justifyContent: "flex-start" }}
+            icon={
+              <Image
+                src={szakmasztarSymbol}
+                alt="Eredményorientációs kérdőív"
+                style={{ height: "64px", width: "auto", padding: "4px" }}
+              />
+            }
+            text={
+              <>
+                Szakma Sztár Fesztivál kérdőív
+                <Typography variant="body2" sx={{ mt: 1, fontSize: 12 }}>
+                  Több, mint egy verseny - Fedezd fel a szakmák világát a Szakma Sztár Fesztiválon!
+                </Typography>
+              </>
+            }
+          />
+
           <ImageButton
             href="/kerdoivek/eredmenyorientacios"
             sx={{ justifyContent: "flex-start" }}
