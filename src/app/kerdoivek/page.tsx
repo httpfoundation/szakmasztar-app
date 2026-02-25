@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Image from "next/image";
 import { Stack, Typography } from "@mui/material";
+import GameIconImg from "@/assets/images/game-icon.svg";
 import eredmenyorientaciosIcon from "@/assets/images/kerdoivek/icon-eredmenyorientacios.svg";
 import iparagiIcon from "@/assets/images/kerdoivek/icon-iparagi.svg";
 import kompetenciaIcon from "@/assets/images/kerdoivek/icon-kompetencia.svg";
@@ -33,20 +34,26 @@ const KerdoivekPage = () => {
 
         <Stack direction="column" spacing={2}>
           <ImageButton
-            href="/kerdoivek/szakmasztar"
+            href="/jatssz-es-nyerj"
+            bgcolor="success.main"
             sx={{ justifyContent: "flex-start" }}
             icon={
               <Image
-                src={szakmasztarSymbol}
-                alt="Eredményorientációs kérdőív"
-                style={{ height: "64px", width: "auto", padding: "4px" }}
+                src={GameIconImg}
+                alt=""
+                style={{ height: "64px", width: "64px", padding: "4px", objectFit: "contain" }}
               />
             }
             text={
               <>
-                Szakma Sztár Fesztivál kérdőív
-                <Typography variant="body2" sx={{ mt: 1, fontSize: 12 }}>
-                  Több, mint egy verseny - Fedezd fel a szakmák világát a Szakma Sztár Fesztiválon!
+                <Typography variant="h6" component="span" sx={{ color: "primary.dark" }}>
+                  Játssz és nyerj!
+                </Typography>
+                <Typography
+                  variant="body2"
+                  sx={{ mt: 1, fontSize: 12, color: "primary.dark", fontWeight: 500 }}
+                >
+                  Válaszolj helyesen a kérdésekre és nyerj ajándékot!
                 </Typography>
               </>
             }
