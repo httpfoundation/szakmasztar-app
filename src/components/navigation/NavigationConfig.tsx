@@ -1,4 +1,3 @@
-import Link from "next/link";
 import {
   AccountBalance as AccountBalanceIcon,
   Category as CategoryIcon,
@@ -11,6 +10,7 @@ import {
   Work as WorkIcon,
 } from "@mui/icons-material";
 import SvgIcon from "@mui/material/SvgIcon";
+import Link from "@/components/common/Link";
 
 const GameIcon = () => {
   return (

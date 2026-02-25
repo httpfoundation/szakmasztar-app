@@ -148,7 +148,7 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
         }
       }
     },
-    [selectedBoothId]
+    [isMobile, selectedBoothId]
   );
 
   /* Returns the selected booth based on the selected booth ID */
@@ -261,7 +261,7 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
       );
       setBoothImagesLoaded(true);
     }
-  }, [mapData]);
+  }, [initialBuilding, mapData.buildings]);
 
   /* Calculate the bounds of the buildings */
   const buildingBounds = useMemo(() => {
@@ -329,7 +329,7 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
   }, [activeFilter]);
 
   // Determine the filter match expression
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
   const filterMatchExpression = useMemo<any>(() => {
     if (!activeFilter) return ["literal", true];
     if (activeFilter.includes("wshu")) return ["get", "hasWshu"];

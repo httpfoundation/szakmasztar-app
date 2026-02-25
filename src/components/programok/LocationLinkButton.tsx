@@ -1,5 +1,5 @@
-import Link from "next/link";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
+import Link from "@/components/common/Link";
 import LinkButton from "../common/LinkButton";
 
 interface LocationLinkButtonProps {

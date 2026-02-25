@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { cache } from "react";
 import { revalidateTag, unstable_cache } from "next/cache";
 
@@ -25,7 +24,7 @@ export function getIdTag(id: string, tag: keyof typeof CACHE_TAGS) {
 }
 
 export function clearFullCache() {
-  revalidateTag("*");
+  revalidateTag("*", "max");
 }
 
 export function gqlCache<T extends (...args: any[]) => Promise<any>>(
@@ -51,8 +50,8 @@ export function revalidateCache({ tag, id }: { tag: keyof typeof CACHE_TAGS | "*
   }
 
   if (id) {
-    revalidateTag(getIdTag(id, tag as keyof typeof CACHE_TAGS));
+    revalidateTag(getIdTag(id, tag as keyof typeof CACHE_TAGS), "max");
   } else {
-    revalidateTag(getGlobalTag(tag as keyof typeof CACHE_TAGS));
+    revalidateTag(getGlobalTag(tag as keyof typeof CACHE_TAGS), "max");
   }
 }

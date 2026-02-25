@@ -1,9 +1,9 @@
 "use client";
 
 import { FC, ReactNode } from "react";
-import Link from "next/link";
 import { ShortCodeContextProvider, YoutubeVideo } from "@httpfoundation/shortcodes";
 import { Button } from "@mui/material";
+import Link from "@/components/common/Link";
 import BackButton from "@/components/ui/BackButton";
 
 interface ShortCodeContextProps {
@@ -41,4 +41,3 @@ const ShortCodeContext: FC<ShortCodeContextProps> = ({ children }) => {
 };
 
 export default ShortCodeContext;
-

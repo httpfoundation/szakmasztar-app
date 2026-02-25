@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { BottomNavigation, BottomNavigationAction, Paper } from "@mui/material";
+import Link from "@/components/common/Link";
 import { menuItems } from "./NavigationConfig";
 
 export default function BottomNav() {

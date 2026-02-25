@@ -61,7 +61,7 @@ const SzakmasztarQuestionnaire = () => {
       top: 0,
       behavior: "smooth",
     });
-  }, [questionAnswers, questions]);
+  }, [questionAnswers, questions, setChecked, setQuestionAnswers]);
 
   const resetQuestions = useCallback(() => {
     setChecked(false);
@@ -72,7 +72,7 @@ const SzakmasztarQuestionnaire = () => {
         checkStatus: "unknown",
       }))
     );
-  }, [questionAnswers]);
+  }, [questionAnswers, setChecked, setQuestionAnswers]);
 
   if (!mounted) {
     return null;
@@ -92,8 +92,8 @@ const SzakmasztarQuestionnaire = () => {
             >
               Válaszolj helyesen a kérdésekre és nyerj ajándékot!
               <br />
-              Jelöld be a helyes válaszokat, majd kattints a képernyő alatt található "Válaszok
-              ellenőrzése" gombra!
+              Jelöld be a helyes válaszokat, majd kattints a képernyő alatt található &quot;Válaszok
+              ellenőrzése&quot; gombra!
             </Typography>
           </Stack>
           <Box

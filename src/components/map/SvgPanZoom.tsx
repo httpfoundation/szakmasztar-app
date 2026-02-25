@@ -17,6 +17,7 @@ const SvgPanZoom = ({ children, defaultPosition }: SvgPanZoomProps) => {
   const ref = useRef<UncontrolledReactSVGPanZoom>(null);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
   }, []);
 

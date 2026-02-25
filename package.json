@@ -6,7 +6,7 @@
     "dev": "next dev --turbopack -p 3010",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "codegen": "graphql-codegen --config codegen.ts",
     "format": "prettier --write \"**/*.{ts,tsx,md,css}\"",
     "prepare": "husky"
@@ -33,7 +33,7 @@
     "@mui/material": "^5.16.14",
     "@mui/material-nextjs": "^5.15.11",
     "@mui/styles": "^5.15.19",
-    "@next/third-parties": "^15.3.1",
+    "@next/third-parties": "16.1.6",
     "@react-spring/web": "^9.7.3",
     "@svgr/webpack": "^8.1.0",
     "@t3-oss/env-nextjs": "^0.10.1",
@@ -43,29 +43,34 @@
     "graphql-codegen-apollo-next-ssr": "^1.7.4",
     "html-react-parser": "^5.1.10",
     "maplibre-gl": "5.14.0",
-    "next": "^15.5.12",
-    "react": "^19.2.3",
-    "react-dom": "^19.2.3",
+    "next": "16.1.6",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
     "react-map-gl": "^8.1.0",
     "react-svg-pan-zoom": "^3.13.1",
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3",
     "@ianvs/prettier-plugin-sort-imports": "^4.2.1",
     "@types/he": "^1.2.3",
     "@types/jsdom": "^27.0.0",
     "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
     "@types/react-svg-pan-zoom": "^3.3.9",
-    "eslint": "^9",
-    "eslint-config-next": "15.1.6",
+    "eslint": "^9.39.3",
+    "eslint-config-next": "^16.1.6",
     "he": "^1.2.0",
     "husky": "^9.0.11",
     "jsdom": "^28.0.0",
     "lint-staged": "^15.2.5",
     "sharp": "^0.34.5",
     "typescript": "^5"
+  },
+  "pnpm": {
+    "overrides": {
+      "@types/react": "19.2.14",
+      "@types/react-dom": "19.2.3"
+    }
   }
 }
