@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback } from "react";
+import { useCallback, useRef } from "react";
 import { Check as CheckIcon, Close as CloseIcon } from "@mui/icons-material";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
@@ -47,11 +47,17 @@ const SzakmasztarQuestionnaire = () => {
             : "incorrect",
       }))
     );
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    if (resultSectionRef.current) {
+      const rect = resultSectionRef.current.getBoundingClientRect();
+      const offsetPosition = rect.top + window.pageYOffset - (56 + 32);
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    }
   }, [questionAnswers, questions]);
+
+  const resultSectionRef = useRef<HTMLDivElement>(null);
 
   const resetQuestions = useCallback(() => {
     setChecked(false);
@@ -62,6 +68,10 @@ const SzakmasztarQuestionnaire = () => {
         checkStatus: "unknown",
       }))
     );
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   }, [questionAnswers]);
 
   if (!mounted) {
@@ -100,6 +110,7 @@ const SzakmasztarQuestionnaire = () => {
       {checked && (
         <SectionContainer sx={{ backgroundColor: allCorrect ? "#46e82d4a" : "#fd46464a" }}>
           <Box
+            ref={resultSectionRef}
             sx={{
               display: "flex",
               justifyContent: "center",
