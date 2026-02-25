@@ -40,7 +40,7 @@ jobs:
           docker push ghcr.io/${{ github.repository_owner }}/szakmasztar-app:latest
 
       - name: Pull new image, recreate and start containers using the ${{ github.event.repository.name }}:latest image
-        uses: httpfoundation/docker-manager-deploy-action@v1
+        uses: httpfoundation/pulldeck-deploy-action@v1
         with:
-          base-url: ${{ secrets.DOCKER_MANAGER_BASE_URL }}
-          token: ${{ secrets.DOCKER_MANAGER_TOKEN }}
+          base-url: ${{ secrets.PULLDECK_BASE_URL }}
+          token: ${{ secrets.PULLDECK_TOKEN }}
