@@ -224,7 +224,7 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
 
       /* Add custom images to the map */
       const images: [string, string][] = [
-        ["arrow_upward", "/images/arrow_upward_256dp_000_FILL0_wght400_GRAD0_opsz48.png"],
+        ["arrow_upward", "/images/arrow_upward.png"],
         ["metro2", "/images/Budapest_M2_Metro_s.png"],
         ["wc", "/images/wc.png"],
         ["restaurant", "/images/restaurant.png"],
@@ -468,23 +468,21 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
               "text-field": ["get", "name"],
               "text-font": ["montserratBold"],
               "text-transform": "uppercase",
-              "text-anchor": "center",
+              "text-anchor": "top",
               "text-justify": "center",
               "icon-image": "arrow_upward",
               "icon-size": ["interpolate", ["exponential", 2], ["zoom"], 16, 0.15, 19, 0.25],
               "text-size": ["interpolate", ["exponential", 2], ["zoom"], 16, 14, 19, 18],
-              "icon-anchor": "center",
+              "icon-anchor": "bottom",
               "icon-rotate": ["get", "rotate"],
               "icon-rotation-alignment": "map",
-              "text-rotate": ["get", "rotate"],
               "text-rotation-alignment": "map",
-              "icon-allow-overlap": true,
+              "text-offset": ["get", "offset"],
             }}
             paint={{
               "text-color": "#000",
               "text-halo-color": "#fff",
               "text-halo-width": 2,
-              "icon-translate-anchor": "map",
             }}
           />
 
@@ -562,6 +560,33 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
             maxzoom={boothZoomLevel}
           />
           <Layer
+            id="buildings-labels"
+            type="symbol"
+            filter={["==", "type", "building"]}
+            layout={{
+              "text-field": ["get", "name"],
+              "text-size": ["interpolate", ["exponential", 2], ["zoom"], 14, 8, 20, 300],
+              "text-offset": [
+                "case",
+                ["==", ["get", "name"], "G pavilon"],
+                ["literal", [-2.7, 0]],
+                ["literal", [0, 0]],
+              ],
+              "text-font": ["montserratBold"],
+              "text-transform": "uppercase",
+              "text-anchor": "center",
+              "text-justify": "center",
+              "text-allow-overlap": true,
+            }}
+            paint={{
+              "text-color": "#fff",
+              "text-halo-color": ["get", "color"],
+              "text-halo-width": 2,
+            }}
+            minzoom={buildingZoomLevel}
+            maxzoom={boothZoomLevel}
+          />
+          <Layer
             id="buildings-floor"
             type="fill"
             filter={["==", "type", "building"]}
@@ -580,27 +605,6 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
               "line-width": 3,
             }}
             minzoom={boothZoomLevel}
-          />
-          <Layer
-            id="buildings-labels"
-            type="symbol"
-            filter={["==", "type", "building"]}
-            layout={{
-              "text-field": ["get", "name"],
-              "text-size": ["interpolate", ["exponential", 2], ["zoom"], 14, 8, 20, 300],
-              "text-font": ["montserratBold"],
-              "text-transform": "uppercase",
-              "text-anchor": "center",
-              "text-justify": "center",
-              "text-allow-overlap": true,
-            }}
-            paint={{
-              "text-color": "#fff",
-              "text-halo-color": ["get", "color"],
-              "text-halo-width": 2,
-            }}
-            minzoom={buildingZoomLevel}
-            maxzoom={boothZoomLevel}
           />
         </Source>
         <Source id="booths" type="geojson" data={boothsGeoJSON}>

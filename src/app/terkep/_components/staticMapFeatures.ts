@@ -75,7 +75,15 @@ export const staticMapFeatures = {
     },
     {
       type: "Feature" as const,
-      properties: { id: null, name: "2. Kapu", type: "gate", rotate: 30 },
+      properties: { id: null, name: "1. Kapu", type: "gate", rotate: 90, offset: [-2.5, -0.5] },
+      geometry: {
+        type: "Point" as const,
+        coordinates: [19.12149074317265, 47.49385554550067],
+      },
+    },
+    {
+      type: "Feature" as const,
+      properties: { id: null, name: "2. Kapu", type: "gate", rotate: 30, offset: [0, 0.5] },
       geometry: {
         type: "Point" as const,
         coordinates: [19.123364303846227, 47.491661485734795],
@@ -83,10 +91,18 @@ export const staticMapFeatures = {
     },
     {
       type: "Feature" as const,
-      properties: { id: null, name: "3. Kapu", type: "gate", rotate: -20 },
+      properties: { id: null, name: "3. Kapu", type: "gate", rotate: -10, offset: [0, 0.5] },
       geometry: {
         type: "Point" as const,
         coordinates: [19.128480072915814, 47.49149239671809],
+      },
+    },
+    {
+      type: "Feature" as const,
+      properties: { id: null, name: "6. Kapu", type: "gate", rotate: -20, offset: [0, 0.5] },
+      geometry: {
+        type: "Point" as const,
+        coordinates: [19.13304257141438, 47.4924158494168],
       },
     },
     {
