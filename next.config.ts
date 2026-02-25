@@ -1,9 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { NextConfig } from "next";
 import nextPwa from "@ducanh2912/next-pwa";
 
 const nextConfig: NextConfig = {
   output: "standalone",
-  turbopack: {},
   images: {
     unoptimized: true,
     remotePatterns: [

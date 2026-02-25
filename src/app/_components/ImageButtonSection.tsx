@@ -1,3 +1,5 @@
+import React from "react";
+import Link from "next/link";
 import {
   Map as MapIcon,
   QrCode as QrCodeIcon,
@@ -5,10 +7,9 @@ import {
   SvgIconComponent,
   Work as WorkIcon,
 } from "@mui/icons-material";
-import { Box, Button, SxProps, Theme, Typography } from "@mui/material";
+import { Box, SxProps, Theme, Typography } from "@mui/material";
 import GameIcon from "@/assets/images/game-icon.svg";
 import HexButtonsBgImg from "@/assets/images/hero/hex-buttons-bg-alt-2.png";
-import Link from "@/components/common/Link";
 import SectionContainer from "@/components/layouts/SectionContainer";
 import { szakmaSztarMustard } from "@/themes/theme";
 
@@ -27,12 +28,9 @@ function HexagonButton({
 }) {
   // offset = (height / 2) * tan(30°) = (100 / 2) * tan(30°) = 50 * 0.577 = 28.85
   return (
-    <Button
+    <Box
       sx={{
         backgroundColor: "primary.light",
-        "&:hover": { backgroundColor: "primary.light" },
-        "&:active": { backgroundColor: "primary.light" },
-        "&:focus": { backgroundColor: "primary.light" },
         height: "100px",
         width: "calc(100% + 28.85px)",
         ml: direction === "right" ? "-28.85px" : "0",
@@ -51,8 +49,7 @@ function HexagonButton({
             : "polygon(100% 0%, 100% 100%, 28.85px 100%, 0% 50%, 28.85px 0%, 100% 0%)",
         ...sx,
       }}
-      style={{ borderRadius: 0 }}
-      LinkComponent={Link}
+      component={Link}
       href={href}
     >
       <Typography
@@ -66,7 +63,7 @@ function HexagonButton({
         {label}
       </Typography>
       <Icon sx={{ fontSize: { xs: 32, md: 40 }, color: "primary.contrastText" }} />
-    </Button>
+    </Box>
   );
 }
 
@@ -80,13 +77,10 @@ function CenterHexagonButton({
   sx?: SxProps<Theme>;
 }) {
   return (
-    <Button
+    <Box
       sx={{
         backgroundColor: szakmaSztarMustard,
         color: "primary.dark",
-        "&:hover": { backgroundColor: szakmaSztarMustard },
-        "&:active": { backgroundColor: szakmaSztarMustard },
-        "&:focus": { backgroundColor: szakmaSztarMustard },
         fontWeight: "700",
         width: "100%",
         aspectRatio: "1.1547 / 1",
@@ -101,8 +95,7 @@ function CenterHexagonButton({
         justifySelf: "center",
         ...sx,
       }}
-      style={{ borderRadius: 0 }}
-      LinkComponent={Link}
+      component={Link}
       href={href}
     >
       <Box component="img" src={GameIcon.src} alt="" sx={{ width: { xs: 32, md: 46 } }} />
@@ -115,7 +108,7 @@ function CenterHexagonButton({
       >
         {label}
       </Typography>
-    </Button>
+    </Box>
   );
 }
 

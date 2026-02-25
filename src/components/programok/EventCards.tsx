@@ -1,10 +1,10 @@
 import Image from "next/image";
+import Link from "next/link";
 import InfoIcon from "@mui/icons-material/Info";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { Box, ButtonBase, Grid, Paper, Typography } from "@mui/material";
 import { ArticleFragment } from "@/actions/articles/articles.generated";
 import eventCategories from "@/assets/eventCategories.json";
-import Link from "@/components/common/Link";
 import { getEventTypeBySlug } from "@/lib/utils";
 import LinkChip from "../ui/LinkChip";
 

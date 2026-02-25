@@ -1,10 +1,10 @@
+import Link from "next/link";
 import {
   ChevronLeftRounded as ChevronLeft,
   ChevronRightRounded as ChevronRight,
 } from "@mui/icons-material";
 import InfoIcon from "@mui/icons-material/Info";
 import { Button, ButtonProps } from "@mui/material";
-import Link from "@/components/common/Link";
 
 interface LinkButtonProps extends ButtonProps {
   href: string;

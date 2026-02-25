@@ -1,8 +1,8 @@
 "use client";
 
 import { ReactNode } from "react";
+import Link from "next/link";
 import { Button, IconButton, SxProps, Typography } from "@mui/material";
-import Link from "@/components/common/Link";
 
 interface ImageButtonProps {
   href: string;
