@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import SearchIcon from "@mui/icons-material/Search";
 import {
@@ -153,34 +153,6 @@ const MapSearchPanel = ({
   const handleClose = useCallback(() => {
     setIsOpen(false);
   }, []);
-
-  // Intercept the browser back button on mobile to close the panel
-  useEffect(() => {
-    if (!isOpen) return;
-
-    // Only apply on small screens (match xs breakpoint behaviour)
-    const mql = window.matchMedia("(max-width: 599.95px)");
-    if (!mql.matches) return;
-
-    // Push a sentinel state so pressing back fires popstate instead of navigating
-    window.history.pushState({ searchPanelOpen: true }, "");
-
-    const onPopState = () => {
-      // Back button pressed → close the panel
-      setIsOpen(false);
-    };
-
-    window.addEventListener("popstate", onPopState);
-
-    return () => {
-      window.removeEventListener("popstate", onPopState);
-      // If the panel is being closed via the X button or a selection,
-      // pop the sentinel state to keep history clean.
-      if (window.history.state?.searchPanelOpen) {
-        window.history.back();
-      }
-    };
-  }, [isOpen]);
 
   const handleCategoryClick = useCallback(
     (slug: string) => {
