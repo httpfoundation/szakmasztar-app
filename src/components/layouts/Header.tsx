@@ -25,6 +25,8 @@ export default function Header({ title }: HeaderProps) {
   const year = title.split(" ").pop() || "";
   const titleWithoutYear = title.replace(year, "");
 
+  const hideHamburger = pathname === "/2026";
+
   return (
     <>
       <AppBar
@@ -39,7 +41,7 @@ export default function Header({ title }: HeaderProps) {
         }}
       >
         <Toolbar>
-          <HamburgerButton onClick={handleDrawerToggle} />
+          {!hideHamburger && <HamburgerButton onClick={handleDrawerToggle} />}
           <Typography
             variant="h6"
             component="div"

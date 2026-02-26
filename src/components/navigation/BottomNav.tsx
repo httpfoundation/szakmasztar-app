@@ -10,6 +10,8 @@ export default function BottomNav() {
   const bottomNavItems = menuItems.filter((item) => item.showInBottomNav);
   const currentIndex = bottomNavItems.findIndex((item) => item.slug === pathname);
 
+  if (pathname === "/2026") return null;
+
   return (
     <Paper
       elevation={3}
