@@ -11,7 +11,7 @@ const SponsorCard: FC<SponsorCardProps> = ({ sponsor }) => {
   return (
     <Button
       target={"_blank"}
-      href={sponsor.homepageUrl ?? "#"}
+      href={sponsor.homepageUrl || "#"}
       sx={{
         p: 0,
         width: "100%",

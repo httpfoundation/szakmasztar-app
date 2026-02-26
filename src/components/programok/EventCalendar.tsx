@@ -41,10 +41,10 @@ const EventCalendar = () => {
                     }}
                   >
                     <Stack
-                      direction="row"
+                      direction="column"
                       sx={{
-                        alignItems: "center",
-                        justifyContent: "space-between",
+                        alignItems: "flex-start",
+                        gap: 1,
                         bgcolor: "#D9D9D9",
                         color: "primary.main",
                         px: 1.5,
@@ -52,11 +52,16 @@ const EventCalendar = () => {
                         flexGrow: 1,
                       }}
                     >
-                      <Stack direction="row" alignItems="center" spacing={1}>
-                        <AccessTimeFilledIcon fontSize="small" />
+                      <Stack direction="row" alignItems="center" spacing={1} sx={{ mt: 0.25 }}>
+                        <AccessTimeFilledIcon sx={{ fontSize: 16 }} />
                         <Typography
                           variant="body2"
-                          sx={{ fontWeight: 600, flexShrink: 0, whiteSpace: "nowrap" }}
+                          sx={{
+                            fontWeight: 600,
+                            flexShrink: 0,
+                            whiteSpace: "nowrap",
+                            fontSize: "0.85rem",
+                          }}
                         >
                           {new Date(event.startTime).toLocaleTimeString("hu-HU", {
                             hour: "2-digit",
@@ -70,21 +75,32 @@ const EventCalendar = () => {
                         </Typography>
                       </Stack>
 
-                      <Typography variant="h6" align="right" fontWeight={600}>
+                      <Typography variant="h6" align="left" fontWeight={700}>
                         {event.title}
                       </Typography>
                     </Stack>
 
-                    <Box sx={{ display: "flex", gap: 2, mt: 1.5, px: 1.5, pb: 1.5 }}>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        gap: 2,
+                        mt: 1.5,
+                        px: 1.5,
+                        pb: 1.5,
+                        flexWrap: "wrap",
+                      }}
+                    >
                       {event.eventSlugs && (
                         <LinkChip href={event.eventSlugs} icon={<InfoIcon />}>
                           Információ
                         </LinkChip>
                       )}
 
-                      <LinkChip href={event.locationSlug} icon={<LocationOnIcon />}>
-                        {event.location}
-                      </LinkChip>
+                      {event.locations.map((location, index) => (
+                        <LinkChip key={index} href={location.slug} icon={<LocationOnIcon />}>
+                          {location.name}
+                        </LinkChip>
+                      ))}
                     </Box>
                   </Paper>
                 </Grid>

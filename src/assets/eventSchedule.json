@@ -1,74 +1,130 @@
 [
   {
-    "title": "Április 28., hétfő",
+    "title": "Március 26., csütörtök",
     "events": [
       {
         "title": "Nyitóünnepség",
         "description": "Zártkörű nyitóünnepség a versenyek előtt",
-        "startTime": "2025-04-28 09:00",
-        "endTime": "2025-04-28 10:00",
-        "location": "CK pavilon",
-        "locationSlug": "terkep/hungexpo",
+        "startTime": "2026-03-26 09:00",
+        "endTime": "2026-03-26 10:00",
+        "locations": [
+          {
+            "name": "CK pavilon",
+            "slug": "terkep?kongresszusi-kozpont"
+          }
+        ],
         "eventSlugs": ""
       },
       {
         "title": "Országos szakmai versenyek, szakmai bemutatók és interaktív programok",
         "description": "Az MKIK-hoz tartozó versenyek",
-        "startTime": "2025-04-28 10:00",
-        "endTime": "2025-04-28 16:00",
-        "location": "A pavilon",
-        "locationSlug": "terkep/a-pavilon",
+        "startTime": "2026-03-26 10:00",
+        "endTime": "2026-03-26 16:00",
+        "locations": [
+          {
+            "name": "G pavilon",
+            "slug": "terkep?g-pavilon"
+          },
+          {
+            "name": "F pavilon",
+            "slug": "terkep?f-pavilon"
+          }
+        ],
         "eventSlugs": "szakmai-programok/osztv-szktv-versenyek"
       },
       {
         "title": "Nemzeti Agrárgazdasági Kamara szakmai bemutatók, agrár szabadulószoba",
         "description": "A NAK-hoz tartozó szakmai bemutatók",
-        "startTime": "2025-04-28 10:00",
-        "endTime": "2025-04-28 16:00",
-        "location": "D pavilon",
-        "locationSlug": "terkep/d-pavilon",
+        "startTime": "2026-03-26 10:00",
+        "endTime": "2026-03-26 16:00",
+        "locations": [
+          {
+            "name": "H pavilon",
+            "slug": "terkep?h-pavilon"
+          }
+        ],
         "eventSlugs": "szakmai-programok/nak-bemutatok"
       },
       {
         "title": "WorldSkills Hungary nemzeti válogatók és bemutatók",
         "description": "WorldSkills 2026 válogatók, nemzetközi tréningversenyek és szakma bemutatók",
-        "startTime": "2025-04-28 10:00",
-        "endTime": "2025-04-28 16:00",
-        "location": "D pavilon",
-        "locationSlug": "terkep/a-pavilon",
+        "startTime": "2026-03-26 10:00",
+        "endTime": "2026-03-26 16:00",
+        "locations": [
+          {
+            "name": "G pavilon",
+            "slug": "terkep?g-pavilon"
+          },
+          {
+            "name": "F pavilon",
+            "slug": "terkep?f-pavilon"
+          }
+        ],
         "eventSlugs": "szakmai-programok/wshu"
       }
     ]
   },
   {
-    "title": "Április 29., kedd",
+    "title": "Március 27., péntek",
     "events": [
       {
         "title": "Országos szakmai versenyek, szakmai bemutatók és interaktív programok",
         "description": "Az MKIK-hoz tartozó versenyek",
-        "startTime": "2025-04-28 08:00",
-        "endTime": "2025-04-28 16:00",
-        "location": "A pavilon",
-        "locationSlug": "terkep/a-pavilon",
+        "startTime": "2026-03-27 08:00",
+        "endTime": "2026-03-27 16:00",
+        "locations": [
+          {
+            "name": "G pavilon",
+            "slug": "terkep?g-pavilon"
+          },
+          {
+            "name": "F pavilon",
+            "slug": "terkep?f-pavilon"
+          }
+        ],
         "eventSlugs": "szakmai-programok/osztv-szktv-versenyek"
       },
       {
         "title": "Nemzeti Agrárgazdasági Kamara szakmai bemutatók, agrár szabadulószoba",
         "description": "A NAK-hoz tartozó szakmai bemutatók",
-        "startTime": "2025-04-28 08:00",
-        "endTime": "2025-04-28 16:00",
-        "location": "D pavilon",
-        "locationSlug": "terkep/d-pavilon",
+        "startTime": "2026-03-27 08:00",
+        "endTime": "2026-03-27 16:00",
+        "locations": [
+          {
+            "name": "H pavilon",
+            "slug": "terkep?h-pavilon"
+          }
+        ],
         "eventSlugs": "szakmai-programok/nak-bemutatok"
       },
       {
         "title": "WorldSkills Hungary nemzeti válogatók és bemutatók",
         "description": "WorldSkills 2026 válogatók, nemzetközi tréningversenyek és szakma bemutatók",
-        "startTime": "2025-04-28 08:00",
-        "endTime": "2025-04-28 16:00",
-        "location": "D pavilon",
-        "locationSlug": "terkep/a-pavilon",
+        "startTime": "2026-03-27 08:00",
+        "endTime": "2026-03-27 16:00",
+        "locations": [
+          {
+            "name": "G pavilon",
+            "slug": "terkep?g-pavilon"
+          },
+          {
+            "name": "F pavilon",
+            "slug": "terkep?f-pavilon"
+          }
+        ],
         "eventSlugs": "szakmai-programok/wshu"
+      },
+      {
+        "title": "Koncert",
+        "description": "Koncert",
+        "startTime": "2026-03-27 14:00",
+        "endTime": "2026-03-27 15:00",
+        "locations": [
+          {
+            "name": "G pavilon",
+            "slug": "terkep?g-pavilon"
+          }
+        ]
       }
     ]
   }
