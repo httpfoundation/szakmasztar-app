@@ -3,22 +3,49 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Box, Typography } from "@mui/material";
-import Hero1 from "@/assets/images/hero/hero-1.png";
-import Hero2 from "@/assets/images/hero/hero-2.png";
+import Hero1 from "@/assets/images/hero/hero-1.webp";
+import Hero2 from "@/assets/images/hero/hero-2.webp";
 import Hero3 from "@/assets/images/hero/hero-3.webp";
+import Hero4 from "@/assets/images/hero/hero-4.webp";
+import Hero5 from "@/assets/images/hero/hero-5.webp";
+import Hero6 from "@/assets/images/hero/hero-6.webp";
+import Hero7 from "@/assets/images/hero/hero-7.webp";
+import Hero8 from "@/assets/images/hero/hero-8.webp";
+import Hero10 from "@/assets/images/hero/hero-10.webp";
+import Hero11 from "@/assets/images/hero/hero-11.webp";
+import Hero12 from "@/assets/images/hero/hero-12.webp";
+import Hero13 from "@/assets/images/hero/hero-13.webp";
+import Hero14 from "@/assets/images/hero/hero-14.webp";
+import Hero15 from "@/assets/images/hero/hero-15.webp";
 import HeroLeftOverlay from "@/assets/images/hero/hero-left-overlay.png";
 import HeroRightOverlay from "@/assets/images/hero/hero-right-overlay.png";
 import StarLogo from "@/assets/images/logo-star.svg";
 import LinkButton from "@/components/common/LinkButton";
 
-const HERO_IMAGES = [Hero1, Hero2, Hero3];
+const HERO_IMAGES = [
+  Hero1,
+  Hero2,
+  Hero3,
+  Hero4,
+  Hero5,
+  Hero6,
+  Hero7,
+  Hero8,
+  Hero10,
+  Hero11,
+  Hero12,
+  Hero13,
+  Hero14,
+  Hero15,
+];
 
 type HeroImageProps = {
   alt: string;
   title?: string;
+  hideLink?: boolean;
 };
 
-export default function HeroImage({ alt, title }: HeroImageProps) {
+export default function HeroImage({ alt, title, hideLink }: HeroImageProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [fadeIndex, setFadeIndex] = useState(-1);
   const [isMounted, setIsMounted] = useState(false);
@@ -194,29 +221,31 @@ export default function HeroImage({ alt, title }: HeroImageProps) {
         </Box>
       )}
 
-      <LinkButton
-        href="/szakmasztar"
-        variant="contained"
-        color="primary"
-        direction="forward"
-        startIcon={null}
-        sx={{
-          py: 1.5,
-          pr: 2.5,
-          pl: 3,
-          mt: 2,
-          bgcolor: "primary.main",
-          fontSize: 14,
-          fontWeight: 600,
-          alignSelf: "flex-end",
-          position: "absolute",
-          bottom: 15,
-          right: 15,
-          zIndex: 2,
-        }}
-      >
-        Tudj meg többet a fesztiválról
-      </LinkButton>
+      {!hideLink && (
+        <LinkButton
+          href="/szakmasztar"
+          variant="contained"
+          color="primary"
+          direction="forward"
+          startIcon={null}
+          sx={{
+            py: 1.5,
+            pr: 2.5,
+            pl: 3,
+            mt: 2,
+            bgcolor: "primary.main",
+            fontSize: 14,
+            fontWeight: 600,
+            alignSelf: "flex-end",
+            position: "absolute",
+            bottom: 15,
+            right: 15,
+            zIndex: 2,
+          }}
+        >
+          Tudj meg többet a fesztiválról
+        </LinkButton>
+      )}
     </Box>
   );
 }
