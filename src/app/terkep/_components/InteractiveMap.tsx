@@ -1,9 +1,9 @@
 "use client";
 
 import Map, { Layer, Source } from "react-map-gl/maplibre";
-import type { LngLat, MapRef } from "react-map-gl/maplibre";
+import type { LngLat, MapGeoJSONFeature, MapRef } from "react-map-gl/maplibre";
 import "maplibre-gl/dist/maplibre-gl.css";
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useMediaQuery, useTheme } from "@mui/material";
 import { LngLatBounds } from "maplibre-gl";
@@ -85,67 +85,108 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
     }
   }, []);
 
-  // Resets hovered booth and building IDs when mouse leaves the map
+  /* Resets hovered booth and building IDs when mouse leaves the map */
   const onMouseLeave = useCallback(() => {
     setHoveredBoothId(null);
     setHoveredBuildingId(null);
     setCursor(undefined);
   }, []);
 
-  /* Handles click events, setting selected booth ID to open the booth detail panel */
+  /* Opens the booth detail panel and centers the map on the selected booth */
+  const openBoothDetailPanel = useCallback(
+    (
+      booth: Pick<MapGeoJSONFeature, "properties" | "geometry">,
+      otherBoothAlreadySelected: boolean
+    ) => {
+      setIsDismissing(false);
+      setSelectedBoothId(booth.properties?.id as string);
+      setActiveFilter(null);
+      setActivePoiType(null);
+
+      const geometry = booth.geometry;
+      const imageRotate = booth.properties?.imageRotate;
+      const bearing = imageRotate && imageRotate !== false ? (imageRotate as number) : 0;
+
+      if (geometry.type === "Polygon") {
+        const coordinates = geometry.coordinates[0];
+        const bounds = new LngLatBounds();
+        coordinates.forEach((coord) => {
+          bounds.extend(coord as [number, number]);
+        });
+
+        if (!otherBoothAlreadySelected) {
+          setReturnToMapState({
+            center: mapRef.current?.getMap().getCenter() as LngLat,
+            zoom: mapRef.current?.getMap().getZoom() as number,
+            pitch: mapRef.current?.getMap().getPitch() as number,
+            bearing: mapRef.current?.getMap().getBearing() as number,
+          });
+        }
+
+        mapRef.current
+          ?.getMap()
+          .fitBounds(bounds, { padding: 100, offset: isMobile ? [0, -80] : [80, 0], bearing });
+      }
+      if (window.history.state.booth) {
+        window.history.replaceState({ booth: booth.properties?.id }, "", "");
+      } else {
+        window.history.pushState({ booth: booth.properties?.id }, "", "");
+      }
+    },
+    [isMobile]
+  );
+
+  /* Closes the booth detail panel */
+  const closeBoothDetailPanel = useCallback(() => {
+    if (returnToMapState) {
+      mapRef.current?.getMap().flyTo({
+        center: returnToMapState.center,
+        zoom: returnToMapState.zoom,
+        pitch: returnToMapState.pitch,
+        bearing: returnToMapState.bearing,
+      });
+      setReturnToMapState(null);
+    }
+    setIsDismissing(true);
+  }, [returnToMapState]);
+
+  /* Handles back button navigation */
+  useEffect(() => {
+    const handlePopState = (event: PopStateEvent) => {
+      closeBoothDetailPanel();
+    };
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, [closeBoothDetailPanel]);
+
+  /* Centers the map on the selected building */
+  const focusBuilding = useCallback((building: MapGeoJSONFeature) => {
+    const geometry = building.geometry;
+    if (geometry.type === "Polygon") {
+      const coordinates = geometry.coordinates[0];
+      const bounds = new LngLatBounds();
+      coordinates.forEach((coord) => {
+        bounds.extend(coord as [number, number]);
+      });
+      mapRef.current?.getMap().fitBounds(bounds, { padding: 50 });
+    }
+  }, []);
+
+  /* Handles click events on the map, opening the booth detail panel or focusing the building */
   const onClick = useCallback(
     (event: MapLayerMouseEvent) => {
       const { features } = event;
       const clickedBooth = features?.find(
         (feature) => feature.properties?.type === "booth" && feature.properties?.hasArticles
       );
+      const clickedBuilding = features?.find((feature) => feature.properties?.type === "building");
 
       if (clickedBooth) {
-        setIsDismissing(false);
-        setSelectedBoothId(clickedBooth.properties?.id as string);
-        setActiveFilter(null);
-        setActivePoiType(null);
-        const geometry = clickedBooth.geometry;
-        const imageRotate = clickedBooth.properties?.imageRotate;
-        const bearing = imageRotate && imageRotate !== false ? (imageRotate as number) : 0;
-
-        if (geometry.type === "Polygon") {
-          const coordinates = geometry.coordinates[0];
-          const bounds = new LngLatBounds();
-          coordinates.forEach((coord) => {
-            bounds.extend(coord as [number, number]);
-          });
-
-          if (!selectedBoothId) {
-            setReturnToMapState({
-              center: mapRef.current?.getMap().getCenter() as LngLat,
-              zoom: mapRef.current?.getMap().getZoom() as number,
-              pitch: mapRef.current?.getMap().getPitch() as number,
-              bearing: mapRef.current?.getMap().getBearing() as number,
-            });
-          }
-
-          mapRef.current
-            ?.getMap()
-            .fitBounds(bounds, { padding: 100, offset: isMobile ? [0, -80] : [80, 0], bearing });
-        }
-      } else {
-        const clickedBuilding = features?.find(
-          (feature) => feature.properties?.type === "building"
-        );
-        if (clickedBuilding) {
-          const geometry = clickedBuilding.geometry;
-          if (geometry.type === "Polygon") {
-            const coordinates = geometry.coordinates[0];
-            const bounds = new LngLatBounds();
-            coordinates.forEach((coord) => {
-              bounds.extend(coord as [number, number]);
-            });
-            mapRef.current?.getMap().fitBounds(bounds, { padding: 50 });
-          }
-        } else if (selectedBoothId) {
-          setIsDismissing(true);
-        }
+        openBoothDetailPanel(clickedBooth, Boolean(selectedBoothId));
+      } else if (clickedBuilding) {
+        focusBuilding(clickedBuilding);
+      } else if (selectedBoothId) {
+        closeBoothDetailPanel();
       }
     },
     [selectedBoothId]
@@ -370,45 +411,6 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
       }
     }
   }, []);
-
-  const handleBoothSelect = useCallback(
-    (boothId: string) => {
-      const feature = boothsGeoJSON.features.find((f) => f.properties.id === boothId);
-      if (feature) {
-        setIsDismissing(false);
-        setSelectedBoothId(boothId);
-        setActiveFilter(null);
-        setActivePoiType(null);
-
-        if (feature.geometry.type === "Polygon") {
-          const coordinates = feature.geometry.coordinates[0];
-          const bounds = new LngLatBounds();
-          coordinates.forEach((coord) => {
-            bounds.extend(coord as [number, number]);
-          });
-
-          const imageRotate = feature.properties.imageRotate;
-          const bearing = imageRotate && imageRotate !== false ? (imageRotate as number) : 0;
-
-          if (!selectedBoothId) {
-            setReturnToMapState({
-              center: mapRef.current?.getMap().getCenter() as LngLat,
-              zoom: mapRef.current?.getMap().getZoom() as number,
-              pitch: mapRef.current?.getMap().getPitch() as number,
-              bearing: mapRef.current?.getMap().getBearing() as number,
-            });
-          }
-
-          mapRef.current?.getMap().fitBounds(bounds, {
-            padding: 100,
-            offset: isMobile ? [0, -80] : [80, 0],
-            bearing,
-          });
-        }
-      }
-    },
-    [boothsGeoJSON, selectedBoothId, isMobile]
-  );
 
   return (
     <>
@@ -867,14 +869,9 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
             setIsDismissing(false);
           }}
           onCloseStart={() => {
-            if (returnToMapState) {
-              mapRef.current?.getMap().flyTo({
-                center: returnToMapState.center,
-                zoom: returnToMapState.zoom,
-                pitch: returnToMapState.pitch,
-                bearing: returnToMapState.bearing,
-              });
-              setReturnToMapState(null);
+            closeBoothDetailPanel();
+            if (window.history.state.booth) {
+              window.history.back();
             }
           }}
         />
@@ -885,7 +882,12 @@ const InteractiveMap = ({ mapData }: InteractiveMapProps) => {
         onCategorySelect={handleCategorySelect}
         onPoiTypeSelect={handlePoiTypeSelect}
         booths={allBooths}
-        onBoothSelect={handleBoothSelect}
+        onBoothSelect={(boothId) => {
+          const feature = boothsGeoJSON.features.find((f) => f.properties.id === boothId);
+          if (feature) {
+            openBoothDetailPanel(feature, true);
+          }
+        }}
       />
     </>
   );

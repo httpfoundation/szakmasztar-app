@@ -65,11 +65,11 @@ const BoothDetailPanel = ({
   }, []);
 
   useEffect(() => {
-    if (requestClose) {
+    if (requestClose && !isClosing) {
       setIsClosing(true);
       onCloseStart?.();
     }
-  }, [requestClose, onCloseStart]);
+  }, [requestClose, onCloseStart, isClosing]);
 
   // Open animation: start off-screen, transition to collapsed position
   useEffect(() => {

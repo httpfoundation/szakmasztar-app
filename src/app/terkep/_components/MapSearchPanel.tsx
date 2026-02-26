@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import SearchIcon from "@mui/icons-material/Search";
 import {
@@ -88,6 +88,20 @@ const MapSearchPanel = ({
 }: MapSearchPanelProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+
+  useEffect(() => {
+    const handlePopState = (event: PopStateEvent) => {
+      setIsOpen(false);
+    };
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, []);
+
+  useEffect(() => {
+    if (isOpen) {
+      window.history.pushState({ searchPanel: true }, "");
+    }
+  }, [isOpen]);
 
   /** Extract unique POI types from static features */
   const poiTypes = useMemo<PoiType[]>(() => {
